@@ -1,0 +1,31 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide">
+      <div class="pt-3">
+        <p><a [routerLink]="['/covid/']">Home</a> > {{ pageLabel }}</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <div class="row">
+          <h1>{{ pageContent?.header }}</h1>
+        </div>
+        <div class="row">
+          <iframe
+            class="airtable-embed"
+            src="https://outlook.office365.com/calendar/published/d9e5077b3f56440fa9ae05c5b379069d@mail.nih.gov/57f64e81142c4be09f222ef35f798e7216167472848151606365/calendar.html"
+            frameborder="0"
+            onmousewheel=""
+            width="100%"
+            height="533"
+            style="background: transparent; border: 1px solid #ccc"
+          ></iframe>
+        </div>
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

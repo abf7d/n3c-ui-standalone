@@ -1,0 +1,173 @@
+.base {
+  fill: rgba(204, 204, 204, 0.5); /* light gray with some transparency */
+  stroke: #ccc;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.zip {
+  fill: yellow;
+  stroke: brown;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke; // line height won't scale
+}
+
+.remove {
+  vector-effect: non-scaling-stroke; // line height won't scale
+}
+
+.county {
+  stroke: brown;
+  stroke-width: 0.5;
+  vector-effect: non-scaling-stroke; // line height won't scale
+}
+
+.state {
+  fill: none;
+  stroke: #000000;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke; // line height won't scale
+}
+.pos-relative {
+  position: relative;
+}
+
+h3 {
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+.left-spaced {
+  margin-left: 20px;
+}
+.primary-nav {
+  height: 40px;
+  background: #006478;
+  color: #fff;
+}
+.n3c-logo {
+  margin-right: 7px;
+}
+.loader {
+  position: relative;
+}
+.main {
+  height: calc(100vh - 700px);
+  padding: 1px;
+}
+
+.loading-msg {
+  justify-content: center;
+}
+
+.page-msg {
+  min-height: calc(100vh - 538px);
+  position: relative;
+}
+.error-msg {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  color: red;
+}
+.base {
+  fill: rgba(204, 204, 204, 0.5);
+  stroke: #757373;
+  fill-opacity: 0;
+  stroke-width: 1;
+}
+.county {
+  stroke: #c4c4c4;
+  stroke-width: 0.5;
+}
+.states path {
+  pointer-events: none;
+}
+
+.chart {
+  width: 70%;
+  min-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.tooltip {
+  position: absolute;
+}
+.l-color {
+  width: 15px;
+  height: 15px;
+}
+.site-legend {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  flex-wrap: wrap;
+}
+.entry {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 1px;
+}
+.symbol-el {
+  height: 20px;
+  width: 20px;
+}
+.legends {
+  display: flex;
+}
+.symbol-entry {
+  display: flex;
+  div {
+    padding-left: 4px;
+  }
+}
+.pl-30 {
+  padding-left: 30px;
+}
+.missing {
+  border: 2px solid rgb(177, 177, 177);
+}
+.title-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.site-legend {
+  flex: 0 0 auto;
+}
+.width-50 {
+  width: 50%;
+  min-width: 667px;
+}
+.header-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+  .header {
+    width: 50%;
+    text-align: center;
+  }
+}
+.search-bar {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.css-dropdown {
+  position: relative;
+  > .dropdown-menu {
+    display: none;
+    right: 0;
+    left: auto;
+    top: 100%;
+  }
+  &:hover > .dropdown-menu,
+  &:focus-within > .dropdown-menu {
+    display: block;
+  }
+}

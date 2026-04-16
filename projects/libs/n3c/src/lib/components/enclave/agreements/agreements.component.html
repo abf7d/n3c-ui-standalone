@@ -1,0 +1,138 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide" id="about_container">
+      <div class="pt-3">
+        <p><a [routerLink]="['/covid']">Home</a> > {{ selectedAgreementType }} Signatories</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <div class="row">
+          <div class="col-12 col-md-3 col-lg-2">
+            <h3>Filters</h3>
+            <div class="group-filters">
+              <h4>Tenant Group</h4>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  (change)="filterTenantGroupChange('all')"
+                  type="radio"
+                  name="tenant-groups"
+                  value="all"
+                  [(ngModel)]="selectedTenant"
+                  id="tenant-groups-all"
+                />
+                <label class="form-check-label" for="tenant-groups-all"> All </label>
+              </div>
+              @for (item of tenantGroups; track item; let i = $index) {
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    (change)="filterTenantGroupChange(item)"
+                    type="radio"
+                    name="tenant-groups"
+                    id="tenant-groups-{{ i }}"
+                    [value]="item"
+                    [(ngModel)]="selectedTenant"
+                  />
+                  <label class="form-check-label" for="tenant-groups-{{ i }}">
+                    {{ item }}
+                  </label>
+                </div>
+              }
+            </div>
+            <div class="group-filters">
+              <h4>Agreement Type</h4>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  (change)="filterAgrementTypeChange('all')"
+                  type="radio"
+                  name="agreement-types"
+                  value="all"
+                  [(ngModel)]="selectedAgreementType"
+                  id="agreement-types-all"
+                />
+                <label class="form-check-label" for="agreement-types-all"> All </label>
+              </div>
+              @for (item of agreementTypes; track item; let i = $index) {
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    (change)="filterAgrementTypeChange(item)"
+                    type="radio"
+                    name="agreement-types"
+                    [value]="item"
+                    id="agreement-types-{{ i }}"
+                    [(ngModel)]="selectedAgreementType"
+                  />
+                  <label class="form-check-label" for="agreement-types-{{ i }}">
+                    {{ item }}
+                  </label>
+                </div>
+              }
+            </div>
+          </div>
+          <div class="col-12 col-md-9 col-lg-10 p-0">
+            <h3>
+              Institutional
+              @if (selectedTenant !== 'all') {
+                {{ selectedTenant }}
+              }
+              @if (selectedAgreementType !== 'all') {
+                {{ selectedAgreementType }}s
+              } @else {
+                Agreements
+              }
+            </h3>
+
+            @if (selectedTenant === 'Tenant') {
+              <div class="tenant-enclave-header">Tenant Enclave</div>
+            } @else if (selectedTenant === 'COVID') {
+              <div class="enclave-header">COVID Enclave</div>
+            } @else if (selectedTenant === 'all') {
+              <div class="enclave-header">All Enclaves</div>
+            }
+
+            @if (selectedTenant === 'Tenant') {
+              <div class="tenant-enclave">
+                <h4>Tenants</h4>
+                <ul>
+                  <li>Cancer - N3C Cancer Tenant</li>
+                  <li>Education - N3C Education Tenant</li>
+                  <li>Renal - N3C Renal Tenant</li>
+                </ul>
+              </div>
+            }
+
+            <div class="search-container">
+              <div class="input-container">
+                <span>Search:</span>
+                <input type="text" id="filter-text-box" placeholder="" (input)="onFilterTextBoxChanged()" />
+              </div>
+            </div>
+            <ag-grid-angular
+              style="width: 100%; height: 100%"
+              [rowData]="rowData"
+              [columnDefs]="columnDefs"
+              [components]="frameworkComponents"
+              [defaultColDef]="defaultColDef"
+              domLayout="autoHeight"
+              [headerHeight]="48"
+              [tooltipShowDelay]="800"
+              [pagination]="true"
+              [paginationPageSize]="paginationPageSize"
+              [paginationPageSizeSelector]="paginationPageSizeSelector"
+              (gridReady)="onGridReady($event)"
+            >
+            </ag-grid-angular>
+          </div>
+        </div>
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

@@ -1,0 +1,63 @@
+.reset-btn {
+    font-size: 0.8rem;
+  }
+  
+  .filter-header {
+    color: #9f9f9f;
+  }
+  .sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+   
+  }
+  .group-header {
+    display: flex; 
+    justify-content: space-between; /* Push content to edges */
+    align-items: center; 
+    text-align: left; 
+    width: 100%; 
+  }
+  
+
+  .group-header.btn.btn-outline-primary {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+      border: none
+  }
+
+  .three-dots {
+    text-align: center; color: gray; font-size: 8px; margin-bottom: 10px;
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+    padding-top: 10px;
+  }
+
+  .outline {
+    border: 1px solid #e0e0e0;
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  #data_filters_btn_clear {
+    color: #3f50b0; 
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+  
+    i {
+      margin-right: 4px; /* Add some spacing between the icon and the text */
+    }
+  
+    &:hover {
+      color: #344085; /* Slightly darken on hover for visual feedback */
+    }
+  }
+  

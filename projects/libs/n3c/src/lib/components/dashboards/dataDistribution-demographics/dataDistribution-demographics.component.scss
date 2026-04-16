@@ -1,0 +1,79 @@
+#about_container {padding-bottom:60px}
+#about_container .title h4{padding-top:40px;color:#359aaf;}
+#about_container hr{border-top: 1px solid #359aaf;margin-top: 3px;}
+app-external-link {
+    cursor: pointer;
+    color: #005ea2;
+    text-decoration: underline;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+.block1 {
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.h1 {
+  font-size: 2.8rem;
+  line-height: 1.2;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: none; /* No shadow initially */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for shadow */
+  margin-bottom: 20px; /* Space between cards */
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  border-bottom: none; /* Remove the border after the image */
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-body-links .card-title {
+  font-size: 1rem;
+  font-weight: normal; /* No bold font */
+  margin-bottom: 10px;
+  color: black; /* Font color black */
+}
+
+.card-body-links p {
+  font-size: 0.9rem;
+  color: black; /* Font color black */
+}
+
+.card-body-links a {
+  font-size: 1rem;
+  color: #007bff; /* Link color */
+  text-decoration: none;
+}
+
+.card-body-links a:hover {
+  text-decoration: underline;
+}
+
+.card:hover {
+  transform: scale(1.05); /* Hover effect for scaling */
+  box-shadow: 4px 4px 15px -2px rgb(197, 222, 255) !important
+}
+
+.card-body-links i {
+  margin-left: 5px;
+}

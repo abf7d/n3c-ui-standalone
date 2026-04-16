@@ -1,0 +1,46 @@
+{
+  "intro": "This data contains all COVID+ patients in the N3C Data Enclave.",
+  "sections": [
+    {
+      "header": "A COVID-positive patient",
+      "description": "is defined as any patient having one of the following within their EHR records:",
+      "inline": true,
+      "numbered": true,
+      "items": [
+        "Laboratory confirmed positive COVID-19 PCR or Antigen test",
+        "Laboratory confirmed positive COVID-19 Antibody test",
+        "Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded",
+        {
+          "items": [
+            "Condition diagnosis patients have no record of a positive PCR/Antigen or Antibody test within their EHR; however, they were diagnosed with COVID due to the symptoms they displayed."
+          ]
+        }
+      ]
+    },
+    {
+      "header": "General Enclave Limitations",
+      "description": "",
+      "items": [
+        "“Sicker” patients will likely be overrepresented within the N3C Data Enclave, as sicker patients will more often seek out and receive care at clinical centers.",
+        "The N3C may have multiple contributors to data “missingness”. Clinical facts and events that occur in the real world may not be captured for reasons including:",
+        {
+          "items": [
+            "The event was recorded at a clinical site that does not contribute data",
+            "Data is not yet linked across sites",
+            "Medical records are inherently incomplete"
+          ]
+        },
+        "Some of the external datasets that have been used for analysis cannot be fully mapped due to issues such as missing measurement units.",
+        "All dates within the Enclave have been shifted between -3 to 45 days to ensure that reidentification is not possible.",
+        "N3C data may not be representative of the entire US population",
+        {
+          "items": [
+            "N3C does NOT have a representative sample of any state, as data is contributed from only a few providers in each region (Region - includes multiple states)."
+          ]
+        },
+        "Cell sizes smaller than 20 people have been suppressed",
+        "For COVID+ patients: A patient is only counted once in this data, even if they have multiple positive tests over time. Except in instances where dashboards focus on reinfection, only dates of first infection are utilized."
+      ]
+    }
+  ]
+}

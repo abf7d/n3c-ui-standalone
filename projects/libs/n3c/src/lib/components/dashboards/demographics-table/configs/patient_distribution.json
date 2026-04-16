@@ -1,0 +1,43 @@
+{
+  "pageName": "Enclave Cumulative Participant Information",
+  "supplSource": "",
+  "titleMap": {},
+  "chartTotals": {},
+  "colorScheme": {},
+  "numCharts": 0,
+  "stackedBarCharts": [
+    {
+      "title": "Count of Patients by Race and Ethnicity",
+      "legendLabel": "Ethnicity"
+    },
+    {
+      "title": "Count of Patients by Race and Sex",
+      "legendLabel": "Sex"
+    }
+  ],
+  "kpiPanelConfig": [
+    {
+      "separator": true,
+      "items": [
+        {
+          "title": "Total COVID+ Patients",
+          "value": "numTCP",
+          "icon": "fas fa-user-plus",
+          "tooltipTitle": "Total COVID+ Patients in the N3C Data Enclave",
+          "tooltipContent": "<strong>COVID+ Defined As:</strong><ul class='low-padding-list'><li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li><li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li><li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li></ul>",
+          "footer": "Data as of Jul 26, 2024 (v182)",
+          "limitationsLink": "limitations"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Total Patients in Enclave",
+          "value": "numTPIE",
+          "icon": "fas fa-users"
+        }
+      ]
+    }
+  ]
+}

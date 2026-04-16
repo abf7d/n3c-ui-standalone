@@ -1,0 +1,40 @@
+{
+  "odp": {
+    "variantApiUrl_DEV": "https://opendata-dev.ncats.nih.gov/covid19-api",
+    "variantApiUrl_QA": "https://opendata-qa.ncats.nih.gov/covid19-api",
+    "variantApiUrl_LOCAL_BEFORE_MIGRATION": "http://localhost:8080/covid19-api",
+    "variantApiUrl_Django": "http://127.0.0.1:8000/covid19-api-v2",
+    "variantApiUrl_FASTAPI": "http://127.0.0.1:8000/api",
+    "variantApiUrl_local": "http://127.0.0.1:8000/api",
+    "variantApiUrl": "https://opendata-dev.ncats.nih.gov/api",
+    "tempQA": "https://opendata-qa.ncats.nih.gov/covid19-api",
+    "graphqlEndpointProd": "https://opendata.ncats.nih.gov/covid19-api-v2/graphql",
+    "graphqlEndpointKensLocal": "http://ncatslnapppdv11.ncats.nih.gov:8000/covid19-api-v2/graphql",
+    "graphqlEndpoint_DEV_LAST": "https://opendata-dev.ncats.nih.gov/covid19-api-v2/graphql",
+    "graphqlEndpointQA": "https://opendata-qa.ncats.nih.gov/covid19-api-v2/graphql",
+    "graphqlEndpoint_Django": "http://127.0.0.1:8000/covid19-api-v2/graphql",
+    "graphqlEndpoint_FASTAPI": "http://127.0.0.1:8000/api/graphql",
+    "graphqlEndpoint": "http://127.0.0.1:8000/api/graphql",
+    "covid19ApiUrl": "http://127.0.0.1:8000/api",
+    "covid19ApiUrl_FASTAPI": "http://127.0.0.1:8000/api",
+    "covid19ApiUrl_Django": "http://127.0.0.1:8000/covid19-api-v2",
+    "covid19ApiUrl_PROD": "https://opendata.ncats.nih.gov/covid19",
+    "covid19ApiUrl_DEV_LAST": "https://opendata-dev.ncats.nih.gov/covid19-api-v2",
+
+    "n3cUrls": {
+      "restEndpoint": "https://n3c-strapi-opendata-qa.ncats.nih.gov/api",
+      "restEndpoint_dev": "https://n3c-strapi-opendata-dev.ncats.nih.gov/api",
+      "restEndpoint_cd2h": "https://strapi.cd2h.org/api",
+      "dashboardEndpoint": "https://labs.cd2h.org/n3c_dashboard",
+      "strapiUrl": "https://n3c-strapi-opendata-qa.ncats.nih.gov",
+      "strapiUrl_cd2h": "https://strapi.cd2h.org",
+      "strapiUrl_dev": "https://n3c-strapi-opendata-dev.ncats.nih.gov/",
+      "strapiUrl_qa": "https://n3c-strapi-opendata-qa.ncats.nih.gov/",
+      
+       "dashboard_local": "http://127.0.0.1:8000/api/n3c/dashboard",
+       "baseUrl": "https://opendata-dev.ncats.nih.gov",
+       "dashboard": "/api/n3c/dashboard"
+    }
+  },
+  "services": {"auth": {}}
+}

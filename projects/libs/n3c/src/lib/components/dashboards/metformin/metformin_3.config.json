@@ -1,0 +1,119 @@
+{
+  "titleMap": {
+    "section1": {
+      "bar": "Long COVID Status of Total Patients in the Enclave who were not Prescribed Metformin",
+      "percent": "% Long COVID Status of Total Patients in the Enclave who were not Prescribed Metformin",
+      "pie": "% Long COVID Status of Total Patients in the Enclave who were not Prescribed Metformin"
+    },
+    "section2": {
+      "bar": "Long COVID Status of Total Patients in the Enclave who were Prescribed Metformin",
+      "percent": "% Long COVID Status of Total Patients in the Enclave who were Prescribed Metformin",
+      "pie": "% Long COVID Status of Total Patients in the Enclave who were Prescribed Metformin"
+    },
+    "section3": {
+      "bar": "Long COVID Status of Diabetic Patients in the Enclave who were not Prescribed Metformin",
+      "percent": "% Long COVID Status of Diabetic Patients in the Enclave who were not Prescribed Metformin",
+      "pie": "% Long COVID Status of Diabetic Patients in the Enclave who were not Prescribed Metformin"
+    },
+    "section4": {
+      "bar": "Long COVID Status of Diabetic Patients in the Enclave who were Prescribed Metformin",
+      "percent": "% Long COVID Status of Diabetic Patients in the Enclave who were Prescribed Metformin",
+      "pie": "% Long COVID Status of Diabetic Patients in the Enclave who were Prescribed Metformin"
+    },
+    "section5": {
+      "bar": "Long COVID Status of Non-Diabetic Patients in the Enclave who were not Prescribed Metformin",
+      "percent": "% Long COVID Status of Non-Diabetic Patients in the Enclave who were not Prescribed Metformin",
+      "pie": "% Long COVID Status of Non-Diabetic Patients in the Enclave who were not Prescribed Metformin"
+    },
+    "section6": {
+      "bar": "Long COVID Status of Non-Diabetic Patients in the Enclave who were Prescribed Metformin",
+      "percent": "% Long COVID Status of Non-Diabetic Patients in the Enclave who were Prescribed Metformin",
+      "pie": "% Long COVID Status of Non-Diabetic Patients in the Enclave who were Prescribed Metformin"
+    }
+  },
+  "chartTotals": {
+    "section1": "nonMetforminLongCovidTotals",
+    "section2": "metforminLongCovidTotals",
+    "section3": "diabeticNonMetforminLongCovidTotals",
+    "section4": "diabeticMetforminLongCovidTotals",
+    "section5": "nonDiabeticNonMetforminLongCovidTotals",
+    "section6": "nonDiabeticMetforminLongCovidTotals"
+  },
+  "colorScheme": {
+    "section1": "longStatusRange",
+    "section2": "longStatusRange",
+    "section3": "longStatusRange",
+    "section4": "longStatusRange",
+    "section5": "longStatusRange",
+    "section6": "longStatusRange"
+  },
+  "numCharts": 6,
+  "kpiPanelConfig": [
+    {
+      "separator": true,
+      "items": [
+        {
+          "title": "Total Patients in Enclave",
+          "value": "numTPIE",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Patients in the N3C Data Enclave",
+          "tooltipContent": "<p>Total Number of Individual Persons within the N3C Data Enclave.</p>",
+          "footer": "Data as of Jul 26, 2024 (v182)",
+          "limitationsLink": "long-covid-limitations-section"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Total Patients in View",
+          "value": "numTPIV",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Enclave Patients in View",
+          "tooltipContent": "<p>Total Number of Individuals in the N3C Data Enclave within the view.</p><p>Sample: All N3C Patients.</p><small class='kpi-small-note'>Even without filters, this total may be less than the total number of patients within the Enclave due to the suppression of counts less than 20.</small>",
+          "progress": {
+            "value": 100.0,
+            "tooltip": "100% in View"
+          }
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Non-Metformin in View",
+          "value": "numNMIV",
+          "icon": "fas fa-user",
+          "tooltipTitle": "Total Patients not taking Metformin in View",
+          "tooltipContent": "<p>Total Number of Individuals within the view who do not have Metformin indicated in their EHR.</p>"
+        },
+        {
+          "title": "Diabetic Non-Metformin in View",
+          "value": "numDNMIV",
+          "icon": "fas fa-user",
+          "tooltipTitle": "Diabetic Patients not taking Metformin in View",
+          "tooltipContent": "<p>Total Number of Individuals within the view who have diabetes, but do not have Metformin, indicated in their EHR.</p><p>Sample: All N3C Patients.</p>"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Metformin in View",
+          "value": "numMIV",
+          "icon": "fas fa-prescription-bottle-alt",
+          "tooltipTitle": "Total Patients taking Metformin in View",
+          "tooltipContent": "<p>Total Number of Individuals within the view who have Metformin indicated in their EHR.</p><p>Sample: All N3C Patients.</p>"
+        },
+        {
+          "title": "Diabetic Metformin in View",
+          "value": "numDMIV",
+          "icon": "fas fa-prescription-bottle-alt",
+          "tooltipTitle": "Diabetic Patients taking Metformin in View",
+          "tooltipContent": "<p>Total Number of Individuals within the view who have Diabetes and Metformin indicated in their EHR.</p><p>Sample: All N3C Patients.</p>"
+        }
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,40 @@
+<!-- Variants -->
+@if (variant === 'kpi') {
+  <div class="kpi-title-container">
+    <span class="tip">
+      <a
+        [appPopover]="tooltipTemplate"
+        [popoverTitle]="tooltipTitle"
+        [showCloseButton]="true"
+        triggers="click:outside"
+        placement="top"
+        #popover="appPopover"
+        class="kpi-title"
+      >
+        {{ label }}
+        <sup class="superscript">
+          <i class="fas fa-info-circle"></i>
+        </sup>
+      </a>
+    </span>
+  </div>
+} @else if (variant === 'inline') {
+  <div class="tip">
+    <a
+      [appPopover]="tooltipTemplate"
+      [popoverTitle]="tooltipTitle"
+      [showCloseButton]="true"
+      triggers="click:outside"
+      placement="top"
+      #popover="appPopover"
+      class="viz_secondary_info"
+    >
+      <u style="white-space: nowrap"> {{ label }} <i class="fa fa-info" aria-hidden="true"></i> </u>
+    </a>
+  </div>
+}
+
+<!-- Popover content template -->
+<ng-template #tooltipTemplate>
+  <div class="popover-content" [innerHTML]="tooltipContent"></div>
+</ng-template>

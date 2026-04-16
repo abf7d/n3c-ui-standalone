@@ -1,0 +1,102 @@
+.tile-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  margin-bottom: 0.5rem !important;
+  position: relative;
+  border-radius: 0.2 !important;       // Ensures no rounded corners
+}
+
+.hover-card {
+  box-shadow: 4px 4px 15px -2px rgb(197, 222, 255) !important;
+  border: none !important;           // Ensures no border is visible
+}
+
+  
+  .tile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+  }
+  
+  .tile-title {
+    font-size: 1rem;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-bottom: 0.75rem;
+    color: #686767;
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+    gap: 10px;
+  }
+  
+  input {
+    width: 100%; 
+    height: 38px; 
+    padding: 8px; 
+    border: 1px solid #d4d4d4; 
+    border-radius: 4px 0 0 4px; 
+  }
+  
+  input:focus {
+    outline: none; 
+    border-color: #007bff; 
+  }
+  
+  button {
+    height: 38px; 
+    padding: 0 10px;
+    margin-left: -10px; 
+    border: 1px solid #d4d4d4; 
+    border-radius: 0 4px 4px 0; 
+    background-color: white; 
+    color: #007bff; 
+    cursor: pointer; 
+    transition: background-color 0.3s, color 0.3s; 
+  }
+  
+  button:hover {
+    background-color: #007bff;
+    color: white; 
+  }
+  
+  .search-button i {
+    font-size: 16px; 
+  }
+  
+  .autocomplete-items {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #d4d4d4;
+    z-index: 99;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+  }
+  
+  .autocomplete-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .autocomplete-item:hover,
+  .autocomplete-item.active {
+    background-color: #007bff; 
+    color: white; 
+  }
+  
+  strong {
+    font-weight: bold; 
+  }
+
+  .search-dashboards {
+    margin-top: 10px;
+  }

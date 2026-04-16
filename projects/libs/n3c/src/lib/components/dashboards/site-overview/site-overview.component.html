@@ -1,0 +1,97 @@
+<div class="site-overview container-fluid">
+  <app-n3c-loader [loading]="loading" [showError]="showError">
+    <div class="overview-flex-row">
+      <div class="overview-card overview-card-25">
+        <div class="section-header">Users</div>
+        @if (profile?.users) {
+          <div>
+            <div>{{ profile?.users?.enclave_users ?? 0 }} N3C Enclave Users</div>
+            <div>{{ profile?.users?.additional_users ?? 0 }} Additional N3C Members</div>
+          </div>
+        } @else {
+          <div class="no-data-msg">No data</div>
+        }
+      </div>
+
+      <div class="overview-card overview-card-50">
+        <div class="section-header">Collaborating Institutions</div>
+
+        @if (profile?.institutions?.length) {
+          <div class="overview-card-flex">
+            <div class="institution-list">
+              @for (inst of profile!.institutions; track inst.org_type) {
+                <span class="inst-label" [style.color]="instColors[inst.org_type.toUpperCase()] || '#666'">
+                  {{ inst.count }} {{ inst.org_type }}
+                </span>
+              }
+            </div>
+            <div class="overview-img d3-donut" #instDonut></div>
+          </div>
+        } @else {
+          <div class="no-data-msg">No data</div>
+        }
+      </div>
+
+      <div class="overview-card overview-card-25">
+        <div class="section-header">Grants Mentioning N3C</div>
+        @if (profile) {
+          <div>
+            <div>
+              {{ profile.grants.count }}
+              {{ profile.grants.count === 1 ? 'award' : 'awards' }}
+            </div>
+            <div>{{ profile.grants.amount | currency: 'USD' : 'symbol' : '1.2-2' }} total amount</div>
+          </div>
+        } @else {
+          <div class="no-data-msg">No data</div>
+        }
+      </div>
+    </div>
+
+    <div class="overview-flex-row">
+      <div class="overview-card">
+        <div class="section-header">Sites Collaborating with {{ siteName }}</div>
+        <div class="overview-card-flex">
+          <div>
+            <div>{{ profile?.sites?.investigator_count ?? 0 }} Local Investigators</div>
+            <div>{{ profile?.sites?.membership_count ?? 0 }} Project Memberships</div>
+            <div>{{ profile?.sites?.project_count ?? 0 }} Enclave Projects</div>
+          </div>
+
+          @if (collaboratingSitesImgUrl) {
+            <img
+              [src]="collaboratingSitesImgUrl"
+              alt="Collaborating Sites Map"
+              class="overview-img"
+              (error)="collaboratingSitesImgUrl = null"
+            />
+          } @else {
+            <div class="no-data-msg">No data</div>
+          }
+        </div>
+      </div>
+
+      <div class="overview-card">
+        <div class="section-header">Sites Publishing with {{ siteName }}</div>
+        <div class="overview-card-flex">
+          <div>
+            <div>{{ profile?.publications?.author_count ?? 0 }} Local Authors</div>
+            <div>{{ profile?.publications?.publication_count ?? 0 }} Publications</div>
+            <div>{{ profile?.publications?.citation_count ?? 0 }} Citations</div>
+          </div>
+
+          @if (publishingSitesImgUrl) {
+            <img
+              [src]="publishingSitesImgUrl"
+              alt="Publishing Sites Map"
+              class="overview-img"
+              (error)="publishingSitesImgUrl = null"
+            />
+          } @else {
+            <div class="no-data-msg">No data</div>
+          }
+        </div>
+      </div>
+    </div>
+  </app-n3c-loader>
+</div>

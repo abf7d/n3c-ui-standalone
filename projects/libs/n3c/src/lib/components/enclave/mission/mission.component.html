@@ -1,0 +1,49 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide">
+      <div class="pt-3">
+        <p><a [routerLink]="['/covid']">Home</a> > {{ pageLabel }}</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <div class="d-flex">
+          <div class="col-12">
+            <div class="mb-4">
+              <div [innerHTML]="pageContent?.block1"></div>
+            </div>
+            <div>
+              <h1 class="mb-3">Agency Partners</h1>
+              @if (agencyPartnerImage) {
+                <div class="mb-5">
+                  <img
+                    class="img-fluid"
+                    [src]="agencyPartnerImage.url"
+                    [height]="agencyPartnerImage.height"
+                    [width]="agencyPartnerImage.width"
+                  />
+                </div>
+              }
+              <h2 class="mb-3">{{ pageContent?.partner_groups?.data[1]?.attributes.name }}</h2>
+              <div class="row">
+                <div class="d-flex">
+                  <div class="row">
+                    @for (image of distributedNetworkImages; track image) {
+                      <div class="col-sm-3 mb-5">
+                        <img class="img-fluid" [src]="image.url" />
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

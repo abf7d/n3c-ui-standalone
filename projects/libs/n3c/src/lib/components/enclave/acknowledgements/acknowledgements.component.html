@@ -1,0 +1,33 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide">
+      <div class="pt-3 breadcrumb-container">
+        <p><a [routerLink]="['/covid/']">Home</a> > {{ pageContent?.header }}</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <h1 [innerHTML]="pageContent?.header"></h1>
+        <div>
+          <div [innerHTML]="pageContent?.block"></div>
+        </div>
+        @for (rowItem of contentResources; track rowItem) {
+          <div class="row">
+            <div class="col-12 col-md-2 mb-3 img-fluid text-center">
+              <a [routerLink]="['/covid/acknowledgements']">
+                <img class="img-fluid" [src]="rowItem.images.main.url" />
+              </a>
+            </div>
+            <div class="col-12 col-md-10">
+              <h4 [innerHTML]="rowItem?.header"></h4>
+              <div [innerHTML]="rowItem?.content"></div>
+            </div>
+          </div>
+        }
+      </app-n3c-loader>
+    </div>
+  </main>
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

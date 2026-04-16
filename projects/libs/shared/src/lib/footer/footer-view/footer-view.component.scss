@@ -1,0 +1,53 @@
+#license {
+    background-color: #f0f0f0;
+    margin-top: 30px;
+    padding: 20px;
+    a {
+        color: #007bff;
+    }
+}
+
+#footer {
+    a {
+        color: white;
+    }
+    background-color: #541957;
+    .internal-nav, .external-nav {
+        list-style: none;
+        li {
+            font-size: 15px;
+            padding: 5px 0;
+            text-transform: uppercase;
+        }
+    }
+
+    .external-nav {
+        border-left: 1px solid #ccc;
+        
+    }
+
+    #accessibility {
+        font-size: 13px;
+        background-color: #602a64;
+        a {
+            color: white;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    }
+}
+
+#copyright {
+    background-color: #662e6b;
+    #arr {
+        font-size: 13px;
+    }
+}
+
+    
+.data-source-link {
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 13px;
+  }

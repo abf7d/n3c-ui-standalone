@@ -1,0 +1,74 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide" id="about_container">
+      <div class="pt-3">
+        <p><a [routerLink]="['/covid/']">Home</a> > N3C Onboarding</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        @if (!isEmptyObject(pageContent)) {
+          <div class="col-12">
+            <h1>{{ pageContent?.header }}</h1>
+            <h2>
+              <img [src]="contentResourceImage" class="header-icon" />
+              {{ pageContent?.subheader }}
+            </h2>
+
+            <div class="shadow-block my-4">
+              <h3>{{ pageContent?.registration_header }}</h3>
+
+              @for (step of stepBlocks; track step; let i = $index) {
+                <div class="row block">
+                  <div class="col col-1 text-center">
+                    <img class="auto-image" [src]="stepImages[i][0]" />
+                  </div>
+                  <div class="col col-11">
+                    <h4>{{ step?.header }}</h4>
+                    <div>{{ step?.content }}</div>
+                    @if (step?.url_label) {
+                      <app-external-link
+                        class="data-source-link"
+                        [url]="'https://n3c.cd2h.org/registration'"
+                        [text]="step?.url_label"
+                      ></app-external-link>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+            <div class="row g-4 block">
+              @for (nav of navBlocks; track nav; let i = $index) {
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                  <div class="tile center">
+                    <img class="img-fluid mb-2" [src]="navImages[i][0]" />
+                    <div class="center">
+                      <h4>{{ nav?.header }}</h4>
+                    </div>
+                    <div class="center">
+                      <div>{{ nav?.block }}</div>
+                    </div>
+                    <div class="center">
+                      <a class="btn btn-primary btn-n3c active" [href]="nav?.url">
+                        {{ nav?.url_label }}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+
+            <div class="col-9 center shadow-block my-4">
+              <div [innerHTML]="pageContent?.block"></div>
+            </div>
+            <div [innerHTML]="pageContent?.block2"></div>
+          </div>
+        }
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

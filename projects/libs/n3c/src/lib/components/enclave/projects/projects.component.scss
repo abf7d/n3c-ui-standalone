@@ -1,0 +1,60 @@
+@use '../../../styles/n3c-styles.scss';
+
+.no-side-borders ::ng-deep .ag-root-wrapper {
+  border-left: none !important;
+  border-right: none !important;
+
+  .ag-cell:focus {
+    border: none !important;
+    outline: none;
+  }
+
+  .ag-cell-focus,
+  .ag-cell-no-focus {
+    border: none !important;
+  }
+
+  .ag-cell {
+    user-select: text !important;
+    line-height: normal;
+  }
+}
+
+#search-icon {
+  margin-left: 10px;
+}
+#input-box {
+  margin-left: 10px;
+  height: 40px;
+  border: none;
+  width: 85%;
+}
+#search-selector {
+  border: 1px solid #dcdcdc;
+  width: 100%;
+  height: 40px;
+  margin-top: 2px;
+}
+.col-md-9 {
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+.col-md-3 {
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+
+#input-wrapper {
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  background: #fff;
+  margin-top: 20px;
+  #search-icon {
+    margin-left: 13px;
+    font-size: 25px;
+    color: lightgray;
+  }
+  #input-box {
+    width: 85%;
+  }
+}

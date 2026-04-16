@@ -1,0 +1,154 @@
+{
+  "id": 6,
+  "title": {
+    "name": "N3C Clinical",
+    "href": "/clinical-cohort",
+    "external": false
+  },
+  "menu": [
+    {
+      "name": "Home",
+      "customClass": "nav-item",
+      "href": "/clinical-cohort",
+      "external": false
+    },
+    {
+      "name": "About",
+      "customClass": "nav-item",
+      "dropdown": [
+        {
+          "name": "N3Community Forum",
+          "href": "/forum",
+          "subText": "",
+          "external": false,
+          "newMark": false,
+          "archived": false
+        },
+        {
+          "name": "Press Coverage",
+          "href": "/press-coverage",
+          "subText": "",
+          "external": false,
+          "newMark": false,
+          "archived": false
+        },
+        {
+          "name": "N3C Newsletter",
+          "href": "https://myemail-api.constantcontact.com/N3C-Updates.html?soid=1134197625149&aid=OvpD-Mhe3cc",
+          "subText": "",
+          "external": true,
+          "newMark": false,
+          "archived": false
+        },
+        {
+          "name": "Communications Material",
+          "href": "/communications",
+          "subText": "",
+          "external": false,
+          "newMark": false,
+          "archived": false
+        }
+      ]
+    },
+    {
+      "name": "COVID Enclave",
+      "customClass": "nav-item",
+      "href": "/covid",
+      "external": false
+    },
+    {
+      "name": "Education Tenant",
+      "customClass": "nav-item",
+      "href": "/education",
+      "external": false
+    },
+    {
+      "name": "Cancer Tenant",
+      "customClass": "nav-item",
+      "href": "/cancer",
+      "external": false
+    },
+    {
+      "name": "Renal Tenant",
+      "customClass": "nav-item",
+      "href": "/renal",
+      "external": false
+    },
+    {
+      "name": "Researcher Essentials",
+      "customClass": "nav-item",
+      "dropdown": [
+        {
+          "name": "Agreements",
+          "href": "/clinical-cohort/agreements",
+          "subText": "",
+          "external": false,
+          "newMark": false,
+          "archived": false
+        },
+                {
+          "name": "Registration",
+          "href": "/clinical-cohort/researcher-essentials/registration",
+          "subText": "",
+          "external": false,
+          "newMark": false,
+          "archived": false
+        }
+      ]
+    },
+    {
+      "name": "Help & Support",
+      "customClass": "nav-item",
+      "dropdown": [
+        {
+          "name": "Support Desk",
+          "href": "/clinical-cohort/support",
+          "subText": "",
+          "external": false,
+          "newMark": false,
+          "archived": false
+        },
+        {
+          "name": "FAQs",
+          "href": "/clinical-cohort/faq",
+          "subText": "",
+          "external": false,
+          "newMark": false,
+          "archived": false
+        },
+        {
+          "name": "Submit Support Request",
+          "href": "https://n3c-help.atlassian.net/servicedesk/customer/portal/2",
+          "subText": "",
+          "external": true,
+          "newMark": false,
+          "archived": false
+        },
+        {
+          "name": "Support Desk Office Hours",
+          "href": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_MjU1ZDcyNjctM2Q2Zi00MWVlLTg0NzEtNzU2YTM1YzhmZmU0%40thread.v2/0?context=%7b%22Tid%22%3a%2214b77578-9773-42d5-8507-251ca2dc2b06%22%2c%22Oid%22%3a%2241433e29-66a6-4bc8-baa1-f6e001a31eb1%22%7d",
+          "subText": "",
+          "external": true,
+          "newMark": false,
+          "archived": false
+        },
+        {
+          "name": "Data Liaisons and Logic Liaisons Services",
+          "href": "/clinical-cohort/liaisons",
+          "subText": "",
+          "external": false,
+          "newMark": false,
+          "archived": false
+        },
+        {
+          "name": "Report Conduct Concern",
+          "href": "https://docs.google.com/forms/d/e/1FAIpQLSfXhu8qReLi44kskOvPVfIjXB9qWadOYP7bKrw_H5_EHD332g/viewform",
+          "subText": "",
+          "external": true,
+          "newMark": false,
+          "archived": false
+        }
+      ]
+    }
+  ]
+}

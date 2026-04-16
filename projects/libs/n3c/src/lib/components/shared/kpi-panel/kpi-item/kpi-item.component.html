@@ -1,0 +1,50 @@
+<div class="kpi-container">
+  <div class="panel-primary kpi">
+    <div class="panel-body">
+      <div class="kpi-title-container">
+        @if (tooltipContent) {
+          <app-tooltip
+            [label]="title"
+            [tooltipTitle]="tooltipTitle"
+            [tooltipContent]="tooltipContent"
+            variant="kpi"
+          ></app-tooltip>
+        } @else {
+          <span class="kpi-title">{{ title }}</span>
+        }
+      </div>
+    </div>
+
+    <!-- Panel Heading: Icon and Value -->
+    <div class="panel-heading kpi_num">
+      @if (icon) {
+        <i [class]="'me-1 fas ' + icon" aria-hidden="true"></i>
+      }
+      <span>{{ value }}</span>
+    </div>
+
+    <!-- Optional Progress Bar -->
+    @if (progress) {
+      <div class="progress" data-toggle="tooltip" [title]="progress.tooltip">
+        <div
+          class="progress-bar"
+          role="progressbar"
+          [attr.aria-valuenow]="currentProgressValue"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          [style.width]="currentProgressValue + '%'"
+        ></div>
+      </div>
+    }
+
+    <!-- Footer -->
+    @if (footer) {
+      <p class="data-as-of">{{ footer }}</p>
+    }
+    @if (limitationsLink) {
+      <div class="kpi-limit">
+        <a (click)="scrollTo(limitationsLink)">* See Limitations Below</a>
+      </div>
+    }
+  </div>
+</div>

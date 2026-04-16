@@ -1,0 +1,27 @@
+@use '../../../styles/n3c-styles.scss';
+
+.shade-blue {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #edf6ff;
+}
+h2 {
+  font-size: 2.3rem;
+  font-weight: 300;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+a {
+  text-decoration: none;
+  background-color: transparent;
+  color: #1570ba;
+}

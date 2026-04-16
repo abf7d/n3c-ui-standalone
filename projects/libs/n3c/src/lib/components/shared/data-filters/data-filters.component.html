@@ -1,0 +1,80 @@
+<div class="p pr-4">
+  <h4>Filters</h4>
+  @if (hasActiveFilters) {
+    <button id="data_filters_btn_clear" class="btn button dash-filter-btn2 mt-0 show_clear" (click)="clearAllFilters()">
+      <i class="fas fa-times-circle" aria-hidden="true"></i> Clear Filters
+    </button>
+  }
+</div>
+
+<div class="mb-1">
+  <div class="sticky mt-2 pl-2">
+    @for (filterGroup of filterLayout; track $index; let last = $last) {
+      <div>
+        <div class="pb-2 outline">
+          @for (filter of filterGroup; track filter.title; let i = $index) {
+            <div>
+              <div
+                type="button"
+                class="group-header btn btn-outline-primary"
+                (click)="filter.collapsed = !filter.collapsed"
+                [attr.aria-expanded]="!filter.collapsed"
+              >
+                {{ filter.title }}
+                <span>
+                  <i class="fas fa-plus" [hidden]="!filter.collapsed"></i>
+                  <i class="fas fa-minus" [hidden]="filter.collapsed"></i>
+                </span>
+              </div>
+              @if (!filter.collapsed) {
+                <div>
+                  @if (!!filter.description) {
+                    <span>{{ filter.description }}</span>
+                  }
+                  <div class="my-2">
+                    <button class="btn btn-light" (click)="toggleAll(filter.title, filter.values, true)">All</button>
+                    <button class="btn btn-light" (click)="toggleAll(filter.title, filter.values, false)">None</button>
+                  </div>
+                  @if (filter?.type === 'search') {
+                    <div class="mb-2">
+                      <input
+                        class="form-control"
+                        type="text"
+                        placeholder="Search"
+                        (input)="searchFilter(filter.values, $event)"
+                      />
+                    </div>
+                  }
+                  @for (value of filter.values; track value.value; let j = $index) {
+                    <div [hidden]="value.hide">
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          id="filter-{{ i }}-{{ j }}"
+                          value="type"
+                          name="legend-toggle"
+                          [(ngModel)]="value.checked"
+                          type="checkbox"
+                          (click)="selectFilter(filter.title, value)"
+                        />
+                        <label class="form-check-label" for="filter-{{ i }}-{{ j }}">{{ value.value }}</label>
+                      </div>
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+          }
+        </div>
+        <!-- Separator Dots between Groups -->
+        @if (!last) {
+          <p class="three-dots">
+            <i class="fas fa-circle" aria-hidden="true"></i>
+            <i class="fas fa-circle" aria-hidden="true"></i>
+            <i class="fas fa-circle" aria-hidden="true"></i>
+          </p>
+        }
+      </div>
+    }
+  </div>
+</div>

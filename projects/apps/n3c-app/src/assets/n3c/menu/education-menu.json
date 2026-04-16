@@ -1,0 +1,92 @@
+{
+    "id": 3,
+    "title": {
+        "name": "N3C Education",
+        "href": "/education",
+        "external": false
+    },
+    "menu": [
+        {
+            "name": "Home",
+            "customClass": "nav-item",
+            "href": "/education",
+            "external": false
+        },
+        {
+            "name": "DUAs",
+            "customClass": "nav-item",
+            "href": "/education/agreements",
+            "queryParams": {
+                "tenant": "Tenant",
+                "type": "DUA"
+            },
+            "external": false
+        },
+        {
+            "name": "DUR",
+            "customClass": "nav-item",
+            "href": "/education/dur",
+            "external": false
+        },
+        {
+            "name": "Account Instructions",
+            "customClass": "nav-item",
+            "href": "/education/account-creation",
+            "external": false
+        },
+        {
+            "name": "Help & Support",
+            "customClass": "nav-item",
+            "dropdown": [
+                {
+                    "name": "Support Desk",
+                    "href": "/education/support",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "FAQs",
+                    "href": "/education/faq",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Submit Support Request",
+                    "href": "https://n3c-help.atlassian.net/servicedesk/customer/portal/2",
+                    "subText": "",
+                    "external": true,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Support Desk Office Hours",
+                    "href": "https://teams.microsoft.com/dl/launcher/launcher.html?url=%2F_%23%2Fl%2Fmeetup-join%2F19%3Ameeting_MjU1ZDcyNjctM2Q2Zi00MWVlLTg0NzEtNzU2YTM1YzhmZmU0%40thread.v2%2F0%3Fcontext%3D%257b%2522Tid%2522%253a%252214b77578-9773-42d5-8507-251ca2dc2b06%2522%252c%2522Oid%2522%253a%252241433e29-66a6-4bc8-baa1-f6e001a31eb1%2522%257d%26anon%3Dtrue&type=meetup-join&deeplinkId=a4693293-f9f7-4c5b-9a14-929816dc3ab1&directDl=true&msLaunch=true&enableMobilePage=",
+                    "subText": "",
+                    "external": true,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Data Liaisons and Logic Liaisons Services",
+                    "href": "/education/liaisons",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Report Conduct Concern",
+                    "href": "https://docs.google.com/forms/d/e/1FAIpQLSfXhu8qReLi44kskOvPVfIjXB9qWadOYP7bKrw_H5_EHD332g/viewform",
+                    "subText": "",
+                    "external": true,
+                    "newMark": false,
+                    "archived": false
+                }
+            ]
+        }
+    ]
+}

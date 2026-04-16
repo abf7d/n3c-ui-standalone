@@ -1,0 +1,105 @@
+{
+  "supplSource": "",
+  "titleMap": {
+    "section1": {
+      "bar": "Counts of Patients in the Enclave w/Maternal Health-Related Conditions by Age",
+      "percent": "Age Percentages of Patients in the Enclave w/Maternal Health-Related Conditions",
+      "pie": "Age Percentages of Patients in the Enclave w/Maternal Health-Related Conditions"
+    },
+    "section2": {
+      "bar": "Counts of Patients in the Enclave w/Maternal Health-Related Conditions by Sex",
+      "percent": "Sex Percentages of Patients in the Enclave w/Maternal Health-Related Conditions",
+      "pie": "Sex Percentages of Patients in the Enclave w/Maternal Health-Related Conditions"
+    },
+    "section3": {
+      "bar": "Counts of Patients in the Enclave w/Maternal Health-Related Conditions by Race",
+      "percent": "Race Percentages of Patients in the Enclave w/Maternal Health-Related Conditions",
+      "pie": "Race Percentages of Patients in the Enclave w/Maternal Health-Related Conditions"
+    },
+    "section4": {
+      "bar": "Counts of Patients in the Enclave w/Maternal Health-Related Conditions by CMS Type",
+      "percent": "CMS Type Percentages of Patients in the Enclave w/Maternal Health-Related Conditions",
+      "pie": "CMS Type Percentages of Patients in the Enclave w/Maternal Health-Related Conditions"
+    },
+    "section5": {
+      "bar": "Counts of Patients in the Enclave w/Maternal Health-Related Conditions by Condition",
+      "percent": "Condition Percentages of Patients in the Enclave w/Maternal Health-Related Conditions",
+      "pie": "Condition Percentages of Patients in the Enclave w/Maternal Health-Related Conditions"
+    }
+  },
+  "filterGroupNames": {
+    "section1": "age",
+    "section2": "sex",
+    "section3": "race",
+    "section4": "cmstype",
+    "section5": "condition"
+  },
+  "chartTotals": {
+    "section1": "ageTotals",
+    "section2": "sexTotals",
+    "section3": "raceTotals",
+    "section4": "cmstypeTotals",
+    "section5": "conditionTotals"
+  },
+  "colorScheme": {
+    "section1": "ageRange",
+    "section2": "sexRange",
+    "section3": "raceRange",
+    "section4": "cmstypeRange",
+    "section5": "conditionRange"
+  },
+  "numCharts": 10,
+  "kpiPanelConfig": [
+    {
+      "items": [
+        {
+          "title": "Total Patients in Enclave",
+          "value": "numTPIE",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Patients in the N3C Data Enclave",
+          "tooltipContent": "<p>Total Number of Individual Persons within the N3C Data Enclave.</p>",
+          "footer": "Data as of Jul 26, 2024 (v182)",
+          "limitationsLink": "limitations"
+        }
+      ]
+    },
+    {
+      "separator": true,
+      "items": [
+        {
+          "title": "Total Patients w/Maternal Health-Related Conditions in Enclave",
+          "value": "numTPWM",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Patients with a Maternal Health-Related Condition in the Enclave",
+          "tooltipContent": "<p>Total Number of Individuals within the Enclave who have had a maternal health-related condition indicated in their EHR.</p>"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Total Patients in View*",
+          "value": "numTPIV",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Patients with a Maternal Health-Related Condition in View",
+          "tooltipContent": "<p>Total Number of Individuals within the view who have had a maternal health-related condition indicated in their EHR.</p><small class='kpi-small-note'>Even without filters, this total may be less than the total number of patients with a maternal health-related condition within the Enclave due to the suppression of counts less than 20.</small>",
+          "progress": {
+            "value": 100.0,
+            "tooltip": "100% in View"
+          }
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "COVID+ in View*",
+          "value": "numCIV",
+          "icon": "fas fa-user-plus",
+          "tooltipTitle": "Total COVID+ Patients in View",
+          "tooltipContent": "<strong>COVID+ Defined As:</strong><ul class='low-padding-list'><li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li><li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li><li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li></ul>"
+        }
+      ]
+    }
+  ]
+}

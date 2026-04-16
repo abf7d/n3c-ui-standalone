@@ -1,0 +1,20 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide" id="about_container">
+      <div class="pt-3 breadcrumb-container">
+        <p><a [routerLink]="['/education/']">Home</a> > {{ pageContent?.label }}</p>
+      </div>
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <h2>{{ pageContent?.label }}</h2>
+        <div>
+          <div [innerHTML]="pageContent?.description"></div>
+        </div>
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

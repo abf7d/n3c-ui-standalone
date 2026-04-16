@@ -1,0 +1,143 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide" id="main_container">
+      <div class="pt-3">
+        <p><a [routerLink]="['/covid/']">Home</a> > {{ pageContent?.header }}</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        @if (!isEmptyObject(pageContent)) {
+          <div class="row">
+            <div class="col-12 col-md-2 left-nav-bar sticky-top py-1 mb-3">
+              <div id="navigation">
+                <div class="scrolling-table">
+                  <span><strong>Quick Links:</strong></span>
+                </div>
+                @for (item of pageContent?.sideMenu?.quickLinks; track item) {
+                  <div class="scrolling-row">
+                    <span>
+                      <a class="nav-link" href="{{ item.href }}" target="_blank">{{ item.label }}</a>
+                    </span>
+                  </div>
+                }
+
+                <div class="scrolling-table">
+                  <span><strong>Contents:</strong></span>
+                </div>
+                @for (item of pageContent?.sideMenu?.contentsLinks; track item) {
+                  <div class="scrolling-row">
+                    <span>
+                      <a class="nav-link" [routerLink]="['/covid/pprl']" [fragment]="item.href">{{ item.label }}</a>
+                    </span>
+                  </div>
+                }
+              </div>
+            </div>
+
+            <div class="col-12 col-md-10">
+              <h1>{{ pageContent?.header }}</h1>
+              <h3 class="h3-subheader">{{ pageContent?.subheader }}</h3>
+
+              <div class="row mt-4">
+                <div class="col-12 col-md-6 text-center mb-4">
+                  <a href="https://discovery.biothings.io/dataset?guide=/guide/n3c/dataset">
+                    <button class="btn btn-link">Browse PPRL Datasets</button>
+                  </a>
+                </div>
+                <div class="col-12 col-md-6 text-center mb-4">
+                  <a href="https://doi.org/doi:10.5281/zenodo.5165212">
+                    <button class="btn btn-link">Access PPRL Governance Documents</button>
+                  </a>
+                </div>
+              </div>
+
+              <div class="row flex-wrap">
+                <p [innerHTML]="pageContent?.start"></p>
+              </div>
+
+              <h3 class="h3-subheader" id="introduction">{{ pageContent?.intro_header }}</h3>
+              <div class="row flex-wrap">
+                <div [innerHTML]="pageContent?.intro_block"></div>
+              </div>
+
+              <p></p>
+
+              <h3 class="h3-subheader" id="functions">{{ pageContent?.participation_header }}</h3>
+              <div class="row flex-wrap">
+                <div [innerHTML]="pageContent?.participation_block1"></div>
+                <div class="center w-100 p-3">
+                  <img [src]="pageContent.images.image1" class="img-fluid" />
+                </div>
+
+                <div [innerHTML]="pageContent?.participation_block2"></div>
+                <div class="center w-100 p-3">
+                  <img [src]="pageContent.images.image2" class="img-fluid" />
+                </div>
+
+                <div [innerHTML]="pageContent?.participation_block3"></div>
+                <div class="center w-100 p-4">
+                  <img [src]="pageContent.images.image3" class="img-fluid" />
+                </div>
+
+                <div [innerHTML]="pageContent?.participation_block4"></div>
+                <div class="center w-100 p-3">
+                  <img [src]="pageContent.images.image4" class="img-fluid" />
+                </div>
+
+                <div [innerHTML]="pageContent?.participation_block5"></div>
+              </div>
+
+              <p></p>
+
+              <h3 class="h3-subheader" id="oversight">{{ pageContent?.governance_header }}</h3>
+              <div class="row flex-wrap">
+                <div [innerHTML]="pageContent?.governance_block1"></div>
+                <div class="center w-100 p-3">
+                  <img [src]="pageContent.images.governance_image1" class="img-fluid" />
+                </div>
+
+                <div [innerHTML]="pageContent?.governance_block2"></div>
+                <div class="center w-100 p-3">
+                  <img [src]="pageContent.images.governance_image2" class="img-fluid" />
+                </div>
+
+                <div [innerHTML]="pageContent?.governance_block3"></div>
+              </div>
+
+              <p></p>
+
+              <h3 class="h3-subheader" id="faq">{{ pageContent?.faq_header }}</h3>
+              <div class="row flex-wrap">
+                <div [innerHTML]="pageContent?.faq_block"></div>
+                <mat-accordion class="accordion">
+                  @for (faq of pageContent?.faqs; track faq) {
+                    <mat-expansion-panel class="accordion-body">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          {{ faq.label }}
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <p [innerHTML]="faq.answer"></p>
+                    </mat-expansion-panel>
+                  }
+                </mat-accordion>
+              </div>
+
+              <p></p>
+
+              <h3 class="h3-subheader" id="glossary">{{ pageContent?.glossary_header }}</h3>
+              <div class="row flex-wrap">
+                <div [innerHTML]="pageContent?.glossary_block"></div>
+              </div>
+            </div>
+          </div>
+        }
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

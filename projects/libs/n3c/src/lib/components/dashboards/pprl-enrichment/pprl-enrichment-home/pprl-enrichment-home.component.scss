@@ -1,0 +1,146 @@
+@use '../../../../styles/shared-styles.scss';
+.footnote {
+  font-size: 0.9rem;
+  margin-top: 10px;
+  font-weight: bold;
+}
+.topic_dropdown {
+  padding-top: 30px;
+}
+.ag-panel {
+  width: 100%;
+  display: flex;
+}
+.viz-mode .fas {
+  cursor: pointer;
+  color: #b6d9ff;
+}
+
+.viz-mode .fas:hover {
+  color: #007bff;
+}
+.topic_dropdown {
+  text-align: center;
+  font-size: 1.3rem;
+}
+strong {
+  font-weight: bold;
+}
+.page-dropdown {
+  width: 750px;
+  text-align: center;
+  padding: 10px;
+  option,
+  optgroup {
+    padding: none;
+    text-align: left;
+  }
+}
+
+.summary_description {
+  padding: 20px;
+  background: #edf6ff;
+}
+.btn-dash {
+  border: none;
+  background: #007bff;
+  color: white;
+}
+.card-body {
+  margin: auto;
+  width: 70vw;
+  margin-top: 55px;
+  min-width: 500px;
+}
+
+.covid-unknown {
+  color: #7458fc;
+}
+.covid-positive {
+  color: #4833b2;
+}
+.mortality {
+  color: #007bff;
+}
+.medicaid {
+  color: #ad1181;
+}
+.medicare {
+  color: #8406d1;
+}
+.light-gray {
+  color: #858586;
+}
+
+.ag-grid-section .ag-header-cell.medicare .ag-header-cell-label::before,
+.ag-grid-section .ag-header-cell.medicaid .ag-header-cell-label::before,
+.ag-grid-section .ag-header-cell.mortality .ag-header-cell-label::before,
+.ag-grid-section .ag-header-cell.covid-positive .ag-header-cell-label::before,
+.ag-grid-section .ag-header-cell.covid-unknown .ag-header-cell-label::before,
+.ag-grid-section .ag-header-cell.light-gray .ag-header-cell-label::before {
+  content: ''; /* nothing to print, just a box */
+  display: inline-block;
+  width: 0.65em;
+  height: 0.65em;
+  margin-right: 0.4em;
+  background: currentColor; /* same colour as the text */
+  border-radius: 2px; /* square with slightly rounded corners */
+}
+
+.summary-section {
+  padding: 60px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.category {
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-top: 60px;
+}
+.sample {
+  font-weight: bold;
+  color: #999999;
+  margin-bottom: 10px;
+}
+.pprl-tbl-footer {
+  color: #616161;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+h5 {
+  padding-bottom: 20px;
+}
+app-loader {
+  position: relative;
+}
+.error-msg {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  color: red;
+}
+.primary-nav {
+  height: 40px;
+  background: #006478;
+  color: #fff;
+}
+.btn-primary:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: none;
+}
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+  color: white;
+  background-color: #3f50b0;
+  border-color: #3f50b0;
+}
+
+.n3c-logo {
+  margin: 0 7px;
+}
+

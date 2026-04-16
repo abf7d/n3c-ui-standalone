@@ -1,0 +1,105 @@
+{
+  "titleMap": {
+    "section1": {
+      "bar": "Counts of COVID+ Patients by Age and Paxlovid Status",
+      "percent": "% of COVID+ Patients by Age and Paxlovid Status",
+      "pie": "% of COVID+ Patients by Age and Paxlovid Status"
+    },
+    "section2": {
+      "bar": "Counts of COVID+ Patients by Sex and Paxlovid Status",
+      "percent": "%  of COVID+ Patients by Sex and Paxlovid Status",
+      "pie": "%  of COVID+ Patients by Sex and Paxlovid Status"
+    },
+    "section3": {
+      "bar": "Counts of COVID+ Patients by Race and Paxlovid Status",
+      "percent": "%  of COVID+ Patients by Race and Paxlovid Status",
+      "pie": "%  of COVID+ Patients by Race and Paxlovid Status"
+    },
+    "section4": {
+      "bar": "Counts of COVID+ Patients by Ethnicity and Paxlovid Status",
+      "percent": "% of COVID+ Patients by Ethnicity and Paxlovid Status",
+      "pie": "% of COVID+ Patients by Ethnicity and Paxlovid Status"
+    }
+  },
+  "chartTotals": {
+    "section1": "ageTotals",
+    "section2": "sexTotals",
+    "section3": "raceTotals",
+    "section4": "ethnicityTotals"
+  },
+  "colorScheme": {
+    "section1": "paxlovidRange",
+    "section2": "paxlovidRange",
+    "section3": "paxlovidRange",
+    "section4": "paxlovidRange"
+  },
+  "numCharts": 4,
+  "kpiPanelConfig": [
+    {
+      "separator": true,
+      "items": [
+        {
+          "title": "Total Patients in Enclave",
+          "value": "numTPIE",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Patients in the N3C Data Enclave",
+          "tooltipContent": "<p>Total Number of Individual Persons within the N3C Data Enclave.</p>",
+          "footer": "Data as of Jul 26, 2024 (v182)",
+          "limitationsLink": "severity-limitations-section"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Total Patients in View",
+          "value": "numTPIV",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Enclave Patients in View",
+          "tooltipContent": "<p>Total Number of Individuals in the N3C Data Enclave within the view.</p><p>Sample: All N3C Patients.</p><small class='kpi-small-note'>Even without filters, this total may be less than the total number of patients within the Enclave due to the suppression of counts less than 20.</small>",
+          "progress": {
+            "value": 100.0,
+            "tooltip": "100% in View"
+          }
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Non-Metformin in View",
+          "value": "numNMIV",
+          "icon": "fas fa-user",
+          "tooltipTitle": "Total Patients not taking Metformin in View",
+          "tooltipContent": "<p>Total Number of Individuals within the view who do not have Metformin indicated in their EHR.</p><p>Sample: All N3C Patients.</p>"
+        },
+        {
+          "title": "Diabetic Non-Metformin in View",
+          "value": "numDNMIV",
+          "icon": "fas fa-user",
+          "tooltipTitle": "Diabetic Patients not taking Metformin in View",
+          "tooltipContent": "<p>Total Number of Individuals within the view who have diabetes, but do not have Metformin, indicated in their EHR.</p><p>Sample: All N3C Patients.</p>"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Metformin in View",
+          "value": "numMIV",
+          "icon": "fas fa-prescription-bottle-alt",
+          "tooltipTitle": "Total Patients taking Metformin in View",
+          "tooltipContent": "<p>Total Number of Individuals within the view who have Metformin indicated in their EHR.</p><p>Sample: All N3C Patients.</p>"
+        },
+        {
+          "title": "Diabetic Metformin in View",
+          "value": "numDMIV",
+          "icon": "fas fa-prescription-bottle-alt",
+          "tooltipTitle": "Diabetic Patients taking Metformin in View",
+          "tooltipContent": "<p>Total Number of Individuals within the view who have Diabetes and Metformin indicated in their EHR.</p><p>Sample: All N3C Patients.</p>"
+        }
+      ]
+    }
+  ]
+}
+

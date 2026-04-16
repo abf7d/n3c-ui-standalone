@@ -1,0 +1,48 @@
+<div class="container container-large content">
+  <div class="row">
+    <div class="col-12 mx-auto">
+      <div class="row">
+        <div class="col-12">
+          <div id="ph-dash-top">
+            <h1 id="dashboard_name" class="page-title">Substance Use</h1>
+            <div id="question-description" class="section-description heading-text text-max mx-auto">
+              <p>
+                Explore the demographics associated with several categories of substance use (smoking, alcohol, opioids,
+                and cannabis) within the Enclave and identify clusters of related substances.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-10">
+      <div class="secondary-description kpi"></div>
+      <div class="charts">
+        <div class="heatmap-container">
+          <div #heatmapAllChart class="heatmap-chart"></div>
+          <div #heatmapAllLegend class="heatmap-legend"></div>
+        </div>
+        <div class="heatmap-container">
+          <div #heatmapCovidChart class="heatmap-chart"></div>
+          <div #heatmapCovidLegend class="heatmap-legend"></div>
+        </div>
+      </div>
+      <div id="viz_caption">
+        <div class="secondary-description">
+          <p>
+            <strong>Sample:</strong> Patients in the N3C Data Enclave who have both an alcohol-related condition and an
+            opioid indicated in their EHR. Patient EHR records are not always complete. The totals within the KPIs are
+            greater than the total number of individuals, as individuals who experience multiple alcohol-related
+            conditions or have multiple recorded opioids within their EHR will be counted distinctly for each. For
+            additional information,
+            <a onclick="substance_use_4limitlink(); return false;" href="#limitations-section">see limitations below</a
+            >.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+@if (showError || loading) {
+  <div class="col-12 my-4 d-flex justify-content-center nodata">
+    @if (!showError && loading) {
+      <div>
+        <div>
+          <div class="d-flex flex-column align-items-center pt-5 pb-2 text-center">
+            <div class="data-loader">
+              <div></div>
+              <div></div>
+            </div>
+            @if (showText) {
+              <div class="loading-message mt-3">Data Loading...</div>
+            }
+          </div>
+        </div>
+      </div>
+    }
+    @if (showError) {
+      <div class="my-4 text-danger error-msg" aria-live="assertive">
+        <p>Sorry, there was an error loading the data. Please try again later.</p>
+      </div>
+    }
+  </div>
+}
+
+@if (!loading && !showError) {
+  <ng-content></ng-content>
+}

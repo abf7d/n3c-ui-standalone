@@ -1,0 +1,65 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide" id="about_container">
+      <div class="pt-3 breadcrumb-container">
+        <p><a [routerLink]="['/covid/']">Home</a> > {{ pageContent?.header }}</p>
+      </div>
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <div class="col-12">
+          <div class="col-12 page-title">
+            <h1>{{ pageContent?.header }}</h1>
+            <div [innerHTML]="pageContent?.block1"></div>
+
+            <h3>{{ pageContent?.portal_header }}</h3>
+            <div [innerHTML]="pageContent?.portal_block"></div>
+            @if (contentResourcesPortal) {
+              <div class="row justify-content-between">
+                @for (rowItem of contentResourcesPortal; track rowItem) {
+                  <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <a [href]="rowItem.graphic.large.url" target="new">
+                      <img [src]="rowItem.graphic.large.url" class="img-fluid" />
+                    </a>
+                  </div>
+                }
+              </div>
+            }
+
+            <h3>{{ pageContent?.shared_resource_header }}</h3>
+            <div [innerHTML]="pageContent?.shared_resource_block"></div>
+            @if (contentResourcesShared) {
+              <div class="row">
+                @for (rowItem of contentResourcesShared; track rowItem) {
+                  <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <h2 [innerHTML]="rowItem.header"></h2>
+                    <a [href]="rowItem.graphic.large.url" target="new">
+                      <img [src]="rowItem.graphic.small.url" class="img-fluid" />
+                    </a>
+                    <div [innerHTML]="rowItem.description"></div>
+                  </div>
+                }
+              </div>
+            }
+
+            <h3>{{ pageContent?.additional_resources_header }}</h3>
+            @if (contentResourcesAdditional) {
+              <div class="row">
+                @for (rowItem of contentResourcesAdditional; track rowItem) {
+                  <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <h2 [innerHTML]="rowItem.header"></h2>
+                    <div [innerHTML]="rowItem.description"></div>
+                    <a [href]="rowItem.url">{{ rowItem.url_label }}</a>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

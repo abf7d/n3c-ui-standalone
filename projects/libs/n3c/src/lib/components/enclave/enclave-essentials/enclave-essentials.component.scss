@@ -1,0 +1,36 @@
+@use '../../../styles/n3c-styles.scss';
+
+.auto-image {
+  max-width: 100%;
+  height: auto;
+}
+.shadow-block {
+  margin: 35px 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  webkit-box-shadow: 1px 2px 30px 2px rgba(92, 123, 128, 0.72);
+  -moz-box-shadow: 1px 2px 30px 2px rgba(92, 123, 128, 0.72);
+  box-shadow: 1px 2px 30px 2px rgba(92, 123, 128, 0.72);
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, rgba(100, 42, 107, 1) 0%, rgba(99, 53, 112, 1) 47%, rgba(70, 71, 119, 1) 100%);
+}
+
+.card {
+  padding: 15px;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}

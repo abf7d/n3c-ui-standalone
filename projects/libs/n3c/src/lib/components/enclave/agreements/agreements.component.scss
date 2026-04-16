@@ -1,0 +1,36 @@
+@use '../../../styles/n3c-styles.scss';
+
+/* Search Wrapper */
+.search-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+.search-container .input-container span {
+  margin-right: 10px;
+}
+a {
+  color: #1570ba;
+  text-decoration: none;
+  background-color: transparent;
+}
+.group-filters {
+  padding: 10px;
+  h4 {
+    width: 80%;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+}
+.tenant-enclave {
+  padding: 10px;
+}
+.enclave-header {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.tenant-enclave-header {
+  padding-top: 10px;
+}

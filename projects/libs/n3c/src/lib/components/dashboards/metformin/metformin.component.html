@@ -1,0 +1,480 @@
+<app-header-view [isN3C]="true"></app-header-view>
+
+<div id="d3viz" class="container container-large content" data-select2-id="select2-data-6-934m">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboards</a></li>
+      <li class="breadcrumb-item">
+        <a id="dashboard_breadcrumb" [routerLink]="['/dashboard/public-health/metformin']">Medications - Metformin</a>
+      </li>
+      <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">
+        Overview of Diabetic Patients Prescribed Metformin
+      </li>
+    </ol>
+  </nav>
+
+  <div class="row">
+    <div class="col-12 mx-auto">
+      <div class="row">
+        <div class="col-12">
+          <div id="ph-dash-top">
+            <h1 id="dashboard_name" class="page-title">Medications - Metformin</h1>
+            <div id="question-description" class="section-description heading-text text-max mx-auto">
+              <p>
+                This dashboard provides an overview of the patients prescribed Metformin, including demographic
+                information, severity/mortality comparisons, and Long COVID information.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 mx-auto">
+      <div class="topic_dropdown" style="text-align: center; font-size: 1.3rem" data-select2-id="select2-data-4-4or4">
+        <h4 class="viz_color_header">Select a Topic to Explore:</h4>
+        <select [value]="selectedDataset" (change)="onDatasetChange($event)">
+          <optgroup label="Demographics &amp; Cohort Exploration">
+            <option value="metformin_1">Overview of All Patients Prescribed Metformin</option>
+            <option value="metformin_5">Overview of Diabetic Patients Prescribed Metformin</option>
+          </optgroup>
+          <optgroup label="Comparisons Between Metformin &amp; Non-Metformin Patients">
+            <option value="metformin_2">Severity</option>
+            <option value="metformin_3">Long COVID (LC)</option>
+            <option value="metformin_4">Mortality</option>
+          </optgroup>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- START OF FILTERS -->
+
+  <div class="row stats block2 mx-auto">
+    <div class="col-12">
+      <!-- KPIs & related dashboards ----------------------------------------------------------------------------------------------------------- -->
+      <div class="row" style="margin-top: 30px">
+        <div class="col col-12 col-lg-2 side-col">
+          <div id="mode" class="panel-heading filter-section">
+            <style>
+              .viz-mode .fas {
+                cursor: pointer;
+                color: #b6d9ff;
+              }
+
+              .viz-mode .fas:hover {
+                color: #007bff;
+              }
+            </style>
+            <div id="metformin_5-mode" class="panel-heading viz-mode">
+              <h4>Display</h4>
+              <i
+                id="metformin_5-mode-bar"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Bar Chart"
+                class="fas fa-hashtag"
+                aria-hidden="true"
+                [ngClass]="{'text-primary': displayMode === 'bar', 'text-muted': displayMode !== 'bar'}"
+                (click)="setDisplayMode('bar')"
+                >&nbsp;</i
+              >
+              <i
+                id="metformin_5-mode-barpercent"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Percentage Bar Chart"
+                class="fas fa-percent"
+                aria-hidden="true"
+                [ngClass]="{'text-primary': displayMode === 'percent', 'text-muted': displayMode !== 'percent'}"
+                (click)="setDisplayMode('percent')"
+                >&nbsp;</i
+              >
+              <i
+                id="metformin_5-mode-pie"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Pie Chart"
+                class="fas fa-chart-pie"
+                aria-hidden="true"
+                [ngClass]="{'text-primary': displayMode === 'pie', 'text-muted': displayMode !== 'pie'}"
+                (click)="setDisplayMode('pie')"
+                >&nbsp;</i
+              >
+            </div>
+          </div>
+
+          <div class="panel-heading filter-section" [hidden]="showError || isLoading">
+            <app-data-filters [filterData]="filterMap" (filterChange)="updateFilters($event)"></app-data-filters>
+          </div>
+
+          <div id="search" class="panel-heading filter-section">
+            <app-search-dashboards></app-search-dashboards>
+          </div>
+        </div>
+
+        <!-- START OF TOP KPI BLOCK -->
+
+        <div class="col col-12 col-lg-10">
+          <!-- KPI Panel Column -->
+          @if (kpiConfigs && kpiConfigs.length > 0) {
+            <div class="mb-4">
+              <app-kpi-panel [kpiConfigs]="kpiConfigs"></app-kpi-panel>
+            </div>
+          }
+
+          <!-- START OF CHART PANELS -->
+          <!-- Panels ------------------------------------------------------------------------------------------------- -->
+          <div id="metformin_5-panel" class="col-12 col-md-12 mx-auto mb-4 panel">
+            <!-- Floating Legend -->
+
+            <!-- Composite Panels ------------------------------------------------------------------------------------------------- -->
+            @for (row of chartsConfig | slice: 0 : chartsConfig.length; track row; let i = $index) {
+              <div>
+                @if (i % 2 === 0) {
+                  <div class="row">
+                    <!-- First Chart in Row -->
+                    @if (chartsConfig[i]) {
+                      <div class="col-12 col-md-6 small-viz-panel">
+                        <div [id]="chartsConfig[i].id">
+                          @if (chartsConfig[i].data) {
+                            <app-render-chart
+                              [data]="chartsConfig[i].data"
+                              [colors]="chartsConfig[i].colors"
+                              [title]="chartsConfig[i].title"
+                              [displayMode]="chartsConfig[i].displayMode"
+                              [loading]="isLoading"
+                            >
+                              ></app-render-chart
+                            >
+                          }
+                        </div>
+                      </div>
+                    }
+                    <!-- Second Chart in Row -->
+                    @if (chartsConfig[i + 1]) {
+                      <div class="col-12 col-md-6 small-viz-panel">
+                        <div [id]="chartsConfig[i + 1].id">
+                          @if (chartsConfig[i + 1].data) {
+                            <app-render-chart
+                              [data]="chartsConfig[i + 1].data"
+                              [colors]="chartsConfig[i + 1].colors"
+                              [title]="chartsConfig[i + 1].title"
+                              [displayMode]="chartsConfig[i + 1].displayMode"
+                              [loading]="isLoading"
+                            >
+                              ></app-render-chart
+                            >
+                          }
+                        </div>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            }
+
+            <!-- other panel logic	--------------------------------->
+          </div>
+
+          <!-- DataTable --------------------------------------------------------------------------------------- -->
+
+          <app-data-grid [rowData]="filteredData" [columnDefs]="columnDefs" [gridOptions]="gridOptions">
+          </app-data-grid>
+
+          <!-- <div class="panel-body"> -->
+          <div
+            class="accordion"
+            id="metformin_5limitations_accordion"
+            style="margin-top: 20px; margin-left: 0; padding-left: 0"
+          >
+            <div class="card" id="metformin-limitations-section">
+              <div class="card-header" id="metformin_5limitations_heading">
+                <h2 class="mb-0">
+                  <button
+                    class="filter_drop_button btn btn-link btn-block text-left"
+                    type="button"
+                    (click)="toggleCollapse('metformin_5limitations_body')"
+                    [attr.aria-expanded]="isLimitationsCollapsed"
+                    [ngClass]="{collapsed: !isLimitationsCollapsed}"
+                    aria-controls="metformin_5limitations_body"
+                  >
+                    <h3>Limitations</h3>
+                    <span class="float-right">
+                      <i class="fas" [ngClass]="isLimitationsCollapsed ? 'fa-minus' : 'fa-plus'"></i>
+                    </span>
+                  </button>
+                </h2>
+              </div>
+            </div>
+            <div
+              [ngClass]="{collapse: !isLimitationsCollapsed, show: isLimitationsCollapsed}"
+              id="metformin_5limitations_body"
+              aria-labelledby="metformin_5limitations_heading"
+              data-parent="#metformin_5limitations_accordion"
+            >
+              <div class="card-body">
+                <blockquote>
+                  <p>
+                    <strong
+                      >This dashboard contains data both on all patients and only diabetic patients within the Enclave
+                      who have Metformin indicated in their EHR.</strong
+                    >
+                  </p>
+                  <p>&nbsp;</p>
+                  <p class="list-p">
+                    <strong class="lim-head">Metformin exposure</strong> is defined as any occurrence of “metformin” or
+                    related ICD-10 code within a patient's EHR.
+                  </p>
+                  <ul>
+                    <li>
+                      Metformin exposures do not mean the patient was given the medication in order to treat COVID-19.
+                    </li>
+                    <li>
+                      Metformin exposures do not mean the patient actually took the medication.
+                      <ul>
+                        <li>
+                          Some records specify that a prescription for a medication was written, some specify In-patient
+                          administration, and some specify pharmacy fill.
+                        </li>
+                        <li>
+                          There is no guarantee that a patient was exposed to the medication, only that their medical
+                          records include evidence of that medication.
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <p class="list-p">
+                    <strong class="lim-head">A medication occurrence</strong> is defined as the earliest date that a
+                    medication was prescribed, fulfilled, or administered. It is then classified based on its temporal
+                    relationship to a patient's COVID-19 diagnosis (Before/After).
+                  </p>
+                  <ul>
+                    <li>
+                      The dates utilized to determine this metric come from several EHR metadata fields relating to
+                      pharmacy activity, treatment activity, etc. While the first of these dates is used to calculate
+                      the medication occurrence, the activity associated with the date (prescription, administration,
+                      fulfillment, etc.) cannot be guaranteed.
+                    </li>
+                  </ul>
+                  <p class="list-p">
+                    <strong class="lim-head">A Charlson Comorbidity Index (CCI) Score</strong> is calculated by
+                    identifying any CCI comorbidity attached to a medical visit within a patient’s EHR and weighing each
+                    comorbidity by its associated category. The sum of all the weights results in a single comorbidity
+                    score. More details on the CCI and its 17 associated comorbidities can be found
+                    <a href="https://en.wikipedia.org/wiki/Charlson_Comorbidity_Index" target="_blank" rel="noopener"
+                      >here</a
+                    >.
+                  </p>
+                  <ul>
+                    <li>The calculated score is as of a patient’s COVID-19 diagnosis date.</li>
+                    <li>
+                      A patient with undiagnosed CCI conditions not recorded in their EHR would not be represented here.
+                      Additionally, a patient may have a CCI condition for which they have not required a medical visit,
+                      which would exclude them from representation.
+                    </li>
+                  </ul>
+                  <p class="list-p">
+                    <strong class="lim-head">A COVID-positive patient</strong> is defined as any patient having one of
+                    the following within their EHR records:
+                  </p>
+                  <ol>
+                    <li>Laboratory confirmed positive COVID-19 PCR or Antigen test</li>
+                    <li>Laboratory confirmed positive COVID-19 Antibody test</li>
+                    <li>
+                      Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded
+                      <ul>
+                        <li>
+                          Condition diagnosis patients have no record of a positive PCR/Antigen or Antibody test within
+                          their EHR; however, they were diagnosed with COVID due to the symptoms they displayed.
+                        </li>
+                      </ul>
+                    </li>
+                  </ol>
+                  <p class="list-p">
+                    <strong class="lim-head">A Long COVID patient</strong> is defined as any patient having the ICD-10
+                    code for PASC (U09.9) within their EHR.
+                  </p>
+                  <ul>
+                    <li>
+                      Note: The ICD-10 for PASC (U09.9) was not created until October 1, 2021, and any data using this
+                      code will be limited to after this date. Therefore, this data is not a full representation of
+                      patients diagnosed with Long COVID.
+                    </li>
+                  </ul>
+                  <p class="list-p">
+                    <strong class="lim-head">Severity</strong> of COVID-19 is a calculation based on multiple events
+                    recorded in a patient's EHR during their medical visit. The severity score for each patient may be
+                    inaccurate due to missing information within the EHR. Patients will only be graded on Severity if
+                    they have a laboratory-confirmed positive PCR or Antigen test. Below are the definitions of each
+                    Severity Category.
+                  </p>
+                  <ul>
+                    <li>
+                      <strong>Mild</strong> - The patient has no record of Emergency Room visits or hospitalization for
+                      COVID-19
+                    </li>
+                    <li>
+                      <strong>ED Visit (not admitted)</strong> - The patient had an Emergency Room (ER) visit for
+                      COVID-19, but we have no record of hospitalization (Inpatient) for COVID-19
+                    </li>
+                    <li>
+                      <strong>Moderate Hospitalized</strong> - The patient was hospitalized (Inpatient visit) for
+                      COVID-19 AND did not receive ECMO OR Invasive Ventilation
+                    </li>
+                    <li><strong>Mortality</strong> - The patient’s records show a date of death</li>
+                    <li>
+                      <strong>Severe Ventilation/ECMO/AKI</strong> - The patient was hospitalized for COVID-19 AND
+                      received Extracorporeal membrane oxygen (ECMO) OR received Invasive Ventilation
+                    </li>
+                    <li>
+                      <strong>Unavailable</strong> - Patients who did not have a lab-confirmed positive PCR or Antigen
+                      COVID test. This includes patients who were diagnosed only based on the symptoms they displayed or
+                      patients who do not have any recorded COVID-19 diagnosis within the Enclave.
+                    </li>
+                  </ul>
+                  <p class="list-p">
+                    <strong class="lim-head">The age</strong> of each patient is calculated as of the date of the last
+                    data update.
+                  </p>
+                  <ul>
+                    <li>If an age exceeds 89, it will be obscured using a date shift of +/- 10 years.</li>
+                    <li>
+                      As of 7/15/22, July 1st is used as a placeholder date of birth when there are 0s or nulls in the
+                      OMOP person table to avoid biasing towards older age.
+                    </li>
+                  </ul>
+                  <p class="list-p">
+                    <strong class="lim-head">The race and ethnicity</strong> of patients are adjusted to standard
+                    categories based on self-reported fields within the EHR.
+                  </p>
+                  <ul>
+                    <li>
+                      Note that the EHRs do not always contain all of the information on race and ethnicity, and
+                      patients may not self-report a response that can be fully mapped into one of the standard
+                      categories. The patient would fall into the "Unknown" category in these cases.
+                    </li>
+                  </ul>
+                  <p class="list-p">
+                    <strong class="lim-head">The sex</strong> of patients is determined based on self-reported fields
+                    within the EHR.
+                  </p>
+                  <ul>
+                    <li>
+                      Note that the EHRs do not always contain all of the information on sex; if a patient's EHR does
+                      not contain data on their sex, they will fall into the "Unknown" category.
+                    </li>
+                    <li>
+                      If a patient records any response other than "Female" or "Male" they would be mapped into the
+                      "Other" category.
+                    </li>
+                  </ul>
+                  <p>
+                    <strong class="lim-head">Vaccination</strong> data in the N3C is sparse and represents only
+                    EHR-recorded vaccination events at our data partners. The absence of a vaccination record does not
+                    mean that a patient is unvaccinated. If a patient were vaccinated at their local pharmacy, doctor's
+                    office, or state/federal vaccination site, they would not be represented because these systems do
+                    not automatically link to a patient's EHR.
+                  </p>
+                  <p>
+                    Given the known national vaccination rates, it is likely that many, if not most, vaccination events
+                    are occurring outside of the academic health systems submitting data. Therefore, patients shown here
+                    as "Unknown" may be vaccinated; however, we do not have the records to verify this.
+                  </p>
+                  <p>
+                    Vaccinated patient counts shown here does not mean the patient is fully vaccinated. We consider a
+                    vaccinated patient to have at least one dose of Pfizer, Moderna, or Johnson &amp; Johnson COVID-19
+                    vaccines. Given that Pfizer and Moderna require two vaccine doses to be considered fully vaccinated,
+                    patients shown here may be partially vaccinated. This same assumption applies to booster shots, as
+                    we do not consider shots beyond the first one recorded within the patient's EHR.
+                  </p>
+                  <p class="list-p"><strong class="lim-head">Mortality</strong> is defined as:</p>
+                  <ul>
+                    <li>Any patient with a date of death in the Enclave</li>
+                    <li>
+                      (or) Any patient from a mortality-linked PPRL site who exists in one of the external sources:
+                      <ul>
+                        <li>
+                          Government Mortality: Government data sourced from death certificates and person-reporting.
+                        </li>
+                        <li>
+                          ObituaryData.com: Obituary data sourced from funeral homes, newspapers, and other online
+                          obituary sources, specifically from obituarydata.com (a private obituary aggregator).
+                        </li>
+                        <li>
+                          Private Obituary: Obituary data sourced from funeral homes, newspapers, and other online
+                          obituary sources sourced from other private sources.
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <p class="list-p"><strong>For external mortality sources:</strong></p>
+                  <ul>
+                    <li>
+                      Several mortality sources do not know the exact date of death for all reported deaths. If they
+                      know only the month of death, they will provide the date of death as the first day of that month,
+                      or if they know only the year of death, they will provide the date of death as the first day of
+                      that year. This means that an increased number of deaths will appear at those intervals.
+                    </li>
+                    <li>
+                      Each source has a distinct lag associated with their reported deaths. However, on average, 90% of
+                      the deaths that will show up will be in the data by 28 days after the occurrence.
+                    </li>
+                  </ul>
+                  <p>Mortality data should not be considered representative of all deaths in the United States.</p>
+                  <p>
+                    Note: This metric is distinct from the Mortality category associated with Severity, as it does not
+                    limit deaths to only those suspected to be caused by COVID-19.
+                  </p>
+                  <p class="list-p"><strong class="lim-head">General Enclave Limitations</strong></p>
+                  <ul>
+                    <li>
+                      “Sicker” patients will likely be overrepresented within the N3C Data Enclave, as sicker patients
+                      will more often seek out and receive care at clinical centers.
+                    </li>
+                    <li>
+                      The N3C may have multiple contributors to data “missingness”. Clinical facts and events that occur
+                      in the real world may not be captured for reasons including:
+                      <ul>
+                        <li>The event was recorded at a clinical site that does not contribute data</li>
+                        <li>Data is not yet linked across sites</li>
+                        <li>Medical records are inherently incomplete</li>
+                      </ul>
+                    </li>
+                    <li>
+                      Some of the external datasets that have been used for analysis cannot be fully mapped due to
+                      issues such as missing measurement units.
+                    </li>
+                    <li>
+                      All dates within the Enclave have been shifted between -3 to 45 days to ensure that
+                      reidentification is not possible.
+                    </li>
+                    <li>N3C data may not be representative of the entire US population</li>
+                    <ul>
+                      <li>
+                        N3C does NOT have a representative sample of any state, as data is contributed from only a few
+                        providers in each region (Region - includes multiple states).
+                      </li>
+                    </ul>
+                    <li>Cell sizes smaller than 20 people have been suppressed</li>
+                    <li>
+                      For COVID+ patients: A patient is only counted once in this data, even if they have multiple
+                      positive tests over time. Except in instances where dashboards focus on reinfection, only dates of
+                      first infection are utilized.
+                    </li>
+                  </ul>
+                </blockquote>
+                <!-- Add more limitations content as needed -->
+              </div>
+            </div>
+          </div>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- END CONTAINER -->
+</div>

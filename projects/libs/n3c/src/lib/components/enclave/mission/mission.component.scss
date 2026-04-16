@@ -1,0 +1,44 @@
+@use '../../../styles/n3c-styles.scss';
+
+/* General **********************************/
+
+h1 {
+  font-size: 2.8rem;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 2.3rem;
+  font-weight: 300;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+h5 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+a {
+  color: #1570ba;
+}
+
+a {
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.mh-50 {
+  max-height: 50%;
+  object-fit: contain;
+}

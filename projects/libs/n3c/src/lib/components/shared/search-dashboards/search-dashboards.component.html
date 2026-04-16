@@ -1,0 +1,24 @@
+<div class="search-dashboards">
+  <h4>Search Dashboards</h4>
+
+  <div class="search-container">
+    <input
+      type="text"
+      placeholder="Search dashboards..."
+      [(ngModel)]="searchTerm"
+      (input)="onInputChange()"
+      (keyup.enter)="selectKeyword(searchTerm)"
+      [attr.list]="'search-autocomplete'"
+    />
+    <datalist id="search-autocomplete">
+      @for (keyword of filteredKeywords; track keyword) {
+        <option (click)="selectKeyword(keyword)">
+          {{ keyword }}
+        </option>
+      }
+    </datalist>
+    <button (click)="selectKeyword(searchTerm)" class="search-button">
+      <i class="fas fa-search" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>

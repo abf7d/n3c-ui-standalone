@@ -1,0 +1,77 @@
+@use '../../../styles/n3c-styles.scss';
+@use '../../../styles/shared-styles.scss';
+
+.n3c-logo {
+  margin: 0 7px;
+}
+
+.primary-nav {
+  height: 40px;
+  background: #006478;
+  color: #fff;
+}
+
+.tooltip-wrapper {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.tooltip-box {
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%) translateY(5px);
+  z-index: 1000;
+
+  background: #222;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  width: 280px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  white-space: normal;
+  pointer-events: none;
+}
+
+.tooltip-wrapper.active .tooltip-box {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.tooltip-box::after {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent #222 transparent;
+}
+
+.tooltip-title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: #ffda79;
+}
+
+.tooltip-box ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.tooltip-box li {
+  margin-bottom: 0.25rem;
+}

@@ -1,5 +1,3 @@
-/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
-/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -13,7 +11,21 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+    "paths": {
+      "@odp/shared": [
+        "./projects/libs/shared/src"
+      ],
+      "@odp/shared/*": [
+        "./projects/libs/shared/src/*"
+      ],
+      "@odp/n3c": [
+        "./projects/libs/n3c/src"
+      ],
+      "@odp/n3c/*": [
+        "./projects/libs/n3c/src/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -21,5 +33,19 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   },
-  "files": []
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/apps/n3c-app/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/apps/n3c-app/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/libs/shared/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/libs/n3c/tsconfig.lib.json"
+    }
+  ]
 }

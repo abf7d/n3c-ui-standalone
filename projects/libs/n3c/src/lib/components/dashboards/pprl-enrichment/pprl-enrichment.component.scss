@@ -1,0 +1,65 @@
+@use '../../../styles/shared-styles.scss';
+.footnote {
+  font-size: 0.9rem;
+  margin-top: 10px;
+  font-weight: bold;
+}
+.topic_dropdown {
+  padding-top: 30px;
+}
+.ag-panel {
+  width: 100%;
+}
+.viz-mode .fas {
+  cursor: pointer;
+  color: #b6d9ff;
+}
+
+.viz-mode .fas:hover {
+  color: #007bff;
+}
+.topic_dropdown {
+  text-align: center;
+  font-size: 1.3rem;
+}
+strong {
+  font-weight: bold;
+}
+.page-dropdown {
+  width: 750px;
+  text-align: center;
+  padding: 10px;
+  option,
+  optgroup {
+    padding: none;
+    text-align: left;
+  }
+}
+
+.card-body {
+  margin: auto;
+  width: 70vw;
+  margin-top: 55px;
+  min-width: 500px;
+}
+
+app-loader {
+  position: relative;
+}
+.error-msg {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  color: red;
+}
+.primary-nav {
+  height: 40px;
+  background: #006478;
+  color: #fff;
+}
+
+.n3c-logo {
+  margin: 0 7px;
+}
+

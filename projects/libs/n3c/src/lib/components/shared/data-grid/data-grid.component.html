@@ -1,0 +1,29 @@
+<div class="data-container">
+  <div class="total">{{ rowCount }} {{ rowCount === 1 ? ' entry found' : 'entries found' }}</div>
+  @if (gridOptions.context?.showSearchBox) {
+    <div [style.width]="gridOptions.context?.searchBoxWidth || 'auto'" class="search-box">
+      <input
+        type="text"
+        placeholder="Search..."
+        [(ngModel)]="searchTerm"
+        (keypress)="onKeyPress($event)"
+        class="search-input"
+      />
+      <button (click)="onSearch()" class="search-button">Search</button>
+    </div>
+  }
+  <ag-grid-angular
+    class="custom-theme"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [gridOptions]="gridOptions"
+    [tooltipShowDelay]="800"
+    (gridReady)="onGridReady($event)"
+  >
+  </ag-grid-angular>
+  <div class="actions">
+    <button (click)="onExportCsv()">Export as CSV</button>
+    <button (click)="onCopyToClipboard()">Copy to Clipboard</button>
+  </div>
+</div>

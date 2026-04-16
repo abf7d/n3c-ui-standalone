@@ -1,0 +1,105 @@
+<h2>{{ title }}</h2>
+<div id="domain-teams" class="text-max mx-auto">
+  <div class="row pager-controls">
+    <div class="col col-12 col-lg-6 side-col">
+      <div class="dataTables_length">
+        <label
+          >Show
+          <select
+            name="publications_table_length"
+            aria-controls="publications_table"
+            (change)="onItemsPerPageChange($event)"
+          >
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="75">75</option>
+            <option value="100">100</option>
+          </select>
+          entries
+        </label>
+      </div>
+    </div>
+
+    <!-- search button  -->
+    <div class="col col-12 col-lg-6 side-col">
+      <div class="search-container">
+        <label for="searchInput" class="search-label">Search:</label>
+        <input
+          type="text"
+          id="searchInput"
+          [(ngModel)]="searchTerm"
+          placeholder="title, author, journal ..."
+          (input)="onSearch()"
+          class="search-input"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="dataTables_wrapper no-footer">
+    <div class="datatable_overflow">
+      <table class="table table-hover main-table">
+        <tbody>
+          @for (publication of paginatedPublications; let i = $index; track publication) {
+            <tr class="pos-relative">
+              <td class="noExport">
+                <div class="publication-panel-group panel-group">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <div class="row">
+                        <ng-container *ngTemplateOutlet="rowHeaderTpl; context: {$implicit: publication}">
+                        </ng-container>
+
+                        <!-- Toggle Button in Bottom-Right of Each Row -->
+                        <button (click)="toggle(publication)" class="toggle-btn">
+                          @if (!isOpen(publication)) {
+                            <span>+</span>
+                          }
+                          @if (isOpen(publication)) {
+                            <span>-</span>
+                          }
+                        </button>
+                      </div>
+                    </div>
+                    <!-- Details section that expands/collapses -->
+                    @if (isOpen(publication)) {
+                      <div class="panel-body">
+                        <ng-container *ngTemplateOutlet="rowDetailTpl; context: {$implicit: publication}">
+                        </ng-container>
+                      </div>
+                    }
+                  </div>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+      <div class="row" style="margin-top: 10px">
+        <div class="col col-12 col-lg-6 side-col">
+          <div class="entries-info">
+            {{ getEntriesInfo() }}
+          </div>
+        </div>
+        <div class="col col-12 col-lg-6 side-col">
+          <div class="pagination">
+            <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+
+            @for (page of getPaginationRange(); track page) {
+              <button (click)="changePage(page)" [class.active]="page === currentPage">
+                {{ page }}
+              </button>
+            }
+
+            <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row"></div>
+</div>

@@ -1,0 +1,33 @@
+@if (showSearch) {
+  <div class="table-search-container">
+    <div class="search-bar-row">
+      <span class="search-label">Search:</span>
+      <input type="text" [placeholder]="searchPlaceholder" (input)="onFilterInput($event)" />
+    </div>
+  </div>
+}
+
+<div class="ag-grid-wrapper">
+  <ag-grid-angular
+    class="font-sz ag-grid-responsive"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [domLayout]="autoHeight ? 'autoHeight' : 'normal'"
+    [style.height]="autoHeight ? null : gridHeight"
+    [enableBrowserTooltips]="true"
+    [animateRows]="true"
+    [pagination]="true"
+    [paginationPageSize]="paginationPageSize"
+    [paginationPageSizeSelector]="paginationPageSizeSelector"
+    [components]="components"
+    (gridReady)="onGridReady($event)"
+  >
+  </ag-grid-angular>
+
+  @if (showDownload) {
+    <div class="download-btn-row">
+      <button class="btn btn-secondary" (click)="downloadCsv()">Download CSV File</button>
+    </div>
+  }
+</div>

@@ -1,0 +1,40 @@
+.container-wide {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.n3c_logo_header {
+    width: 20%;
+    max-width: 100px;
+    height: auto;
+    margin-right: 10px;
+}
+.header-text {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+.center-box {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+.shadow-border {
+    padding: 40px;
+    -webkit-box-shadow: 1px 2px 30px 2px rgba(92, 123, 128, 0.72);
+    -moz-box-shadow: 1px 2px 30px 2px rgba(92, 123, 128, 0.72);
+    box-shadow: 1px 2px 30px 2px rgba(92, 123, 128, 0.72);
+    border-radius: 5px;
+}
+.btn-n3c {
+    border: none;
+    background: rgba(100, 42, 107, 1);
+    background: -moz-linear-gradient(-45deg, rgba(100, 42, 107, 1) 0%, rgba(99, 53, 112, 1) 47%, rgba(70, 71, 119, 1) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(100, 42, 107, 1)), color-stop(47%, rgba(99, 53, 112, 1)), color-stop(100%, rgba(70, 71, 119, 1)));
+    background: -webkit-linear-gradient(-45deg, rgba(100, 42, 107, 1) 0%, rgba(99, 53, 112, 1) 47%, rgba(70, 71, 119, 1) 100%);
+    background: -o-linear-gradient(-45deg, rgba(100, 42, 107, 1) 0%, rgba(99, 53, 112, 1) 47%, rgba(70, 71, 119, 1) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(100, 42, 107, 1) 0%, rgba(99, 53, 112, 1) 47%, rgba(70, 71, 119, 1) 100%);
+    background: linear-gradient(135deg, rgba(100, 42, 107, 1) 0%, rgba(99, 53, 112, 1) 47%, rgba(70, 71, 119, 1) 100%);
+    color: white;
+}

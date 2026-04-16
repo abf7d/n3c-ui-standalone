@@ -1,0 +1,53 @@
+@use '../../../styles/n3c-styles.scss';
+
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.main-block {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.flex-wrap {
+    flex-wrap: wrap !important;
+}
+
+.center {
+    margin: auto;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.btn-link {
+    border: 1px solid rgb(83, 25, 88);
+    color: #fff;
+    background-color: rgb(83, 25, 88);
+    pointer-events: none;
+    text-decoration: none;
+}
+
+.left-section {
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 20px;
+}
+
+.right-section {
+    width: 50%;
+    float: left;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.row-item {
+    width: 100%;
+    overflow: hidden;
+    padding-bottom: 20px;
+}

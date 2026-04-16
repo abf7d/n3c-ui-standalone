@@ -1,0 +1,108 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<nav class="primary-nav navbar navbar-expand-lg p-0"></nav>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" [routerLink]="['/dashboard']">
+    <img
+      src="./assets/n3c/images/n3c_logo.png"
+      width="30"
+      height="30"
+      class="d-inline-block n3c-logo"
+      alt="N3C logo"
+    />N3C Dashboards
+  </a>
+</div>
+<nav class="ms-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboards</a></li>
+    <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+  </ol>
+</nav>
+
+<div class="d-flex flex-column">
+  <h1 class="page-title">{{ title }}</h1>
+  <div class="question-description heading-text text-max mx-auto">
+    <p>{{ description }}</p>
+  </div>
+</div>
+<div class="col-12 col-md-12 mx-auto mt-5 mb-4 panel w-75">
+  <p>
+    N3C Recommended published concept sets are available in the N3C Enclave Concept Set Browser. To view the N3C
+    Recommended concept sets, log into the N3C Enclave Concept Set Browser and check the “N3C Recommended” filter box in
+    the upper left-hand corner of the screen.
+  </p>
+  <h2>WHAT IS AN N3C RECOMMENDED CONCEPT SET?</h2>
+  <p>
+    The N3C Data Liaisons and Logic Liaisons, in partnership with the Domain Teams, have selected common medical
+    features often required for broad use in research that support the analytics pipelines. The original N3C Recommended
+    concept sets were selected based on 1) the comorbid conditions identified by the US Centers for Disease Control
+    (CDC) definitions for COVID-19 as increasing risk of severe COVID-19, 2) the comorbid conditions identified in the
+    Charlson Comorbidity Index, and 3) others as requested by N3C leadership for use in the Logic Liaison templates.
+  </p>
+  <p>
+    The N3C Recommended concept sets have been vetted by clinical experts (typically N3C Domain Team leads) and the Data
+    and Logic Liaison teams according to the below refinement and finalization process. The latest version of the listed
+    concept sets should always be used as earlier versions represent iterations and have not passed the final review.
+  </p>
+
+  <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+    <div class="mb-5">
+      <app-data-grid [rowData]="gridData" [columnDefs]="columnDefs" [gridOptions]="gridOptions"></app-data-grid>
+    </div>
+  </app-n3c-loader>
+
+  <h2>REFINEMENT PROCESS</h2>
+  <p>
+    The clinical experts and the N3C Data Liaisons and Logic Liaisons perform the following steps in establishing an
+    intentional N3C Recommended concept set:
+  </p>
+  <ol>
+    <li>
+      Select relevant parent concepts and their descendants from OMOP standard codes, using Charlson Comorbidity
+      description or the relevant section the referenced CDC page to establish intention.
+    </li>
+    <li>
+      Utilize the OHDSI Atlas tool to explore the OMOP hierarchy to look for other potential parent codes and also to
+      remove child codes that are non-specific to the intended scope of the concept set.
+    </li>
+    <li>
+      Compare the draft concept set to other related concept sets, using the Concept Set Overlap feature of the Concept
+      Set Editor. This facilitates review of any codes that do not overlap with those in value sets from reputable
+      stewards such as the National Library of Medicine’s Value Set Authority Center (VSAC) and the Healthcare Cost and
+      Utilization Project (HCUP) and from existing similar concept sets within the Concept Set Browser. Add and remove
+      concepts (and their descendants) as per recommendations from the clinical experts.
+    </li>
+    <li>
+      Reduce the intentional concept set expression as parsimonious as possible, retaining all the approved concepts
+      collected in prior steps.
+    </li>
+    <li>Iterate as needed.</li>
+    <li>
+      Document metadata (properties) in the Concept Set Editor for each created concept set to include: Intention,
+      Limitations, Provenance, and at least one vocabulary and one clinical review.
+    </li>
+    <li>Present for final vetting at the Data Liaison meeting for N3C Recommended designation.</li>
+  </ol>
+  <p>
+    These concept sets are in queue to be published as pdf (Properties) and json (concept ids) in Zenodo, to be
+    available to researchers outside the Enclave. Once published, their Zenodo DOI will be posted to the Zenodo Property
+    of the version that was published.
+  </p>
+  <h2>QUESTIONS?</h2>
+  <p>
+    For questions about N3C Recommended concept sets, please contact the N3C Data Liaisons through the N3C Support Desk
+    either by opening a support request or attending one of the Support Desk office hours.
+  </p>
+  <p>
+    An extensive tutorial for using Enclave tools to create concept sets is available:
+    <app-external-link
+      [url]="
+        'https://unite.nih.gov/workspace/notepad/view/ri.notepad.main.notepad.33fa969f-cc18-401f-ab69-538146c343c0'
+      "
+      [text]="'How to Work with Concept Sets in the Enclave'"
+    ></app-external-link
+    >.
+  </p>
+</div>
+
+<app-dashboard-footer></app-dashboard-footer>

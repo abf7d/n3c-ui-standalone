@@ -1,0 +1,375 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<nav class="primary-nav navbar navbar-expand-lg p-0"></nav>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" [routerLink]="['/dashboard']">
+    <img
+      src="./assets/n3c/images/n3c_logo.png"
+      width="30"
+      height="30"
+      class="d-inline-block n3c-logo"
+      alt="N3C logo"
+    />N3C Dashboards
+  </a>
+</div>
+<nav class="ms-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboards</a></li>
+    <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">N3C Admin Dashboard</li>
+  </ol>
+</nav>
+
+<app-n3c-loader [loading]="dataLoading" [showError]="showError">
+  <div class="row">
+    <div class="col-12">
+      <div class="container content-panel container-large pos-relative">
+        <div class="card m-tall">
+          <div class="card-header" id="factheadingOne">
+            <h4 class="mb-0">
+              Release Set:&nbsp;
+              @if (currentRelease) {
+                <span id="date">{{ currentRelease.release_date | date: 'MMMM d, y' }}</span>
+              }
+              <span
+                alt="expand/collapse fact sheet section button"
+                style="display: inline; float: right"
+                class="btn btn-link btn-block text-left collapsed icon-btn p-0 accordion-toggle"
+                data-toggle="collapse"
+                data-target="#factcollapseOne"
+                aria-expanded="false"
+                aria-controls="collapseOne"
+              >
+                <span>&nbsp;</span>
+                <i class="fas fa-minus" [hidden]="showInfoPanel === false" (click)="showInfoPanel = false"></i>
+                <i class="fas fa-plus" [hidden]="showInfoPanel === true" (click)="showInfoPanel = true"></i>
+              </span>
+            </h4>
+          </div>
+
+          @if (showInfoPanel && currentNotes && currentRelease) {
+            <div id="factcollapseOne">
+              <div class="card-body">
+                <div style="text-align: center; width: 100%; margin-top: 30px">
+                  <div class="row">
+                    <div class="col-12 col-md-6">
+                      <p class="mb-0">
+                        Phenotype: {{ currentNotes.phenotype }}<br />
+                        Target Common Data Model: {{ currentNotes.target_cdm }}<br />
+                        CDM Mapping version: {{ currentNotes.cdm_mapping_version }}<br />
+                        Production version: <span id="production_date">{{ currentRelease.release }}</span>
+                      </p>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <p class="mb-0">
+                        OMOP Vocabulary Version: {{ currentNotes.omop_vocabulary_version }}<br />
+                        Vocabulary Update: {{ currentNotes.vocabulary_update_date }}<br />
+                        Source Common Data Models:<br />
+                        {{ currentNotes.source_cdm }}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row" style="padding: 10px; padding-bottom: 30px; padding-top: 30px; width: 100%">
+                    <div class="col-12 col-md-6">
+                      <div>
+                        <i class="fas fa-clinic-medical"></i> <strong>Sites: </strong>
+                        <span id="sites">{{ currentRelease.sites_ingested | longCompactNumber }}</span>
+                      </div>
+                      <div>
+                        <strong><i class="fas fa-user"></i> Persons: </strong
+                        ><span>{{ currentRelease.person_rows | longCompactNumber }}</span>
+                      </div>
+                      <div>
+                        <strong><i class="fas fa-virus"></i> COVID+ Cases: </strong>
+                        <span id="positive">{{ currentRelease.covid_positive_patients | longCompactNumber }}</span>
+                      </div>
+                      <div>
+                        <strong><i class="fas fa-table"></i> # of Rows: </strong>
+                        <span id="rows">{{ currentRelease.total_rows | longCompactNumber }}</span>
+                      </div>
+                      <div>
+                        <strong><i class="fas fa-notes-medical"></i> Clinical Observations: </strong>
+                        <span id="observations">{{ currentRelease.observation_rows | longCompactNumber }}</span>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div>
+                        <strong><i class="fas fa-file-medical-alt"></i> Lab Results: </strong
+                        ><span id="results">{{ currentRelease.measurement_rows | longCompactNumber }}</span>
+                      </div>
+                      <div>
+                        <strong><i class="fas fa-pills"></i> Medication Records: </strong
+                        ><span id="records">{{ currentRelease.drug_exposure_rows | longCompactNumber }}</span>
+                      </div>
+                      <div>
+                        <strong><i class="fas fa-procedures"></i> Procedures: </strong
+                        ><span id="procedures">{{ currentRelease.procedure_rows | longCompactNumber }}</span>
+                      </div>
+                      <div>
+                        <strong><i class="far fa-calendar-alt"></i> Visits: </strong
+                        ><span id="visits">{{ currentRelease.visit_rows | longCompactNumber }}</span>
+                      </div>
+                    </div>
+                    <div class="col-12" style="text-align: right; margin-top: 20px">
+                      <em style="margin-top: 10px; font-size: 14px"
+                        >Data as of <span id="date2">{{ currentRelease.release_date | date: 'MMMM d, y' }}</span></em
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="container content container-large pos-relative">
+        <div>
+          <h3 class="header-text">Metrics</h3>
+          <div class="btn-select">
+            <button
+              class="btn"
+              [ngClass]="{
+                'btn-primary': metricsView === 'institutions',
+                'btn-outline-secondary': metricsView !== 'institutions'
+              }"
+              (click)="metricsView = 'institutions'"
+              role="button"
+            >
+              Institutions
+            </button>
+            <button
+              class="btn"
+              [ngClass]="{
+                'btn-primary': metricsView === 'users',
+                'btn-outline-secondary': metricsView !== 'users'
+              }"
+              (click)="metricsView = 'users'"
+              role="button"
+            >
+              Users
+            </button>
+          </div>
+          <div [hidden]="metricsView === 'institutions'">
+            @if (adminUserCount) {
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Count</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Total User Registrations</td>
+                    <td align="right">{{ adminUserCount.n_registrations }}</td>
+                  </tr>
+                  <tr>
+                    <td>Users Requesting Enclave Access</td>
+                    <td align="right">{{ adminUserCount.n_enclave }}</td>
+                  </tr>
+                  <tr>
+                    <td>Registered Enclave Users From DUA Institutions</td>
+                    <td align="right">{{ adminUserCount.n_duas }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            }
+            <div class="btn-group css-dropdown">
+              <button
+                type="button"
+                class="btn btn-sm btn-light dropdown-toggle"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fas fa-download"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" (click)="saveAs('jpg', 'users', 'users')">Save as JPG</a>
+                <a class="dropdown-item" (click)="saveAs('png', 'users', 'users')">Save as PNG</a>
+                <a class="dropdown-item" (click)="saveAs('svg', 'users', 'users')">Save as SVG</a>
+              </div>
+            </div>
+            <div class="users-chart" #instLineChart></div>
+          </div>
+          <div [hidden]="metricsView === 'users'">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Institutions</th>
+                  <th>Count</th>
+                </tr>
+              </thead>
+
+              @if (adminInstCount) {
+                <tbody>
+                  <tr>
+                    <td>Institutions with Executed DUAs</td>
+                    <td align="right">{{ adminInstCount.n_institutions }}</td>
+                  </tr>
+                  <tr>
+                    <td>DUA Institutions with Registered Users</td>
+                    <td align="right">{{ adminInstCount.n_with_users }}</td>
+                  </tr>
+                  <tr>
+                    <td>Institutions with Executed DTAs</td>
+                    <td align="right">{{ adminInstCount.n_with_dtas }}</td>
+                  </tr>
+                </tbody>
+              }
+            </table>
+            <div class="btn-group css-dropdown">
+              <button
+                type="button"
+                class="btn btn-sm btn-light dropdown-toggle"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fas fa-download"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" (click)="saveAs('jpg', 'institutions', 'institutions')">Save as JPG</a>
+                <a class="dropdown-item" (click)="saveAs('png', 'institutions', 'institutions')">Save as PNG</a>
+                <a class="dropdown-item" (click)="saveAs('svg', 'institutions', 'institutions')">Save as SVG</a>
+              </div>
+            </div>
+            <div class="institutions-chart" #lineChart></div>
+          </div>
+        </div>
+        <div class="map-container">
+          <h3 class="header-text">Institutions</h3>
+          <div class="btn-select">
+            <button
+              class="btn"
+              [ngClass]="{
+                'btn-primary': instView === 'map',
+                'btn-outline-secondary': instView !== 'map'
+              }"
+              (click)="instView = 'map'"
+              role="button"
+            >
+              Map
+            </button>
+            <button
+              class="btn"
+              [ngClass]="{
+                'btn-primary': instView === 'table',
+                'btn-outline-secondary': instView !== 'table'
+              }"
+              (click)="instView = 'table'"
+              role="button"
+            >
+              Table
+            </button>
+          </div>
+          <div class="map" [hidden]="instView !== 'map'">
+            <div #chart></div>
+          </div>
+
+          @if (instView === 'table') {
+            <div class="inst-grid-container">
+              <input
+                type="text"
+                id="filter-site-text-box"
+                placeholder="Filter..."
+                (input)="onFilterSiteTextBoxChanged()"
+              />
+              <ag-grid-angular
+                style="width: 555px"
+                [rowData]="gridSiteData"
+                [columnDefs]="columnSiteDefs"
+                [headerHeight]="60"
+                [tooltipShowDelay]="800"
+                [pagination]="true"
+                [paginationPageSize]="5"
+                [paginationPageSizeSelector]="[5, 20, 50, 100]"
+                [components]="frameworkComponents"
+                (gridReady)="onSiteGridReady($event)"
+                [domLayout]="'autoHeight'"
+              >
+              </ag-grid-angular>
+              <button class="btn" (click)="onBtnExport('site')">CSV export</button>
+            </div>
+          }
+        </div>
+        <div>
+          <div>
+            <h3 class="header-text">Groups</h3>
+            <div class="btn-select">
+              <button
+                class="btn"
+                [ngClass]="{
+                  'btn-primary': groupView === 'domain-teams',
+                  'btn-outline-secondary': groupView !== 'domain-teams'
+                }"
+                (click)="groupView = 'domain-teams'"
+                role="button"
+              >
+                Domain Teams
+              </button>
+              <button
+                class="btn"
+                [ngClass]="{
+                  'btn-primary': groupView === 'projects',
+                  'btn-outline-secondary': groupView !== 'projects'
+                }"
+                (click)="groupView = 'projects'"
+                role="button"
+              >
+                Projects
+              </button>
+            </div>
+            @if (groupView === 'domain-teams') {
+              <div>
+                <input type="text" id="filter-text-box" placeholder="Filter..." (input)="onFilterTextBoxChanged()" />
+                <ag-grid-angular
+                  style="width: 550px"
+                  [rowData]="gridData"
+                  [columnDefs]="columnDefs"
+                  [headerHeight]="0"
+                  [tooltipShowDelay]="800"
+                  [pagination]="true"
+                  [paginationPageSize]="5"
+                  [paginationPageSizeSelector]="[5, 20, 50, 100]"
+                  [defaultColDef]="defaultColDef"
+                  [components]="frameworkComponents"
+                  (gridReady)="onGridReady($event)"
+                  [domLayout]="'autoHeight'"
+                >
+                </ag-grid-angular>
+                <button class="btn" (click)="onBtnExport('data')">CSV export</button>
+              </div>
+            }
+            @if (groupView === 'projects') {
+              <div>
+                <input
+                  type="text"
+                  id="filter-projects-text-box"
+                  placeholder="Filter..."
+                  (input)="onFilterProjectsTextBoxChanged()"
+                />
+                <ag-grid-angular
+                  style="width: 550px"
+                  [rowData]="gridProjectsData"
+                  [columnDefs]="columnDefs"
+                  [headerHeight]="0"
+                  [tooltipShowDelay]="800"
+                  [pagination]="true"
+                  [paginationPageSize]="10"
+                  [paginationPageSizeSelector]="[10, 20, 50, 100]"
+                  [defaultColDef]="defaultColDef"
+                  [components]="frameworkComponents"
+                  (gridReady)="onProjectsGridReady($event)"
+                  [domLayout]="'autoHeight'"
+                >
+                </ag-grid-angular>
+                <button class="btn" (click)="onBtnExport('projects')">CSV export</button>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-n3c-loader>
+
+<app-dashboard-footer></app-dashboard-footer>

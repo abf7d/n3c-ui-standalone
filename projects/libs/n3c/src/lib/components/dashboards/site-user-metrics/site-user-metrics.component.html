@@ -1,0 +1,143 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<nav class="primary-nav navbar navbar-expand-lg p-0"></nav>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" [routerLink]="['/dashboard']">
+    <img
+      src="./assets/n3c/images/n3c_logo.png"
+      width="30"
+      height="30"
+      class="d-inline-block n3c-logo"
+      alt="N3C logo"
+    />N3C Dashboards
+  </a>
+</div>
+<nav class="ms-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboards</a></li>
+    <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">Site and User Metrics</li>
+  </ol>
+</nav>
+
+<app-n3c-loader [loading]="dataLoading" [showError]="showError">
+  <div class="container-flex container">
+    <div class="row">
+      <div class="col-12 mx-auto">
+        <div class="row">
+          <div class="col-12">
+            <div>
+              <h1 class="page-title">Site and User Metrics</h1>
+              <div class="section-description heading-text text-max mx-auto">
+                <p class="blurb">
+                  The N3C Data Enclave is always open to new users and institutional data partners. Institutions can
+                  support the work of&nbsp;N3C by becoming a clinical data partner and executing a
+                  <a href="https://n3c.ncats.nih.gov/covid/institution-essentials">Data Transfer Agreement (DTA)</a
+                  >&nbsp;or by facilitating Enclave access&nbsp;for their members by implementing a
+                  <a href="https://ncats.nih.gov/n3c/resources/data-access">Data Use Agreement (DUA)</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-xl-6 col-lg-12">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Institutions</th>
+                  <th>Count</th>
+                </tr>
+              </thead>
+
+              @if (adminInstCount) {
+                <tbody>
+                  <tr>
+                    <td>Institutions with Executed DUAs</td>
+                    <td align="right">{{ adminInstCount.n_institutions }}</td>
+                  </tr>
+                  <tr>
+                    <td>DUA Institutions with Registered Users</td>
+                    <td align="right">{{ adminInstCount.n_with_users }}</td>
+                  </tr>
+                  <tr>
+                    <td>Institutions with Executed DTAs</td>
+                    <td align="right">{{ adminInstCount.n_with_dtas }}</td>
+                  </tr>
+                </tbody>
+              }
+            </table>
+            <div class="btn-group">
+              <button
+                type="button"
+                (click)="toggleInstMenu()"
+                class="btn btn-sm btn-light dropdown-toggle"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fas fa-download"></i>
+              </button>
+              @if (showInstMenu) {
+                <div class="dropdown-menu show" style="position: absolute; top: 100%; right: 0; left: auto">
+                  <a class="dropdown-item" (click)="saveAs('jpg', 'users', 'users')">Save as JPG</a>
+                  <a class="dropdown-item" (click)="saveAs('png', 'users', 'users')">Save as PNG</a>
+                  <a class="dropdown-item" (click)="saveAs('svg', 'users', 'users')">Save as SVG</a>
+                </div>
+              }
+            </div>
+            <div class="institutions-chart" #lineChart></div>
+          </div>
+          <div class="col-xl-6 col-lg-12">
+            @if (adminUserCount) {
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Count</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Total User Registrations</td>
+                    <td align="right">{{ adminUserCount.n_registrations }}</td>
+                  </tr>
+                  <tr>
+                    <td>Users Requesting Enclave Access</td>
+                    <td align="right">{{ adminUserCount.n_enclave }}</td>
+                  </tr>
+                  <tr>
+                    <td>Registered Enclave Users From DUA Institutions</td>
+                    <td align="right">{{ adminUserCount.n_duas }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            }
+            <div class="btn-group">
+              <button
+                type="button"
+                (click)="toggleUserMenu()"
+                class="btn btn-sm btn-light dropdown-toggle"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fas fa-download"></i>
+              </button>
+              @if (showUserMenu) {
+                <div class="dropdown-menu show" style="position: absolute; top: 100%; right: 0; left: auto">
+                  <a class="dropdown-item" (click)="saveAs('jpg', 'institutions', 'institutions')">Save as JPG</a>
+                  <a class="dropdown-item" (click)="saveAs('png', 'institutions', 'institutions')">Save as PNG</a>
+                  <a class="dropdown-item" (click)="saveAs('svg', 'institutions', 'institutions')">Save as SVG</a>
+                </div>
+              }
+            </div>
+            <div class="users-chart" #instLineChart></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-n3c-loader>
+<app-dashboard-footer></app-dashboard-footer>

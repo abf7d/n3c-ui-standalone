@@ -1,0 +1,79 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide">
+      <div class="pt-3">
+        <p><a [routerLink]="['/covid/']">Home</a> > {{ pageContent?.header }}</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <h1>{{ pageContent?.header }}</h1>
+        <div class="row">
+          <div class="col-12 col-md-9 order-2 order-md-1">
+            <div [innerHTML]="pageContent?.description?.data?.attributes?.content"></div>
+          </div>
+          <div class="col-12 col-md-3 order-1 order-md-2 text-center mb-3 mb-md-0">
+            <img class="auto-image" [src]="descriptionImg" />
+          </div>
+        </div>
+        <div class="mb-3" [innerHTML]="pageContent?.block1"></div>
+        <div class="row shadow-block">
+          @for (tile of pageUserTiles; track tile; let i = $index) {
+            <div class="col-12 col-md-6">
+              <div class="row block">
+                <div class="col-12 col-md-9 order-2 order-md-1">
+                  <h2>{{ tile.header }}</h2>
+                  <div [innerHTML]="tile.content"></div>
+                  @if (i === 0) {
+                    <a [href]="tile.url" class="btn btn-primary btn-n3c active" role="button" aria-pressed="true">
+                      {{ tile.url_label }}
+                    </a>
+                  }
+                  @if (i === 1) {
+                    <a
+                      [routerLink]="['/covid/account-creation']"
+                      class="btn btn-primary btn-n3c active"
+                      role="button"
+                      aria-pressed="true"
+                    >
+                      {{ tile.url_label }}
+                    </a>
+                  }
+                </div>
+                <div class="col-12 col-md-3 order-1 order-md-2 text-center my-3 my-md-0">
+                  <img class="auto-image" [src]="userTileThumbs[i]" />
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+        <div class="row">
+          @for (tile of pageNavTiles; track tile; let i = $index) {
+            <div class="card col-12 col-md-6">
+              <div class="row">
+                <div class="col-12 col-md-3 text-center mb-3">
+                  <img class="auto-image" [src]="navTileThumbs[i]" />
+                </div>
+                <div class="col-12 col-md-9">
+                  <h2>{{ tile.header }}</h2>
+                  <div [innerHTML]="tile.content"></div>
+                  <div class="text-center">
+                    <a
+                      [routerLink]="getRouterLinkParts(tile.url).link"
+                      [fragment]="getRouterLinkParts(tile.url).fragment"
+                      >{{ tile.url_label }}</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

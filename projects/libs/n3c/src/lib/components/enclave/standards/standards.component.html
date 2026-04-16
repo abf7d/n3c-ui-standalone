@@ -1,0 +1,33 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+<div class="container-wide" id="about_container" style="max-width: 88%">
+  <div class="col-2 p-0 pt-3" style="max-width: 100%">
+    <p><a [routerLink]="['/covid19/']">Home</a> > {{ strapi?.header }}</p>
+  </div>
+  <div class="col-12">
+    <div class="col-12 page-title">
+      <h1>{{ strapi?.header }}</h1>
+      <h3>{{ strapi?.subheader }}</h3>
+      <div [innerHTML]="strapi?.block"></div>
+    </div>
+  </div>
+
+  <p></p>
+
+  <div class="col-12 page-title">
+    @for (rowItem of contentResources; track rowItem) {
+      <div class="row-item">
+        <div class="row-column-left mr-3">
+          <img class="img-fluid w-100" [src]="rowItem.images.thumbnail.url" />
+        </div>
+        <div class="row-column-right px-3">
+          <h2 [innerHTML]="rowItem.header"></h2>
+          <div [innerHTML]="rowItem.content"></div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+
+<app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>

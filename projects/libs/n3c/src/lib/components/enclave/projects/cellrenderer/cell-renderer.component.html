@@ -1,0 +1,17 @@
+<div class="py-4">
+  <h3 class="text-secondary fw-light text-wrap mb-3">{{ data.title }}</h3>
+  <div class="mb-2"><span class="fw-semibold">Lead Investigator:</span> {{ data.pi_name }}</div>
+  <div class="mb-2"><span class="fw-semibold">Accessing Institution:</span> {{ data.accessing_institution }}</div>
+  <div class="mb-4"><span class="fw-semibold">Project ID:</span> {{ data.uid }}</div>
+
+  <div class="text-wrap">
+    {{
+      isExpanded || data.description.length <= textLimit ? data.description : (data.description | slice: 0 : textLimit)
+    }}
+  </div>
+  @if (data.description.length > textLimit) {
+    <button class="btn btn-outline-dark btn-sm mt-3" type="button" (click)="toggleExpand()">
+      {{ isExpanded ? 'Less' : 'More' }}
+    </button>
+  }
+</div>

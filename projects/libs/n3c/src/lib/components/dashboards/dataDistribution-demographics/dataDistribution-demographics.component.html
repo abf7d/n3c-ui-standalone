@@ -1,0 +1,64 @@
+<app-header-view [isN3C]="true"></app-header-view>
+
+<div class="container" id="about_container">
+  <div class="col-2 p-0 pt-3">
+    <p>
+      <a [routerLink]="['/covid19/']">Home</a> > <a [routerLink]="['/dashboard']">N3C Dashboards</a> > N3C Publications
+    </p>
+  </div>
+</div>
+
+<div class="container container-large content">
+  <!-- A block is comprised of a header bar, an optional left column with KPIs and filters, and a main panel
+  that supports a set of optional sub-panels -->
+
+  <div class="row stats block2 mx-auto">
+    <div class="col-12">
+      <div class="row block1">
+        <div class="col-12">
+          <h1 class="page-title">N3C Data Distribution and Demographics</h1>
+        </div>
+
+        <p>
+          The N3C Data Enclave is a secure platform through which harmonized clinical data provided by our contributing
+          members are stored. The Enclave includes demographic and clinical characteristics of patients tested for or
+          diagnosed with COVID-19 and further information about the strategies and outcomes of treatments for those
+          suspected or confirmed to have the virus. To learn more about the data within the Enclave, explore the
+          dashboards below.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container container-large content">
+    <div class="row" style="margin-top: 30px">
+      <div class="col-12">
+        <div class="row">
+          <!-- Loop through the filteredDashboardTiles and group them into pairs -->
+          @for (tile of filteredDashboardTiles; track tile) {
+            <div class="col-md-6 mb-3">
+              <div class="card-container">
+                <div class="card hover-card_noshadow mb-2" (click)="navigateTo(tile.link)">
+                  <img [src]="tile.image" class="card-img-top" alt="{{ tile.title }}" />
+                  <div class="card-body card-body-links">
+                    <p class="card-title">
+                      <strong
+                        ><b>{{ tile.title }}</b></strong
+                      >
+                    </p>
+                    <p>{{ tile.description }}</p>
+                    <div class="col col-6">
+                      <a [href]="tile.link" tabindex="0">
+                        Explore <i class="fas fa-angle-right" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,150 @@
+{
+  "intro": "This data contains all patients within the Enclave stratified by either experienced comorbidity or maternal health-related condition.",
+  "sections": [
+    {
+      "header": "The race and ethnicity",
+      "description": "for each patient are linked to EHR medical visits coded for any of the 17 different conditions defined by the Charlson Comorbidity Index in addition to a general maternal health condition category defined by our analysts.",
+      "inline": true,
+      "items": [
+        "A patient may have multiple conditions at the same time and would be included in multiple categories shown here.",
+        "A patient may have undiagnosed conditions that would not be recorded in their EHR and, therefore, would not be represented here.",
+        "Additionally, a patient may have a condition for which they have not required a medical visit, which would exclude them from representation."
+      ]
+    },
+    {
+      "header": "Maternal Health Conditions",
+      "description": "for each patient are linked to EHR medical visits coded for any of the 1800+ different maternal health conditions present within the Enclave. These conditions have been further mapped into 9 consolidated categories based solely on domain knowledge provided by Public Health Analysts. These consolidations have not yet been reviewed by medical professionals, and such planned review may lead to changes in counts.",
+      "inline": true,
+      "items": [
+        "Some conditions relate to issues involving all parties involved in conception. This can lead to males being included in the sample.",
+        "A patient may have multiple conditions at the same time and would be included in multiple categories shown here.",
+        "A patient may have undiagnosed conditions that would not be recorded in their EHR and, therefore, would not be represented here.",
+        "Additionally, a patient may have a condition for which they have not required a medical visit, which would exclude them from representation."
+      ]
+    },
+    {
+      "header": "A COVID-positive patient",
+      "description": "is defined as any patient having one of the following within their EHR records:",
+      "inline": true,
+      "numbered": true,
+      "items": [
+        "Laboratory confirmed positive COVID-19 PCR or Antigen test",
+        "Laboratory confirmed positive COVID-19 Antibody test",
+        "Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded",
+        {
+          "items": [
+            "Condition diagnosis patients have no record of a positive PCR/Antigen or Antibody test within their EHR; however, they were diagnosed with COVID due to the symptoms they displayed."
+          ]
+        }
+      ]
+    },
+    {
+      "header": "A Long COVID patient",
+      "description": "is defined as any patient having the ICD-10 code for PASC (U09.9) within their EHR.",
+      "inline": true,
+      "items": [
+        "Note: The ICD-10 for PASC (U09.9) was not created until October 1, 2021, and any data using this code will be limited to after this date. Therefore, this data is not a full representation of patients diagnosed with Long COVID."
+      ]
+    },
+    {
+      "header": "The age",
+      "description": "of each patient is calculated as of the date of the last data update.",
+      "inline": true,
+      "items": [
+        "If an age exceeds 89, it will be obscured using a date shift of +/- 10 years.",
+        "As of 7/15/22, July 1st is used as a placeholder date of birth when there are 0s or nulls in the OMOP person table to avoid biasing towards older age."
+      ]
+    },
+    {
+      "header": "The race and ethnicity",
+      "description": "of patients are adjusted to standard categories based on self-reported fields within the EHR.",
+      "inline": true,
+      "items": [
+        "Note that the EHRs do not always contain all of the information on race and ethnicity, and patients may not self-report a response that can be fully mapped into one of the standard categories. The patient would fall into the \"Unknown\" category in these cases."
+      ]
+    },
+    {
+      "header": "The sex",
+      "description": "of patients is determined based on self-reported fields within the EHR.",
+      "inline": true,
+      "items": [
+        "Note that the EHRs do not always contain all of the information on sex; if a patient's EHR does not contain data on their sex, they will fall into the \"Unknown\" category.",
+        "If a patient records any response other than \"Female\" or \"Male\" they would be mapped into the \"Other\" category."
+      ]
+    },
+    {
+      "header": "Vaccination",
+      "description": "data in the N3C is sparse and represents only EHR-recorded vaccination events at our data partners. The absence of a vaccination record does not mean that a patient is unvaccinated. If a patient were vaccinated at their local pharmacy, doctor's office, or state/federal vaccination site, they would not be represented because these systems do not automatically link to a patient's EHR.",
+      "inline": true,
+      "items": []
+    },
+    {
+      "header": "",
+      "description": "Given the known national vaccination rates, it is likely that many, if not most, vaccination events are occurring outside of the academic health systems submitting data. Therefore, patients shown here as \"Unknown\" may be vaccinated; however, we do not have the records to verify this.",
+      "items": []
+    },
+    {
+      "header": "",
+      "description": "Vaccinated patient counts shown here does not mean the patient is fully vaccinated. We consider a vaccinated patient to have at least one dose of Pfizer, Moderna, or Johnson & Johnson COVID-19 vaccines. Given that Pfizer and Moderna require two vaccine doses to be considered fully vaccinated, patients shown here may be partially vaccinated. This same assumption applies to booster shots, as we do not consider shots beyond the first one recorded within the patient's EHR.",
+      "items": []
+    },
+    {
+      "header": "Mortality",
+      "description": "is defined as:",
+      "inline": true,
+      "items": [
+        "Any patient with a date of death in the Enclave",
+        "(or) Any patient from a mortality-linked PPRL site who exists in one of the external sources:",
+        {
+          "items": [
+            "Government Mortality: Government data sourced from death certificates and person-reporting.",
+            "ObituaryData.com: Obituary data sourced from funeral homes, newspapers, and other online obituary sources, specifically from obituarydata.com (a private obituary aggregator).",
+            "Private Obituary: Obituary data sourced from funeral homes, newspapers, and other online obituary sources sourced from other private sources."
+          ]
+        }
+      ]
+    },
+    {
+      "header": "",
+      "description": "<strong>For external mortality sources:</strong>",
+      "items": [
+        "Several mortality sources do not know the exact date of death for all reported deaths. If they know only the month of death, they will provide the date of death as the first day of that month, or if they know only the year of death, they will provide the date of death as the first day of that year. This means that an increased number of deaths will appear at those intervals.",
+        "Each source has a distinct lag associated with their reported deaths. However, on average, 90% of the deaths that will show up will be in the data by 28 days after the occurrence."
+      ]
+    },
+    {
+      "header": "",
+      "description": "Mortality data should not be considered representative of all deaths in the United States.",
+      "items": []
+    },
+    {
+      "header": "",
+      "description": "Note: This metric is distinct from the Mortality category associated with Severity, as it does not limit deaths to only those suspected to be caused by COVID-19.",
+      "items": []
+    },
+    {
+      "header": "General Enclave Limitations",
+      "items": [
+        "“Sicker” patients will likely be overrepresented within the N3C Data Enclave, as sicker patients will more often seek out and receive care at clinical centers.",
+        "The N3C may have multiple contributors to data “missingness”. Clinical facts and events that occur in the real world may not be captured for reasons including:",
+        {
+          "items": [
+            "The event was recorded at a clinical site that does not contribute data",
+            "Data is not yet linked across sites",
+            "Medical records are inherently incomplete"
+          ]
+        },
+        "Some of the external datasets that have been used for analysis cannot be fully mapped due to issues such as missing measurement units.",
+        "All dates within the Enclave have been shifted between -3 to 45 days to ensure that reidentification is not possible.",
+        "N3C data may not be representative of the entire US population",
+        {
+          "items": [
+            "N3C does NOT have a representative sample of any state, as data is contributed from only a few providers in each region (Region - includes multiple states)."
+          ]
+        },
+        "Cell sizes smaller than 20 people have been suppressed",
+        "For COVID+ patients: A patient is only counted once in this data, even if they have multiple positive tests over time. Except in instances where dashboards focus on reinfection, only dates of first infection are utilized."
+      ]
+    }
+  ]
+}

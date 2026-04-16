@@ -1,0 +1,46 @@
+@use '../../../styles/n3c-styles.scss';
+
+.column {
+  float: left;
+  max-width: 100%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.row-item-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+  align-items: stretch;
+}
+
+.row-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  justify-content: flex-start;
+  box-sizing: border-box;
+
+  h2 {
+    min-height: 3.5em;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.row-item .row-column-left {
+  width: 30rem;
+  height: 20%;
+  float: left;
+}
+
+.row-item .row-column-right {
+  margin-left: 15rem;
+}

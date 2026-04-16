@@ -1,0 +1,147 @@
+{
+  "titleMap": {
+    "section1": {
+      "bar": "Counts of Metformin Patients by Age",
+      "percent": "Age Percentages of Metformin Patients",
+      "pie": "Age Percentages of Metformin Patients"
+    },
+    "section2": {
+      "bar": "Counts of Metformin Patients by Sex",
+      "percent": "Sex Percentages of Metformin Patients",
+      "pie": "Sex Percentages of Metformin Patients"
+    },
+    "section3": {
+      "bar": "Counts of Metformin Patients by Race",
+      "percent": "Race Percentages of Metformin Patients",
+      "pie": "Race Percentages of Metformin Patients"
+    },
+    "section4": {
+      "bar": "Counts of Metformin Patients by Severity",
+      "percent": "Severity Percentages of Metformin Patients",
+      "pie": "Severity Percentages of Metformin Patients"
+    },
+    "section5": {
+      "bar": "Counts of Metformin Patients by Ethnicity",
+      "percent": "Ethnicity Percentages of Metformin Patients",
+      "pie": "Ethnicity Percentages of Metformin Patients"
+    },
+    "section6": {
+      "bar": "Counts of Medication Occurrences by Patients",
+      "percent": "Medication Occurrence Percentages",
+      "pie": "Medication Occurrence Percentages"
+    },
+    "section7": {
+      "bar": "Counts of Metformin Patients by COVID Status",
+      "percent": "COVID Status Percentages of Metformin Patients",
+      "pie": "COVID Status Percentages of Metformin Patients"
+    },
+    "section8": {
+      "bar": "Counts of Metformin Patients by Long COVID Status",
+      "percent": "Long COVID Status Percentages of Metformin Patients",
+      "pie": "Long COVID Status Percentages of Metformin Patients"
+    },
+    "section9": {
+      "bar": "Counts of Metformin Patients by Vaccination Status",
+      "percent": "Vaccination Status Percentages of Metformin Patients",
+      "pie": "Vaccination Status Percentages of Metformin Patients"
+    },
+    "section10": {
+      "bar": "Counts of Metformin Patients by Mortality",
+      "percent": "Mortality Percentages of Metformin Patients",
+      "pie": "Mortality Percentages of Metformin Patients"
+    }
+  },
+  "chartTotals": {
+    "section1": "ageTotals",
+    "section2": "sexTotals",
+    "section3": "raceTotals",
+    "section4": "metforminSeverityTotals",
+    "section5": "ethnicityTotals",
+    "section6": "medOccurrenceTotals",
+    "section7": "covidStatusTotals",
+    "section8": "longCovidStatusTotals",
+    "section9": "vaccinationStatusTotals",
+    "section10": "mortalityTotals"
+  },
+  "colorScheme": {
+    "section1": "ageRange",
+    "section2": "sexRange",
+    "section3": "raceRange",
+    "section4": "severityRange",
+    "section5": "ethnicityRange",
+    "section6": "medicationOccurrenceRange",
+    "section7": "covidStatusRange",
+    "section8": "longStatusRange",
+    "section9": "vaccinationStatusRange",
+    "section10": "mortalityRange"
+  },
+  "numCharts": 10,
+  "kpiPanelConfig": [
+    {
+      "separator": true,
+      "items": [
+        {
+          "title": "Total Patients in Enclave",
+          "value": "numTPIE",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Patients in the N3C Data Enclave",
+          "tooltipContent": "<p>Total Number of Individual Persons within the N3C Data Enclave.</p>",
+          "footer": "Data as of Jul 26, 2024 (v182)",
+          "limitationsLink": "metformin-limitations-section"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Total Patients in View",
+          "value": "numTPIV",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Patients Prescribed Metformin in View",
+          "tooltipContent": "<p>Total Number of Individuals within the view who have Metformin indicated in their EHR.</p><p>Sample: All N3C Patients.</p><small class='kpi-small-note'>Even without filters, this total may be less than the total number of patients prescribed Metformin within the Enclave due to the suppression of counts less than 20.</small>",
+          "progress": {
+            "value": 100.0,
+            "tooltip": "100% in View"
+          }
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Total COVID+ Patients in View",
+          "value": "numCIV",
+          "icon": "fas fa-user-plus",
+          "tooltipTitle": "Total COVID+ Patients in View",
+          "tooltipContent": "<strong>COVID+ Defined As:</strong><ul class='low-padding-list'><li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li><li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li><li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li></ul>"
+        },
+        {
+          "title": "Total Long COVID Patients in View",
+          "value": "numLCIV",
+          "icon": "fas fa-user-clock",
+          "tooltipTitle": "Total Long COVID Patients in View",
+          "tooltipContent": "<p><strong>Long COVID Defined As:</strong> any patient having the ICD-10 code for PASC (U09.9) within their EHR.</p><small class='kpi-small-note'>Note: The ICD-10 for PASC (U09.9) was not created until October 1, 2021, and any data using this code will be limited to after this date.</small>"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Total Vaccinated Patients in View",
+          "value": "numVIV",
+          "icon": "fas fa-user-shield",
+          "tooltipTitle": "Total Vaccinated Patients in View",
+          "tooltipContent": "<strong>Vaccination Defined As:</strong> any patient having at least one dose of Pfizer, Moderna, or Johnson & Johnson COVID-19 vaccines within their EHR."
+        },
+        {
+          "title": "Total Mortalities in View",
+          "value": "numTMIV",
+          "icon": "fas fa-user",
+          "tooltipTitle": "Total Mortalities in View",
+          "tooltipContent": "<strong>Mortality Defined As:</strong><ul class='low-padding-list'><li>Any patient with a date of death in the Enclave</li><li>(or) Any patient from a mortality-linked PPRL site who exists in one of the external sources (e.g., Government data with death certificates, ObituaryData.com, and obituary data from private sources)</li></ul><small class='kpi-small-note'>Note: this metric is distinct from the Mortality category associated with Severity, as it does not limit deaths to only those suspected to be caused by COVID-19.</small>"
+        }
+      ]
+    }
+  ]
+}
+

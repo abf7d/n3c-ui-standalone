@@ -1,0 +1,112 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide" id="about_container">
+      <div class="pt-3">
+        <p><a [routerLink]="['/covid']">Home</a> > {{ pageContent?.header }}</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <div>
+          <h1 [innerHTML]="pageContent?.header"></h1>
+        </div>
+
+        <div class="row block">
+          <div class="col-12 col-md-9 order-2 order-md-1">
+            <h2 [innerHTML]="contentResponseDescription?.header"></h2>
+            <div [innerHTML]="contentResponseDescription?.content"></div>
+          </div>
+          <div class="col-12 col-md-3 order-1 order-md-2">
+            @if (contentResourcesDescription[0]) {
+              <div class="column">
+                <img [src]="contentResourcesDescription[0]" class="mx-auto auto-image d-block" />
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="row text-center">
+          <div class="col-12 col-md-4 mb-3">
+            <a [routerLink]="['/covid/external-datasets']" [fragment]="'browse'" class="btn btn-primary" role="button">
+              Browse Datasets
+            </a>
+          </div>
+          <div class="col-12 col-md-4 mb-3">
+            <a
+              [routerLink]="['/covid/external-datasets']"
+              [fragment]="'request'"
+              class="btn btn-primary"
+              role="button"
+              aria-pressed="true"
+            >
+              Request Datasets
+            </a>
+          </div>
+          <div class="col-12 col-md-4 mb-3">
+            <a
+              [routerLink]="['/covid/external-datasets']"
+              [fragment]="'support'"
+              class="btn btn-primary"
+              role="button"
+              aria-pressed="true"
+            >
+              Dataset Support
+            </a>
+          </div>
+        </div>
+
+        <div id="browse" class="my-4">
+          <div class="row shadow-block">
+            <div class="col-12 col-md-6">
+              <div [innerHTML]="pageContent?.block1"></div>
+            </div>
+            @for (rowItem of contentResourcesYoutube; track rowItem) {
+              <div class="col-12 col-md-6">
+                @if (rowItem) {
+                  <div class="mb-3 video-container">
+                    <iframe [src]="rowItem.url"></iframe>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+        <div class="row block" id="request">
+          <div class="col-12 col-md-3 mb-3 mb-md-0">
+            @if (contentResourcesIngestion[0]) {
+              <div class="column">
+                <img [src]="contentResourcesIngestion[0]" class="mx-auto auto-image d-block" />
+              </div>
+            }
+          </div>
+          <div id="copy-60" class="col-12 col-md-9">
+            <h2 [innerHTML]="contentResponseIngestion?.header"></h2>
+            <div [innerHTML]="contentResponseIngestion?.content"></div>
+          </div>
+        </div>
+
+        @if (contentResourcesGraphic[0]) {
+          <div class="my-4">
+            <img [src]="contentResourcesGraphic[0]" class="img-fluid" />
+          </div>
+        }
+
+        <div class="row block" id="support">
+          <div class="col-12 col-md-9 order-2 order-md-1">
+            <h2 [innerHTML]="contentResponseSupport?.header"></h2>
+            <div [innerHTML]="contentResponseSupport?.content"></div>
+          </div>
+          @if (contentResourcesSupport[0]) {
+            <div class="col-12 col-md-3 order-1 order-md-2 mb-3 mb-md-0">
+              <img [src]="contentResourcesSupport[0]" class="mx-auto auto-image d-block" />
+            </div>
+          }
+        </div>
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

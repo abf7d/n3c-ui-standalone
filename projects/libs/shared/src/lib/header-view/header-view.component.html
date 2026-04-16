@@ -1,0 +1,109 @@
+<header>
+  <div id="network-branding" class="container-fluid text-white">
+    <div id="network-branding" class="container-fluid text-white">
+      <div class="container">
+        <div class="row">
+          <div>
+            <img class="masthead-logo" src="./assets/images/masthead-hhs-logo.png" alt="" />
+            <a class="masthead-link hhs-link" href="https://www.hhs.gov/"
+              ><span class="d-none d-xl-inline-block">U.S. Department of Health and Human Services</span>
+              <span class="d-xl-none d-inline-block">HHS</span></a
+            >
+            <img src="./assets/images/masthead-divider.png" alt="" />
+            <img class="masthead-logo" src="./assets/images/masthead-nih-logo.png" alt="" />
+            <a class="masthead-link nih-link" href="https://www.nih.gov/"
+              ><span class="d-none d-lg-inline-block">National Institutes of Health</span>
+              <span class="d-lg-none d-inline-block">NIH</span></a
+            >
+          </div>
+          @if (isN3C) {
+            <div class="nav-actions-container">
+              <app-external-link
+                class="data-source-link"
+                [url]="'https://unite.nih.gov'"
+                [text]="'Enclave Sign In'"
+              ></app-external-link>
+              <span>|</span>
+              <app-external-link
+                class="data-source-link"
+                [url]="'https://n3c.cd2h.org/registration'"
+                [text]="'Create Account'"
+              ></app-external-link>
+              <span>|</span>
+              <app-external-link
+                class="data-source-link"
+                [url]="'https://n3c.cd2h.org/registration'"
+                [text]="'Profile'"
+              ></app-external-link>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="eo-banner container-fluid text-white">
+    <div>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="banner-message" [innerHTML]="message"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="brand-container container-fluid">
+    <div class="container px-0 d-none d-lg-block">
+      <div class="row no-gutters align-items-center justify-content-center py-3 main-header">
+        <div class="pl-1 pl-md-0 col-9 col-md-8">
+          <a class="text-dec-none" target="_blank" href="https://ncats.nih.gov/">
+            <img width="240" src="/assets/images/NIH_NCATS_Master_Logo_Color.png" alt="home" />
+            <div class="ml-2 pl-2 webName">
+              @if (isN3C) {
+                <a href="https://opendata.ncats.nih.gov/home">OpenData Portal</a>
+              } @else {
+                <a [routerLink]="['/covid19']">OpenData Portal</a>
+              }
+            </div>
+          </a>
+        </div>
+        <div class="col-2 text-center d-md-none">
+          <a
+            class="btn btn-light"
+            data-toggle="collapse"
+            href="#searchform-mobile"
+            role="button"
+            aria-expanded="false"
+            aria-controls="searchform-mobile"
+          >
+            <span class="sr-only">Search</span><i class="fas fa-search"></i>
+          </a>
+        </div>
+        <div id="searchform" class="d-none d-md-block col-md-4 mt-4 mt-md-0 pl-3"></div>
+      </div>
+    </div>
+  </div>
+  <div id="mobile-nav" class="container d-block d-lg-none py-2">
+    <div class="row no-gutters align-items-center justify-content-center">
+      <div class="col-10 text-center">
+        <a class="text-dec-none" href="https://ncats.nih.gov/">
+          <img width="125" src="/assets/svg/ncats.svg" alt="home" />
+          <div class="ml-2 webName">
+            @if (isN3C) {
+              <a href="https://opendata.ncats.nih.gov/home">OpenData Portal</a>
+            } @else {
+              <a [routerLink]="['/covid19']">OpenData Portal</a>
+            }
+          </div>
+        </a>
+      </div>
+      @if (!isN3C) {
+        <div class="col-2">
+          <button (click)="menuClick()" class="navbar-toggler" type="button" id="menu-toggle" data-toggle="collapse">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+</header>

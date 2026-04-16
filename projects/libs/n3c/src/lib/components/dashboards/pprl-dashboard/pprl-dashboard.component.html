@@ -1,0 +1,65 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<nav class="primary-nav navbar navbar-expand-lg p-0"></nav>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" routerLink="/dashboard">
+    <img src="./assets/n3c/images/n3c_logo.png" width="30" height="30" class="d-inline-block n3c-logo" alt="N3C logo" />
+    N3C Dashboards
+  </a>
+</div>
+<nav class="ms-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboards</a></li>
+    <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">Privacy-Preserving Record Linkage</li>
+  </ol>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="container container-large content">
+      <div class="row stats block2 mx-auto">
+        <div class="col-12">
+          <div class="row block1">
+            <div class="col-12">
+              <h2 class="page-title">Privacy-Preserving Record Linkage</h2>
+            </div>
+
+            <p>
+              The Linkage Honest Broker (LHB) PPRL dashboard is a current representation of submission by data
+              contributing sites and the total number of matches between N3C and other data sets as well as multiple
+              enclaves. The data are refreshed every Monday. Numbers may change as additional data is received. Further
+              details and explanations about the data can be found by hovering your cursor over portions of the
+              dashboard.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="image-container">
+      <img class="regenstreif" src="./assets/n3c/images/RegenstriefLogo.png" alt="" />
+    </div>
+    <div class="container">
+      <div class="row" style="margin-top: 30px">
+        <!-- table  -->
+        <div class="col col-12 col-lg-12">
+          <iframe
+            frameborder="0"
+            marginheight="0"
+            marginwidth="0"
+            title="Data Visualization"
+            allowtransparency="true"
+            allowfullscreen="true"
+            class="tableauViz"
+            width="100%"
+            height="1127"
+            style="display: block; margin: 0px; padding: 0px; border: none; width: 100%; height: 2227px"
+            src="https://n3clhb.regenstrief.org/"
+          ></iframe>
+        </div>
+
+        <div class="col col-12 col-lg-2"></div>
+      </div>
+    </div>
+  </div>
+  <app-dashboard-footer></app-dashboard-footer>
+</div>

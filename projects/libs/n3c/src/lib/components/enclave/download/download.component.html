@@ -1,0 +1,137 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide" id="about_container">
+      <div class="p-0 pt-3 breadcrumb-margin-left">
+        <p><a [routerLink]="['/covid']">Home</a> > N3C Download</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <div class="d-flex main-block">
+          <div>
+            <!-- Header Block -->
+            <div class="row">
+              <h1><div [innerHTML]="pageContent?.header"></div></h1>
+            </div>
+
+            <!-- Intro Block -->
+            <div class="row">
+              <div [innerHTML]="pageContent?.intro_block"></div>
+            </div>
+
+            <!-- Prepare Header -->
+            <div class="row">
+              <h1><div [innerHTML]="pageContent?.prepare_header"></div></h1>
+            </div>
+
+            <!-- Prepare Block -->
+            <div class="row">
+              <div [innerHTML]="pageContent?.prepare_block"></div>
+            </div>
+
+            <!-- Submit Header -->
+            <div class="row">
+              <h1><div [innerHTML]="pageContent?.submit_header"></div></h1>
+            </div>
+
+            <!-- Submit Block 1 -->
+            <div class="row">
+              <div [innerHTML]="pageContent?.submit_block1"></div>
+            </div>
+
+            <!-- Image 1 -->
+            <div class="row justify-content-center mb-3">
+              <div class="col-md-8 centered-image-container">
+                <img class="img-fluid" [src]="imageUrls[0]" alt="Image from Strapi" />
+              </div>
+            </div>
+
+            <!-- Submit Block 2 -->
+            <div class="row">
+              <div [innerHTML]="pageContent?.submit_block2"></div>
+            </div>
+
+            <!-- Image 2 -->
+            <div class="row justify-content-center mb-3">
+              <div class="col-md-8 centered-image-container">
+                <img class="img-fluid" [src]="imageUrls[1]" alt="Image from Strapi" />
+              </div>
+            </div>
+
+            <!-- Track Header -->
+            <div class="row">
+              <h1><div [innerHTML]="pageContent?.track_header"></div></h1>
+            </div>
+
+            <!-- Track Block 1 -->
+            <div class="row">
+              <div [innerHTML]="pageContent?.track_block1"></div>
+            </div>
+
+            <!-- Image 3 -->
+            <div class="row justify-content-center mb-3">
+              <div class="col-md-8 centered-image-container">
+                <img class="img-fluid" [src]="imageUrls[2]" alt="Image from Strapi" />
+              </div>
+            </div>
+
+            <!-- Track Block 2 -->
+            <div class="row">
+              <div [innerHTML]="pageContent?.track_block2"></div>
+            </div>
+
+            <!-- Image 4 -->
+            <div class="row justify-content-center">
+              <div class="col-md-8 centered-image-container mb-3">
+                <img class="img-fluid" [src]="imageUrls[3]" alt="Image from Strapi" />
+              </div>
+            </div>
+
+            <!-- Track Block 3 -->
+            <div class="row">
+              <div [innerHTML]="pageContent?.track_block3"></div>
+            </div>
+
+            <!-- Download Header -->
+            <div class="row">
+              <h1><div [innerHTML]="pageContent?.download_header"></div></h1>
+            </div>
+
+            <!-- Download Block 1 -->
+            <div class="row">
+              <div [innerHTML]="pageContent?.download_block1"></div>
+            </div>
+
+            <!-- Image 5 -->
+            <div class="row justify-content-center mb-3">
+              <div class="col-md-8 centered-image-container">
+                <img class="img-fluid" [src]="imageUrls[4]" alt="Image from Strapi" />
+              </div>
+            </div>
+
+            <!-- Download Block 2 -->
+            <div class="row">
+              <div [innerHTML]="pageContent?.download_block2"></div>
+            </div>
+
+            <!-- Image 6 -->
+            <div class="row justify-content-center mb-3">
+              <div class="col-md-8 centered-image-container">
+                <img class="img-fluid" [src]="imageUrls[5]" alt="Image from Strapi" />
+              </div>
+            </div>
+
+            <!-- Download Block 3 -->
+            <div class="row">
+              <div [innerHTML]="pageContent?.download_block3"></div>
+            </div>
+          </div>
+        </div>
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

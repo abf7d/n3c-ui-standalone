@@ -1,0 +1,49 @@
+@use '../../../styles/n3c-styles.scss';
+
+.accordion {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 10px 0;
+  margin-top: 20px;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.accordion .card-body {
+  padding: 40px;
+  list-style-position: outside;
+  margin: 0;
+}
+
+.accordion .card-body ul {
+  padding-left: 20px;
+  list-style-position: outside;
+  margin: 0;
+}
+
+.accordion .card-body li {
+  margin-left: 20px;
+}
+
+.filter_drop_button {
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  line-height: 1.2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.filter_drop_button:focus {
+  box-shadow: none;
+}
+
+.lim-head {
+  color: #3f50b0;
+  font-size: 18px;
+}
+
+.list-p {
+  margin-bottom: 0px;
+}

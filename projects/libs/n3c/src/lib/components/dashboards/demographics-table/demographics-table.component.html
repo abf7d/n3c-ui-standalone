@@ -1,0 +1,130 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<nav class="primary-nav navbar navbar-expand-lg p-0"></nav>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" [routerLink]="['/dashboard']">
+    <img
+      src="./assets/n3c/images/n3c_logo.png"
+      width="30"
+      height="30"
+      class="d-inline-block n3c-logo"
+      alt="N3C logo"
+    />N3C Dashboards
+  </a>
+</div>
+<nav class="ms-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboards</a></li>
+    <li class="breadcrumb-item">
+      <a id="dashboard_breadcrumb" [routerLink]="['/dashboard/hss']">Demographics Table for IRB Submission</a>
+    </li>
+    <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">
+      {{ title }}
+    </li>
+  </ol>
+</nav>
+
+<app-n3c-loader [loading]="dataLoading" [showError]="showError">
+  <div class="container container-large content">
+    <!-- Title and description -->
+    <div class="row mb-3">
+      <div id="ph-dash-top">
+        <h1 id="dashboard_name" class="page-title">Demographics Table for IRB Submission</h1>
+        <div id="question-description" class="section-description heading-text text-max mx-auto">
+          <p>
+            This dashboard provides cumulative demographic information for all patients within the N3C Data Enclave.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <app-topic-picker
+        [options]="topicOptions"
+        [selectedValue]="selectedTopic"
+        (topicChanged)="onTopicChanged($event)"
+      ></app-topic-picker>
+    </div>
+
+    <div class="row stats block2 mx-auto">
+      <div class="col-12">
+        <div class="row" style="margin-top: 30px">
+          <div class="col col-12 col-lg-2 side-col">
+            <div id="mode" class="panel-heading filter-section"></div>
+
+            <div class="panel-heading filter-section">
+              <app-data-filters
+                [filterData]="filterMap"
+                [selectedFilters]="selectedFilters"
+                (filterChange)="updateFilters($event)"
+              ></app-data-filters>
+            </div>
+          </div>
+
+          <div class="col col-12 col-lg-10">
+            <!-- KPI Panel Column -->
+            @if (kpiConfigs && kpiConfigs.length > 0) {
+              <div class="mb-4">
+                <app-kpi-panel [kpiConfigs]="kpiConfigs"></app-kpi-panel>
+              </div>
+            }
+            @if (isFirstTopic) {
+              <div class="d-flex gap-1 mb-3">
+                <button class="btn btn-primary" (click)="downloadExcel()">Download Full Data (Excel)</button>
+                <button class="btn btn-outline-secondary" (click)="downloadExcel(selectedFilters)">
+                  Data in View (Excel)
+                </button>
+                <button class="btn btn-outline-secondary" (click)="downloadCsv()">Data in View (CSV)</button>
+              </div>
+              <div class="col-12 col-md-12 mx-auto mb-4 panel">
+                <ag-grid-angular
+                  domLayout="autoHeight"
+                  [rowData]="filteredData"
+                  [columnDefs]="columnDefs"
+                  [gridOptions]="gridOptions"
+                  [defaultColDef]="defaultColDef"
+                  (gridReady)="onGridReady($event)"
+                >
+                </ag-grid-angular>
+              </div>
+            }
+
+            @if (!isFirstTopic && currentConfig.stackedBarCharts) {
+              @for (chart of chartConfig; track chart; let i = $index) {
+                <div class="m-4">
+                  <app-stacked-bar-charts
+                    [chartData]="chart"
+                    [title]="currentConfig.stackedBarCharts[i].title"
+                    [legendLabel]="currentConfig.stackedBarCharts[i].legendLabel"
+                    (segmentFilterClick)="updateFiltersForCharts($event)"
+                  ></app-stacked-bar-charts>
+                </div>
+              }
+            }
+
+            <div class="col-12" id="viz_caption">
+              <div class="secondary-description">
+                <p>
+                  <strong>Sample:</strong> All patients in the N3C Data Enclave. Note that the EHRs do not always
+                  contain all the information on race and ethnicity. Additionally, N3C data may not be representative of
+                  the entire US population. For additional information,
+                  <a [routerLink]="[]" fragment="limitations">see limitations below.</a>
+                </p>
+              </div>
+            </div>
+
+            @if (!isFirstTopic) {
+              <div class="ag-panel">
+                <app-data-grid [rowData]="filteredData" [columnDefs]="columnDefs" [gridOptions]="demoGridOptions">
+                </app-data-grid>
+              </div>
+            }
+
+            <app-limitations [config]="limitationsConfig"></app-limitations>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-n3c-loader>
+<app-dashboard-footer></app-dashboard-footer>

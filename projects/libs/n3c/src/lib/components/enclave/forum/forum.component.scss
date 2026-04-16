@@ -1,0 +1,76 @@
+@use '../../../styles/n3c-styles.scss';
+
+.container-fluid {
+  padding-right: 15px; /* Adjusts padding inside the container on the right */
+  padding-left: 15px; /* Adjusts padding inside the container on the left */
+}
+
+.main-block {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.column {
+  float: left;
+  width: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.row-item {
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+
+.left-section {
+  width: 70%;
+  float: left;
+  box-sizing: border-box;
+  margin: 0;
+  padding-right: 30px;
+
+  .sub-section {
+    width: 20%;
+  }
+}
+
+.right-section {
+  width: 30%;
+  float: left;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.sub-section {
+  display: flex;
+}
+
+.card {
+  padding: 20px;
+}
+
+.card .label {
+  font-weight: bold;
+}
+
+.forum-presentations {
+  display: inline-block;
+}
+
+.iframe-section {
+  position: static;
+  overflow: hidden;
+  width: 300px;
+  height: 450px;
+  display: block;
+  flex-grow: 1;
+}

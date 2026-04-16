@@ -1,0 +1,119 @@
+{
+  "titleMap": {
+    "section1": {
+      "bar": "Mortality of Total Patients in the Enclave who were not Prescribed Metformin",
+      "percent": "% Mortality of Total Patients in the Enclave who were not Prescribed Metformin",
+      "pie": "% Mortality of Total Patients in the Enclave who were not Prescribed Metformin"
+    },
+    "section2": {
+      "bar": "Mortality of Total Patients in the Enclave who were Prescribed Metformin",
+      "percent": "% Mortality of Total Patients in the Enclave who were Prescribed Metformin",
+      "pie": "% Mortality of Total Patients in the Enclave who were Prescribed Metformin"
+    },
+    "section3": {
+      "bar": "Mortality of Diabetic Patients in the Enclave who were not Prescribed Metformin",
+      "percent": "% Mortality of Diabetic Patients in the Enclave who were not Prescribed Metformin",
+      "pie": "% Mortality of Diabetic Patients in the Enclave who were not Prescribed Metformin"
+    },
+    "section4": {
+      "bar": "Mortality of Diabetic Patients in the Enclave who were Prescribed Metformin",
+      "percent": "% Mortality of Diabetic Patients in the Enclave who were Prescribed Metformin",
+      "pie": "% Mortality of Diabetic Patients in the Enclave who were Prescribed Metformin"
+    },
+    "section5": {
+      "bar": "Mortality of Non-Diabetic Patients in the Enclave who were not Prescribed Metformin",
+      "percent": "% Mortality of Non-Diabetic Patients in the Enclave who were not Prescribed Metformin",
+      "pie": "% Mortality of Non-Diabetic Patients in the Enclave who were not Prescribed Metformin"
+    },
+    "section6": {
+      "bar": "Mortality of Non-Diabetic Patients in the Enclave who were Prescribed Metformin",
+      "percent": "% Mortality of Non-Diabetic Patients in the Enclave who were Prescribed Metformin",
+      "pie": "% Mortality of Non-Diabetic Patients in the Enclave who were Prescribed Metformin"
+    }
+  },
+  "chartTotals": {
+    "section1": "nonMetforminMortalityTotals",
+    "section2": "metforminMortalityTotals",
+    "section3": "diabeticNonMetforminMortalityTotals",
+    "section4": "diabeticMetforminMortalityTotals",
+    "section5": "nonDiabeticNonMetforminMortalityTotals",
+    "section6": "nonDiabeticMetforminMortalityTotals"
+  },
+  "colorScheme": {
+    "section1": "mortalityRange",
+    "section2": "mortalityRange",
+    "section3": "mortalityRange",
+    "section4": "mortalityRange",
+    "section5": "mortalityRange",
+    "section6": "mortalityRange"
+  },
+  "numCharts": 6,
+  "kpiPanelConfig": [
+    {
+      "separator": true,
+      "items": [
+        {
+          "title": "Total Patients in Enclave",
+          "value": "numTPIE",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Patients in the N3C Data Enclave",
+          "tooltipContent": "<p>Total Number of Individual Persons within the N3C Data Enclave.</p>",
+          "footer": "Data as of Jul 26, 2024 (v182)",
+          "limitationsLink": "metformin-limitations-section"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Total Patients in View",
+          "value": "numTPIV",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Patients in View",
+          "tooltipContent": "<p>Total Number of Individuals in the N3C Data Enclave within the view.</p><p>Sample: All N3C Patients.</p><small class='kpi-small-note'>Even without filters, this total may be less than the total number of patients within the Enclave due to the suppression of counts less than 20.</small>",
+          "progress": {
+            "value": 100.0,
+            "tooltip": "100% in View"
+          }
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Total COVID+ Patients in View",
+          "value": "numCIV",
+          "icon": "fas fa-user",
+          "tooltipTitle": "Total COVID+ Patients in View",
+          "tooltipContent": "<strong>COVID+ Defined As:</strong><ul class='low-padding-list'><li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li><li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li><li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li></ul>"
+        },
+        {
+          "title": "Diabetic Non-Metformin in View",
+          "value": "numDNMIV",
+          "icon": "fas fa-user",
+          "tooltipTitle": "Diabetic Patients not taking Metformin in View",
+          "tooltipContent": "<p>Total Number of Individuals within the view who have diabetes, but do not have Metformin, indicated in their EHR.</p><p>Sample: All N3C Patients.</p>"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Metformin in View",
+          "value": "numMIV",
+          "icon": "fas fa-prescription-bottle-alt",
+          "tooltipTitle": "Total Patients taking Metformin in View",
+          "tooltipContent": "<p>Total Number of Individuals within the view who have Metformin indicated in their EHR. </p><p>Sample: All N3C Patients.</p>"
+        },
+        {
+          "title": "Diabetic Metformin in View",
+          "value": "numDMIV",
+          "icon": "fas fa-prescription-bottle-alt",
+          "tooltipTitle": "Diabetic Patients taking Metformin in View",
+          "tooltipContent": "<p>Total Number of Individuals within the view who have Diabetes and Metformin indicated in their EHR.</p><p>Sample: All N3C Patients.</p>"
+        }
+      ]
+    }
+  ]
+}
+

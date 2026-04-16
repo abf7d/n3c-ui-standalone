@@ -1,0 +1,94 @@
+#network-branding,
+.eo-banner {
+  background-color: #531958;
+  color: #fff;
+  height: auto;
+  overflow: hidden;
+
+  .row > * {
+    width: initial;
+  }
+
+  a {
+    color: #fff;
+  }
+
+  span {
+    font-size: 14px;
+    padding-top: 5px;
+    padding-right: 0.5em;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  img {
+    height: 30px;
+  }
+
+  img.masthead-logo {
+    height: 20px;
+    margin: 0.25em 0.5em;
+  }
+}
+
+.brand-container {
+  text-decoration: none;
+  background: #fff;
+  img:first-child {
+    padding-right: 14px;
+    border-right: 2px solid #ccc;
+  }
+  a {
+    text-decoration: none;
+  }
+}
+.eo-banner .row {
+  text-align: center;
+  justify-content: center;
+}
+
+.webName {
+  display: inline;
+  a {
+    text-decoration: none;
+    color: #672e6c;
+    font-size: 34px;
+    vertical-align: middle;
+    line-height: 90px;
+    letter-spacing: -2px;
+    @media (max-width: 575.98px) {
+      font-size: 26px;
+      letter-spacing: inherit;
+    }
+  }
+}
+.text-dec-none {
+  text-decoration: none;
+}
+.pl-2 {
+  padding-left: 1rem;
+}
+
+.nav-actions-container {
+  position: absolute;
+  right: 45px;
+  background-color: rgb(83, 25, 88);
+
+  text-align: center;
+  display: flex;
+  align-items: baseline;
+  a {
+    text-decoration: none;
+    padding-left: 4px;
+    padding-right: 8px;
+  }
+  span {
+    padding-left: 5px;
+  }
+}
+.fa-external-link-alt {
+  padding-left: 4px;
+}
+
+::ng-deep .fa-external-link-alt {
+  padding-left: 4px;
+}

@@ -1,0 +1,80 @@
+{
+  "intro": "This data contains all patients within the N3C Data Enclave with evidence of each disease of interest in their EHR.",
+  "sections": [
+    {
+      "header": "",
+      "items": [
+        "Patient counts in relation to COVID-19 diagnosis are calculated using the number of days between their earliest recorded medical visit coded for each disease and their COVID-positive diagnosis.",
+        "This sample may have instances of false negatives when using it to assess the population of COVID-negative persons. This can be caused by a lack of testing, non-reported testing, and reported testing not captured by our data partners (i.e., testing done at an unrelated institution)"
+      ]
+    },
+    {
+      "header": "Diseases",
+      "description": "for each patient are linked to EHR medical visits coded for any of the different conditions represented in the Dashboard.",
+      "inline": true,
+      "items": [
+        "A patient may have undiagnosed conditions that would not be recorded in their EHR and, therefore, would not be represented here.",
+        "Additionally, a patient may have a condition for which they have not required a medical visit, which would exclude them from representation.",
+        "Given that patients do not have a clear date on which they were diagnosed with these conditions, we assume the date of their first recorded medical visit coded for each disease is the day they were diagnosed."
+      ]
+    },
+    {
+      "header": "A COVID-positive patient",
+      "description": "is defined as any patient having one of the following within their EHR records:",
+      "inline": true,
+      "numbered": true,
+      "items": [
+        "Laboratory confirmed positive COVID-19 PCR or Antigen test",
+        "The N3C may have multiple contributors to data “missingness”. Clinical facts and events that occur in the real world may not be captured for reasons including:",
+        "Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded",
+        {
+          "items": [
+            "Condition diagnosis patients have no record of a positive PCR/Antigen or Antibody test within their EHR; however, they were diagnosed with COVID due to the symptoms they displayed."
+          ]
+        }
+      ]
+    },
+    {
+      "header": "The age",
+      "description": "of each patient is calculated as of the date of the last data update.",
+      "inline": true,
+      "items": [
+        "If an age exceeds 89, it will be obscured using a date shift of +/- 10 years.",
+        "As of 7/15/22, July 1st is used as a placeholder date of birth when there are 0s or nulls in the OMOP person table to avoid biasing towards older age."
+      ]
+    },
+    {
+      "header": "The sex",
+      "description": "of patients is determined based on self-reported fields within the EHR.",
+      "inline": true,
+      "items": [
+        "Note that the EHRs do not always contain all of the information on sex; if a patient's EHR does not contain data on their sex, they will fall into the \"Unknown\" category.",
+        "If a patient records any response other than \"Female\" or \"Male\" they would be mapped into the \"Other\" category."
+      ]
+    },
+    {
+      "header": "General Enclave Limitations",
+      "items": [
+        "“Sicker” patients will likely be overrepresented within the N3C Data Enclave, as sicker patients will more often seek out and receive care at clinical centers.",
+        "The N3C may have multiple contributors to data “missingness”. Clinical facts and events that occur in the real world may not be captured for reasons including:",
+        {
+          "items": [
+            "The event was recorded at a clinical site that does not contribute data",
+            "Data is not yet linked across sites",
+            "Medical records are inherently incomplete"
+          ]
+        },
+        "Some of the external datasets that have been used for analysis cannot be fully mapped due to issues such as missing measurement units.",
+        "All dates within the Enclave have been shifted between -3 to 45 days to ensure that reidentification is not possible.",
+        "N3C data may not be representative of the entire US population",
+        {
+          "items": [
+            "N3C does NOT have a representative sample of any state, as data is contributed from only a few providers in each region (Region - includes multiple states)."
+          ]
+        },
+        "Cell sizes smaller than 20 people have been suppressed",
+        "For COVID+ patients: A patient is only counted once in this data, even if they have multiple positive tests over time. Except in instances where dashboards focus on reinfection, only dates of first infection are utilized."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+#footer {
+  padding-top: 50px;
+
+  .footer-text {
+    text-align: center;
+    padding-right: 0;
+    padding-bottom: 0;
+    margin-bottom: 1rem;
+    font-size: 13px;
+    font-weight: 300;
+  }
+
+  .foot-logos {
+    .logos-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      .logo-link {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .email_footer {
+        color: #817da8;
+        background: -webkit-linear-gradient(#a6a3c4, #494476);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .twitter_footer {
+        color: #829dab;
+        background: -webkit-linear-gradient(-45deg, #c0deed 1%, #0084b4 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .github_footer {
+        color: #8f8d8d;
+        background: -webkit-linear-gradient(#eee, #333);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    }
+  }
+}

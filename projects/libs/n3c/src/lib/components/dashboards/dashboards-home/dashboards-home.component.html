@@ -1,0 +1,334 @@
+<app-header-view [isN3C]="true"></app-header-view>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" [routerLink]="['/dashboard']">
+    <img
+      src="./assets/n3c/images/n3c_logo.png"
+      width="30"
+      height="30"
+      class="d-inline-block n3c-logo"
+      alt="N3C logo"
+    />N3C Dashboards
+  </a>
+</div>
+<nav class="ms-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/covid']">Home</a></li>
+    <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">Dashboard Home</li>
+  </ol>
+</nav>
+
+<!-- front carousal code  -->
+<div class="row flex-nowrap block">
+  <div class="col-12 col-sm-12 col-xl-12">
+    <div class="carousel">
+      <div class="front-carousel-images">
+        <img [src]="images[currentIndex]" alt="Carousel Image" />
+
+        <!-- Overlay content for the first image -->
+        @if (currentIndex === 0) {
+          <div class="overlay image1">
+            <h1>N3C Dashboards</h1>
+            <hr style="border-top: 1px solid white" />
+            <p>Reliable High-Velocity COVID-19 Insights Brought to you by the N3C.</p>
+            <div class="button-group">
+              <button class="btn-purple" (click)="scrollToDashboards('DashboardSection')">Explore dashboards</button>
+              <button class="btn-white" (click)="navigateToPage('/dashboard/publications/')">Publications</button>
+            </div>
+          </div>
+        }
+
+        <!-- Overlay content for the second image -->
+        @if (currentIndex === 1) {
+          <div class="overlay image2">
+            <h1>The National COVID Cohort Collaborative (N3C)</h1>
+            <hr style="border-top: 1px solid white" />
+            <p>Your Trusted Comprehensive Source for COVID‑19 Patient-Centric Data.</p>
+            <div class="button-group">
+              <button class="btn-get-started" (click)="navigateToPage('/covid/account-creation/')">Get Started</button>
+              <button class="btn-about" (click)="navigateToPage('/dashboard/exploration/')">About</button>
+              <button class="btn-distribution" (click)="navigateToPage('/dashboard/Distribution-Demographics/')">
+                Distribution and Demographics
+              </button>
+            </div>
+          </div>
+        }
+
+        <!-- Overlay content for the third image -->
+        @if (currentIndex === 2) {
+          <div class="overlay image3">
+            <h1>N3C Public Health Answers to Speed Tractable Results (PHASTR)</h1>
+            <hr style="border-top: 1px solid white" />
+            <p>Fast Actionable Analysis on High-Impact COVID-19 Public Health Questions</p>
+            <button (click)="navigateToPage('/covid/phastr/')">Learn More</button>
+          </div>
+        }
+      </div>
+
+      <!-- <button (click)="next()">&#10095;</button> -->
+
+      <!-- Dots navigation -->
+      <div class="dots">
+        @for (image of images; track image; let i = $index) {
+          <span [class.active]="i === currentIndex" (click)="goToSlide(i)"> </span>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- front carousel ends  -->
+
+<div class="container" id="about_container">
+  <div class="main-block">
+    <!-- <div class="container-fluid"> -->
+
+    <br />
+
+    <!-- text section  -->
+
+    <div class="row">
+      <div class="col-12 col-lg-12 col-xl-7" style="display: flex">
+        <div>
+          <div class="row m-auto stats_section">
+            <div>
+              <p class="intro_desc heading-text">
+                The N3C Data Enclave represents one of the largest secure collections of harmonized clinical health data
+                in the United States.
+              </p>
+            </div>
+            <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+              <div class="row large-p">
+                <!-- First Column -->
+                @if (currentNotes && currentRelease) {
+                  <div class="col-12 col-md-6">
+                    <div class="d-flex stat-header">
+                      <div class="pr-2 stat-icon">
+                        <p><i class="fas fa-briefcase-medical" aria-hidden="true"></i></p>
+                      </div>
+                      <div class="mt-auto mb-auto">
+                        <p>
+                          <strong> Sites: </strong>
+                          <span class="stat">{{ currentRelease.sites_ingested | longCompactNumber }}</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="d-flex stat-header">
+                      <div class="pr-2 stat-icon">
+                        <p><i class="fas fa-user" aria-hidden="true"></i></p>
+                      </div>
+                      <div class="mt-auto mb-auto">
+                        <p>
+                          <strong> Persons: </strong>
+                          <span class="stat">{{ currentRelease.person_rows | longCompactNumber }}</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="d-flex stat-header">
+                      <div class="pr-2 stat-icon">
+                        <p><i class="fas fa-certificate" aria-hidden="true"></i></p>
+                      </div>
+                      <div class="mt-auto mb-auto">
+                        <p>
+                          <strong> COVID+ Cases: </strong>
+                          <span class="stat">{{ currentRelease.covid_positive_patients | longCompactNumber }}</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="d-flex stat-header">
+                      <div class="pr-2 stat-icon">
+                        <p><i class="fas fa-table" aria-hidden="true"></i></p>
+                      </div>
+                      <div class="mt-auto mb-auto">
+                        <p>
+                          <strong> # of Rows: </strong>
+                          <span class="stat">{{ currentRelease.total_rows | longCompactNumber }}</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="d-flex stat-header">
+                      <div class="pr-2 stat-icon">
+                        <p><i class="fas fa-notes-medical" aria-hidden="true"></i></p>
+                      </div>
+                      <div class="mt-auto mb-auto">
+                        <p>
+                          <strong> Clinical Observations: </strong>
+                          <span class="stat">{{ currentRelease.observation_rows | longCompactNumber }}</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Second Column -->
+                  <div class="col-12 col-md-6">
+                    <div class="d-flex stat-header">
+                      <div class="pr-2 stat-icon">
+                        <p><i class="fas fa-file-medical-alt" aria-hidden="true"></i></p>
+                      </div>
+                      <div class="mt-auto mb-auto">
+                        <p>
+                          <strong> Lab Results: </strong>
+                          <span class="stat">{{ currentRelease.measurement_rows | longCompactNumber }}</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="d-flex stat-header">
+                      <div class="pr-2 stat-icon">
+                        <p><i class="fas fa-pills" aria-hidden="true"></i></p>
+                      </div>
+                      <div class="mt-auto mb-auto">
+                        <p>
+                          <strong> Medication Records: </strong>
+                          <span class="stat">{{ currentRelease.drug_exposure_rows | longCompactNumber }}</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="d-flex stat-header">
+                      <div class="pr-2 stat-icon">
+                        <p><i class="fas fa-procedures" aria-hidden="true"></i></p>
+                      </div>
+                      <div class="mt-auto mb-auto">
+                        <p>
+                          <strong> Procedures: </strong>
+                          <span class="stat">{{ currentRelease.procedure_rows | longCompactNumber }}</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="d-flex stat-header">
+                      <div class="pr-2 stat-icon">
+                        <p><i class="far fa-calendar-alt" aria-hidden="true"></i></p>
+                      </div>
+                      <div class="mt-auto mb-auto">
+                        <p>
+                          <strong> Visits: </strong>
+                          <span class="stat">{{ currentRelease.visit_rows | longCompactNumber }}</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Footer -->
+                  <div class="col-12" style="margin-top: 20px">
+                    <em style="margin-top: 10px; font-size: 14px"
+                      >Data as of <span class="stat">{{ currentRelease.release_date | date: 'MMMM d, y' }}</span></em
+                    >
+                  </div>
+                }
+              </div>
+            </app-n3c-loader>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-12 col-xl-5 large-icons" style="text-align: center">
+        <h2>Explore Our Dashboards</h2>
+        <div class="row" id="dash_nav">
+          <div class="col col-12 col-md-6 col-lg-4 d-flex explore-style">
+            <div
+              class="card hover-card flex-fill mb-2 nav-card"
+              (click)="scrollToDashboards('dashboards-dataOverview')"
+            >
+              <div class="card-body large-p">
+                <p class="card-title">
+                  Overview<br />
+                  <i class="fas fa-database" aria-hidden="true"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col col-12 col-md-6 col-lg-4 d-flex explore-style">
+            <div class="card hover-card flex-fill mb-2 nav-card" (click)="scrollToDashboards('dashboards-members')">
+              <div class="card-body large-p">
+                <p class="card-title">
+                  Members<br />
+                  <i class="fas fa-users" aria-hidden="true"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col col-12 col-md-6 col-lg-4 d-flex explore-style">
+            <div class="card hover-card flex-fill mb-2 nav-card" (click)="scrollToDashboards('dashboards-tracking')">
+              <div class="card-body large-p">
+                <p class="card-title">
+                  Tracking<br />
+                  <i class="fas fa-chart-line" aria-hidden="true"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col col-12 col-md-6 col-lg-4 d-flex explore-style">
+            <div class="card hover-card flex-fill mb-2 nav-card" (click)="scrollToDashboards('dashboards-cases')">
+              <div class="card-body large-p">
+                <p class="card-title">
+                  Cases<br />
+                  <i class="fas fa-certificate" aria-hidden="true"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col col-12 col-md-6 col-lg-4 d-flex explore-style">
+            <div class="card hover-card flex-fill mb-2 nav-card" (click)="scrollToDashboards('dashboards-medications')">
+              <div class="card-body large-p">
+                <p class="card-title">
+                  Medications<br />
+                  <i class="fas fa-pills" aria-hidden="true"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col col-12 col-md-6 col-lg-4 d-flex explore-style">
+            <div class="card hover-card flex-fill mb-2 nav-card" (click)="scrollToDashboards('dashboards-diseases')">
+              <div class="card-body large-p">
+                <p class="card-title">
+                  Diseases &amp; Risk Factors<br />
+                  <i class="fas fas fa-diagnoses" aria-hidden="true"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- in the spotlight section  -->
+
+<div id="DashboardSection">
+  <div class="dashboards-onTheSpotlight">
+    <div class="header-dashbords">Dashboards</div>
+
+    <div class="inTheSpotlight">
+      <div class="row">
+        <div class="col-12 col-lg-12 col-xl-12">
+          <div class="container-fluid dashboard-container">
+            @for (tile of dashboardGrid; track tile) {
+              <div class="carousel-slide">
+                <div class="card-container_IntheSpotlight">
+                  <div class="card hover-card_noshadow mb-2" (click)="navigateToPage(tile.link)">
+                    <img [src]="tile.image" class="card-img-top" alt="..." />
+                    <div class="card-body card-body-links">
+                      <p class="card-title">
+                        <strong
+                          ><b>{{ tile.title }}</b></strong
+                        >
+                      </p>
+                      <p>{{ tile.description }}</p>
+                      <div class="col col-6">
+                        <a [routerLink]="tile.link" (click)="navigateToPage(tile.link)" tabindex="0">
+                          Explore <i class="fas fa-angle-right" aria-hidden="true"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-dashboard-footer></app-dashboard-footer>

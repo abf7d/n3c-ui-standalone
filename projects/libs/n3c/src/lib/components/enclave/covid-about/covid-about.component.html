@@ -1,0 +1,36 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide">
+      <div class="pt-3">
+        <p><a [routerLink]="['/covid']">Home</a> > {{ pageLabel }}</p>
+      </div>
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <div class="row highlight py-2 mx-4 mb-3">
+          <div [innerHTML]="pageContent?.block1"></div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-5 mb-3">
+            <img class="img-fluid" src="./assets/n3c/images/n3c_logo_narrow_763b47fbd8.png" />
+          </div>
+          <div class="col-12 col-md-7">
+            <div [innerHTML]="pageContent?.block2"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div [innerHTML]="pageContent?.block3"></div>
+        </div>
+        <div class="row highlight pt-2 mx-4 mb-3">
+          <div [innerHTML]="pageContent?.block4"></div>
+        </div>
+
+        <h2 class="text-center">N3C Events</h2>
+        <p class="text-center"><a [routerLink]="['/covid/calendar']">View N3C Calendar</a></p>
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

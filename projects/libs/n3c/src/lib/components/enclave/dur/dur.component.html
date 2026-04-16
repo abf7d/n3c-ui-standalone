@@ -1,0 +1,56 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide">
+      <div class="pt-2">
+        <p><a [routerLink]="['/']">Home</a> > {{ pageContent?.header }}</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <div class="col-12">
+          <div class="col-12 page-title">
+            <h1>{{ pageContent?.header }}</h1>
+            <div [innerHTML]="pageContent?.block1"></div>
+          </div>
+
+          <p></p>
+          <div class="col-12">
+            <h3>{{ pageContent?.request_header }}</h3>
+            <div [innerHTML]="pageContent?.request_block"></div>
+          </div>
+
+          <p></p>
+          <div class="col-12">
+            <h3>{{ pageContent?.overview_header }}</h3>
+            <div [innerHTML]="pageContent?.overview_block"></div>
+          </div>
+
+          <p></p>
+          <div class="col-12">
+            <h3>{{ pageContent?.process_header }}</h3>
+            <h4>{{ pageContent?.prereq_header }}</h4>
+
+            <div class="d-flex justify-content-center">
+              <img [src]="pageContent?.prereq_graphic" class="img-fluid img-max-width" />
+            </div>
+
+            <div [innerHTML]="pageContent?.prereq_block"></div>
+
+            <div class="d-flex justify-content-center">
+              <img [src]="pageContent?.submit_graphic" class="img-fluid img-max-width" />
+            </div>
+
+            <h4>{{ pageContent?.submit_header }}</h4>
+            <div [innerHTML]="pageContent?.submit_block"></div>
+            <div [innerHTML]="pageContent?.submit_block2"></div>
+            <div [innerHTML]="pageContent?.submit_block3"></div>
+          </div>
+        </div>
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

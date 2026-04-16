@@ -1,0 +1,244 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<nav class="primary-nav navbar navbar-expand-lg p-0"></nav>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" [routerLink]="['/dashboard']">
+    <img
+      src="./assets/n3c/images/n3c_logo.png"
+      width="30"
+      height="30"
+      class="d-inline-block n3c-logo"
+      alt="N3C logo"
+    />N3C Dashboards
+  </a>
+</div>
+<nav class="ms-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboards</a></li>
+    <li class="breadcrumb-item">
+      <a id="dashboard_breadcrumb" [routerLink]="['/dashboard/pprl-enrichment/home']">PPRL Enrichment</a>
+    </li>
+    <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">
+      {{ pageName }}
+    </li>
+  </ol>
+</nav>
+
+<app-n3c-loader [loading]="dataLoading" [showError]="showError">
+  <div class="container container-large content" data-select2-id="select2-data-6-934m">
+    <div class="row">
+      <div class="col-12 mx-auto">
+        <div class="row">
+          <div class="col-12">
+            <div>
+              <h1 class="page-title">PPRL Enrichment</h1>
+              <div class="section-description heading-text text-max mx-auto">
+                <p>
+                  This dashboard provides a snapshot of the data enrichment provided by PPRL. Explore the data added,
+                  demographics, and COVID factors by supplemental source.
+                </p>
+                <div class="footnote">Note: This dashboard is being continuously updated. Counts may change.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 mx-auto">
+        <div class="topic_dropdown" data-select2-id="select2-data-4-4or4">
+          <h4 class="viz_color_header">Select a Topic to Explore:</h4>
+          <select class="page-dropdown" [value]="selectedDataset" (change)="onSelectDataset($event)">
+            <option value="metformin_1">PPRL Data Enhancement Overview</option>
+            <optgroup label="Medicare">
+              <option value="medicare_demo">Medicare Demographics</option>
+              <option value="medicare_covid">Medicare COVID Factors</option>
+            </optgroup>
+            <optgroup label="Medicaid">
+              <option value="medicaid_demo">Medicaid Demographics</option>
+              <option value="medicaid_covid">Medicaid COVID Factors</option>
+            </optgroup>
+            <optgroup label="Mortality">
+              <option value="mortality_demo">Mortality Demographics</option>
+              <option value="mortality_covid">Mortality COVID Factors</option>
+            </optgroup>
+            <optgroup label="Viral Variants">
+              <option value="viral_variants_demo">Viral Variants Demographics</option>
+              <option value="viral_variants_covid">Viral Variants COVID Factors</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- START OF FILTERS -->
+
+    <div class="row stats block2 mx-auto">
+      <div class="col-12">
+        <!-- KPIs & related dashboards ----------------------------------------------------------------------------------------------------------- -->
+        <div class="row" style="margin-top: 30px">
+          <div class="col col-12 col-lg-2 side-col">
+            <div class="panel-heading filter-section">
+              <div class="panel-heading viz-mode">
+                <h4>Display</h4>
+                <i
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Bar Chart"
+                  class="fas fa-hashtag"
+                  aria-hidden="true"
+                  [ngClass]="{'text-primary': displayMode === 'bar', 'text-muted': displayMode !== 'bar'}"
+                  (click)="setDisplayMode('bar')"
+                  >&nbsp;</i
+                >
+                <i
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Percentage Bar Chart"
+                  class="fas fa-percent"
+                  aria-hidden="true"
+                  [ngClass]="{'text-primary': displayMode === 'percent', 'text-muted': displayMode !== 'percent'}"
+                  (click)="setDisplayMode('percent')"
+                  >&nbsp;</i
+                >
+                <i
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Pie Chart"
+                  class="fas fa-chart-pie"
+                  aria-hidden="true"
+                  [ngClass]="{'text-primary': displayMode === 'pie', 'text-muted': displayMode !== 'pie'}"
+                  (click)="setDisplayMode('pie')"
+                  >&nbsp;</i
+                >
+              </div>
+            </div>
+
+            <div class="panel-heading filter-section" [hidden]="showError || isLoading">
+              <app-data-filters
+                [filterData]="filterMap"
+                (filterChange)="updateFilters($event)"
+                [selectedFilters]="selectedFilters"
+              ></app-data-filters>
+            </div>
+          </div>
+
+          <!-- START OF TOP KPI BLOCK -->
+
+          <div class="col col-12 col-lg-10">
+            <!-- KPI Panel Column -->
+            @if (kpiConfigs && kpiConfigs.length > 0) {
+              <div class="mb-4">
+                <app-kpi-panel [kpiConfigs]="kpiConfigs"></app-kpi-panel>
+              </div>
+            }
+
+            <!-- START OF CHART PANELS -->
+            <!-- Panels ------------------------------------------------------------------------------------------------- -->
+            <div class="col-12 col-md-12 mx-auto mb-4 panel">
+              <!-- Composite Panels ------------------------------------------------------------------------------------------------- -->
+              @for (row of chartsConfig | slice: 0 : chartsConfig.length; track row.id; let i = $index) {
+                <div>
+                  @if (i % 2 === 0) {
+                    <div class="row">
+                      <!-- First Chart in Row -->
+                      @if (chartsConfig[i]) {
+                        <div class="col-12 col-md-6 small-viz-panel">
+                          <div>
+                            @if (chartsConfig[i].data) {
+                              <app-render-chart
+                                [data]="chartsConfig[i].data"
+                                [colors]="chartsConfig[i].colors"
+                                [title]="chartsConfig[i].title"
+                                [displayMode]="chartsConfig[i].displayMode"
+                                [groupName]="chartsConfig[i].groupName"
+                                (segmentFilterClick)="updateFiltersForCharts($event)"
+                                [loading]="isLoading"
+                              >
+                                ></app-render-chart
+                              >
+                            }
+                          </div>
+                        </div>
+                      }
+                      <!-- Second Chart in Row -->
+                      @if (chartsConfig[i + 1]) {
+                        <div class="col-12 col-md-6 small-viz-panel">
+                          <div [id]="chartsConfig[i + 1].id">
+                            @if (chartsConfig[i + 1].data) {
+                              <app-render-chart
+                                [data]="chartsConfig[i + 1].data"
+                                [colors]="chartsConfig[i + 1].colors"
+                                [title]="chartsConfig[i + 1].title"
+                                [displayMode]="chartsConfig[i + 1].displayMode"
+                                [groupName]="chartsConfig[i + 1].groupName"
+                                (segmentFilterClick)="updateFiltersForCharts($event)"
+                                [loading]="isLoading"
+                              >
+                                ></app-render-chart
+                              >
+                            }
+                          </div>
+                        </div>
+                      }
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+
+            <div class="row">
+              <div class="col-12" id="viz_caption">
+                <div class="secondary-description">
+                  <p>
+                    <strong>Sample:</strong> Patients in the N3C Data Enclave who have been linked to Medicare data
+                    through PPRL. For additional information,
+                    <a [routerLink]="[]" fragment="limitations-section">see limitations below.</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- DataTable --------------------------------------------------------------------------------------- -->
+            <div class="ag-panel">
+              <app-data-grid [rowData]="filteredData" [columnDefs]="columnDefs" [gridOptions]="gridOptions">
+              </app-data-grid>
+            </div>
+            <div id="metformin_5limitations_accordion">
+              <div class="card" id="metformin-limitations-section">
+                <div class="card-header" id="metformin_5limitations_heading">
+                  <h2 class="mb-0">
+                    <button
+                      class="filter_drop_button btn btn-link btn-block text-left"
+                      type="button"
+                      (click)="isLimitationsCollapsed = !isLimitationsCollapsed"
+                      [attr.aria-expanded]="isLimitationsCollapsed"
+                      [ngClass]="{collapsed: !isLimitationsCollapsed}"
+                      aria-controls="metformin_5limitations_body"
+                    >
+                      <h3 id="limitations-section">Limitations</h3>
+                      <span class="float-right">
+                        <i class="fas" [ngClass]="isLimitationsCollapsed ? 'fa-minus' : 'fa-plus'"></i>
+                      </span>
+                    </button>
+                  </h2>
+                </div>
+              </div>
+              <div
+                [ngClass]="{collapse: !isLimitationsCollapsed, show: isLimitationsCollapsed}"
+                aria-labelledby="metformin_5limitations_heading"
+                data-parent="#metformin_5limitations_accordion"
+              >
+                <div class="card-body">
+                  <app-pprl-limitation></app-pprl-limitation>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-n3c-loader>
+<app-dashboard-footer></app-dashboard-footer>

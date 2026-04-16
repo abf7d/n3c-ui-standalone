@@ -1,0 +1,94 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide">
+      <div class="pt-3">
+        <p><a [routerLink]="['/']">Home</a> > {{ pageLabel }}</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        @if (!isEmptyObject(this.pageContent)) {
+          <h2 class="text-center">{{ pageTitle }}</h2>
+          <h2 class="text-center">Enclave & Tenants</h2>
+          <div class="row g-3 mb-5">
+            <div class="col-12 col-md-6">
+              <div class="card shade-blue h-100">
+                <div class="row g-2">
+                  <div class="col-3 col-sm-2">
+                    <img class="img-fluid" [src]="pageContent.covid.imageUrl" />
+                  </div>
+                  <div class="col-9 col-sm-10">
+                    <h3 class="mb-1">
+                      <a [href]="pageContent.covid.linkUrl">
+                        <div [innerHTML]="pageContent.covid.label"></div>
+                      </a>
+                    </h3>
+                    <div [innerHTML]="pageContent.covid.blurb"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="card shade-blue h-100">
+                <div class="row g-2">
+                  <div class="col-3 col-sm-2">
+                    <img class="img-fluid" [src]="pageContent.education.imageUrl" />
+                  </div>
+                  <div class="col-9 col-sm-10">
+                    <h3 class="mb-1">
+                      <a [href]="pageContent.education.linkUrl">
+                        <div [innerHTML]="pageContent.education.label"></div>
+                      </a>
+                    </h3>
+                    <div [innerHTML]="pageContent.education.blurb"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="card shade-blue h-100">
+                <div class="row g-2">
+                  <div class="col-3 col-sm-2">
+                    <img class="img-fluid" [src]="pageContent.cancer.imageUrl" />
+                  </div>
+                  <div class="col-9 col-sm-10">
+                    <h3 class="mb-1">
+                      <a [href]="pageContent.cancer.linkUrl">
+                        <div [innerHTML]="pageContent.cancer.label"></div>
+                      </a>
+                    </h3>
+                    <div [innerHTML]="pageContent.cancer.blurb"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="card shade-blue h-100">
+                <div class="row g-2">
+                  <div class="col-3 col-sm-2">
+                    <img class="img-fluid" [src]="pageContent.renal.imageUrl" />
+                  </div>
+                  <div class="col-9 col-sm-10">
+                    <h3 class="mb-1">
+                      <a [href]="pageContent.renal.linkUrl">
+                        <div [innerHTML]="pageContent.renal.label"></div>
+                      </a>
+                    </h3>
+                    <div [innerHTML]="pageContent.renal.blurb"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </app-n3c-loader>
+    </div>
+  </main>
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+  <app-disclaimer-footer></app-disclaimer-footer>
+</div>

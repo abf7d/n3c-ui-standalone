@@ -1,0 +1,39 @@
+ 
+  app-multi-dimensional-summary{
+    .axis_line {
+      stroke: #000;
+      stroke-width: 1.5px;
+    }
+  
+    .link {
+      fill: none;
+      stroke-width: 1.5px;
+    }
+    
+    .link.active {
+      stroke: red;
+      stroke-width: 5px;
+      stroke-opacity: 1;
+    }
+    
+    .node {
+      stroke: #000;
+      stroke-width: 1.5px;
+    }
+  
+    .node.active {
+      stroke: red;
+      stroke-width: 3px;
+    }
+  div.tooltip {
+      position: absolute;
+      background-color: white;
+      opacity: 0.8;
+      height: auto;
+      padding: 1px;
+      pointer-events: none;
+    }
+    .radar-padding {
+      padding-top: 130px;
+    }
+  }

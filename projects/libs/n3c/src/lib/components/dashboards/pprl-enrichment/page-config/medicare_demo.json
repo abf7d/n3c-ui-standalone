@@ -1,0 +1,88 @@
+{
+  "pageName": "Medicare Demographics",
+  "supplSource": "medicare",
+  "dataFactor": "demographics",
+  "titleMap": {
+    "section1": {
+      "bar": "Counts of Patients in the Enclave linked to Medicare by Age",
+      "percent": "Age Percentages of Patients in the Enclave linked to Medicare",
+      "pie": "Age Percentages of Patients in the Enclave linked to Medicare"
+    },
+    "section2": {
+      "bar": "Counts of Patients in the Enclave linked to Medicare by Sex",
+      "percent": "Sex Percentages of Patients in the Enclave linked to Medicare",
+      "pie": "Sex Percentages of Patients in the Enclave linked to Medicare"
+    },
+    "section3": {
+      "bar": "Counts of Patients in the Enclave linked to Medicare by Race",
+      "percent": "Race Percentages of Patients in the Enclave linked to Medicare",
+      "pie": "Race Percentages of Patients in the Enclave linked to Medicare"
+    },
+    "section4": {
+      "bar": "Counts of Patients in the Enclave linked to Medicare by Ethnicity",
+      "percent": "Ethnicity Percentages of Patients in the Enclave linked to Medicare",
+      "pie": "Ethnicity Percentages of Patients in the Enclave linked to Medicare"
+    }
+  },
+  "filterGroupNames": {
+    "section1": "age",
+    "section2": "sex",
+    "section3": "race",
+    "section4": "ethnicity"
+  },
+  "chartTotals": {
+    "section1": "ageTotals",
+    "section2": "sexTotals",
+    "section3": "raceTotals",
+    "section4": "ethnicityTotals"
+  },
+  "colorScheme": {
+    "section1": "ageRange",
+    "section2": "sexRange",
+    "section3": "raceRange",
+    "section4": "ethnicityRange"
+  },
+  "numCharts": 10,
+  "kpiPanelConfig": [
+    {
+      "items": [
+        {
+          "title": "Total Patients in Enclave",
+          "value": "numTPIE",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Patients in the N3C Data Enclave",
+          "tooltipContent": "<p>Total Number of Individual Persons within the N3C Data Enclave.</p>",
+          "footer": "Data as of Jul 26, 2024 (v182)",
+          "limitationsLink": "metformin-limitations-section"
+        }
+      ]
+    },
+    {
+      "separator": true,
+      "items": [
+        {
+          "title": "Total Medicare Linked Patients in Enclave",
+          "value": "numTMLPE",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Medicare Linked Patients in the Enclave",
+          "tooltipContent": "<p>Total Number of Individuals within the Enclave who have been linked to Medicare through PPRL.</p>"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Total Patients in View",
+          "value": "numTPIV",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Patients Prescribed Metformin in View",
+          "tooltipContent": "<p>Total Number of Individuals within the view who have Metformin indicated in their EHR.</p><p>Sample: All N3C Patients.</p><small class='kpi-small-note'>Even without filters, this total may be less than the total number of patients prescribed Metformin within the Enclave due to the suppression of counts less than 20.</small>",
+          "progress": {
+            "value": 100.0,
+            "tooltip": "100% in View"
+          }
+        }
+      ]
+    }
+  ]
+}

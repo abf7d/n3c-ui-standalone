@@ -1,0 +1,147 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<nav class="primary-nav navbar navbar-expand-lg p-0"></nav>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" [routerLink]="['/dashboard']">
+    <img
+      src="./assets/n3c/images/n3c_logo.png"
+      width="30"
+      height="30"
+      class="d-inline-block n3c-logo"
+      alt="N3C logo"
+    />N3C Dashboards
+  </a>
+</div>
+<nav class="ms-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboards</a></li>
+    <li class="breadcrumb-item">
+      <a id="dashboard_breadcrumb" [routerLink]="['/dashboard/disease-snapshots']">Disease Snapshots </a>
+    </li>
+    <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">
+      {{ title }}
+    </li>
+  </ol>
+</nav>
+
+<app-n3c-loader [loading]="dataLoading" [showError]="showError">
+  <div class="container container-large content">
+    <!-- Title and description -->
+    <div class="row mb-3">
+      <div id="ph-dash-top">
+        <h1 class="page-title">Disease Snapshots</h1>
+        <div id="question-description" class="section-description heading-text text-max mx-auto">
+          <p>
+            This dashboard lets you explore the prevalence of select diseases within the Enclave and their association
+            with COVID-19.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <app-topic-picker
+        [options]="topicOptions"
+        [selectedValue]="selectedTopic"
+        [enableSearch]="true"
+        (topicChanged)="onTopicChanged($event)"
+      ></app-topic-picker>
+    </div>
+
+    <div class="row stats block2 mx-auto">
+      <div class="col-12">
+        <div class="row" style="margin-top: 30px">
+          <div class="col col-12 col-lg-2 side-col">
+            <div class="panel-heading filter-section">
+              <app-data-filters
+                [filterData]="filterMap"
+                [selectedFilters]="selectedFilters"
+                (filterChange)="updateFilters($event)"
+              ></app-data-filters>
+            </div>
+          </div>
+
+          <div class="col col-12 col-lg-10">
+            <!-- KPI Panel Column -->
+            @if (kpiConfigs && kpiConfigs.length > 0) {
+              <div class="mb-4">
+                <app-kpi-panel [kpiConfigs]="kpiConfigs"></app-kpi-panel>
+              </div>
+            }
+
+            <div class="row gx-5">
+              @if (currentConfig.groupedBarCharts) {
+                @for (chart of chartConfig; track chart; let i = $index) {
+                  <div class="col-12 col-md-6 mb-4">
+                    <app-grouped-bar-chart
+                      [data]="chart"
+                      [title]="currentConfig.groupedBarCharts[i].title"
+                      [legendLabel]="currentConfig.groupedBarCharts[i].legendLabel"
+                      (segmentFilterClick)="updateFiltersForCharts($event)"
+                    ></app-grouped-bar-chart>
+                  </div>
+                }
+              }
+            </div>
+
+            <div class="row">
+              <div class="col-12" id="viz_caption">
+                <div class="secondary-description">
+                  <p>
+                    <strong>Sample:</strong> All Patients in the N3C Data Enclave who have had a medical visit on or
+                    after 1/1/2019 in which {{ title }} was coded. Given that patients do not have a clear date on which
+                    they were diagnosed with {{ title }}, we assume the date of their first recorded medical visit coded
+                    for {{ title }} is the day they were diagnosed with {{ title }}. If a patient with {{ title }} has
+                    not been diagnosed or has not had a medical visit related to {{ title }} within their EHR, they
+                    would be missing from this data. Patient counts in relation to COVID-19 diagnosis are calculated
+                    using the number of days between their earliest recorded medical visit coded for {{ title }} and
+                    their
+
+                    <app-tooltip
+                      label="COVID-positive"
+                      tooltipTitle="COVID-positive Defined As:"
+                      [tooltipContent]="
+                        '<ul style=\'padding-inline-start: 15px;\'>
+        <li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li>
+        <li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li>
+        <li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li>
+      </ul>'
+                      "
+                    ></app-tooltip>
+                    &nbsp; diagnosis. This sample may have instances of false negatives when using it to assess the
+                    population of
+
+                    <app-tooltip
+                      label="COVID-negative persons"
+                      tooltipTitle="COVID-negative Defined As:"
+                      [tooltipContent]="
+                        '<ul style=\'padding-inline-start: 15px;\'>
+        <li>No laboratory-confirmed positive COVID-19 PCR or Antigen test</li>
+        <li>(and) No laboratory-confirmed positive COVID-19 Antibody test</li>
+        <li>(and) No medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li>
+      </ul>'
+                      "
+                    ></app-tooltip>
+                    &nbsp;. This can be caused by a lack of testing, non-reported testing, and reported testing not
+                    captured by our data partners (i.e., testing done at an unrelated institution). For additional
+                    information,
+                    <a [routerLink]="[]" fragment="limitations">see limitations below</a>.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- DataTable --------------------------------------------------------------------------------------- -->
+            <div class="ag-panel">
+              <app-data-grid [rowData]="filteredData" [columnDefs]="columnDefs" [gridOptions]="gridOptions">
+              </app-data-grid>
+            </div>
+
+            <app-limitations [config]="limitationsConfig"></app-limitations>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-n3c-loader>
+<app-dashboard-footer></app-dashboard-footer>

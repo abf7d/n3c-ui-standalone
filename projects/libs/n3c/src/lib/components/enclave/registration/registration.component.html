@@ -1,0 +1,56 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+<div class="container-wide pb-4" style="max-width: 88%">
+  <div class="col-2 p-0 pt-3" style="width: 100%">
+    <p><a [routerLink]="['/covid19/']">Home</a> > N3c Onboarding</p>
+  </div>
+  <div class="container center-box shadow-border">
+    <h2 class="header-text">
+      <img
+        src="./assets/n3c/images/clinical-cohort-logo_color-icon-solid.png"
+        class="n3c_logo_header"
+        alt="N3C Logo"
+      />N3C Registration
+    </h2>
+    <div style="text-align: center">
+      <h4 style="margin-bottom: 30px">
+        Welcome! Thank you for your interest in the National Clinical Cohort Collaborative (N3C).
+      </h4>
+
+      <p>
+        Please register your profile information on the following page. After submitting your information, please follow
+        the <a [routerLink]="['/covid/researcher-essentials']" target="_blank">onboarding instructions</a> to request
+        access to the N3C Team Drive, mailing lists, N3C calendar, Slack, and GitHub.
+      </p>
+
+      <p>You will receive a copy of your responses and are encouraged to update your information as needed.</p>
+
+      <p class="n3c_alert" style="margin-bottom: 0px; display: none">
+        Please note the form has recently been updated; please review your prior responses to assure accuracy as the
+        order of questions has changed.
+      </p>
+
+      <a
+        [routerLink]="['/covid/onboarding/registration/authenticate']"
+        class="btn btn-lg btn-n3c"
+        style="margin-top: 30px; margin-bottom: 30px"
+        >Click here to Register</a
+      >
+
+      <p style="font-size: 15px; font-style: italic; margin-bottom: 30px; color: #6d6d6d; display: none">
+        Applications for membership will be reviewed/approved rapidly during the week, but may extend up to 48 hours
+        over weekends. Your patience and understanding is appreciated.
+      </p>
+
+      <p>
+        Please submit a
+        <a href="https://n3c-help.atlassian.net/servicedesk/customer/portal/2">support desk ticket</a> with any
+        questions.
+      </p>
+      <div style="display: none">
+        <a href="dologin.jsp?attrs=1" class="btn btn-n3c">NCATS UNA demo login</a> This is here for the moment to
+        support login debugging.
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+.tip {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.viz_secondary_info p {
+  margin: 0px;
+}
+
+.kpi-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-bottom: 10px;
+}
+
+.kpi-title {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #3f3f3f;
+  margin: 0;
+}
+
+.superscript {
+  font-size: 0.7em;
+  color: #3f50b0;
+}
+
+.popover {
+  max-width: 350px;
+  width: auto;
+}
+
+.popover-header {
+  position: relative;
+  padding: 0.5rem 0.75rem;
+  background-color: #f7f7f7;
+  color: #6c757d;
+  font-size: 1rem;
+  word-break: break-word;
+  border-bottom: none;
+}
+
+.popover-title {
+  font-weight: bold;
+  margin-right: 2rem;
+}
+
+.popover-title-text {
+  display: block;
+  word-break: break-word;
+}
+
+.popover-close-btn {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.45rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #6c757d;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.popover-close-btn:hover {
+  color: #dc3545;
+}
+
+.popover-body {
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  border: none;
+  box-shadow: none;
+}
+
+.popover-content {
+  padding: 1rem;
+  margin: 0;
+  background-color: #fff;
+  border: none;
+}

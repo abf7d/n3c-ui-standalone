@@ -1,0 +1,75 @@
+#network-branding, .eo-banner {
+    background-color: #531958;
+    color: #fff;
+    height: auto;
+    overflow: hidden;
+    
+    .row > * {
+        width:  initial;
+    }
+
+    a {
+        color: #fff;
+    }
+
+    span {
+        font-size: 14px;
+        padding-top: 5px;
+        padding-right: .5em;
+        font-family: Arial,Helvetica,sans-serif;
+    }
+
+    img{
+        height: 30px;
+    }
+
+    img.masthead-logo {
+        height: 20px;
+        margin: .25em .5em;
+    }
+}
+.eo-banner .row {
+    text-align: center; justify-content: center;
+}
+
+.brand-container {
+    text-decoration: none;
+    background: #fff;
+    img:first-child {
+        padding-right: 14px;
+        border-right: 2px solid #ccc
+    }
+}
+
+.webName {
+    display: inline;
+    a  {
+        text-decoration: none;
+        color: #672e6c;
+        font-size: 34px;
+        vertical-align: middle;
+        line-height: 90px;
+        letter-spacing: -2px;
+        @media (max-width: 575.98px) { 
+            font-size: 26px;
+            letter-spacing: inherit;
+        }
+    }
+}
+
+.min-fixed {
+    min-width: 1600px;
+}
+.max-fixed {
+    max-width: 1600px;
+}
+.text-decoration-none {
+    text-decoration: none;
+}
+
+.text-dec-none {
+    text-decoration: none;
+}
+.pl-2 {
+    padding-left: 1rem;
+}

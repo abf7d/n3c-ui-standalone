@@ -1,0 +1,87 @@
+{
+  "pageName": "Mortality COVID Factors",
+  "supplSource": "mortality",
+  "dataFactor": "covid",
+  "titleMap": {
+    "section1": {
+      "bar": "Counts of COVID+ Patients in the Enclave linked to Mortality Data by Race",
+      "percent": "Race Percentages of COVID+ Patients in the Enclave linked to Mortality Data",
+      "pie": "Race Percentages of COVID+ Patients in the Enclave linked to Mortality Data"
+    },
+    "section2": {
+      "bar": "Counts of COVID+ Patients in the Enclave linked to Mortality Data by Severity",
+      "percent": "Severity Percentages of COVID+ Patients in the Enclave linked to Mortality Data",
+      "pie": "Severity Percentages of COVID+ Patients in the Enclave linked to Mortality Data"
+    },
+    "section3": {
+      "bar": "Counts of COVID+ Patients in the Enclave linked to Mortality Data by Long COVID Status",
+      "percent": "Long COVID Status Percentages of COVID+ Patients in the Enclave linked to Mortality Data",
+      "pie": "Long COVID Status Percentages of COVID+ Patients in the Enclave linked to Mortality Data"
+    },
+    "section4": {
+      "bar": "Counts of COVID+ Patients in the Enclave linked to Mortality Data by Vaccination Status",
+      "percent": "Vaccination Status Percentages of COVID+ Patients in the Enclave linked to Mortality Data",
+      "pie": "Vaccination Status Percentages of COVID+ Patients in the Enclave linked to Mortality Data"
+    }
+  },
+  "filterGroupNames": {
+    "section1": "race",
+    "section2": "severity",
+    "section3": "longcovidstatus",
+    "section4": "vaccinationstatus"
+  },
+  "chartTotals": {
+    "section1": "raceTotals",
+    "section2": "severityTotals",
+    "section3": "longCovidStatusTotals",
+    "section4": "vaccinationStatusTotals"
+  },
+  "colorScheme": {
+    "section1": "raceRange",
+    "section2": "severityRange",
+    "section3": "longStatusRange",
+    "section4": "vaccinationStatusRange"
+  },
+  "numCharts": 10,
+  "kpiPanelConfig": [
+    {
+      "items": [
+        {
+          "title": "Total Patients in Enclave",
+          "value": "numTPIE",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Patients in the N3C Data Enclave",
+          "tooltipContent": "<p>Total Number of Individual Persons within the N3C Data Enclave.</p>",
+          "footer": "Data as of Jul 26, 2024 (v182)",
+          "limitationsLink": "metformin-limitations-section"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Vaccination Status Percentages of COVID+ Patients in the Enclave linked to Mortality Data",
+          "value": "numTMLPE",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Mortality Linked Patients in the Enclave",
+          "tooltipContent": "<p>TTotal Number of Individuals within the Enclave who have been linked to Mortality through PPRL.</p>"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Total Patients in View",
+          "value": "numTPIV",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Patients Prescribed Metformin in View",
+          "tooltipContent": "<p>Total Number of Individuals within the view who have Metformin indicated in their EHR.</p><p>Sample: All N3C Patients.</p><small class='kpi-small-note'>Even without filters, this total may be less than the total number of patients prescribed Metformin within the Enclave due to the suppression of counts less than 20.</small>",
+          "progress": {
+            "value": 100.0,
+            "tooltip": "100% in View"
+          }
+        }
+      ]
+    }
+  ]
+}

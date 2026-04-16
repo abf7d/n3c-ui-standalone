@@ -1,0 +1,29 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+<div class="container" id="about_container">
+  <div class="col-2 p-0 pt-3">
+    <p>
+      <a [routerLink]="['/covid19/']">Home</a> > <a [routerLink]="['/dashboard']">N3C Dashboards</a> > Dashboards Search
+      Results
+    </p>
+  </div>
+
+  @if (tiles.length > 0) {
+    <div>
+      @for (tile of tiles; track tile) {
+        <div class="tile-container">
+          <img [src]="tile.image" alt="{{ tile.title }}" class="tile-image" />
+          <div class="tile-content">
+            <h3>{{ tile.title }}</h3>
+            <p>{{ tile.description }}</p>
+            <a [routerLink]="tile.link">Explore</a>
+            <div style="height: 1px; background-color: rgb(182, 181, 181); margin: 20px 0"></div>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <p>No results found for your search.</p>
+  }
+</div>

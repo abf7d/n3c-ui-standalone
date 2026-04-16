@@ -1,0 +1,116 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<nav class="primary-nav navbar navbar-expand-lg p-0"></nav>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" [routerLink]="['/dashboard']">
+    <img
+      src="./assets/n3c/images/n3c_logo.png"
+      width="30"
+      height="30"
+      class="d-inline-block n3c-logo"
+      alt="N3C logo"
+    />N3C Dashboards
+  </a>
+</div>
+<nav class="ms-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboards</a></li>
+    <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+  </ol>
+</nav>
+
+<app-n3c-loader [loading]="dataLoading" [showError]="showError">
+  <div class="d-flex flex-column">
+    <h1 class="page-title">{{ title }}</h1>
+    <div class="question-description heading-text text-max mx-auto">
+      <p>{{ description }}</p>
+    </div>
+  </div>
+
+  <div class="row w-75 mx-auto" [hidden]="ror">
+    <div class="row my-3">
+      <div class="col-11">
+        <app-map-filter [legends]="legends" (filterChange)="onLegendFilterChange($event)"></app-map-filter>
+      </div>
+
+      <!-- Tooltip -->
+      <div class="col-1">
+        <div class="position-relative d-inline-block">
+          <button class="btn btn-light border" (click)="toggleTooltip()" [attr.aria-expanded]="showTooltip">
+            <i class="fas fa-lightbulb text-warning fs-6"></i>
+          </button>
+
+          @if (showTooltip) {
+            <div class="card shadow position-absolute p-2 custom-tooltip" role="dialog">
+              <div class="card-body p-2">
+                <h6 class="card-title mb-2 fw-bold">Interaction Tip:</h6>
+                <ul class="mb-0 ps-3">
+                  <li>Search the Table to Update the Map.</li>
+                  <li>Click on a Heading to Sort the Table.</li>
+                  <li>Click and drag to reposition the map.</li>
+                  <li>Control drag up and down to zoom out and in.</li>
+                  <li>Hover over a node to identify the site and highlight its collaborations.</li>
+                </ul>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="position-relative d-flex justify-content-end">
+      <button
+        type="button"
+        class="btn btn-sm btn-light dropdown-toggle border"
+        (click)="toggleMenu()"
+        aria-haspopup="true"
+        [attr.aria-expanded]="showMenu"
+      >
+        <i class="fas fa-download"></i>
+      </button>
+
+      @if (showMenu) {
+        <div class="dropdown-menu show dropdown-pos">
+          <a class="dropdown-item" (click)="saveAs('jpg')">Save as JPG</a>
+          <a class="dropdown-item" (click)="saveAs('png')">Save as PNG</a>
+          <a class="dropdown-item" (click)="saveAs('svg')">Save as SVG</a>
+        </div>
+      }
+    </div>
+
+    <!-- Map -->
+    <div #chart id="graph" class="collab-chart"></div>
+  </div>
+
+  @if (!ror) {
+    <div class="table-container mx-auto mt-4 px-4">
+      <div class="search-bar-row">
+        <span class="search-label">Search:</span>
+        <input type="text" id="filter-text-box" placeholder="Filter..." (input)="onFilterTextBoxChanged($event)" />
+      </div>
+      <div class="ag-grid-wrapper">
+        <ag-grid-angular
+          class="ag-grid-responsive"
+          [rowData]="filteredData"
+          [columnDefs]="columnDefs"
+          (gridReady)="onGridReady($event)"
+          (filterChanged)="onGridFilterChanged()"
+          [tooltipShowDelay]="800"
+          [pagination]="true"
+          [paginationPageSize]="10"
+          [paginationPageSizeSelector]="[10, 25, 50, 75, 100]"
+          [enableCellTextSelection]="true"
+          [components]="frameworkComponents"
+        >
+        </ag-grid-angular>
+      </div>
+      <button class="btn btn-secondary mt-2" (click)="downloadCsv()">Download CSV File</button>
+    </div>
+  } @else {
+    <div class="table-container mt-3 mx-auto">
+      <app-site-publications [rorId]="ror"></app-site-publications>
+    </div>
+  }
+</app-n3c-loader>
+
+<app-dashboard-footer></app-dashboard-footer>

@@ -1,0 +1,91 @@
+{
+  "supplSource": "",
+  "titleMap": {
+    "section1": {
+      "bar": "Counts of Patients by Sex",
+      "percent": "Sex Percentages of Patients",
+      "pie": "Sex Percentages of Patients"
+    },
+    "section2": {
+      "bar": "Counts of Patients by COVID Status",
+      "percent": "COVID Status Percentages of Patients",
+      "pie": "Severity Percentages of COVID+ Patients in the Enclave linked to Medicaid"
+    },
+    "section3": {
+      "bar": "Counts of Patients by Long COVID Status",
+      "percent": "Long COVID Status Percentages of Patients",
+      "pie": "Long COVID Status Percentages of COVID+ Patients in the Enclave linked to Medicaid"
+    },
+    "section4": {
+      "bar": "Vaccination Status Percentages of Patients",
+      "percent": "Vaccination Status Percentages of Patients",
+      "pie": "Vaccination Status Percentages of COVID+ Patients in the Enclave linked to Medicaid"
+    },
+    "section5": {
+      "bar": "Counts of Patients by Mortality",
+      "percent": "Mortality Percentages of Patients",
+      "pie": "Mortality Percentages of COVID+ Patients in the Enclave linked to Medicaid"
+    },
+    "section6": {
+      "bar": "Counts of Patients by Comorbidity",
+      "percent": "Comorbidity Percentages of Patients",
+      "pie": "Mortality Percentages of COVID+ Patients in the Enclave linked to Medicaid"
+    }
+  },
+  "filterGroupNames": {
+    "section1": "sex",
+    "section2": "covidstatus",
+    "section3": "longcovidstatus",
+    "section4": "vaccinationstatus",
+    "section5": "mortalitystatus",
+    "section6": "comorbidity"
+  },
+  "chartTotals": {
+    "section1": "sexTotals",
+    "section2": "covidStatusTotals",
+    "section3": "longCovidStatusTotals",
+    "section4": "vaccinationStatusTotals",
+    "section5": "mortalityTotals",
+    "section6": "comorbidityTotals"
+  },
+  "colorScheme": {
+    "section1": "sexRange",
+    "section2": "covidStatusRange",
+    "section3": "longStatusRange",
+    "section4": "vaccinationStatusRange",
+    "section5": "mortalityRange",
+    "section6": "comorbidityRange"
+  },
+  "numCharts": 10,
+  "kpiPanelConfig": [
+    {
+      "separator": true,
+      "items": [
+        {
+          "title": "Total Patients in Enclave",
+          "value": "numTPIE",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Patients in the N3C Data Enclave",
+          "tooltipContent": "<p>Total Number of Individual Persons within the N3C Data Enclave.</p>",
+          "footer": "Data as of Jul 26, 2024 (v182)",
+          "limitationsLink": "limitations"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Total Patients in View",
+          "value": "numTPIV",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Patients Prescribed Metformin in View",
+          "tooltipContent": "<p>Total Number of Individuals within the view.</p><small class='kpi-small-note'>Note that if a patient has had multiple comorbidities they will be counted multiple times in this data.</small>",
+          "progress": {
+            "value": 100.0,
+            "tooltip": "100% in View"
+          }
+        }
+      ]
+    }
+  ]
+}

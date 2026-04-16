@@ -1,0 +1,92 @@
+<div class="accordion" id="limitations">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="mb-0">
+        <button
+          class="filter_drop_button btn btn-link btn-block text-left"
+          type="button"
+          (click)="toggleCollapse()"
+          [attr.aria-expanded]="isExpanded"
+          [ngClass]="{collapsed: !isExpanded}"
+          aria-controls="limitations_body"
+        >
+          <h3>Limitations</h3>
+          <span class="float-right">
+            <i class="fas" [ngClass]="isExpanded ? 'fa-minus' : 'fa-plus'"></i>
+          </span>
+        </button>
+      </h2>
+    </div>
+  </div>
+  <div
+    [ngClass]="{collapse: !isExpanded, show: isExpanded}"
+    id="limitations_body"
+    aria-labelledby="limitations_heading"
+    data-parent="#limitations"
+  >
+    <div class="card-body">
+      <blockquote *ngIf="config">
+        <p *ngIf="config.intro" class="mb-5">
+          <strong>{{ config.intro }}</strong>
+        </p>
+
+        <div *ngFor="let section of config.sections" class="mb-3">
+          <p class="list-p">
+            <strong class="lim-head">{{ section.header }}</strong>
+            <span *ngIf="section.inline" [innerHTML]="' ' + section.description"></span>
+          </p>
+          <p class="list-p" *ngIf="!section.inline" [innerHTML]="section.description"></p>
+
+          <!-- Dynamically Render Lists -->
+          <ng-container *ngIf="section.items && section.items.length > 0">
+            <ng-container
+              [ngTemplateOutlet]="renderList"
+              [ngTemplateOutletContext]="{items: section.items, numbered: section.numbered}"
+            ></ng-container>
+          </ng-container>
+        </div>
+      </blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- Recursive Template for Nested Lists -->
+<ng-template #renderList let-items="items" let-numbered="numbered">
+  <ng-container [ngSwitch]="numbered">
+    <!-- Ordered List for numbered sections -->
+    <ol *ngSwitchCase="true">
+      <ng-container *ngFor="let item of items">
+        <ng-container *ngIf="isString(item); else nestedList">
+          <li>{{ item }}</li>
+        </ng-container>
+        <ng-template #nestedList>
+          <ng-container *ngIf="item.items">
+            <!-- Pass the parent 'numbered' state for nested items -->
+            <ng-container
+              [ngTemplateOutlet]="renderList"
+              [ngTemplateOutletContext]="{items: item.items, numbered: item.numbered || false}"
+            ></ng-container>
+          </ng-container>
+        </ng-template>
+      </ng-container>
+    </ol>
+
+    <!-- Unordered List for non-numbered sections -->
+    <ul *ngSwitchDefault>
+      <ng-container *ngFor="let item of items">
+        <ng-container *ngIf="isString(item); else nestedList">
+          <li>{{ item }}</li>
+        </ng-container>
+        <ng-template #nestedList>
+          <ng-container *ngIf="item.items">
+            <!-- Pass the parent 'numbered' state for nested items -->
+            <ng-container
+              [ngTemplateOutlet]="renderList"
+              [ngTemplateOutletContext]="{items: item.items, numbered: item.numbered || false}"
+            ></ng-container>
+          </ng-container>
+        </ng-template>
+      </ng-container>
+    </ul>
+  </ng-container>
+</ng-template>

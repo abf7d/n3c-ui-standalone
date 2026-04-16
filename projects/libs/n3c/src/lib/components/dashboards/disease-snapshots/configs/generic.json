@@ -1,0 +1,69 @@
+{
+  "supplSource": "",
+  "pageName": "",
+  "titleMap": {},
+  "dataFactor": "",
+  "chartTotals": {},
+  "filterGroupNames": {},
+  "colorScheme": {},
+  "numCharts": 10,
+  "groupedBarCharts": [
+    {
+      "title": "Counts of Patients Who Have Been Diagnosed with Cancer by Observation Type and Age",
+      "legendLabel": "Age"
+    },
+    {
+      "title": "Counts of Patients Who Have Been Diagnosed with Cancer by Observation Type and Sex",
+      "legendLabel": "Sex"
+    }
+  ],
+  "kpiPanelConfig": [
+    {
+      "items": [
+        {
+          "title": "Total Patients in Enclave",
+          "value": "numTPIE",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Patients in the N3C Data Enclave",
+          "tooltipContent": "<p>Total Number of Individual Persons within the N3C Data Enclave.</p>",
+          "footer": "Data as of Jul 26, 2024 (v182)",
+          "limitationsLink": "limitations"
+        }
+      ]
+    },
+    {
+      "separator": true,
+      "items": [
+        {
+          "title": "Total COVID+ Patients in Enclave",
+          "value": "numTCP",
+          "icon": "fas fa-user-plus",
+          "tooltipTitle": "Total COVID+ Patients in the N3C Data Enclave",
+          "tooltipContent": "<strong>COVID+ Defined As:</strong><ul class='low-padding-list'><li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li><li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li><li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li></ul>"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Total # Patients w/Disease",
+          "value": "numTPWD",
+          "icon": "fas fa-users",
+          "tooltipTitle": "",
+          "tooltipContent": ""
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Total # Patients <18",
+          "value": "numTPL18",
+          "icon": "fas fa-users",
+          "tooltipTitle": "",
+          "tooltipContent": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+@use '../../../styles/n3c-styles.scss';
+
+.btn-link {
+  border: 1px solid rgb(83, 25, 88);
+  color: #fff;
+  background-color: rgb(83, 25, 88);
+  pointer-events: none;
+  text-decoration: none;
+}
+
+/* Target the accordion headers */
+/* Use higher specificity to override Angular Material's styles */
+::ng-deep .accordion .mat-expansion-panel-header .mat-expansion-panel-header-title {
+  color: #1570ba !important;
+  font-weight: bold;
+}
+
+::ng-deep .accordion .mat-expansion-panel-header.mat-expansion-panel-header {
+  padding: 2rem !important;
+  color: #1570ba !important;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* Add underline on hover */
+::ng-deep .accordion .mat-expansion-panel-header.mat-expansion-panel-header:hover {
+  text-decoration: underline;
+}
+
+/* Remove default focus outline for better appearance */
+.accordion .mat-expansion-panel-header.mat-expansion-panel-header:focus {
+  outline: none;
+}
+
+/* Customize the panel content padding */
+::ng-deep .accordion .mat-expansion-panel-body {
+  padding: 0.5rem 1.5rem 1.2rem 1.5rem !important; /* top right bottom left */
+}
+
+::ng-deep strong {
+  font-weight: bold;
+}

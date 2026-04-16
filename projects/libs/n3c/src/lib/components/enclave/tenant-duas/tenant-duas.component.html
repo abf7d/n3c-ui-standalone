@@ -1,0 +1,51 @@
+<div class="container-all">
+  <app-header-view></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide" id="about_container">
+      <div class="pt-3">
+        <p><a [routerLink]="['/education/']">Home</a> > {{ pageContent?.header }}</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <div class="col-12">
+          <div class="col-12 page-title">
+            <h1>{{ pageContent?.header }}</h1>
+            <div [innerHTML]="pageContent?.block1"></div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="col-12 p-0">
+            <!-- DEBUGGING -->
+            <!-- <pre>{{rowData | json}}</pre> -->
+            <div class="search-container">
+              <div class="input-container">
+                <span>Search:</span>
+                <input type="text" id="filter-text-box" placeholder="" (input)="onFilterTextBoxChanged()" />
+              </div>
+            </div>
+            <ag-grid-angular
+              style="width: 100%; height: 100%"
+              [rowData]="rowData?.rows"
+              [columnDefs]="columnDefs"
+              [components]="frameworkComponents"
+              [defaultColDef]="defaultColDef"
+              domLayout="autoHeight"
+              [headerHeight]="48"
+              [tooltipShowDelay]="800"
+              [pagination]="true"
+              [paginationPageSize]="paginationPageSize"
+              [paginationPageSizeSelector]="paginationPageSizeSelector"
+              (gridReady)="onGridReady($event)"
+            >
+            </ag-grid-angular>
+          </div>
+        </div>
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

@@ -1,0 +1,46 @@
+{
+  "intro": "This data contains all patients within the N3C Data Enclave.",
+  "sections": [
+    {
+      "header": "The race and ethnicity",
+      "description": "of patients are adjusted to standard categories based on self-reported fields within the EHR.",
+      "inline": true,
+      "items": [
+        "Note that the EHRs do not always contain all of the information on race and ethnicity, and patients may not self-report a response that can be fully mapped into one of the standard categories. The patient would fall into the \"Unknown\" category in these cases."
+      ]
+    },
+    {
+      "header": "The sex",
+      "description": "of patients is determined based on self-reported fields within the EHR.",
+      "inline": true,
+      "items": [
+        "Note that the EHRs do not always contain all of the information on sex; if a patient's EHR does not contain data on their sex, they will fall into the \"Unknown\" category.",
+        "If a patient records any response other than \"Female\" or \"Male\" they would be mapped into the \"Other\" category."
+      ]
+    },
+    {
+      "header": "General Enclave Limitations",
+      "items": [
+        "“Sicker” patients will likely be overrepresented within the N3C Data Enclave, as sicker patients will more often seek out and receive care at clinical centers.",
+        "The N3C may have multiple contributors to data “missingness”. Clinical facts and events that occur in the real world may not be captured for reasons including:",
+        {
+          "items": [
+            "The event was recorded at a clinical site that does not contribute data",
+            "Data is not yet linked across sites",
+            "Medical records are inherently incomplete"
+          ]
+        },
+        "Some of the external datasets that have been used for analysis cannot be fully mapped due to issues such as missing measurement units.",
+        "All dates within the Enclave have been shifted between -3 to 45 days to ensure that reidentification is not possible.",
+        "N3C data may not be representative of the entire US population",
+        {
+          "items": [
+            "N3C does NOT have a representative sample of any state, as data is contributed from only a few providers in each region (Region - includes multiple states)."
+          ]
+        },
+        "Cell sizes smaller than 20 people have been suppressed",
+        "For COVID+ patients: A patient is only counted once in this data, even if they have multiple positive tests over time. Except in instances where dashboards focus on reinfection, only dates of first infection are utilized."
+      ]
+    }
+  ]
+}

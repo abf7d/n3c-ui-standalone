@@ -1,0 +1,66 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide" id="about_container">
+      <div class="pt-3">
+        <p><a [routerLink]="['/covid']">Home</a> > {{ contentResponse?.header }}</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <h1>{{ contentResponse?.header }}</h1>
+        @if (contentResponse) {
+          <div class="flex justify-content-center flex-wrap">
+            @for (tile of navTilesData; track tile; let i = $index) {
+              <div class="tile center">
+                <div class="center">
+                  <h4 [innerHTML]="tile?.header"></h4>
+                </div>
+                <img class="img-fluid" [src]="navTileImages[i]" />
+                <div class="center">
+                  <a [href]="tile?.url">
+                    {{ tile?.url_label }}
+                  </a>
+                </div>
+              </div>
+            }
+          </div>
+        }
+
+        @if (contentResourceJoinBlock) {
+          <div class="shadow-block">
+            <div class="row align-items-center">
+              <div class="col-12 col-md-8 mb-3 mb-md-0">
+                <h2 [innerHTML]="contentResponseJoinBlock?.header"></h2>
+                <div [innerHTML]="contentJoinBlock"></div>
+              </div>
+              <div class="col-12 col-md-4 text-center">
+                <img [src]="contentResourceJoinBlock[0]" />
+              </div>
+            </div>
+          </div>
+        }
+
+        <h2 [innerHTML]="contentResponse?.header2" id="enclave-contribution"></h2>
+        @for (rowItem of contentResourceStep; track rowItem; let i = $index) {
+          <div class="row mb-4">
+            <div class="col-2 col-sm-1">
+              <img class="img-fluid" [src]="rowItem.images.thumbnail.url" />
+            </div>
+            <div class="col-10 col-sm-11">
+              <h4 [innerHTML]="rowItem?.header" [attr.id]="i === 2 ? 'IRB' : null"></h4>
+              <div [innerHTML]="rowItem?.content"></div>
+              @if (rowItem?.url) {
+                <a [href]="rowItem?.url">{{ rowItem?.url_label }}</a>
+              }
+            </div>
+          </div>
+        }
+        <div [innerHTML]="contentNoteBlock"></div>
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

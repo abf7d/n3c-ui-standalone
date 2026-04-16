@@ -1,0 +1,109 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide">
+      <div class="pt-3 breadcrumb-container">
+        <p><a [routerLink]="['/covid']">Home</a> > N3C Domain Teams</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        @if (pageData && !isEmptyObject(pageData)) {
+          <h1>N3C Domain Teams: {{ pageData.name }}</h1>
+          <div class="row mb-4">
+            <div class="col-12 col-md-9">
+              <div [innerHTML]="pageData.description"></div>
+            </div>
+            @if (pageData?.join_link_text) {
+              <div class="col-12 col-md-3 d-flex flex-column justify-content-end align-items-center text-center">
+                <img
+                  class="img-fluid max-width-75"
+                  src="{{ n3cUrls.strapiUrl }}/uploads/domain_team_large_e01f44bd33.png"
+                />
+                <br />
+                <a href="{{ pageData?.join_url }}">{{ pageData?.join_link_text }}</a>
+              </div>
+            }
+          </div>
+
+          <div class="row">
+            @if (pageData?.you_tube_videos?.length > 0) {
+              @for (rowItem of pageData.you_tube_videos; track rowItem) {
+                <div class="col-12 col-md-6">
+                  <h4 [innerHTML]="rowItem.header"></h4>
+                  <div class="video-container">
+                    <iframe [src]="rowItem.url"></iframe>
+                  </div>
+                  <p [innerHTML]="rowItem.footer"></p>
+                </div>
+              }
+            }
+          </div>
+
+          <div class="text-center mb-3">
+            <b>First Time Users:</b> To get started with N3C and gain access to the N3C Data Enclave, please view the
+            <a [routerLink]="['/covid/researcher-essentials']">Researcher Essentials</a> webpage.
+            <br />
+            <b>For Questions or Comments:</b> Please access the
+            <a href="https://n3c-help.atlassian.net/servicedesk/customer/portal/2">N3C Support Desk</a> and click on
+            "Request Domain Team Support".
+          </div>
+
+          <div class="row">
+            <div class="card col-12 col-md-4 shade">
+              <div class="text-center">
+                <img src="{{ n3cUrls.strapiUrl }}/uploads/google_drive_icon_e8da764271.png" />
+              </div>
+              <div class="text-center">
+                Google Drive:<br />
+                <a href="{{ pageData.google_drive_url }}"> {{ pageData.google_drive_link_text }}</a>
+              </div>
+            </div>
+            <div class="card col-12 col-md-4 shade">
+              <div class="text-center">
+                <img src="{{ n3cUrls.strapiUrl }}/uploads/google_groups_icon_0e3b50f8c7.png" />
+              </div>
+              <div class="text-center">
+                Google Group:<br /><a href="mailto:{{ pageData.google_group_email }}">{{
+                  pageData.google_group_email
+                }}</a>
+              </div>
+            </div>
+            <div class="card col-12 col-md-4 shade">
+              <div class="text-center">
+                <img src="{{ n3cUrls.strapiUrl }}/uploads/slack_logo_558139438e.png" />
+              </div>
+              <div class="text-center">
+                Slack Channel:<br /><a href="{{ pageData.slack_url }}">Join the Conversation</a>
+              </div>
+            </div>
+          </div>
+          <h2>Leadership</h2>
+          <div class="row">
+            @for (rowItem of pageData.leads.data; track rowItem) {
+              <div class="col-12 col-md-3 mb-3">
+                <div class="text-center">
+                  <img
+                    class="img-fluid mb-2"
+                    src="{{ n3cUrls.strapiUrl }}{{ rowItem.attributes.headshot.data.attributes.url }}"
+                  />
+                </div>
+                <div class="text-center">
+                  {{ rowItem.attributes.first_name }} {{ rowItem.attributes.last_name }},
+                  @if (rowItem.attributes.title) {
+                    {{ rowItem.attributes.title }}
+                  }
+                  <br />
+                  {{ rowItem.attributes.organization }}
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

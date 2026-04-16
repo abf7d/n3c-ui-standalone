@@ -1,0 +1,304 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide">
+      <div class="pt-3 mx-5p">
+        <p><a [routerLink]="['/']">Home</a> > N3C Landing Page</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <div class="col-12" [hidden]="dataLoading">
+          <div class="text-center mb-5 mt-2 mx-5p">
+            <img class="img-fluid" src="{{ n3cUrls.strapiUrl }}/uploads/medium_N3_C_logo_9d22594105.jpg" />
+          </div>
+
+          <div class="row shadow-block mb-5 mx-5p">
+            <div class="col-md-9" [innerHTML]="intro"></div>
+            <div class="col-md-3 text-center">
+              <img
+                class="n3c-logo d-block mx-auto mt-2 mb-3"
+                src="{{ n3cUrls.strapiUrl }}/uploads/n3c_logo_circle_large_5b20a24279.png"
+              />
+              <a
+                [routerLink]="['/covid/enclave-essentials/']"
+                class="btn btn-primary btn-n3c active text-nowrap"
+                role="button"
+                aria-pressed="true"
+                >Access the Enclave</a
+              >
+            </div>
+          </div>
+
+          <div class="row mx-5p">
+            <div class="col-12 col-md-4">
+              <img class="img-fluid" src="{{ n3cUrls.strapiUrl }}/uploads/multi_dimensional_summary_cc099821b5.png" />
+            </div>
+            <div class="col-12 col-md-8">
+              <div class="row counts counts-row">
+                <h3>Patient Stats</h3>
+                <div class="row full-width-text">
+                  <div class="col-xs-12 col-sm-6 col-md-3 abt-count">
+                    <h3 class="padding-top-5">
+                      <div #peopleTop></div>
+                    </h3>
+                    <p class="italic-text">Persons</p>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-6 col-md-3 abt-count">
+                    <h3 class="padding-top-5">
+                      <div #casesTop></div>
+                    </h3>
+                    <p class="italic-text">COVID+ Cases</p>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-6 col-md-3 abt-count">
+                    <h3 class="padding-top-5">
+                      <div #rowsTop></div>
+                    </h3>
+
+                    <p class="italic-text">Total Rows</p>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-6 col-md-3 abt-count">
+                    <h3 class="padding-top-5">
+                      <div #obsTop></div>
+                    </h3>
+
+                    <p class="italic-text">Clinical Observations</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row counts counts-row">
+                <h3>Enclave Stats</h3>
+                <div class="row full-width-text">
+                  <div class="col-xs-12 col-sm-6 col-md-3 abt-count">
+                    <h3 class="padding-top-5">
+                      <div #dtasTop></div>
+                    </h3>
+
+                    <p class="italic-text">
+                      <a
+                        class="text-custom"
+                        href="https://ncats.nih.gov/n3c/resources/data-contribution/data-transfer-agreement-signatories"
+                        target="_blank"
+                        >Sites Contributing Data
+                        <i aria-hidden="true" class="fa fa-external-link text-style">&nbsp;</i></a
+                      >
+                    </p>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-6 col-md-3 abt-count">
+                    <h3 class="padding-top-5">
+                      <div #duasTop></div>
+                    </h3>
+
+                    <p class="italic-text">
+                      <a class="text-custom" [routerLink]="['/covid/duas']"
+                        >Researcher Organizations
+                        <i aria-hidden="true" class="fa fa-external-link text-style">&nbsp;</i></a
+                      >
+                    </p>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-6 col-md-3 abt-count">
+                    <h3 class="padding-top-5">
+                      <div #projTop></div>
+                    </h3>
+
+                    <p class="italic-text">
+                      <a class="text-custom" [routerLink]="['/covid/projects']"
+                        >Projects <i aria-hidden="true" class="fa fa-external-link text-style">&nbsp;</i></a
+                      >
+                    </p>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-6 col-md-3 abt-count">
+                    <h3 class="padding-top-5">
+                      <div #teamsTop></div>
+                    </h3>
+
+                    <p class="italic-text">
+                      <a class="text-custom" [routerLink]="['/covid/domain-teams']"
+                        >Domain Teams <i aria-hidden="true" class="fa fa-external-link text-style">&nbsp;</i></a
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 mb-5 text-center mx-5p">
+            <a [routerLink]="['/dashboard']" class="btn btn-primary btn-n3c active" role="button" aria-pressed="true"
+              >Explore the Full N3C Dashboard</a
+            >
+          </div>
+
+          <div class="row main-block shadow-block mb-5 mx-5p">
+            <div class="col-12 col-lg-8">
+              <div [innerHTML]="researchers"></div>
+
+              <div class="row">
+                <div class="col-12 col-md-4 text-center mb-2">
+                  <a
+                    [routerLink]="['/covid/researcher-essentials']"
+                    class="btn btn-primary btn-n3c active"
+                    role="button"
+                    aria-pressed="true"
+                    >Get Started with N3C</a
+                  >
+                </div>
+                <div class="col-12 col-md-4 text-center mb-2">
+                  <a
+                    href="https://national-covid-cohort-collaborative.github.io/guide-to-n3c-v1/"
+                    class="btn btn-primary btn-n3c active"
+                    role="button"
+                    aria-pressed="true"
+                  >
+                    View The Researcher's Guide to N3C</a
+                  >
+                </div>
+                <div class="col-12 col-md-4 text-center">
+                  <a
+                    [routerLink]="['/covid/enclave-essentials']"
+                    class="btn btn-primary btn-n3c active"
+                    role="button"
+                    aria-pressed="true"
+                    >Enclave Introduction</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-4 mt-5">
+              <div class="row">
+                <div class="col-6 text-center">
+                  <img class="img-fluid dimension" src="{{ n3cUrls.strapiUrl }}/uploads/q_and_a_17c3b717ca.png" />
+                  <p><a [routerLink]="['/covid/faq']">FAQs</a></p>
+                </div>
+                <div class="col-6 text-center">
+                  <img class="img-fluid dimension" src="{{ n3cUrls.strapiUrl }}/uploads/support_59099d8075.png" />
+                  <p><a [routerLink]="['/covid/support']">Support</a></p>
+                </div>
+                <div class="col-6 text-center">
+                  <img class="img-fluid dimension" src="{{ n3cUrls.strapiUrl }}/uploads/train2_cc4785961d.png" />
+                  <p><a [routerLink]="['/covid/training']">Training</a></p>
+                </div>
+                <div class="col-6 text-center">
+                  <img class="img-fluid dimension" src="{{ n3cUrls.strapiUrl }}/uploads/more_0dc2eab92a.png" />
+                  <p><a [routerLink]="['/covid/institution-essentials']">More</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mx-5p">
+            <div class="col-12 col-sm-3 text-center mb-3 text-center">
+              <img class="img-fluid max-width-70" src="{{ n3cUrls.strapiUrl }}/uploads/n3c_people_f19931554a.png" />
+            </div>
+            <div class="col-12 col-sm-9">
+              <div class="carousel-container">
+                <app-simple-carousel
+                  [items]="contentResponse?.testimonials?.data || []"
+                  [showArrows]="true"
+                  [showIndicators]="true"
+                >
+                  <ng-template #slide let-testimonial>
+                    <div class="testimonial">
+                      <blockquote class="blockquote">
+                        <div>
+                          <div [innerHtml]="testimonial.attributes.quote"></div>
+                          <div [innerHTML]="testimonial.attributes.author"></div>
+                        </div>
+                      </blockquote>
+                    </div>
+                  </ng-template>
+                </app-simple-carousel>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex">
+            <div class="dashboard_main">
+              <div id="dashboards" class="dashboard-heading">
+                <div class="row container-large m-auto py-2">
+                  <div class="col-12 col-md-8">
+                    <h2>Dashboards in the Spotlight</h2>
+                  </div>
+                </div>
+              </div>
+
+              <div class="carousel-container">
+                <app-simple-carousel [items]="cardGroups" [showArrows]="true" [showIndicators]="true">
+                  <ng-template #slide let-group>
+                    <div class="row">
+                      <div class="col-md-4" *ngFor="let card of group">
+                        <div class="card hover-card_noshadow mb-2" (click)="navigateToPage(card.link)">
+                          <img [src]="card.image" class="card-img-top" alt="..." />
+                          <div class="card-body card-body-links">
+                            <p class="card-title">
+                              <strong>{{ card.title }}</strong>
+                            </p>
+                            <p>{{ card.description }}</p>
+                            <div class="row card-link">
+                              <div class="col col-12">
+                                <a [href]="card.link" tabindex="0">Explore <i class="fas fa-angle-right"></i></a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </app-simple-carousel>
+              </div>
+            </div>
+          </div>
+
+          <img class="img-separator mb-3" src="{{ n3cUrls.strapiUrl }}/uploads/large_new_hero3_c6fa644b1e.png" />
+
+          <div class="text-center">
+            <h2>Domain Teams</h2>
+            <div class="carousel-container" *ngIf="cardChunks.length > 0">
+              <app-simple-carousel [items]="cardChunks" [showArrows]="true" [showIndicators]="true">
+                <ng-template #slide let-chunk>
+                  <div class="row">
+                    <div class="col-md-4" *ngFor="let team of chunk">
+                      <div class="card hover-card_noshadow mb-2">
+                        <div class="card-body card-body-links card-link">
+                          <h3>
+                            <a
+                              [routerLink]="['domain-teams', domainTeams[team.attributes.alias], team.attributes.alias]"
+                            >
+                              {{ team.attributes.name }}
+                            </a>
+                          </h3>
+                          <p class="card-text">{{ team.attributes.summary }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </app-simple-carousel>
+            </div>
+            <p><a [routerLink]="['/covid/domain-teams']">View All Domain Teams</a></p>
+          </div>
+
+          <div class="text-center">
+            <h2>N3C Events</h2>
+
+            <p>
+              <a [routerLink]="['/covid/calendar']">View N3C Calendar</a>
+            </p>
+          </div>
+          <!-- END CONTAINER -->
+        </div>
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer *ngIf="!dataLoading" [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

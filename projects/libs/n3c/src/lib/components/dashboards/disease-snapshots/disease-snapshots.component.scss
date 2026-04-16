@@ -1,0 +1,20 @@
+@use '../../../styles/shared-styles.scss';
+
+.n3c-logo {
+  margin: 0 7px;
+}
+
+.primary-nav {
+  height: 40px;
+  background: #006478;
+  color: #fff;
+}
+
+.viz-mode .fas {
+  cursor: pointer;
+  color: #b6d9ff;
+}
+
+.viz-mode .fas:hover {
+  color: #007bff;
+}

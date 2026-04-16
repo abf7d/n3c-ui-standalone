@@ -1,0 +1,40 @@
+.data-loader {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .data-loader div {
+    position: absolute;
+    border: 4px solid #531958;
+    opacity: 1;
+    border-radius: 50%;
+    animation: data-loader 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+  .data-loader div:nth-child(2) {
+    animation-delay: -0.5s;
+  }
+  @keyframes data-loader {
+    0% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      top: 0px;
+      left: 0px;
+      width: 72px;
+      height: 72px;
+      opacity: 0;
+    }
+  }
+
+  .loading-message {
+    position: absolute;
+    top: 132px;
+    font-size: 14px;
+    width: 105px;
+  }
+  

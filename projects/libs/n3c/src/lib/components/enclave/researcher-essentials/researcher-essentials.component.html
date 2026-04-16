@@ -1,0 +1,90 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide" id="about_container">
+      <div class="pt-3">
+        <p><a [routerLink]="['/covid/']">Home</a> > {{ pageContent?.header }}</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        @if (contentResponseJoinBlock) {
+          <div class="col-xs-8">
+            <h1 class="mb-4">{{ pageContent?.header }}</h1>
+            <div class="row flex-wrap text-center mb-5">
+              @for (tile of pageNavTiles; track tile; let i = $index) {
+                <div class="col-md-3 tile mb-3">
+                  <div class="text-center">
+                    <h4 class="text-nowrap">{{ tile?.header }}</h4>
+                  </div>
+                  <img [src]="navTileThumbs[i]" [alt]="tile.title" />
+                  <div class="text-center">
+                    <a [href]="tile?.url">{{ tile?.url_label }}</a>
+                  </div>
+                </div>
+              }
+            </div>
+            <div class="shadow-block mb-5">
+              <div class="row">
+                <div class="col-12 col-md-9 px-4">
+                  <h2 [innerHTML]="contentResponseJoinBlock?.header"></h2>
+                  <div [innerHTML]="contentJoinBlock"></div>
+                </div>
+                <div class="col-12 col-md-3 text-center">
+                  <img class="auto-image" [src]="contentResourceJoinBlock[0]" />
+                </div>
+              </div>
+              <div class="row mt-3 px-4 text-center">
+                <a
+                  href="https://national-covid-cohort-collaborative.github.io/guide-to-n3c-v1/"
+                  class="btn btn-primary btn-n3c active"
+                  role="button"
+                  aria-pressed="true"
+                >
+                  View The Researcher's Guide to N3C</a
+                >
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-12 col-md-3 text-center">
+                <img class="auto-image" [src]="contentResourceAccessBlock[0]" />
+              </div>
+              <div class="col-12 col-md-9">
+                <h4 [innerHTML]="contentResponseAccessBlock?.header" id="enclave-access"></h4>
+                <div [innerHTML]="contentAccessBlock"></div>
+              </div>
+            </div>
+            <div class="row block mb-4">
+              <div class="col-12 col-md-3 order-1 order-md-last text-center">
+                <img class="auto-image" [src]="contentResourceDomainBlock[0]" />
+              </div>
+              <div class="col-12 col-md-9 order-2 order-md-first">
+                <h2 [innerHTML]="contentResponseDomainBlock?.header" id="domain-teams"></h2>
+                <div [innerHTML]="contentDomainBlock"></div>
+                <a
+                  [href]="contentResponseDomainBlock?.url"
+                  class="btn btn-primary btn-n3c active"
+                  role="button"
+                  aria-pressed="true"
+                  >{{ contentResponseDomainBlock?.url_label }}</a
+                >
+              </div>
+            </div>
+            <div class="row block mb-4">
+              <div class="col-12 col-md-3 text-center">
+                <img class="auto-image" src="{{ n3cUrls.strapiUrl }}/uploads/n3c_documents_088e3d5519.png" />
+              </div>
+              <div class="col-12 col-md-9">
+                <h4 [innerHTML]="contentResponseGovernanceBlock?.header" id="governance-documents"></h4>
+                <div [innerHTML]="contentGovernanceBlock"></div>
+              </div>
+            </div>
+          </div>
+        }
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

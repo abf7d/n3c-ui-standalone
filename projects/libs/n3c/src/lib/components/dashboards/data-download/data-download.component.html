@@ -1,0 +1,52 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<nav class="primary-nav navbar navbar-expand-lg p-0"></nav>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" [routerLink]="['/dashboard']">
+    <img src="./assets/n3c/images/n3c_logo.png" width="30" height="30" class="d-inline-block n3c-logo" alt="N3C logo" />
+    N3C Dashboards
+  </a>
+</div>
+<nav class="ms-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboards</a></li>
+    <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">Data Download</li>
+  </ol>
+</nav>
+
+<app-n3c-loader [showError]="showError" [loading]="dataLoading">
+  <div class="row">
+    <div class="col-12">
+      <div class="container content download-grid-container container-large pos-relative fixed-table-width">
+        <h2 class="title">N3C Dashboard Data Downloads</h2>
+
+        <div class="search-container">
+          <div>
+            The data used to populate the various visualizations, etc. in the N3C Dashboard are available below for
+            download as JSON and CSV
+          </div>
+          <div>
+            <input type="text" id="filter-text-box" placeholder="Filter..." (input)="onFilterTextBoxChanged()" />
+          </div>
+        </div>
+        <ag-grid-angular
+          style="width: 100%"
+          [rowData]="gridData"
+          [columnDefs]="columnDefs"
+          [headerHeight]="0"
+          [tooltipShowDelay]="800"
+          [pagination]="true"
+          [paginationPageSize]="10"
+          [paginationPageSizeSelector]="[10, 20, 50, 100]"
+          [defaultColDef]="defaultColDef"
+          [components]="frameworkComponents"
+          (gridReady)="onGridReady($event)"
+          [domLayout]="'autoHeight'"
+        >
+        </ag-grid-angular>
+      </div>
+    </div>
+  </div>
+</app-n3c-loader>
+
+<app-dashboard-footer></app-dashboard-footer>

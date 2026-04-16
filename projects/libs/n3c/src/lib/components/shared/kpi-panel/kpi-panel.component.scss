@@ -1,0 +1,61 @@
+.kpi-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.kpi-column {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+
+  &.kpi-separator {
+    border-right: 2px solid #d0e3f6;
+  }
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+/* Styling for nested rows */
+.nested-rows {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.nested-row {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.kpi-row {
+  flex: 1;
+  display: flex;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .kpi-panel {
+    flex-direction: column;
+  }
+
+  .kpi-column {
+    flex: 1 1 100%;
+    border-right: none;
+  }
+}
+
+.kpi-section {
+  background: #edf6ff;
+  font-weight: 600;
+  padding: 15px;
+}

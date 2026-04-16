@@ -1,0 +1,170 @@
+.link {
+  stroke: #c1c1c1;
+  stroke-width: 1px;
+  pointer-events: all;
+}
+
+.node circle {
+  pointer-events: all;
+  stroke: #777;
+  stroke-width: 1px;
+}
+
+div.tooltip {
+  position: absolute;
+  background-color: white;
+  max-width: 200px;
+  height: auto;
+  padding: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  border-width: 1px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+.loading-msg {
+  justify-content: center;
+}
+
+.page-msg {
+  min-height: calc(100vh - 538px);
+  position: relative;
+}
+.error-msg {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  color: red;
+}
+.dur-select {
+  width: auto;
+  border-color: #999;
+  padding: 5px;
+  border-radius: 4px;
+}
+.page-title {
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+}
+.question-description {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  line-height: 1;
+  font-weight: 300;
+  max-width: 750px;
+}
+.page-title {
+  text-align: center;
+}
+.padding-top {
+  padding-top: 63px;
+}
+.tip i {
+  color: #ffd535;
+  font-size: 1.3em;
+}
+
+#filter_checks .card-header {
+  padding: 2px;
+}
+
+#filter_checks .panel-body {
+  border: 2px solid #eeeeee;
+  border-radius: 5px;
+}
+
+#filter_checks .card {
+  border: 0px;
+  background-color: unset;
+}
+
+#filter_checks .card-header {
+  background-color: unset;
+}
+
+#related_dashboards .related-img {
+  opacity: 0.7;
+}
+
+#related_dashboards .card-title {
+  color: #686767;
+}
+
+#related_dashboards .card-body {
+  padding: 10px;
+}
+
+#related_dashboards .card {
+  border: 0px;
+  box-shadow: 4px 4px 15px -2px rgb(197 222 255);
+  -webkit-box-shadow: 4px 4px 15px -2px rgb(197 222 255);
+  -moz-box-shadow: 4px 4px 15px -2px rgba(197, 222, 255, 1);
+}
+
+.side-col h4 {
+  font-weight: 300;
+}
+
+@media only screen and (max-width: 1400px) {
+  .side-col .card-body {
+    padding: 0px;
+  }
+}
+
+.container.content {
+  margin-bottom: 100px;
+  padding-top: 20px;
+}
+
+@media (min-width: 1200px) {
+  .container-large {
+    max-width: 100%;
+  }
+}
+
+.breadcrumbs {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.left-spaced {
+  margin-left: 20px;
+}
+
+.primary-nav {
+  height: 40px;
+  background: #006478;
+  color: #fff;
+}
+.legend {
+  width: 500px;
+  margin-top: 20px;
+  display: flex;
+}
+.zindex2 {
+  z-index: 2;
+  position: relative;
+}
+.zindex1 {
+  position: relative;
+  z-index: 1;
+}
+.n3c-logo {
+  margin: 0 7px;
+}
+
+.css-dropdown {
+  position: relative;
+  > .dropdown-menu {
+    display: none;
+    right: 0;
+    left: auto;
+    top: 100%;
+  }
+  &:hover > .dropdown-menu,
+  &:focus-within > .dropdown-menu {
+    display: block;
+  }
+}

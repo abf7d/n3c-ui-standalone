@@ -1,0 +1,105 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<nav class="primary-nav navbar navbar-expand-lg p-0"></nav>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" [routerLink]="['/dashboard']">
+    <img
+      src="./assets/n3c/images/n3c_logo.png"
+      width="30"
+      height="30"
+      class="d-inline-block n3c-logo"
+      alt="N3C logo"
+    />N3C Dashboards
+  </a>
+</div>
+<nav class="ms-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboards</a></li>
+    <li class="breadcrumb-item">
+      <a id="dashboard_breadcrumb" [routerLink]="['/dashboard/timeline']">Cumulative and Average COVID+ Cases </a>
+    </li>
+    <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">
+      {{ title }}
+    </li>
+  </ol>
+</nav>
+
+<app-n3c-loader [loading]="dataLoading" [showError]="showError">
+  <div class="container container-large content">
+    <!-- Title and description -->
+    <div class="row mb-3">
+      <div id="ph-dash-top">
+        <h1 class="page-title">Cumulative and Average COVID+ Cases</h1>
+        <div id="question-description" class="section-description heading-text text-max mx-auto">
+          <p>
+            This dashboard allows for the tracking of COVID+ cases in the Enclave. Users can compare both daily and
+            cumulative cases to the 7-day rolling average.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-5">
+      <app-topic-picker
+        [options]="topicOptions"
+        [selectedValue]="selectedTopic"
+        (topicChanged)="onTopicChanged($event)"
+      ></app-topic-picker>
+    </div>
+
+    <div class="row w-75 mx-auto">
+      <div class="row">
+        <!-- KPI Panel Column -->
+        @if (kpiConfigs && kpiConfigs.length > 0) {
+          <div class="mb-4">
+            <app-kpi-panel [kpiConfigs]="kpiConfigs"></app-kpi-panel>
+          </div>
+        }
+
+        <div #chartContainer></div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="secondary-description">
+              <p>
+                <strong>Sample: </strong>
+                <span class="tooltip-wrapper" [class.active]="isTooltipOpen">
+                  <u (click)="toggleTooltip()"> COVID+ patients <i class="fa fa-info" aria-hidden="true"></i> </u>
+                  <span class="tooltip-box" role="tooltip">
+                    <div class="tooltip-title">COVID+ Defined As:</div>
+                    <ul>
+                      <li>Laboratory-confirmed positive COVID-19 PCR or Antigen test</li>
+                      <li>(or) Laboratory-confirmed positive COVID-19 Antibody test</li>
+                      <li>(or) Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded</li>
+                    </ul>
+                  </span>
+                </span>
+
+                <span class="sr-only">
+                  , or patients who have had, a laboratory-confirmed positive COVID-19 PCR or Antigen test, a
+                  laboratory-confirmed positive COVID-19 Antibody test, or a Medical visit in which the ICD-10 code for
+                  COVID-19 (U07.1) was recorded
+                </span>
+                &nbsp;in the N3C Data Enclave. Note that N3C data may not be representative of the entire US population.
+                For additional information,
+                <a [routerLink]="[]" fragment="limitations">see limitations below</a>.
+              </p>
+              <em
+                >Hover over the graph to show the counts for that day. Click and drag to focus on a specific time range.
+                Double click to revert to the default time range.</em
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- DataTable --------------------------------------------------------------------------------------- -->
+        <div class="ag-panel">
+          <app-data-grid [rowData]="patientData" [columnDefs]="columnDefs" [gridOptions]="gridOptions"> </app-data-grid>
+        </div>
+
+        <app-limitations [config]="limitationsConfig"></app-limitations>
+      </div>
+    </div>
+  </div>
+</app-n3c-loader>
+<app-dashboard-footer></app-dashboard-footer>

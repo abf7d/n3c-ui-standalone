@@ -1,0 +1,43 @@
+<div class="d-flex justify-content-between align-items-center mb-3 position-relative">
+  <h2 class="h5 mb-0 title">{{ title }}</h2>
+
+  <div class="position-relative">
+    <button
+      type="button"
+      class="btn btn-sm btn-light dropdown-toggle border"
+      (click)="toggleMenu()"
+      aria-haspopup="true"
+      [attr.aria-expanded]="showMenu"
+    >
+      <i class="fas fa-download"></i>
+    </button>
+
+    @if (showMenu) {
+      <div class="dropdown-menu show dropdown-pos">
+        <a class="dropdown-item" (click)="saveAs('jpg')">Save as JPG</a>
+        <a class="dropdown-item" (click)="saveAs('png')">Save as PNG</a>
+        <a class="dropdown-item" (click)="saveAs('svg')">Save as SVG</a>
+      </div>
+    }
+  </div>
+</div>
+
+<div #chartWrapper class="chart-wrapper">
+  <!-- Legend -->
+  @if (legendLabel) {
+    <div class="row" id="filters">
+      <div class="col-12 mb-2">
+        <h6 class="mb-1 fw-bold"><i class="fas fa-filter me-1" aria-hidden="true"></i>{{ legendLabel }} Legend</h6>
+      </div>
+
+      @for (item of legendItems; track item.label) {
+        <div class="col-6 col-lg-3 mb-1 legend" (click)="onLegendClick(item.label)">
+          <i class="fas fa-circle me-1" [ngStyle]="{color: item.color}" aria-hidden="true"></i>
+          {{ item.label }}
+        </div>
+      }
+    </div>
+  }
+
+  <div #chart class="grouped-bar-chart"></div>
+</div>

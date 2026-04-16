@@ -1,0 +1,226 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<nav class="primary-nav navbar navbar-expand-lg p-0"></nav>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" [routerLink]="['/dashboard']">
+    <img src="./assets/n3c/images/n3c_logo.png" width="30" height="30" class="d-inline-block n3c-logo" alt="N3C logo" />
+    N3C Dashboards
+  </a>
+</div>
+<nav class="ms-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboards</a></li>
+    <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">N3C Publications</li>
+  </ol>
+</nav>
+
+<app-n3c-loader [loading]="dataLoading" [showError]="showError">
+  <div class="container">
+    <div class="row">
+      <div class="container container-large content">
+        <div class="row stats block2 mx-auto">
+          <div class="col-12">
+            <div class="row block1">
+              <div class="col-12">
+                <h1 class="page-title">N3C Publications</h1>
+              </div>
+
+              <p>
+                Team science and attribution are central to the N3C's mission.&nbsp;Because of this, N3C strives to
+                create a conducive environment for research publication by providing&nbsp;hands-on assistance during the
+                manuscript preparation process and by highlighting research dissemination&nbsp;in both traditional and
+                non-traditional venues, including academic journals, preprint forums,&nbsp;and public presentations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row" style="margin-top: 30px">
+          <!-- table  -->
+          <div class="col col-12 col-lg-12">
+            <div id="publications-panel" class="col-12 col-md-12 mx-auto mb-4 panel">
+              <div id="publications-simple" class="table-section" style="display: block">
+                <div id="pub_table_section">
+                  <div style="text-align: center; margin-bottom: 30px">
+                    <div class="form-check form-check-inline publication">
+                      <input
+                        name="pub_type"
+                        class="form-check-input filter"
+                        type="checkbox"
+                        id="inlineCheckbox1"
+                        value="Publication"
+                        (change)="onFilterChange($event)"
+                      />
+                      <label class="form-check-label" for="inlineCheckbox1"
+                        ><i class="fas fa-book-open" aria-hidden="true"></i> Publication ({{ pubCount() }})</label
+                      >
+                    </div>
+                    <div class="form-check form-check-inline preprint">
+                      <input
+                        name="pub_type"
+                        class="form-check-input filter"
+                        type="checkbox"
+                        id="inlineCheckbox2"
+                        value="Preprint"
+                        (change)="onFilterChange($event)"
+                      />
+                      <label class="form-check-label" for="inlineCheckbox2"
+                        ><i class="fas fa-file" aria-hidden="true"></i> Preprint ({{ preprintCount() }})</label
+                      >
+                    </div>
+                    <div class="form-check form-check-inline presentation">
+                      <input
+                        name="pub_type"
+                        class="form-check-input filter"
+                        type="checkbox"
+                        id="inlineCheckbox3"
+                        value="Presentation"
+                        (change)="onFilterChange($event)"
+                      />
+                      <label class="form-check-label" for="inlineCheckbox3"
+                        ><i class="fas fa-microphone" aria-hidden="true"></i> Presentation ({{
+                          presentationCount()
+                        }})</label
+                      >
+                    </div>
+                  </div>
+
+                  <div class="row pageDropdown-search" style="margin-top: 10px">
+                    <div class="col col-12 col-lg-6 side-col">
+                      <div class="dataTables_length" id="publications_table_length">
+                        <label
+                          >Show
+                          <select
+                            name="publications_table_length"
+                            aria-controls="publications_table"
+                            (change)="onItemsPerPageChange($event)"
+                          >
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="75">75</option>
+                            <option value="100">100</option>
+                          </select>
+                          entries
+                        </label>
+                      </div>
+                    </div>
+
+                    <!-- search button  -->
+                    <div class="col col-12 col-lg-6 side-col">
+                      <div class="search-container" style="text-align: right; margin-bottom: 10px">
+                        <label for="searchInput" class="search-label">Search:</label>
+                        <input
+                          type="text"
+                          id="searchInput"
+                          [(ngModel)]="searchTerm"
+                          placeholder="title, author, journal ..."
+                          (input)="onSearch()"
+                          class="search-input"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="publications-list" class="text-max mx-auto" style="margin-top: 10px">
+                    <div id="publications_table_wrapper" class="dataTables_wrapper no-footer">
+                      <div class="datatable_overflow">
+                        <table class="table table-hover" id="publications_table" style="width: 100%; text-align: left">
+                          <tbody>
+                            @for (publication of paginatedPublications; track publication) {
+                              <tr style="position: relative">
+                                <td class="noExport">
+                                  <div class="publication-panel-group panel-group" style="margin-bottom: 0px">
+                                    <div
+                                      class="panel panel-default"
+                                      style="background: none; border: none; box-shadow: none"
+                                    >
+                                      <div class="panel-heading" style="background: none; text-align: left">
+                                        <div class="row">
+                                          <div class="col-12">
+                                            <p class="mb-3 title">{{ publication.title }}</p>
+                                          </div>
+                                          <div class="col-6">
+                                            <p
+                                              class="badge badge-pill"
+                                              [ngClass]="{
+                                                Publication: publication.type === 'Publication',
+                                                Presentation: publication.type === 'Presentation',
+                                                Preprint: publication.type === 'Preprint'
+                                              }"
+                                            >
+                                              {{ publication.type }}
+                                            </p>
+                                          </div>
+                                          <!-- Toggle Button in Bottom-Right of Each Row -->
+                                          <button (click)="toggleDetails(publication)" class="toggle-btn">
+                                            @if (!publication.showDetails) {
+                                              <span>+</span>
+                                            }
+                                            @if (publication.showDetails) {
+                                              <span>-</span>
+                                            }
+                                          </button>
+                                        </div>
+                                      </div>
+                                      <!-- Details section that expands/collapses -->
+                                      @if (publication.showDetails) {
+                                        <div class="panel-body" style="border: none; margin-top: 10px">
+                                          <strong>Date:</strong> {{ publication.date }} <br />
+                                          <strong>Authors:</strong> {{ publication.authors }} <br /><br />
+                                          {{ publication.outlet }} <br />
+                                          <a [href]="publication.url.url" target="_blank">{{ publication.url.url }}</a>
+                                          <br />
+                                        </div>
+                                      }
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                            }
+                          </tbody>
+                        </table>
+
+                        <div class="row" style="margin-top: 10px">
+                          <div class="col col-12 col-lg-6 side-col">
+                            <!-- Entries Info Text -->
+                            <div class="entries-info">
+                              {{ getEntriesInfo() }}
+                            </div>
+                          </div>
+                          <div class="col col-12 col-lg-6 side-col">
+                            <!-- Pagination Controls -->
+                            <div class="pagination">
+                              <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+
+                              @for (page of getPaginationRange(); track page) {
+                                <button (click)="changePage(page)" [class.active]="page === currentPage">
+                                  {{ page }}
+                                </button>
+                              }
+
+                              <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col col-12 col-lg-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-n3c-loader>
+
+<app-dashboard-footer></app-dashboard-footer>

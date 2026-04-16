@@ -1,0 +1,113 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide">
+      <div class="pt-3 breadcrumb-container">
+        <p><a [routerLink]="['/covid/']">Home</a> > N3C Domain Teams</p>
+      </div>
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        @if (!isEmptyObject(pageContent)) {
+          <h1>N3C Domain Teams</h1>
+          <div class="row">
+            <div class="col-12 col-md-2 mb-3 text-center">
+              <img class="img-fluid" src="{{ n3cUrls.strapiUrl }}/uploads/domain_team_large_e01f44bd33.png" />
+            </div>
+            <div class="col-12 col-md-10">
+              <div [innerHTML]="pageContent?.block1"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-6 mb-5">
+              <div [innerHTML]="pageContent?.block2"></div>
+              <div class="row">
+                <div class="col-12 col-md-6 mb-3 text-center">
+                  <a
+                    [routerLink]="['team-creation']"
+                    class="btn btn-primary btn-n3c active"
+                    role="button"
+                    aria-pressed="true"
+                    >Start a Domain Team</a
+                  >
+                </div>
+                <div class="col-12 col-md-6 text-center">
+                  <a
+                    href="https://n3c-help.atlassian.net/servicedesk/customer/portal/2"
+                    class="btn btn-primary btn-n3c active"
+                    role="button"
+                    aria-pressed="true"
+                    >Domain Team Support</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 my-4">
+              <h4>Domain Team Testimonial</h4>
+              <div class="video-container">
+                <iframe
+                  src="https://www.youtube.com/embed/oY2R8A9zrfo?autoplay=0&start=0&rel=0"
+                  frameborder="0"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+          </div>
+          <div class="block">
+            <h2 class="text-center">Domain Teams</h2>
+            <div class="row flex-wrap">
+              @for (rowItem of pageContent.domain_teams.data; track rowItem) {
+                <div class="card col-12 col-sm-6 col-lg-4 mb-4 shade-blue">
+                  <h3>
+                    <a [routerLink]="['domain/' + rowItem.attributes.alias]">{{ rowItem.attributes.name }}</a>
+                  </h3>
+                  <p>{{ rowItem.attributes.summary }}</p>
+                </div>
+              }
+            </div>
+          </div>
+          <div class="block">
+            <h2 class="text-center">Cross Cutting Teams</h2>
+            <div class="row flex-wrap">
+              @for (rowItem of pageContent.cross_cutting_teams.data; track rowItem) {
+                <div class="card col-12 col-sm-6 col-lg-4 mb-4 shade-blue">
+                  <h3>
+                    <a [routerLink]="['cross_cutting/' + rowItem.attributes.alias]">{{ rowItem.attributes.name }}</a>
+                  </h3>
+                  <p>{{ rowItem.attributes.summary }}</p>
+                </div>
+              }
+            </div>
+          </div>
+          <div class="block">
+            <h2 class="text-center">Inactive Domain Teams</h2>
+            <div class="row">
+              @for (rowItem of pageContent.inactive_domain_teams.data; track rowItem) {
+                <div class="card col-12 col-sm-6 col-lg-4 mb-4 shade-blue">
+                  <h3>
+                    <a [routerLink]="['inactive_domain/' + rowItem.attributes.alias]">{{ rowItem.attributes.name }}</a>
+                  </h3>
+                  <p>{{ rowItem.attributes.summary }}</p>
+                </div>
+              }
+            </div>
+          </div>
+          <h2 class="text-center">Domain Teams Calendar</h2>
+          <div class="row">
+            <iframe
+              class="airtable-embed"
+              src="https://outlook.office365.com/calendar/published/d9e5077b3f56440fa9ae05c5b379069d@mail.nih.gov/57f64e81142c4be09f222ef35f798e7216167472848151606365/calendar.html"
+              frameborder="0"
+              onmousewheel=""
+              width="100%"
+              height="100%"
+              style="background: transparent; border: 1px solid #ccc"
+            ></iframe>
+          </div>
+        }
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

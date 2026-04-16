@@ -1,0 +1,109 @@
+.kpi-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  padding: 0 0.5rem;
+  flex-grow: 1;
+  min-height: 100px;
+}
+
+.kpi-row-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 1rem;
+  height: 100%;
+}
+
+/* Column borders based on layout count */
+.kpi-row.six-items .col-3:first-of-type .kpi-container,
+.kpi-row.five-items .col-4.kpi-custom-border-right {
+  border-right: 4px solid #d0e3f6;
+}
+
+.kpi-container a {
+  color: #3f3f3f;
+  text-decoration: none;
+}
+.kpi-container a:hover {
+  text-decoration: none;
+}
+
+.kpi-container:nth-child(1),
+.kpi-container:nth-child(2) {
+  justify-content: center;
+}
+
+.kpi-container:nth-child(4),
+.kpi-container:nth-child(5) {
+  width: calc(50% - 20px);
+}
+
+.kpi-container .kpi {
+  border-radius: 8px;
+  text-align: center;
+  padding: 15px;
+}
+
+/* Title and Tooltip */
+.kpi-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-bottom: 10px;
+}
+
+.kpi-title {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #3f3f3f;
+  margin: 0;
+}
+
+/* KPI Value */
+.panel-heading.kpi_num {
+  text-align: center;
+  font-size: 2rem;
+  color: #007bff;
+  font-weight: 400;
+}
+
+/* Progress Bar */
+.progress {
+  height: 8px;
+  background-color: #e9ecef;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  background-color: #007bff;
+  transition: width 0.3s ease;
+}
+
+/* Footer */
+.data-as-of {
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 0px;
+  font-style: italic;
+}
+
+.kpi-limit,
+.kpi-limit a {
+  cursor: pointer;
+  color: gray;
+  text-align: center;
+  font-size: 0.9em;
+  text-decoration: underline;
+}
+
+.kpi-small-note {
+  color: gray;
+}

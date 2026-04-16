@@ -1,0 +1,19 @@
+@use '../../../styles/n3c-styles.scss';
+
+/* Search Wrapper */
+.search-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+.search-container .input-container span {
+  margin-right: 10px;
+}
+a {
+  color: #1570ba;
+  text-decoration: none;
+  background-color: transparent;
+}

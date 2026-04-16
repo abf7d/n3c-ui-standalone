@@ -1,0 +1,247 @@
+/* General Reset */
+body {
+  margin: 0;
+  font-family: 'Public Sans', sans-serif;
+}
+
+/* Purple Banner */
+#network-branding {
+  background-color: #531958;
+  padding: 5px 0;
+  font-size: 14px;
+}
+
+.masthead-logo {
+  height: 20px;
+  margin-right: 5px;
+}
+
+.masthead-divider {
+  height: 20px;
+  margin: 0 10px;
+}
+
+.masthead-link {
+  font-size: 14px;
+  padding-top: 5px;
+  padding-right: 0.5em;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  text-decoration: none;
+}
+
+.masthead-link:hover {
+  text-decoration: underline;
+}
+
+/* Main Header */
+.brand-container {
+  background: #fff;
+  padding: 30px;
+}
+
+.main-logo {
+  width: 240px;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px; /* Reduced space between menu items */
+}
+
+.nav-item {
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.nav-link {
+  font-family: 'Public Sans', sans-serif;
+  color: #531958;
+  font-size: 16px;
+  font-weight: 500; /* Adjusted to a lighter font weight */
+  text-transform: none; /* Removed all caps, keeps default capitalization */
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  text-decoration: none;
+}
+
+.nav-item .nav-link::after {
+  content: ' ▼';
+  font-size: 12px;
+  margin-left: 5px;
+  text-decoration: none;
+  margin: 0; /* Remove any potential margins causing spacing issues */
+  padding: 0; /* Remove any potential padding */
+  line-height: 1; /* Match the line height of the text */
+  border: none; /* Clear any unintended border styling */
+}
+
+/* Dropdown Subitem Categories */
+.nav-item .dropdown-menu h3 {
+  font-family: 'Public Sans Semi-Bold', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #531958;
+}
+
+/* yellow about button adjustments */
+.about-menu .nav-link {
+  background-color: #d8a900; /* Yellow button color */
+  color: #fff; /* White text */
+  //font-weight: 600; /* Slightly bolder text */
+  border-radius: 20px; /* Rounded corners */
+  padding: 5px 10px; /* Adjust padding for the button look */
+  text-align: center;
+  text-decoration: none;
+}
+
+.about-menu .nav-link:hover {
+  background-color: #c99c00; /* Slightly darker yellow on hover */
+  color: #fff; /* Ensure text remains white */
+  text-decoration: none;
+}
+
+/* Remove the caret for the About menu */
+.about-menu .nav-link::after {
+  content: none; /* Disable the caret */
+}
+
+/* Mobile Header */
+#mobile-header {
+  background: #fff;
+  display: none; /* Hide by default */
+}
+
+.mobile-logo {
+  width: 240px;
+}
+
+.navbar-toggler {
+  border: none;
+  font-size: 30px;
+  color: #531958;
+}
+
+/* Breakpoints */
+@media (max-width: 1250px) {
+  .main-header {
+    display: none; /* Hide desktop header */
+  }
+
+  #mobile-header {
+    display: flex; /* Show mobile header */
+    justify-content: space-between; /* Align logo and menu button */
+    align-items: center;
+    padding: 10px 15px;
+  }
+
+  #mobile-nav {
+    display: block !important;
+  }
+  .expand-only .main-header {display:flex}
+  .expand-only { #mobile-header { display: none } }
+  .expand-only { #mobile-nav { display: none!important; } }
+}
+
+@media (min-width: 1251px) {
+  .main-header {
+    display: flex; /* Show desktop header */
+  }
+
+  #mobile-header {
+    display: none; /* Hide mobile header */
+  }
+
+  #mobile-nav {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .masthead-link .full-name {
+    display: none;
+  }
+
+  .masthead-link .abbreviation {
+    display: inline;
+  }
+  .expand-only .masthead-link .full-name {display:inline}
+  .expand-only { .masthead-link .abbreviation { display: none } }
+}
+
+/* Alignment Fix */
+.main-header {
+  align-items: center;
+}
+
+.navbar-nav {
+  gap: 38px;
+}
+
+.newMark {
+  font-family: 'Public Sans Semi-Bold', sans-serif;
+  color: #64336e;
+  font-size: 18px;
+  font-weight: 800;
+  margin-left: 10px;
+}
+
+.archivedMark {
+  background-color: #998660;
+  padding: 2px 7px;
+  color: #fff;
+  font-size: 14px;
+  margin-left: 5px;
+  border-radius: 3px;
+}
+.menu_container {
+  padding-left: 180px;
+}
+.dropdown-menu {
+  padding: 22px !important;
+}
+
+.nav-link {
+  cursor: pointer;
+}
+.sub-text {
+  font-size: 0.9rem;
+  color: #777;
+}
+.subItemName {
+  font-size: 1.1rem;
+}
+#navbarNav {
+  background: white;
+  z-index: 1;
+  height: 50px;
+  margin-top: -5px;
+  margin-bottom: -5px;
+}
+
+@media (max-width: 1400px) {
+  .about-menu {
+    display: none;
+  }
+}
+
+@media (max-width: 990px) {
+  .expand-only .container.width-fix {
+    max-width: 940px !important;
+  }
+}
+
+.css-dropdown {
+  position: relative;
+  > .dropdown-menu {
+    display: none;
+  }
+  &:hover > .dropdown-menu,
+  &:focus-within > .dropdown-menu {
+    display: block;
+  }
+}

@@ -1,0 +1,57 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide">
+      <div class="pt-3">
+        <p><a [routerLink]="['/clinical-cohort']">Home</a> > {{ pageLabel }}</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <div class="d-flex">
+          <div class="col-12">
+            <!-- Header Block -->
+            <div class="row">
+              <h1>{{ pageContent?.header }}</h1>
+            </div>
+
+            <!-- Intro Block -->
+            <div class="row content-block">
+              <div [innerHTML]="pageContent?.block"></div>
+            </div>
+
+            <div class="row">
+              @for (rowItem of contentResources; track rowItem) {
+                <div class="col-12 col-md-6 content-block">
+                  <div class="row g-2 align-items-start">
+                    <div class="col-12 col-sm-3 text-center">
+                      @if (rowItem.images?.thumbnail?.url) {
+                        <img [src]="rowItem.images.thumbnail.url" alt="Thumbnail image" class="img-fluid w-90" />
+                      }
+                    </div>
+                    <div class="col-12 col-sm-9">
+                      <h4>
+                        <div [innerHTML]="rowItem.header"></div>
+                      </h4>
+                      <div [innerHTML]="rowItem.content"></div>
+                      @if (rowItem.pdfPath) {
+                        <div>
+                          <a [href]="rowItem.pdfPath" target="_blank" rel="noopener noreferrer">
+                            {{ rowItem.url_label }}
+                          </a>
+                        </div>
+                      }
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

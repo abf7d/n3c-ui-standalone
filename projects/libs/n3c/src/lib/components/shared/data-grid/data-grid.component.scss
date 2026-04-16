@@ -1,0 +1,99 @@
+::ng-deep .ag-header-cell-text {            
+    text-overflow: clip !important;
+    overflow: visible !important;
+    white-space: normal !important;
+}
+
+::ng-deep .ag-row-hover .ag-cell-value{
+    background-color: #dff0ff!important;
+}
+.data-container {
+    display: flex;
+    border: none;
+    width: 100%;
+    margin-top: 50px;
+    flex-direction: column; /* Aligns elements vertically */
+}
+
+.custom-theme {
+    width: 100%;
+    height: auto !important; /* Allow dynamic height */
+    overflow: visible; /* Prevent hidden content */
+}
+
+.filter-left {
+    width: 323px;
+}
+.total {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.search-container {
+    margin-bottom: 10px;
+    border: none;
+  }
+
+  .search-box {
+    display: flex; /* Align input and button horizontally */
+    align-items: center; /* Center items vertically */
+    width: 100%; /* Matches the width set by the inline style (e.g., 400px) */
+    box-sizing: border-box; /* Ensures padding is included within the width */
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .search-input {
+    flex: 1; /* Makes the input take the remaining space inside the container */
+    margin: 0; /* Removes any default margin */
+    padding: 0.4rem; /* Adjusts padding for better usability */
+    box-sizing: border-box; /* Ensures padding doesn't increase the width */
+    width: 100%; /* Ensures it spans the full available width */
+    border: 1px solid #ccc; /* Removes the default border */
+    border-radius: 5px;
+  }
+  
+  .search-button {
+    flex-shrink: 0; /* Prevents the button from shrinking */
+    margin-left: 0.5rem; /* Adds space between the input and button */
+    padding: 0.4rem 0.8rem; /* Adjusts padding for aesthetics */
+    cursor: pointer; /* Adds a pointer cursor */
+    box-sizing: border-box; /* Ensures consistent sizing */
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+  }
+  
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .search-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* export as csv button and copy button */
+  .actions {
+    margin: 10px 0;
+  }
+  
+  .actions button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .actions button:hover {
+    background-color: #0056b3;
+  }
+  
+  

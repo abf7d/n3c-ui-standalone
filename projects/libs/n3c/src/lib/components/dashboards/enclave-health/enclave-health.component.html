@@ -1,0 +1,208 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<nav class="primary-nav navbar navbar-expand-lg p-0"></nav>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" [routerLink]="['/dashboard']">
+    <img
+      src="./assets/n3c/images/n3c_logo.png"
+      width="30"
+      height="30"
+      class="d-inline-block n3c-logo"
+      alt="N3C logo"
+    />N3C Dashboards
+  </a>
+</div>
+<nav class="ms-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboards</a></li>
+    <li class="breadcrumb-item">
+      <a id="dashboard_breadcrumb" [routerLink]="['/dashboard/enclave-health']">Enclave Health </a>
+    </li>
+    <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">
+      {{ title }}
+    </li>
+  </ol>
+</nav>
+
+<app-n3c-loader [loading]="dataLoading" [showError]="showError">
+  <div class="container container-large content">
+    <!-- Title and description -->
+    <div class="row mb-3">
+      <div id="ph-dash-top">
+        <h1 class="page-title">Enclave Health</h1>
+        <div id="question-description" class="section-description heading-text text-max mx-auto">
+          <p>
+            This dashboard provides an overview of patient demographics and any comorbidities they might have. A closer
+            focus on maternal health issues is also provided.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <app-topic-picker
+        [options]="topicOptions"
+        [selectedValue]="selectedTopic"
+        (topicChanged)="onTopicChanged($event)"
+      ></app-topic-picker>
+    </div>
+
+    <div class="row stats block2 mx-auto">
+      <div class="col-12">
+        <div class="row" style="margin-top: 30px">
+          <div class="col col-12 col-lg-2 side-col">
+            <div class="panel-heading filter-section">
+              <div class="panel-heading viz-mode">
+                <h4>Display</h4>
+                <i
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Bar Chart"
+                  class="fas fa-hashtag"
+                  aria-hidden="true"
+                  [ngClass]="{'text-primary': displayMode === 'bar', 'text-muted': displayMode !== 'bar'}"
+                  (click)="setDisplayMode('bar')"
+                  >&nbsp;</i
+                >
+                <i
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Percentage Bar Chart"
+                  class="fas fa-percent"
+                  aria-hidden="true"
+                  [ngClass]="{'text-primary': displayMode === 'percent', 'text-muted': displayMode !== 'percent'}"
+                  (click)="setDisplayMode('percent')"
+                  >&nbsp;</i
+                >
+                <i
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  title="Pie Chart"
+                  class="fas fa-chart-pie"
+                  aria-hidden="true"
+                  [ngClass]="{'text-primary': displayMode === 'pie', 'text-muted': displayMode !== 'pie'}"
+                  (click)="setDisplayMode('pie')"
+                  >&nbsp;</i
+                >
+              </div>
+            </div>
+
+            <div class="panel-heading filter-section">
+              <app-data-filters
+                [filterData]="filterMap"
+                [selectedFilters]="selectedFilters"
+                (filterChange)="updateFilters($event)"
+              ></app-data-filters>
+            </div>
+          </div>
+
+          <div class="col col-12 col-lg-10">
+            <!-- KPI Panel Column -->
+            @if (kpiConfigs && kpiConfigs.length > 0) {
+              <div class="mb-4">
+                <app-kpi-panel [kpiConfigs]="kpiConfigs"></app-kpi-panel>
+              </div>
+            }
+
+            <div class="col-12 col-md-12 mx-auto mb-4 panel">
+              <!-- Composite Panels ------------------------------------------------------------------------------------------------- -->
+              @for (row of chartsConfig | slice: 0 : chartsConfig.length; track row; let i = $index) {
+                <div>
+                  @if (i % 2 === 0) {
+                    <div class="row mb-3">
+                      <!-- First Chart in Row -->
+                      @if (chartsConfig[i]) {
+                        <div
+                          [ngClass]="{
+                            'col-12 small-viz-panel': i + 1 === chartsConfig.length,
+                            'col-12 col-md-6 small-viz-panel': i + 1 !== chartsConfig.length
+                          }"
+                        >
+                          <div>
+                            @if (chartsConfig[i].data) {
+                              <app-render-chart
+                                [data]="chartsConfig[i].data"
+                                [colors]="chartsConfig[i].colors"
+                                [title]="chartsConfig[i].title"
+                                [displayMode]="chartsConfig[i].displayMode"
+                                [groupName]="chartsConfig[i].groupName"
+                                (segmentFilterClick)="updateFiltersForCharts($event)"
+                              >
+                                ></app-render-chart
+                              >
+                            }
+                          </div>
+                        </div>
+                      }
+                      <!-- Second Chart in Row -->
+                      @if (chartsConfig[i + 1]) {
+                        <div class="col-12 col-md-6 small-viz-panel">
+                          <div [id]="chartsConfig[i + 1].id">
+                            @if (chartsConfig[i + 1].data) {
+                              <app-render-chart
+                                [data]="chartsConfig[i + 1].data"
+                                [colors]="chartsConfig[i + 1].colors"
+                                [title]="chartsConfig[i + 1].title"
+                                [displayMode]="chartsConfig[i + 1].displayMode"
+                                [groupName]="chartsConfig[i + 1].groupName"
+                                (segmentFilterClick)="updateFiltersForCharts($event)"
+                              >
+                                ></app-render-chart
+                              >
+                            }
+                          </div>
+                        </div>
+                      }
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+
+            <div class="row">
+              <div class="col-12" id="viz_caption">
+                <div class="secondary-description">
+                  @switch (selectedTopic) {
+                    @case ('comorbidities') {
+                      <p>
+                        <strong>Sample:</strong> All Patients in the N3C Data Enclave. Note that if a patient has had
+                        multiple comorbidities, they will be counted multiple times in this data. For additional
+                        information, <a [routerLink]="[]" fragment="limitations">see limitations below</a>.
+                      </p>
+                    }
+                    @case ('demographics') {
+                      <p>
+                        <strong>Sample:</strong> Patients in the N3C Data Enclave who have had a medical visit in which
+                        a maternal health-related condition was recorded. Note that if a patient has had multiple
+                        conditions, they will be counted multiple times in the condition chart only. For additional
+                        information, <a [routerLink]="[]" fragment="limitations">see limitations below</a>.
+                      </p>
+                    }
+                    @case ('outcomes') {
+                      <p>
+                        <strong>Sample:</strong> Patients in the N3C Data Enclave who have had a medical visit in which
+                        a maternal health-related condition was recorded. Note that if a patient has had multiple
+                        conditions, they will be counted multiple times in the condition chart only. For additional
+                        information, <a [routerLink]="[]" fragment="limitations">see limitations below</a>.
+                      </p>
+                    }
+                    @default {}
+                  }
+                </div>
+              </div>
+            </div>
+
+            <!-- DataTable --------------------------------------------------------------------------------------- -->
+            <div class="ag-panel">
+              <app-data-grid [rowData]="filteredData" [columnDefs]="columnDefs" [gridOptions]="gridOptions">
+              </app-data-grid>
+            </div>
+
+            <app-limitations [config]="limitationsConfig"></app-limitations>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-n3c-loader>
+<app-dashboard-footer></app-dashboard-footer>

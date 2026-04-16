@@ -1,0 +1,134 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide">
+      <div class="pt-3">
+        <p><a [routerLink]="['/covid']">Home</a> > N3C Domain Team Creation</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        @if (!isEmptyObject(pageContent)) {
+          <h1>{{ pageContent?.title }}</h1>
+
+          <div class="row g-4 mt-3 g-4 justify-content-center">
+            @for (tile of contentResponseNavTiles; track tile; let i = $index) {
+              <div class="col-12 col-md-3 text-center">
+                <div class="text-center">
+                  <h4 [innerHTML]="tile?.header || tile?.name"></h4>
+                </div>
+                <img [src]="imageUrls[i]" />
+                <div class="text-center">
+                  <a
+                    [routerLink]="getRouterLinkParts(tile.url).link"
+                    [fragment]="getRouterLinkParts(tile.url).fragment"
+                    >{{ tile.url_label }}</a
+                  >
+                </div>
+              </div>
+            }
+          </div>
+
+          <div class="row mt-5">
+            <div class="col-12 col-md-4 order-1 order-md-2 text-center">
+              <img [src]="readyImg[0]" class="auto-image" />
+            </div>
+            <div class="col-12 col-md-8 order-2 order-md-1">
+              <h2>{{ pageContent?.ready_header }}</h2>
+              <div [innerHTML]="pageContent?.ready_block"></div>
+            </div>
+          </div>
+
+          <div class="row mt-5" id="leadership">
+            <div class="col-12 col-sm-6 col-md-4 text-center">
+              <img [src]="leadImg[0]" class="auto-image" />
+            </div>
+            <div class="col-12 col-sm-6 col-md-8">
+              <h2>{{ pageContent?.lead_header }}</h2>
+              <div [innerHTML]="pageContent?.lead_block"></div>
+              <mat-accordion class="accordion">
+                @for (rowItem of pageContent?.lead_faqs?.data; track rowItem) {
+                  <mat-expansion-panel class="accordion-body">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <div [innerHTML]="rowItem?.attributes?.question"></div>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div [innerHTML]="rowItem?.attributes?.answer"></div>
+                  </mat-expansion-panel>
+                }
+              </mat-accordion>
+            </div>
+          </div>
+
+          <div class="row mt-5" id="responsibility">
+            <div class="col-12 col-md-4 order-1 order-md-2 text-center">
+              <img [src]="responsibilityImg[0]" class="auto-image" />
+            </div>
+            <div class="col-12 col-md-8 order-2 order-md-1">
+              <h2 [innerHTML]="pageContent?.responsibility_header"></h2>
+              <div [innerHTML]="pageContent?.responsibility_block"></div>
+              <mat-accordion class="accordion">
+                @for (rowItem of pageContent?.responsibility_faqs?.data; track rowItem) {
+                  <mat-expansion-panel class="accordion-body">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <div [innerHTML]="rowItem?.attributes?.question"></div>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div [innerHTML]="rowItem?.attributes?.answer"></div>
+                  </mat-expansion-panel>
+                }
+              </mat-accordion>
+            </div>
+          </div>
+          <div class="row mt-5" id="resources">
+            <div class="col-12 col-md-4 text-center">
+              <img [src]="resourcesImg[0]" class="auto-image" />
+            </div>
+            <div class="col-12 col-md-8">
+              <h2>{{ pageContent?.resources_header }}</h2>
+              <div [innerHTML]="pageContent?.resources_block"></div>
+              <mat-accordion class="accordion">
+                @for (rowItem of pageContent?.resources_faqs?.data; track rowItem) {
+                  <mat-expansion-panel class="accordion-body">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <div [innerHTML]="rowItem?.attributes?.question"></div>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div [innerHTML]="rowItem?.attributes?.answer"></div>
+                  </mat-expansion-panel>
+                }
+              </mat-accordion>
+            </div>
+          </div>
+
+          <div class="row mt-5" id="guidelines">
+            <div class="col-12 col-md-4 order-1 order-md-2 text-center">
+              <img [src]="guidelineImg[0]" class="auto-image" />
+            </div>
+            <div class="col-12 col-md-8 order-2 order-md-1">
+              <h2>{{ pageContent?.guideline_header }}</h2>
+              <mat-accordion class="accordion">
+                @for (rowItem of pageContent?.guideline_faqs?.data; track rowItem) {
+                  <mat-expansion-panel class="accordion-body">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <div [innerHTML]="rowItem?.attributes?.question"></div>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div [innerHTML]="rowItem?.attributes?.answer"></div>
+                  </mat-expansion-panel>
+                }
+              </mat-accordion>
+            </div>
+          </div>
+        }
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

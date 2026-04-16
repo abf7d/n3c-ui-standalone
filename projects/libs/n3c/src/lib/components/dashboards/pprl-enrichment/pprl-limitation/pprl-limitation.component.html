@@ -1,0 +1,218 @@
+<div class="card-body">
+  <p>
+    <strong
+      >This data contains patients within the Enclave who have been linked to one of three supplemental data sets (CMS,
+      Viral Variants, and Mortality) through the Privacy Preserving Record Linkage (PPRL) initiative.</strong
+    >
+  </p>
+  <p>&nbsp;</p>
+  <p class="list-p"><strong class="lim-head">All PPRL:</strong></p>
+  <ul>
+    <li>
+      Some person_id instances in the Viral Variants and CMS data are absent in the OMOP (Logic Liaison) table
+      representing N3C internal data.
+    </li>
+  </ul>
+  <p class="list-p"><strong class="lim-head">PPRL CMS (Medicaid &amp; Medicare):</strong></p>
+  <ul>
+    <li>
+      <strong>(Labs)</strong> CMS Claims data provided by the data partners do not include lab test results data. It
+      only includes a mention of the lab ordered by a physician, coded as HCPCS or CPT-4, which we consider the lab
+      result data for this analysis.
+    </li>
+    <li>
+      <strong>(Visits: Merged)</strong> Long-term (LT) care claims are submitted monthly. If the claim contains only a
+      one-day difference in claim dates, the visit dates are merged into one so that we do not have multiple visit dates
+      for a single long-term care stay lasting more than a month.
+      <ul>
+        <li>
+          For example, if a patient stayed for multiple months during a long-term stay, we would have individual claims
+          for each calendar month, with a date range ending one day and a subsequent one starting the next. For these
+          instances, the claims would be merged into a single visit.
+        </li>
+      </ul>
+    </li>
+    <li>
+      <strong>(Labs &amp; Medication/Drug)</strong> An * indicates that these numbers have the possibility of changing
+      based on new data generated in planned future raw data analysis.
+    </li>
+  </ul>
+  <p class="list-p">
+    <strong class="lim-head">A COVID-positive patient</strong> is defined as any patient having one of the following
+    within their EHR records:
+  </p>
+  <ol>
+    <li>Laboratory confirmed positive COVID-19 PCR or Antigen test</li>
+    <li>Laboratory confirmed positive COVID-19 Antibody test</li>
+    <li>
+      Medical visit in which the ICD-10 code for COVID-19 (U07.1) was recorded
+      <ul>
+        <li>
+          Condition diagnosis patients have no record of a positive PCR/Antigen or Antibody test within their EHR;
+          however, they were diagnosed with COVID due to the symptoms they displayed.
+        </li>
+      </ul>
+    </li>
+  </ol>
+  <p class="list-p">
+    <strong class="lim-head">A Long COVID patient</strong> is defined as any patient having the ICD-10 code for PASC
+    (U09.9) within their EHR.
+  </p>
+  <ul>
+    <li>
+      Note: The ICD-10 for PASC (U09.9) was not created until October 1, 2021, and any data using this code will be
+      limited to after this date. Therefore, this data is not a full representation of patients diagnosed with Long
+      COVID.
+    </li>
+  </ul>
+  <p class="list-p">
+    <strong class="lim-head">Severity</strong> of COVID-19 is a calculation based on multiple events recorded in a
+    patient's EHR during their medical visit. The severity score for each patient may be inaccurate due to missing
+    information within the EHR. Patients will only be graded on Severity if they have a laboratory-confirmed positive
+    PCR or Antigen test. Below are the definitions of each Severity Category.
+  </p>
+  <ul>
+    <li><strong>Mild</strong> - The patient has no record of Emergency Room visits or hospitalization for COVID-19</li>
+    <li>
+      <strong>ED Visit (not admitted)</strong> - The patient had an Emergency Room (ER) visit for COVID-19, but we have
+      no record of hospitalization (Inpatient) for COVID-19
+    </li>
+    <li>
+      <strong>Moderate Hospitalized</strong> - The patient was hospitalized (Inpatient visit) for COVID-19 AND did not
+      receive ECMO OR Invasive Ventilation
+    </li>
+    <li><strong>Mortality</strong> - The patient’s records show a date of death</li>
+    <li>
+      <strong>Severe Ventilation/ECMO/AKI</strong> - The patient was hospitalized for COVID-19 AND received
+      Extracorporeal membrane oxygen (ECMO) OR received Invasive Ventilation
+    </li>
+    <li>
+      <strong>Unavailable</strong> - Patients who did not have a lab-confirmed positive PCR or Antigen COVID test. This
+      includes patients who were diagnosed only based on the symptoms they displayed or patients who do not have any
+      recorded COVID-19 diagnosis within the Enclave.
+    </li>
+  </ul>
+  <p class="list-p">
+    <strong class="lim-head">The age</strong> of each patient is calculated as of the date of the last data update.
+  </p>
+  <ul>
+    <li>If an age exceeds 89, it will be obscured using a date shift of +/- 10 years.</li>
+    <li>
+      As of 7/15/22, July 1st is used as a placeholder date of birth when there are 0s or nulls in the OMOP person table
+      to avoid biasing towards older age.
+    </li>
+  </ul>
+  <p class="list-p">
+    <strong class="lim-head">The race and ethnicity</strong> of patients are adjusted to standard categories based on
+    self-reported fields within the EHR.
+  </p>
+  <ul>
+    <li>
+      Note that the EHRs do not always contain all of the information on race and ethnicity, and patients may not
+      self-report a response that can be fully mapped into one of the standard categories. The patient would fall into
+      the "Unknown" category in these cases.
+    </li>
+  </ul>
+  <p class="list-p">
+    <strong class="lim-head">The sex</strong> of patients is determined based on self-reported fields within the EHR.
+  </p>
+  <ul>
+    <li>
+      Note that the EHRs do not always contain all of the information on sex; if a patient's EHR does not contain data
+      on their sex, they will fall into the "Unknown" category.
+    </li>
+    <li>
+      If a patient records any response other than "Female" or "Male" they would be mapped into the "Other" category.
+    </li>
+  </ul>
+  <p>
+    <strong class="lim-head">Vaccination</strong> data in the N3C is sparse and represents only EHR-recorded vaccination
+    events at our data partners. The absence of a vaccination record does not mean that a patient is unvaccinated. If a
+    patient were vaccinated at their local pharmacy, doctor's office, or state/federal vaccination site, they would not
+    be represented because these systems do not automatically link to a patient's EHR.
+  </p>
+  <p>
+    Given the known national vaccination rates, it is likely that many, if not most, vaccination events are occurring
+    outside of the academic health systems submitting data. Therefore, patients shown here as "Unknown" may be
+    vaccinated; however, we do not have the records to verify this.
+  </p>
+  <p>
+    Vaccinated patient counts shown here does not mean the patient is fully vaccinated. We consider a vaccinated patient
+    to have at least one dose of Pfizer, Moderna, or Johnson &amp; Johnson COVID-19 vaccines. Given that Pfizer and
+    Moderna require two vaccine doses to be considered fully vaccinated, patients shown here may be partially
+    vaccinated. This same assumption applies to booster shots, as we do not consider shots beyond the first one recorded
+    within the patient's EHR.
+  </p>
+  <p class="list-p"><strong class="lim-head">Mortality</strong> is defined as:</p>
+  <ul>
+    <li>Any patient with a date of death in the Enclave</li>
+    <li>
+      (or) Any patient from a mortality-linked PPRL site who exists in one of the external sources:
+      <ul>
+        <li>Government Mortality: Government data sourced from death certificates and person-reporting.</li>
+        <li>
+          ObituaryData.com: Obituary data sourced from funeral homes, newspapers, and other online obituary sources,
+          specifically from obituarydata.com (a private obituary aggregator).
+        </li>
+        <li>
+          Private Obituary: Obituary data sourced from funeral homes, newspapers, and other online obituary sources
+          sourced from other private sources.
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <p class="list-p"><strong>For external mortality sources:</strong></p>
+  <ul>
+    <li>
+      Several mortality sources do not know the exact date of death for all reported deaths. If they know only the month
+      of death, they will provide the date of death as the first day of that month, or if they know only the year of
+      death, they will provide the date of death as the first day of that year. This means that an increased number of
+      deaths will appear at those intervals.
+    </li>
+    <li>
+      Each source has a distinct lag associated with their reported deaths. However, on average, 90% of the deaths that
+      will show up will be in the data by 28 days after the occurrence.
+    </li>
+  </ul>
+  <p>Mortality data should not be considered representative of all deaths in the United States.</p>
+  <p>
+    Note: This metric is distinct from the Mortality category associated with Severity, as it does not limit deaths to
+    only those suspected to be caused by COVID-19.
+  </p>
+  <p class="list-p"><strong class="lim-head">General Enclave Limitations</strong></p>
+  <ul>
+    <li>
+      “Sicker” patients will likely be overrepresented within the N3C Data Enclave, as sicker patients will more often
+      seek out and receive care at clinical centers.
+    </li>
+    <li>
+      The N3C may have multiple contributors to data “missingness”. Clinical facts and events that occur in the real
+      world may not be captured for reasons including:
+      <ul>
+        <li>The event was recorded at a clinical site that does not contribute data</li>
+        <li>Data is not yet linked across sites</li>
+        <li>Medical records are inherently incomplete</li>
+      </ul>
+    </li>
+    <li>
+      Some of the external datasets that have been used for analysis cannot be fully mapped due to issues such as
+      missing measurement units.
+    </li>
+    <li>
+      All dates within the Enclave have been shifted between -3 to 45 days to ensure that reidentification is not
+      possible.
+    </li>
+    <li>N3C data may not be representative of the entire US population</li>
+    <ul>
+      <li>
+        N3C does NOT have a representative sample of any state, as data is contributed from only a few providers in each
+        region (Region - includes multiple states).
+      </li>
+    </ul>
+    <li>Cell sizes smaller than 20 people have been suppressed</li>
+    <li>
+      For COVID+ patients: A patient is only counted once in this data, even if they have multiple positive tests over
+      time. Except in instances where dashboards focus on reinfection, only dates of first infection are utilized.
+    </li>
+  </ul>
+</div>

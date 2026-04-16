@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="topic-dropdown mx-auto">
+    <h4 class="viz-color-header">Select a Topic to Explore:</h4>
+
+    <div class="custom-select position-relative" [class.open]="dropdownOpen">
+      <!-- Selected value with arrow -->
+      <div class="custom-select-trigger d-flex justify-content-between align-items-center" (click)="toggleDropdown()">
+        <span>{{ getSelectedLabel() || 'Choose a topic...' }}</span>
+        <span class="arrow">
+          <i class="fa" [ngClass]="dropdownOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+        </span>
+      </div>
+
+      <!-- Dropdown menu -->
+      @if (dropdownOpen) {
+        <div class="custom-options">
+          <!-- Search row -->
+          @if (enableSearch) {
+            <div class="search-row">
+              <input type="text" [(ngModel)]="searchTerm" placeholder="Search Topics..." class="search-input" />
+            </div>
+          }
+          <!-- Grouped options -->
+          @if (groupedOptions.length > 0) {
+            @for (optgroup of groupedOptions; track optgroup) {
+              <div>
+                <div class="optgroup-label">{{ optgroup.label }}</div>
+                @for (option of optgroup.options | filterOptions: searchTerm; track option) {
+                  <div
+                    class="custom-option"
+                    (click)="selectOption(option.value)"
+                    [class.selected]="option.value === selectedValue"
+                  >
+                    {{ option.label }}
+                  </div>
+                }
+              </div>
+            }
+          } @else {
+            @for (option of flatOptions | filterOptions: searchTerm; track option) {
+              <div
+                class="custom-option"
+                (click)="selectOption(option.value)"
+                [class.selected]="option.value === selectedValue"
+              >
+                {{ option.label }}
+              </div>
+            }
+          }
+          <!-- Flat options -->
+        </div>
+      }
+    </div>
+  </div>
+</div>

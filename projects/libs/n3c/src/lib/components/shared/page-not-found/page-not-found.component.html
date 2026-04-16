@@ -1,0 +1,16 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async"></app-n3c-menu>
+
+  <main class="d-flex justify-content-center align-items-center">
+    <div class="container-wide text-center" id="about_container">
+      <h1>{{ pageTitle }}</h1>
+      <p>The page you are looking for doesn't exist.</p>
+      <a routerLink="/" class="btn btn-secondary mt-3">Go back to Home</a>
+    </div>
+  </main>
+
+  @if (!dataLoading) {
+    <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+  }
+</div>

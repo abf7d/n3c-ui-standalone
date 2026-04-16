@@ -1,0 +1,30 @@
+.table-search-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.search-bar-row {
+  display: flex;
+  align-items: center;
+}
+.search-label {
+  margin-right: 8px;
+  font-weight: 500;
+}
+.ag-grid-wrapper {
+  width: 100%;
+}
+.ag-grid-responsive {
+  width: 100%;
+}
+.download-btn-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.font-sz {
+  font-size: 1rem;
+}

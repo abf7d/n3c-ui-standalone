@@ -1,0 +1,97 @@
+@use '../../../styles/n3c-styles.scss';
+
+.site-overview {
+  --gap: 0.5rem;
+  --rowW: 1200px;
+  padding: 2rem;
+  overflow-x: auto;
+}
+
+.overview-flex-row {
+  display: grid;
+  gap: var(--gap);
+  margin-bottom: var(--gap);
+  width: var(--rowW);
+  min-width: var(--rowW);
+  max-width: var(--rowW);
+}
+
+.overview-flex-row:nth-of-type(1) {
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
+.overview-flex-row:nth-of-type(2) {
+  grid-template-columns: 1fr 1fr;
+}
+
+.overview-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  padding: 2rem 1.5rem;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.section-header {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #3366cc;
+  margin-bottom: 1rem;
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  z-index: 2;
+  background: #fff;
+}
+
+.overview-card > *:not(.section-header) {
+  margin-top: 2.5rem;
+}
+
+.overview-card-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: nowrap;
+}
+
+.overview-img {
+  width: 380px;
+  height: auto;
+  flex: 0 0 380px;
+  object-fit: contain;
+}
+
+.institution-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.inst-label {
+  font-weight: bold;
+}
+
+.no-data-msg {
+  text-align: center;
+  color: #888;
+  font-size: 1.3rem;
+  font-weight: 400;
+  padding: 2.5rem 0 2rem 0;
+}
+
+.d3-donut svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}

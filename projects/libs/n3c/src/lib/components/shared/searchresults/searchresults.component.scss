@@ -1,0 +1,29 @@
+#about_container {padding-bottom:60px}
+#about_container .title h4{padding-top:40px;color:#359aaf;}
+#about_container hr{border-top: 1px solid #359aaf;margin-top: 3px;}
+app-external-link {
+    cursor: pointer;
+    color: #005ea2;
+    text-decoration: underline;
+}
+
+.body {
+  font-family: 'Lato', sans-serif;
+}
+
+.tile-container {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.tile-image {
+  width: 200px; 
+  height: auto; 
+  margin-right: 15px; 
+  border-radius: 5px; 
+}
+
+.tile-content {
+  flex: 1;
+}

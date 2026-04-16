@@ -1,0 +1,55 @@
+@use '../../../styles/n3c-styles.scss';
+
+.main-block {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+/* General **********************************/
+
+h1 {
+  font-size: 2.8rem;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 2.3rem;
+  font-weight: 300;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+h5 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+a {
+  color: #1570ba;
+}
+
+.block {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+a {
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.centered-image-container {
+  text-align: center; // Center horizontally
+}

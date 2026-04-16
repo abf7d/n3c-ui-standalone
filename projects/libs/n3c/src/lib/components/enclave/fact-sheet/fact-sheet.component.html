@@ -1,0 +1,104 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide">
+      <div class="d-flex">
+        <div class="col-12">
+          <div class="pt-3">
+            <p><a [routerLink]="['/covid']">Home</a> > {{ pageContent?.header }}</p>
+          </div>
+
+          <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+            <h1>{{ pageContent.header }}</h1>
+
+            @if (currentRelease && currentNotes) {
+              <div style="text-align: center; font-size: 16px">
+                <div
+                  class="row"
+                  style="display: flex; flex-direction: row; flex-wrap: wrap; padding: 10px; margin-bottom: 20px"
+                >
+                  <div class="col-12" style="margin-bottom: 20px">
+                    <h2>
+                      <strong>Release Set:</strong>
+                      <span id="date">&nbsp; {{ currentRelease.release_date | date: 'MMMM d, y' }}</span>
+                    </h2>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <p>
+                      <strong class="font-weight-bold">Phenotype:</strong> {{ currentNotes.phenotype }} <br />
+                      <strong>Target Common Data Model:</strong> {{ currentNotes.target_cdm }}<br />
+                      <strong>CDM Mapping version:</strong> {{ currentNotes.cdm_mapping_version }}<br />
+                      <strong>Production version:</strong>
+                      <span id="production_date">&nbsp; {{ currentRelease.release }}</span>
+                    </p>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <p>
+                      <strong>OMOP Vocabulary Version:</strong> {{ currentNotes.omop_vocabulary_version }}<br />
+                      <strong>Vocabulary Update:</strong> {{ currentNotes.vocabulary_update_date }}<br />
+                      <strong>Source Common Data Models:</strong><br />
+                      {{ currentNotes.source_cdm }}
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="row shadow-block"
+                  style="display: flex; flex-direction: row; flex-wrap: wrap; font-size: 20px"
+                >
+                  <div class="col-12 col-md-6">
+                    <p>
+                      <strong><i aria-hidden="true" class="far fa-hospital"> </i> Sites:</strong>
+                      <span id="sites">&nbsp; {{ currentRelease.sites_ingested }}</span>
+                    </p>
+                    <p>
+                      <strong><i aria-hidden="true" class="fa fa-user"> </i> Persons:</strong>
+                      <span id="persons">&nbsp; {{ currentRelease.person_rows | longCompactNumber }}</span>
+                    </p>
+                    <p>
+                      <strong><i aria-hidden="true" class="fa fa-plus"> </i> COVID+ Cases:</strong>
+                      <span id="positive">&nbsp; {{ currentRelease.covid_positive_patients | longCompactNumber }}</span>
+                    </p>
+                    <p>
+                      <strong><i aria-hidden="true" class="fa fa-table"> </i> Total Number of Rows:</strong>
+                      <span id="rows">&nbsp; {{ currentRelease.total_rows | longCompactNumber }}</span>
+                    </p>
+                    <p>
+                      <strong><i aria-hidden="true" class="fa fa-user-md"> </i> Clinical Observations:</strong>
+                      <span id="observations">&nbsp; {{ currentRelease.observation_rows | longCompactNumber }}</span>
+                    </p>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <p>
+                      <strong><i aria-hidden="true" class="fa fa-heartbeat"> </i> Lab Results:</strong>
+                      <span id="results">&nbsp; {{ currentRelease.measurement_rows | longCompactNumber }}</span>
+                    </p>
+                    <p>
+                      <strong><i aria-hidden="true" class="fa fa-id-card"> </i> Medication Records:</strong>
+                      <span id="records">&nbsp; {{ currentRelease.drug_exposure_rows | longCompactNumber }}</span>
+                    </p>
+                    <p>
+                      <strong><i aria-hidden="true" class="fa fa-list"> </i> Procedures:</strong>
+                      <span id="procedures">&nbsp; {{ currentRelease.procedure_rows | longCompactNumber }}</span>
+                    </p>
+                    <p>
+                      <strong><i aria-hidden="true" class="far fa-calendar-plus"> </i> Visits:</strong>
+                      <span id="visits">&nbsp; {{ currentRelease.visit_rows | longCompactNumber }}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            }
+
+            <div class="col-12 py-4 text-center">
+              <div [innerHTML]="pageContent?.block3"></div>
+            </div>
+          </app-n3c-loader>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

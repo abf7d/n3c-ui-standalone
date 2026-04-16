@@ -1,0 +1,35 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide" id="main_container">
+      <div class="pt-3 breadcrumb-margin-left">
+        <p><a [routerLink]="['/covid']">Home</a> > N3C Tutorial</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <div class="d-flex flex-wrap main-block">
+          <h1 [innerHTML]="pageContent?.header"></h1>
+          <div class="row" [innerHTML]="pageContent?.block"></div>
+
+          @for (rowItem of contentResources; track rowItem) {
+            <div class="col-6 pe-4">
+              <h4 [innerHTML]="rowItem.header"></h4>
+              <iframe
+                [height]="rowItem.height"
+                [width]="rowItem.width"
+                frameborder="0"
+                allowfullscreen="allowfullscreen"
+                [src]="rowItem.url"
+              ></iframe>
+              <div [innerHTML]="rowItem.footer"></div>
+            </div>
+          }
+        </div>
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

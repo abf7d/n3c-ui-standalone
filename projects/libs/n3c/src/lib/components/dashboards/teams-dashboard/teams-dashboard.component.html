@@ -1,0 +1,132 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<nav class="primary-nav navbar navbar-expand-lg p-0"></nav>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" [routerLink]="['/dashboard']">
+    <img src="./assets/n3c/images/n3c_logo.png" width="30" height="30" class="d-inline-block n3c-logo" alt="N3C logo" />
+    N3C Dashboards
+  </a>
+</div>
+<nav class="ms-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboards</a></li>
+    <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">N3C Domain Teams</li>
+  </ol>
+</nav>
+
+<app-n3c-loader [loading]="dataLoading" [showError]="showError">
+  <div class="container">
+    <div class="row">
+      <div class="container container-large content">
+        <div class="row stats block2 mx-auto">
+          <div class="col-12">
+            <div class="row block1">
+              <div class="col-12">
+                <h1 class="page-title">N3C Teams and Their Results</h1>
+              </div>
+
+              <p>
+                N3C Domain Teams enable researchers with shared interests to analyze data within the N3C Data Enclave
+                and collaborate more efficiently in a team science environment. Project Teams are groups exploring
+                targeted research questions using the N3C Data Enclave.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row" style="margin-top: 30px">
+          <div class="col col-12 col-lg-12">
+            <div id="publications-panel" class="col-12 col-md-12 mx-auto mb-4 panel">
+              <div id="publications-simple" class="table-section" style="display: block">
+                <div id="pub_table_section">
+                  <div class="header-links">
+                    <div class="form-check form-check-inline publication">
+                      <a [routerLink]="[]" fragment="domain-list" class="btn btn-outline-secondary"> Domain Teams </a>
+                    </div>
+                    <div class="form-check form-check-inline preprint">
+                      <a [routerLink]="[]" fragment="projects-list" class="btn btn-outline-secondary">
+                        Project Teams
+                      </a>
+                    </div>
+                    <div class="form-check form-check-inline presentation">
+                      <a [routerLink]="[]" fragment="publications-list" class="btn btn-outline-secondary">
+                        Publications
+                      </a>
+                    </div>
+                  </div>
+
+                  <app-master-detail-list id="domain-list" [publications]="domainTeams" [title]="'Domain Teams'">
+                    <ng-template #rowHeader let-p>
+                      <div class="col-12">
+                        <p class="mb-3 title">{{ p.title }}</p>
+                      </div>
+                    </ng-template>
+                    <ng-template #rowDetail let-p>
+                      <div [innerHTML]="p.description"></div>
+                      <div>
+                        <strong>Created: {{ p.created }}</strong>
+                      </div>
+                      <div><a href="{{ p.url }}">Learn More</a></div>
+                    </ng-template>
+                  </app-master-detail-list>
+
+                  <app-master-detail-list id="projects-list" [publications]="projects" [title]="'Project Teams'">
+                    <ng-template #rowHeader let-p>
+                      <div class="col-12">
+                        <p class="mb-3 title">{{ p.title }}</p>
+                      </div>
+                    </ng-template>
+
+                    <ng-template #rowDetail let-p>
+                      <div [innerHTML]="p.description"></div>
+                      <div>
+                        <b>Lead Investigator: {{ p.pi_name }}</b>
+                      </div>
+                      <div>
+                        <b>Accessing Institution: {{ p.accessing_institution }}</b>
+                      </div>
+                      <div>ID: {{ p.id }}({{ p.dur_project_id }})</div>
+                    </ng-template>
+                  </app-master-detail-list>
+
+                  <app-master-detail-list id="publications-list" [publications]="publications" [title]="'Publicaions'">
+                    <ng-template #rowHeader let-p>
+                      <div class="col-12">
+                        <p class="mb-3 title">{{ p.title }}</p>
+                      </div>
+
+                      <div class="col-6">
+                        <p
+                          class="badge badge-pill"
+                          [ngClass]="{
+                            Publication: p.type === 'publication',
+                            Presentation: p.type === 'presentation',
+                            Preprint: p.type === 'preprint'
+                          }"
+                        >
+                          {{ p.type }}
+                        </p>
+                      </div>
+                    </ng-template>
+
+                    <ng-template #rowDetail let-p>
+                      <strong>Date:</strong> {{ p.date }} <br />
+                      <strong>Authors:</strong> {{ p.authors }} <br /><br />
+                      {{ p.outlet }} <br />
+                      <a [href]="p.url" target="_blank">{{ p.url }}</a> <br />
+                    </ng-template>
+                  </app-master-detail-list>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col col-12 col-lg-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-n3c-loader>
+<app-dashboard-footer></app-dashboard-footer>

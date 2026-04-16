@@ -1,0 +1,884 @@
+{
+    "headers": [
+        {
+            "value": "category",
+            "label": "Category"
+        },
+        {
+            "value": "file",
+            "label": "File"
+        },
+        {
+            "value": "updated",
+            "label": "Last Updated"
+        },
+        {
+            "value": "row_count",
+            "label": "Row Count"
+        },
+        {
+            "value": "attributes",
+            "label": "Attributes"
+        },
+        {
+            "value": "json",
+            "label": "JSON"
+        },
+        {
+            "value": "csv",
+            "label": "CSV"
+        }
+    ],
+    "rows": [
+        {
+            "csv": "download",
+            "file": "adult_covid_event_type",
+            "json": "download",
+            "updated": "2024-07-26 07:01 ",
+            "category": "Public Health",
+            "row_count": 3,
+            "attributes": "covid_event_type, ll_status, covid_event_type, ll_status, count, count, count, count",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "aggregated",
+            "json": "download",
+            "updated": "2022-08-24 17:28 ",
+            "category": "Exploratory",
+            "row_count": 898,
+            "attributes": null,
+            "table_schema": "n3c_dashboard"
+        },
+        {
+            "csv": "download",
+            "file": "all_tests_month_cohort",
+            "json": "download",
+            "updated": "2024-07-26 07:03 ",
+            "category": "Public Health",
+            "row_count": 452,
+            "attributes": "initial_month, initial_month, initial_year, initial_year, subsequent_month, subsequent_month, subsequent_year, subsequent_year, count, count",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "atc_drugs_in_the_window",
+            "json": "download",
+            "updated": "2025-01-21 14:15 ",
+            "category": "Public Health",
+            "row_count": 428,
+            "attributes": "first_four_name, first_four_name, covid_test_post_pax, covid_test_post_pax, ptct, ptct",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "binned_datediff_positive_and_symptoms",
+            "json": "download",
+            "updated": "2024-07-26 07:02 ",
+            "category": "Public Health",
+            "row_count": 179,
+            "attributes": "datediff_bw_covid_and_symptom, datediff_bw_covid_and_symptom, symptom, symptom, count, count",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "binned_diff_bw_death_and_hospital_visit",
+            "json": "download",
+            "updated": "2024-07-26 07:02 ",
+            "category": "Public Health",
+            "row_count": 46,
+            "attributes": "datediff_bw_death_and_hos, datediff_bw_death_and_hos, count, count",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "biorxiv_cache",
+            "json": "download",
+            "updated": "2022-08-24 20:48 ",
+            "category": "Exploratory",
+            "row_count": 17,
+            "attributes": "doi, title, site, pub_date, authors",
+            "table_schema": "n3c_pubs"
+        },
+        {
+            "csv": "download",
+            "file": "cancer_and_covid_summary",
+            "json": "download",
+            "updated": "2024-07-26 06:56 ",
+            "category": "Public Health",
+            "row_count": 66,
+            "attributes": "age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, observation, observation, n_observation, n_observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "cases_by_severity_by_state_censored",
+            "json": "download",
+            "updated": "2024-07-26 06:26 ",
+            "category": "Public Health",
+            "row_count": 218,
+            "attributes": "state, state, severity_type, severity_type, num_patients, num_patients",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "chf_and_covid_summary",
+            "json": "download",
+            "updated": "2024-07-26 06:56 ",
+            "category": "Public Health",
+            "row_count": 67,
+            "attributes": "age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, observation, observation, n_observation, n_observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "conditions_in_window",
+            "json": "download",
+            "updated": "2025-01-21 14:15 ",
+            "category": "Public Health",
+            "row_count": 4144,
+            "attributes": "condition_concept_name, condition_concept_name, covid_test_post_pax, covid_test_post_pax, ptct, ptct",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "conference_cache",
+            "json": "download",
+            "updated": "2022-08-24 20:48 ",
+            "category": "Exploratory",
+            "row_count": 34,
+            "attributes": "title, correspondingauthor, pub_date",
+            "table_schema": "n3c_pubs"
+        },
+        {
+            "csv": "download",
+            "file": "count_by_month_censored",
+            "json": "download",
+            "updated": "2024-07-26 06:26 ",
+            "category": "Public Health",
+            "row_count": 51,
+            "attributes": "month_of_first_hlh_dx, month_of_first_hlh_dx, year_of_first_hlh_dx, year_of_first_hlh_dx, count_distinct_people, count_distinct_people",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "covid_lds_with_reinfection_date_counts_censored",
+            "json": "download",
+            "updated": "2024-07-26 04:03 ",
+            "category": "Public Health",
+            "row_count": 982,
+            "attributes": "c_date, c_date, first_diagnosis_count, first_diagnosis_count, original_infection_date_for_reinfected_count, original_infection_date_for_reinfected_count, subsequent_test_count, subsequent_test_count",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "covid_patients_demographics_censored",
+            "json": "download",
+            "updated": "2024-07-26 06:51 ",
+            "category": "Public Health",
+            "row_count": 154,
+            "attributes": "concept_set_name, concept_set_name, age_bin, age_bin, num_patients, num_patients, total_patients, total_patients, drug_domain, drug_domain",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "covid_positive_comorbidities_demo_censored",
+            "json": "download",
+            "updated": "2024-07-26 05:28 ",
+            "category": "Public Health",
+            "row_count": 249893,
+            "attributes": "ethnicity_concept_name, ethnicity_concept_name, age_bin, age_bin, race_concept_name, race_concept_name, gender_concept_name, gender_concept_name, severity_type, severity_type, comorbidity_list, comorbidity_list, vaccinated, vaccinated, num_patients, num_patients",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "covid_positive_comorbidities_demo_censored_wo_vax",
+            "json": "download",
+            "updated": "2024-07-26 06:25 ",
+            "category": "Public Health",
+            "row_count": 149693,
+            "attributes": "age_bin, age_bin, race_concept_name, race_concept_name, gender_concept_name, gender_concept_name, severity_type, severity_type, comorbidity_list, comorbidity_list, num_patients, num_patients",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "covid_positive_comorbidity_non_grouped_demo_censored",
+            "json": "download",
+            "updated": "2024-07-26 06:53 ",
+            "category": "Public Health",
+            "row_count": 6361,
+            "attributes": "age_bin, age_bin, age_bin, age_bin, race_concept_name, race, race_concept_name, race, gender_concept_name, gender_concept_name, gender_concept_name, gender_concept_name, severity_type, severity_type, severity_type, severity_type, condition_name, condition_name, condition_name, condition_name, num_patients, num_patients, num_patients, num_patients",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "covid_positive_mab_demo_censored",
+            "json": "download",
+            "updated": "2024-07-26 06:56 ",
+            "category": "Public Health",
+            "row_count": 20,
+            "attributes": "concept_set_name, concept_set_name, concept_set_name, concept_set_name, age_bin, age_bin, age_bin, age_bin, num_patients, num_patients, num_patients, num_patients, total_patients, total_patients, total_patients, total_patients",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "covid_positive_with_vax_censored",
+            "json": "download",
+            "updated": "2024-07-26 06:26 ",
+            "category": "Public Health",
+            "row_count": 2383,
+            "attributes": "age_bin, age_bin, race_concept_name, race_concept_name, gender_concept_name, gender_concept_name, severity_type, severity_type, vaccinated, vaccinated, num_patients, num_patients",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "covid_severity_grouped_demo_adults_censored",
+            "json": "download",
+            "updated": "2024-07-26 06:57 ",
+            "category": "Public Health",
+            "row_count": 988,
+            "attributes": "age_bin, age_bin, severity_type, severity_type, race_concept_name, race_concept_name, gender_concept_name, gender_concept_name, ethnicity_concept_name, ethnicity_concept_name, count, count",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "covid_smoking_demographics_censored",
+            "json": "download",
+            "updated": "2024-07-26 04:02 ",
+            "category": "Public Health",
+            "row_count": 164,
+            "attributes": "age_bin, age_bin, smoking_status, smoking_status, race_concept_name, race_concept_name, gender_concept_name, gender_concept_name, num_patients, num_patients",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "covid_smoking_severity_censored",
+            "json": "download",
+            "updated": "2024-07-26 04:02 ",
+            "category": "Public Health",
+            "row_count": 18,
+            "attributes": "smoking_status, smoking_status, severity_type, severity_type, num_patients, num_patients",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "cumsum_new_km_analysis",
+            "json": "download",
+            "updated": "2024-07-26 06:50 ",
+            "category": "Public Health",
+            "row_count": 317,
+            "attributes": "time, time, strata, strata, cum_sum, cum_sum",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "dementia_and_covid_summary",
+            "json": "download",
+            "updated": "2024-07-26 07:02 ",
+            "category": "Public Health",
+            "row_count": 66,
+            "attributes": "age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, observation, observation, n_observation, n_observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "diabetes_mellitus_and_covid_summary",
+            "json": "download",
+            "updated": "2024-07-26 07:02 ",
+            "category": "Public Health",
+            "row_count": 73,
+            "attributes": "age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, observation, observation, n_observation, n_observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "diabetes_mellitus_with_complications_and_covid_summary",
+            "json": "download",
+            "updated": "2024-07-26 07:02 ",
+            "category": "Public Health",
+            "row_count": 65,
+            "attributes": "age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, observation, observation, n_observation, n_observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "diabetes_t1_agg",
+            "json": "download",
+            "updated": "2024-07-26 04:03 ",
+            "category": "Public Health",
+            "row_count": 137,
+            "attributes": "covid_event_type, covid_event_type, diabetes_before_or_after_covid, diabetes_before_or_after_covid, diabetes_condition_30_days_after_covid, diabetes_condition_30_days_after_covid, age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, diabetes_type, diabetes_type",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "diabetes_t1_full_censored",
+            "json": "download",
+            "updated": "2024-07-26 06:55 ",
+            "category": "Public Health",
+            "row_count": 65,
+            "attributes": "age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, observation, observation, n_observation, n_observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "diabetes_t2_agg",
+            "json": "download",
+            "updated": "2024-07-26 04:03 ",
+            "category": "Public Health",
+            "row_count": 73,
+            "attributes": "covid_event_type, covid_event_type, diabetes_before_or_after_covid, diabetes_before_or_after_covid, diabetes_condition_30_days_after_covid, diabetes_condition_30_days_after_covid, age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, diabetes_type, diabetes_type",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "diabetes_t2_full_censored",
+            "json": "download",
+            "updated": "2024-07-26 06:56 ",
+            "category": "Public Health",
+            "row_count": 71,
+            "attributes": "age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, observation, observation, n_observation, n_observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "domain_team",
+            "json": "download",
+            "updated": "2022-08-24 16:57 ",
+            "category": "Exploratory",
+            "row_count": 33,
+            "attributes": "nid, vid, title, cross_cutting, description, summary, mailing_list_address, mailing_list_url, mailing_list_anchor, gdrive_url, gdrive_anchor, slack_url, slack_anchor, created, changed",
+            "table_schema": "n3c_admin"
+        },
+        {
+            "csv": "download",
+            "file": "drug_count_summary",
+            "json": "download",
+            "updated": "2025-01-21 14:15 ",
+            "category": "Public Health",
+            "row_count": 9,
+            "attributes": "drug_name, drug_name, drug_name, drug_name, count, count, count, count",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "drug_monthly_count_summary",
+            "json": "download",
+            "updated": "2025-01-21 14:15 ",
+            "category": "Public Health",
+            "row_count": 146,
+            "attributes": "exposure_month, exposure_month, exposure_month, exposure_month, exposure_year, exposure_year, exposure_year, exposure_year, count_per_month, count_per_month, count_per_month, count_per_month, drug_name, drug_name, drug_name, drug_name",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "dta_master_censored",
+            "json": "download",
+            "updated": "2022-08-24 17:20 ",
+            "category": "Exploratory",
+            "row_count": 102,
+            "attributes": "institutionid, institutionname, dtaexecuted",
+            "table_schema": "n3c_admin"
+        },
+        {
+            "csv": "download",
+            "file": "dua_master_censored",
+            "json": "download",
+            "updated": "2022-08-24 17:20 ",
+            "category": "Exploratory",
+            "row_count": 316,
+            "attributes": "institutionid, institutionname, duaexecuted",
+            "table_schema": "n3c_admin"
+        },
+        {
+            "csv": "download",
+            "file": "enclave_project",
+            "json": "download",
+            "updated": "2022-08-24 20:50 ",
+            "category": "Exploratory",
+            "row_count": 397,
+            "attributes": "uid, title, research_statement, lead_investigator, task_team, accessing_institution, workspace_status, dur_project_id",
+            "table_schema": "n3c_admin"
+        },
+        {
+            "csv": "download",
+            "file": "enclave_stats",
+            "json": "download",
+            "updated": "2022-08-24 16:47 ",
+            "category": "Exploratory",
+            "row_count": 71,
+            "attributes": "title, value",
+            "table_schema": "n3c_admin"
+        },
+        {
+            "csv": "download",
+            "file": "final_results_censored",
+            "json": "download",
+            "updated": "2024-07-26 06:26 ",
+            "category": "Public Health",
+            "row_count": 280,
+            "attributes": "race, race, ethnicity, ethnicity, age_bin, age_bin, severity_type, severity_type, num_patients, num_patients, total_patients, total_patients, percent_patients, percent_patients",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "final_results_with_gender_censored",
+            "json": "download",
+            "updated": "2024-07-26 06:50 ",
+            "category": "Public Health",
+            "row_count": 1002,
+            "attributes": "race, race, ethnicity, ethnicity, age_bin, age_bin, gender_concept_name, gender_concept_name, severity_type, severity_type, num_patients, num_patients, total_patients, total_patients, percent_patients, percent_patients",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "group_by_state_censored",
+            "json": "download",
+            "updated": "2024-07-26 06:50 ",
+            "category": "Public Health",
+            "row_count": 391,
+            "attributes": "state_final, state_final, severity_type, severity_type, num_patients, num_patients, percent_patients, percent_patients",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "group_by_zip_censored",
+            "json": "download",
+            "updated": "2024-07-26 06:50 ",
+            "category": "Public Health",
+            "row_count": 75081,
+            "attributes": "zip, zip, severity_type, severity_type, num_patients, num_patients, total_patients, total_patients, percent_patients, percent_patients",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "hiv_and_covid_summary",
+            "json": "download",
+            "updated": "2024-07-26 06:56 ",
+            "category": "Public Health",
+            "row_count": 48,
+            "attributes": "age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, observation, observation, n_observation, n_observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "icd10_individual_symptom_summary_counts",
+            "json": "download",
+            "updated": "2024-07-26 07:01 ",
+            "category": "Public Health",
+            "row_count": 9938,
+            "attributes": "age_bin, age_bin, gender_concept_name, gender_concept_name, race_concept_name, race_concept_name, ethnicity_concept_name, ethnicity_concept_name, symptom, symptom, count, count, observation, observation, same_agg, same_agg",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "icd10_individual_symptom_summary_counts_by_symptom",
+            "json": "download",
+            "updated": "2024-07-26 06:58 ",
+            "category": "Public Health",
+            "row_count": 2841,
+            "attributes": "age_bin, age_bin, gender_concept_name, gender_concept_name, race_concept_name, race_concept_name, ethnicity_concept_name, ethnicity_concept_name, symptom, symptom, count, count, observation, observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "icd10_mortality_demo_grouped",
+            "json": "download",
+            "updated": "2024-07-26 07:01 ",
+            "category": "Public Health",
+            "row_count": 118,
+            "attributes": "age_bin, age_bin, gender_concept_name, gender_concept_name, race, race, ethnicity, ethnicity, count, count",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "icd10_symptoms_summary_counts",
+            "json": "download",
+            "updated": "2024-07-26 06:56 ",
+            "category": "Public Health",
+            "row_count": 689,
+            "attributes": "age_bin, age_bin, gender_concept_name, gender_concept_name, race_concept_name, race_concept_name, ethnicity_concept_name, ethnicity_concept_name, count, count, observation, observation, same_agg, same_agg",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "litcovid_cache",
+            "json": "download",
+            "updated": "2022-08-24 20:47 ",
+            "category": "Exploratory",
+            "row_count": 42,
+            "attributes": "pmid, title, journal, volume, issue, published, pages, authors, pmcid",
+            "table_schema": "n3c_pubs"
+        },
+        {
+            "csv": "download",
+            "file": "liver_disease_mild_and_covid_summary",
+            "json": "download",
+            "updated": "2024-07-26 07:02 ",
+            "category": "Public Health",
+            "row_count": 72,
+            "attributes": "age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, observation, observation, n_observation, n_observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "liver_disease_severe_and_covid_summary",
+            "json": "download",
+            "updated": "2024-07-26 07:02 ",
+            "category": "Public Health",
+            "row_count": 60,
+            "attributes": "age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, observation, observation, n_observation, n_observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "long_covid_concept_set_agg_censored",
+            "json": "download",
+            "updated": "2024-07-26 04:02 ",
+            "category": "Public Health",
+            "row_count": 13,
+            "attributes": "severity_type, severity_type, gender_concept_name, gender_concept_name, num_patients, num_patients",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "long_covid_icd_agg_censored",
+            "json": "download",
+            "updated": "2024-07-26 04:02 ",
+            "category": "Public Health",
+            "row_count": 13,
+            "attributes": "severity_type, severity_type, gender_concept_name, gender_concept_name, num_patients, num_patients",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "master_dataset_censored",
+            "json": "download",
+            "updated": "2024-07-26 06:56 ",
+            "category": "Public Health",
+            "row_count": 166,
+            "attributes": "variable, variable, covid_diagnosis, covid_diagnosis, value, value, count, count",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "metastasis_and_covid_summary",
+            "json": "download",
+            "updated": "2024-07-26 07:02 ",
+            "category": "Public Health",
+            "row_count": 62,
+            "attributes": "age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, observation, observation, n_observation, n_observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "myocardial_infarction_and_covid_summary",
+            "json": "download",
+            "updated": "2024-07-26 07:02 ",
+            "category": "Public Health",
+            "row_count": 66,
+            "attributes": "age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, observation, observation, n_observation, n_observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "new_km_analysis",
+            "json": "download",
+            "updated": "2024-07-26 06:26 ",
+            "category": "Public Health",
+            "row_count": 604,
+            "attributes": "time, time, n_risk, n_risk, n_event, n_event, n_censor, n_censor, surv, surv, std_err, std_err, upper, upper, lower, lower, strata, strata",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "num_patients_subregion_for_map",
+            "json": "download",
+            "updated": "2022-08-24 20:40 ",
+            "category": "Exploratory",
+            "row_count": 36,
+            "attributes": "subregion, covid_status_name, num_patients",
+            "table_schema": "enclave_cohort"
+        },
+        {
+            "csv": "download",
+            "file": "organization_edge",
+            "json": "download",
+            "updated": "2022-08-24 21:04 ",
+            "category": "Administration",
+            "row_count": 658,
+            "attributes": null,
+            "table_schema": "n3c_collaboration"
+        },
+        {
+            "csv": "download",
+            "file": "organization_organization",
+            "json": "download",
+            "updated": "2022-08-24 21:04 ",
+            "category": "Administration",
+            "row_count": 153,
+            "attributes": null,
+            "table_schema": "n3c_collaboration"
+        },
+        {
+            "csv": "download",
+            "file": "organization_project",
+            "json": "download",
+            "updated": "2022-08-24 21:04 ",
+            "category": "Administration",
+            "row_count": 321,
+            "attributes": null,
+            "table_schema": "n3c_collaboration"
+        },
+        {
+            "csv": "download",
+            "file": "overall_counts_by_severity",
+            "json": "download",
+            "updated": "2024-07-26 06:51 ",
+            "category": "Public Health",
+            "row_count": 5,
+            "attributes": "severity_type, severity_type, severity_type_count, severity_type_count",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "paralysis_and_covid_summary",
+            "json": "download",
+            "updated": "2024-07-26 07:02 ",
+            "category": "Public Health",
+            "row_count": 61,
+            "attributes": "age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, observation, observation, n_observation, n_observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "pediatric_covid_event_type",
+            "json": "download",
+            "updated": "2024-07-26 06:57 ",
+            "category": "Public Health",
+            "row_count": 3,
+            "attributes": "covid_event_type, covid_event_type, count, count",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "pediatric_covid_pos_demo_censored",
+            "json": "download",
+            "updated": "2024-07-26 04:02 ",
+            "category": "Public Health",
+            "row_count": 819,
+            "attributes": "age_bin, age_bin, ethnicity_concept_name, ethnicity_concept_name, gender_concept_name, gender_concept_name, race_concept_name, race_concept_name, severity_type, severity_type, num_patients, num_patients",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "peptic_ulcer_disease_and_covid_summary",
+            "json": "download",
+            "updated": "2024-07-26 07:02 ",
+            "category": "Public Health",
+            "row_count": 60,
+            "attributes": "age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, observation, observation, n_observation, n_observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "peripheral_vascular_disease_and_covid_summary",
+            "json": "download",
+            "updated": "2024-07-26 07:02 ",
+            "category": "Public Health",
+            "row_count": 69,
+            "attributes": "age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, observation, observation, n_observation, n_observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "person_agg_demographic_censored",
+            "json": "download",
+            "updated": "2024-07-26 04:02 ",
+            "category": "Public Health",
+            "row_count": 22,
+            "attributes": "race, race, gender_concept_name, gender_concept_name, count_hispanic, count_hispanic, count_non_hispanic, count_non_hispanic, count_ethnicity_unknown, count_ethnicity_unknown",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "persons_with_visits",
+            "json": "download",
+            "updated": "2025-01-21 15:03 ",
+            "category": "Public Health",
+            "row_count": 6,
+            "attributes": "category, category, test_result, test_result, ptct, ptct",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "positive_cases_by_day_cumsum_censored",
+            "json": "download",
+            "updated": "2024-07-26 06:54 ",
+            "category": "Public Health",
+            "row_count": 961,
+            "attributes": "first_diagnosis_date, first_diagnosis_date, first_diagnosis_date, first_diagnosis_date, positive_cases, positive_cases, positive_cases, positive_cases, cumsum_positivecases, cumsum_positivecases, cumsum_positivecases, cumsum_positivecases, seven_day_rolling_avg, seven_day_rolling_avg, seven_day_rolling_avg, seven_day_rolling_avg",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "project_to_domain_team_export",
+            "json": "download",
+            "updated": "2025-03-31 19:19 ",
+            "category": "Public Health",
+            "row_count": 292,
+            "attributes": "dur_response_group, dur_response_group, dur_response_group, dur_response_group, domain_team_uid, domain_team_uid, domain_team_uid, domain_team_uid",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "pulmonary_and_covid_summary",
+            "json": "download",
+            "updated": "2024-07-26 06:56 ",
+            "category": "Public Health",
+            "row_count": 78,
+            "attributes": "age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, observation, observation, n_observation, n_observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "region_frequency",
+            "json": "download",
+            "updated": "2022-08-24 20:41 ",
+            "category": "Exploratory",
+            "row_count": 9,
+            "attributes": "id, name, sum",
+            "table_schema": "enclave_cohort"
+        },
+        {
+            "csv": "download",
+            "file": "reinfection_leonie_requested",
+            "json": "download",
+            "updated": "2024-07-26 06:50 ",
+            "category": "Public Health",
+            "row_count": 34,
+            "attributes": "test_date_diff_range, test_date_diff_range, count, count, range_start, range_start, range_end, range_end",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "renal_disease_and_covid_summary",
+            "json": "download",
+            "updated": "2024-07-26 07:01 ",
+            "category": "Public Health",
+            "row_count": 64,
+            "attributes": "age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, observation, observation, n_observation, n_observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "researchers_to_research_projects_export",
+            "json": "download",
+            "updated": "2025-03-31 19:19 ",
+            "category": "Public Health",
+            "row_count": 2392,
+            "attributes": "project_uid, project_uid, project_uid, project_uid, project_uid, researcher_uid, researcher_uid, researcher_uid, researcher_uid, researcher_uid",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "results_censored",
+            "json": "download",
+            "updated": "2024-07-26 06:26 ",
+            "category": "Public Health",
+            "row_count": 5,
+            "attributes": "patient_group, patient_group, number_of_people, number_of_people",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "rheumatologic_disease_and_covid_summary",
+            "json": "download",
+            "updated": "2024-07-26 07:01 ",
+            "category": "Public Health",
+            "row_count": 68,
+            "attributes": "age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, observation, observation, n_observation, n_observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "sotrovimab_comorbidity",
+            "json": "download",
+            "updated": "2024-07-26 07:03 ",
+            "category": "Public Health",
+            "row_count": 65,
+            "attributes": "number_of_comorbidities, number_of_comorbidities, severity_type, severity_type, count, count",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "sotrovimab_demographic",
+            "json": "download",
+            "updated": "2024-07-26 07:03 ",
+            "category": "Public Health",
+            "row_count": 35,
+            "attributes": "age_bracket, age_bracket, addtl_gender_concept_name, addtl_gender_concept_name, severity_type, severity_type, count, count",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "sotrovimab_other_meds",
+            "json": "download",
+            "updated": "2024-07-26 07:03 ",
+            "category": "Public Health",
+            "row_count": 219,
+            "attributes": "addtl_concept_set_name, addtl_concept_set_name, severity_type, severity_type, sotrovimab_after_other_medication, sotrovimab_after_other_medication, count, count",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "sotrovimab_test_type",
+            "json": "download",
+            "updated": "2024-07-26 07:03 ",
+            "category": "Public Health",
+            "row_count": 16,
+            "attributes": "covid_event_type, covid_event_type, severity_type, severity_type, count, count",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "sotrovimab_vax_status",
+            "json": "download",
+            "updated": "2024-07-26 07:03 ",
+            "category": "Public Health",
+            "row_count": 12,
+            "attributes": "vaccinated, vaccinated, severity_type, severity_type, count, count",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "stroke_and_covid_summary",
+            "json": "download",
+            "updated": "2024-07-26 07:01 ",
+            "category": "Public Health",
+            "row_count": 69,
+            "attributes": "age_bracket, age_bracket, gender_concept_name, gender_concept_name, count, count, observation, observation, n_observation, n_observation",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "symptom_before_or_after_covid",
+            "json": "download",
+            "updated": "2024-07-26 07:02 ",
+            "category": "Public Health",
+            "row_count": 11,
+            "attributes": "symptom, symptom, symptom, symptom, condition_after_covid_positive, condition_after_covid_positive, condition_after_covid_positive, condition_after_covid_positive, count, count, count, count",
+            "table_schema": "n3c_questions"
+        },
+        {
+            "csv": "download",
+            "file": "table1_union",
+            "json": "download",
+            "updated": "2025-01-21 15:03 ",
+            "category": "Public Health",
+            "row_count": 47,
+            "attributes": "demographic_feature, demographic_feature, category_name, category_name, test_result, test_result, ptct, ptct",
+            "table_schema": "n3c_questions"
+        }
+    ]
+}

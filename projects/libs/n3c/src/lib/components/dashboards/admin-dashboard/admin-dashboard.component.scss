@@ -1,0 +1,293 @@
+.base {
+  fill: rgba(204, 204, 204, 0.5); /* light gray with some transparency */
+  stroke: #ccc;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.zip {
+  fill: yellow;
+  stroke: brown;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke; // line height won't scale
+}
+
+.remove {
+  vector-effect: non-scaling-stroke; // line height won't scale
+}
+
+.links {
+  stroke: #007bff;
+  stroke-width: 0.5px;
+  pointer-events: none;
+  vector-effect: non-scaling-stroke; // line height won't scale
+}
+
+.county {
+  stroke: brown;
+  stroke-width: 0.5;
+  vector-effect: non-scaling-stroke; // line height won't scale
+}
+
+.state {
+  fill: none;
+  stroke: #000000;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke; // line height won't scale
+}
+.pos-relative {
+  position: relative;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke-width: 1.5px;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.tooltip-duas,
+text.duas {
+  fill: #0b4865;
+}
+
+.dua_dta_focus .tooltip {
+  fill: white;
+  opacity: 0.7;
+  stroke: none;
+  width: 90px;
+}
+
+path.duas {
+  stroke: #0b4865;
+  stroke-width: 2.8px;
+}
+path.dtas {
+  stroke: #4933b1;
+  stroke-width: 2.8px;
+}
+
+.tooltip-dtas,
+text.dtas {
+  fill: #4933b1;
+}
+
+.dua_area {
+  fill: #0b4865;
+  opacity: 0.1;
+}
+
+.dta_area {
+  fill: #4933b1;
+  opacity: 0.1;
+}
+
+.dua_dta_focus text {
+  font-size: 12px;
+}
+
+.tooltip {
+  fill: white;
+  stroke: #000;
+}
+
+.tooltip-date_dta_dua,
+.tooltip-duas,
+.tooltip-dtas {
+  font-weight: bold;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke-width: 1.5px;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.reg_focus circle,
+text.registration {
+  fill: #4933b1;
+}
+.reg_focus .tooltip {
+  fill: white;
+  opacity: 0.7;
+  stroke: none;
+  width: 100px;
+}
+
+path.registration {
+  stroke: #4933b1;
+  stroke-width: 2.8px;
+}
+
+.reg_focus text {
+  font-size: 12px;
+}
+
+.tooltip {
+  fill: white;
+  stroke: #000;
+}
+
+.tooltip-registration {
+  fill: #4933b1;
+}
+
+.tooltip-registration,
+.tooltip-date {
+  font-weight: bold;
+}
+
+.reg_area {
+  fill: #4933b1;
+  opacity: 0.1;
+}
+.content {
+  display: flex;
+}
+.map-container {
+  min-width: 592px;
+  position: relative;
+}
+.header-text {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+h3 {
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+.btn-select {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.content {
+  min-width: 1653px;
+}
+.map {
+  padding-left: 65px;
+}
+
+.btn-primary:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: none;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+  color: white;
+  background-color: #3f50b0;
+  border-color: #3f50b0;
+}
+
+.btn-light {
+  border-color: #cfcfcf;
+}
+
+.btn-light:hover,
+.btn-light:active {
+  background-color: #f2f2f2;
+}
+
+.btn-select {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.inst-grid-container {
+  padding-left: 20px;
+}
+
+.content-panel {
+  min-width: 1300px;
+}
+
+.m-tall {
+  margin: 2rem;
+  margin-bottom: 3rem;
+}
+.primary-nav {
+  height: 40px;
+  background: #006478;
+  color: #fff;
+}
+.n3c-logo {
+  margin: 0 7px;
+}
+.loader {
+  position: relative;
+}
+.main {
+  height: calc(100vh - 700px);
+  padding: 1px;
+}
+app-admin-dashboard {
+  min-width: 1700px;
+  display: block;
+}
+
+.loading-msg {
+  justify-content: center;
+}
+
+.page-msg {
+  min-height: calc(100vh - 538px);
+  position: relative;
+}
+.error-msg {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  color: red;
+}
+
+.container.content.container-large.pos-relative > div {
+  width: 515px;
+}
+
+.css-dropdown {
+  position: relative;
+  > .dropdown-menu {
+    display: none;
+    right: 0;
+    left: auto;
+    top: 100%;
+  }
+  &:hover > .dropdown-menu,
+  &:focus-within > .dropdown-menu {
+    display: block;
+  }
+}

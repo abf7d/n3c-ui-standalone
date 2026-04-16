@@ -1,0 +1,32 @@
+<div class="row kpi-section">
+  <div class="kpi-row">
+    @for (column of kpiConfigs; track $index) {
+      <div class="kpi-column" [ngClass]="{'kpi-separator': column.separator}">
+        <!-- Render KPI items -->
+        @if (!hasNestedRows(column)) {
+          @for (kpi of column.items; track $index) {
+            <app-kpi-item
+              [title]="kpi.title"
+              [value]="kpi.value"
+              [icon]="kpi.icon"
+              [tooltipTitle]="kpi.tooltipTitle"
+              [tooltipContent]="kpi.tooltipContent"
+              [footer]="kpi.footer || ''"
+              [limitationsLink]="kpi.limitationsLink || ''"
+              [progress]="kpi.progress"
+            ></app-kpi-item>
+          }
+        } @else {
+          <div class="nested-rows">
+            @for (row of column.rows; track $index) {
+              <div class="nested-row">
+                <app-kpi-panel [kpiConfigs]="row.columns"></app-kpi-panel>
+              </div>
+            }
+          </div>
+        }
+        <!-- Render nested rows if present -->
+      </div>
+    }
+  </div>
+</div>

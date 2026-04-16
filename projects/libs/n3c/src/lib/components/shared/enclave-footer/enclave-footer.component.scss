@@ -1,0 +1,102 @@
+#license {
+  background-color: #f0f0f0;
+  margin-top: 30px;
+  padding: 20px;
+}
+
+#footer {
+  background-color: #3e6a7b;
+
+  .external-nav {
+    border-left: 1px solid #ccc;
+  }
+
+  #accessibility {
+    font-size: 13px;
+    a {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }
+}
+
+#copyright {
+  #arr {
+    font-size: 13px;
+  }
+}
+
+.data-source-link {
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.footer-line {
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid #ffffff;
+  position: absolute;
+}
+
+.footer-center-align {
+  text-align: center;
+}
+
+.footer-social-section {
+  background-color: #142b52 !important;
+}
+
+.footer-social-row {
+  height: 35px;
+}
+
+.n3c-footer-image {
+  max-height: 140px;
+  max-width: 100%;
+}
+
+.footer-text {
+  padding-left: 40px;
+}
+
+.footer-image-container {
+  text-align: center;
+}
+
+.footer-text-container {
+  text-align: left;
+}
+
+:host ::ng-deep .footer-text a {
+  color: #ffff00;
+}
+
+.center {
+  margin: auto;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+  unicode-bidi: isolate;
+  margin-top: 10px;
+}
+
+#social-icons li {
+  display: inline;
+  unicode-bidi: isolate;
+  padding-left: 15px;
+}
+.text-align-center {
+  text-align: center;
+}
+

@@ -1,0 +1,45 @@
+@use '../../../styles/n3c-styles.scss';
+
+h2 {
+  font-size: 2.3rem;
+  font-weight: 300;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.flex {
+  display: flex;
+}
+
+.shadow-block {
+  padding: 10px;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  webkit-box-shadow: 1px 2px 30px 2px rgba(92, 123, 128, 0.72);
+  -moz-box-shadow: 1px 2px 30px 2px rgba(92, 123, 128, 0.72);
+  box-shadow: 1px 2px 30px 2px rgba(92, 123, 128, 0.72);
+  border-radius: 5px;
+}
+.auto-image {
+  max-width: 80%;
+  height: auto;
+}
+.btn-n3c {
+  background: linear-gradient(135deg, rgba(100, 42, 107, 1) 0%, rgba(99, 53, 112, 1) 47%, rgba(70, 71, 119, 1) 100%);
+}
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

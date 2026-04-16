@@ -1,0 +1,28 @@
+<div class="site-grants-container">
+  <app-n3c-loader [loading]="loading" [showError]="showError">
+    <h3 class="section-title">Grants</h3>
+    @if (grantsRowData.length > 0) {
+      <app-simple-grid
+        [rowData]="grantsRowData"
+        [columnDefs]="grantsColDefs"
+        [defaultColDef]="defaultColDef"
+        [csvFileName]="'grants.csv'"
+      ></app-simple-grid>
+    }
+    @if (!loading && !showError && grantsRowData.length === 0) {
+      <div class="no-data-msg">No data</div>
+    }
+    <h3 class="section-title subcontracts-title">Subcontracts</h3>
+    @if (subcontractsRowData.length > 0) {
+      <app-simple-grid
+        [rowData]="subcontractsRowData"
+        [columnDefs]="subcontractsColDefs"
+        [defaultColDef]="defaultColDef"
+        [csvFileName]="'subcontracts.csv'"
+      ></app-simple-grid>
+    }
+    @if (!loading && !showError && subcontractsRowData.length === 0) {
+      <div class="no-data-msg">No data</div>
+    }
+  </app-n3c-loader>
+</div>

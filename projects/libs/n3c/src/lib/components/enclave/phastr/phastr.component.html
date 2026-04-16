@@ -1,0 +1,74 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide">
+      <div class="pt-3">
+        <p><a [routerLink]="['/covid/']">Home</a> > {{ pageContent?.header }}</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        @if (childContent === null) {
+          <div class="row">
+            <h1 [innerHTML]="pageContent?.header"></h1>
+            <div [innerHTML]="pageContent?.eligibility"></div>
+          </div>
+          <div class="row g-2 mb-5">
+            @if (pageContent?.public_health_questions; as questions) {
+              @for (question of questions; track question) {
+                <div class="col-12 col-md-4">
+                  <div class="card h-100 shade-blue">
+                    <h3>
+                      <a [routerLink]="['/covid/phastr']" [queryParams]="{id: question.id}">
+                        {{ question.title }}
+                      </a>
+                    </h3>
+                    <p [innerHTML]="question.description"></p>
+                    <div class="mt-2">
+                      <small class="text-muted">Application Deadline:</small>
+                      {{ question.close_date | date: 'MMM d, yyyy' }}
+                    </div>
+                    <div>
+                      <small class="text-muted">Contract Amount:</small>
+                      ${{ question.contract_amount | number: '1.2-2' }}
+                    </div>
+                  </div>
+                </div>
+              }
+            }
+          </div>
+
+          <hr />
+          <br />
+
+          <div>
+            <div [innerHTML]="pageContent?.about"></div>
+            <hr />
+            <div class="row flex-wrap">
+              <h3 class="h3-subheader">FAQs</h3>
+              <mat-accordion class="accordion">
+                @for (faq of pageContent?.faqs; track faq) {
+                  <mat-expansion-panel class="accordion-body">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        {{ faq.label }}
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <p [innerHTML]="faq.answer"></p>
+                  </mat-expansion-panel>
+                }
+              </mat-accordion>
+            </div>
+          </div>
+        }
+
+        @if (childContent !== null) {
+          <app-n3c-phastr-question [content]="childContent"></app-n3c-phastr-question>
+        }
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

@@ -1,0 +1,89 @@
+<div class="col-12">
+  <div class="row flex">
+    <div class="col-12 col-md-8">
+      <h1>{{ content[0].title }}</h1>
+
+      <div class="row flex-wrap mt-4">
+        <h3>Contract Description</h3>
+        <div [innerHTML]="content[0].description"></div>
+      </div>
+
+      <div class="row flex-wrap">
+        <h3>Contract Aims</h3>
+        <div [innerHTML]="content[0].aims"></div>
+      </div>
+
+      <div class="row flex-wrap">
+        <h3>Analysis Plan / Research Method</h3>
+        <div [innerHTML]="content[0].analysis_plan"></div>
+      </div>
+
+      <div class="row flex-wrap">
+        <h3>Expected Results</h3>
+        <div [innerHTML]="content[0].expected_results"></div>
+      </div>
+
+      <div class="row flex-wrap">
+        <h3>Inclusion Criteria</h3>
+        <div [innerHTML]="content[0].inclusion_criteria"></div>
+      </div>
+
+      <div class="row flex-wrap">
+        <h3>Exclusion Criteria</h3>
+        <div [innerHTML]="content[0].exclusion_criteria"></div>
+      </div>
+
+      <div class="row flex-wrap">
+        <h3>Phenotype</h3>
+        <div [innerHTML]="content[0].phenotype"></div>
+      </div>
+
+      <div class="row flex-wrap">
+        <h3>Deliverables</h3>
+        <div [innerHTML]="content[0].deliverables"></div>
+      </div>
+    </div>
+    <div class="col-12 col-md-3 right-nav-bar sticky-top">
+      <div class="row flex-wrap">
+        <span><strong>Application Open Date</strong></span
+        ><br />
+        <span>{{ content[0].open_date | date: 'MMM d, YYYY' }}</span>
+      </div>
+
+      <span><strong>Application Close Date</strong></span
+      ><br />
+      <span>{{ content[0].close_date | date: 'MMM d, YYYY' }}</span>
+
+      <div class="row flex-wrap">
+        <span><strong>Number of Contracts</strong></span
+        ><br />
+        <span>{{ content[0].contract_count }}</span>
+      </div>
+
+      <div class="row flex-wrap">
+        <span><strong>Contract Amount</strong></span
+        ><br />
+        <span>${{ content[0].contract_amount | number: '1.2-2' }}</span>
+      </div>
+
+      <div class="row flex-wrap">
+        <span><strong>Length of Contract</strong></span
+        ><br />
+        <span>{{ content[0].contract_length }}</span>
+      </div>
+
+      <div class="row flex-wrap">
+        <span><strong>Contact</strong></span
+        ><br />
+        <span>{{ content[0].contact }}</span>
+      </div>
+
+      <div class="row flex-wrap">
+        <span><strong>Email</strong></span>
+        <span
+          ><a href="mailto:{{ content[0].contact_email }}">{{ content[0].contact_email }}</a></span
+        >
+      </div>
+    </div>
+  </div>
+</div>

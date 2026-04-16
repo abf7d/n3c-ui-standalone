@@ -1,0 +1,104 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<nav class="primary-nav navbar navbar-expand-lg p-0"></nav>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" [routerLink]="['/dashboard']">
+    <img
+      src="./assets/n3c/images/n3c_logo.png"
+      width="30"
+      height="30"
+      class="d-inline-block n3c-logo"
+      alt="N3C logo"
+    />N3C Dashboards
+  </a>
+</div>
+<nav class="ms-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboards</a></li>
+    <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">Site Collaboration Profiles</li>
+  </ol>
+</nav>
+
+<app-n3c-loader [loading]="dataLoading" [showError]="showError">
+  <div class="container container-large content" [hidden]="showError || dataLoading">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="page-title">Site Collaboration Profiles</h1>
+        <div id="question-description" class="section-description heading-text text-max mx-auto">
+          <p>A by-site presentation of Enclave research collaboration.</p>
+          <p>
+            Note that a number of the sources for these data are approximate.&nbsp;Updates are welcome - please send to
+            <a href="mailto:NCATSN3CClinical@mail.nih.gov">NCATSN3CClinical&#64;mail.nih.gov</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row center-content-row">
+      <div class="col-12 col-lg-10 center-content-col">
+        <div class="row">
+          <div class="col-12">
+            <div class="action-bar">
+              <button id="reset" class="btn btn-secondary" (click)="resetZoom()">Reset Zoom</button>
+              <div class="btn-group img-menu-group" style="position: relative">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-light dropdown-toggle"
+                  (click)="showImgMenu = !showImgMenu"
+                  [attr.aria-expanded]="showImgMenu"
+                >
+                  <i class="fas fa-download" aria-hidden="true"></i>
+                </button>
+                @if (showImgMenu) {
+                  <div class="dropdown-backdrop" (click)="showImgMenu = false"></div>
+                }
+                @if (showImgMenu) {
+                  <div class="dropdown-menu dropdown-menu-right show">
+                    <a class="dropdown-item" (click)="saveVisualization('jpg', 'graph'); showImgMenu = false"
+                      >Save as JPG</a
+                    >
+                    <a class="dropdown-item" (click)="saveVisualization('png', 'graph'); showImgMenu = false"
+                      >Save as PNG</a
+                    >
+                    <a class="dropdown-item" (click)="saveVisualization('svg', 'graph'); showImgMenu = false"
+                      >Save as SVG</a
+                    >
+                  </div>
+                }
+              </div>
+            </div>
+            <p>
+              Click on a state to zoom to that state, click on that state again to return to the default view. Drag pans
+              the map. Scroll zooms in/out relative to the mouse position.
+            </p>
+            <p>
+              Click on a node to open that site's collaboration profile. Alternatively, you can click on a site in the
+              table on the right.
+            </p>
+            <p>The PDF link in the table retrieves the N3C Collaboration Profile for the respective site.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-7 mb-3 mb-md-0">
+            <div #chart id="graph" class="collab-chart"></div>
+          </div>
+          <div class="col-12 col-md-5">
+            <div class="table-search-container">
+              <app-simple-grid
+                [rowData]="gridData"
+                [columnDefs]="columnDefs"
+                [defaultColDef]="{resizable: true, sortable: true, filter: true}"
+                [autoHeight]="false"
+                [gridHeight]="'500px'"
+                [csvFileName]="'collaboration-sites.csv'"
+              >
+              </app-simple-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-n3c-loader>
+
+<app-dashboard-footer></app-dashboard-footer>

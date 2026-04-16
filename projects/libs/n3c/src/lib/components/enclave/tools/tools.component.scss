@@ -1,0 +1,72 @@
+@use '../../../styles/n3c-styles.scss';
+
+.main-block {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.row-item {
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+
+.left-section {
+  // width: 50%;
+  float: left;
+  //height:100vh;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 20px;
+}
+
+.right-section {
+  // width: 50%;
+  float: left;
+  //height:100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.hover-style:hover {
+  color: #1570ba;
+  text-decoration: underline;
+}
+
+.main-block {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.w-70 {
+  width: 70%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+h4 {
+  font-size: 1.5rem;
+}

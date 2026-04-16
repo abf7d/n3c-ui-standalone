@@ -1,0 +1,84 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<nav class="primary-nav navbar navbar-expand-lg p-0"></nav>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" [routerLink]="['/dashboard']">
+    <img
+      src="./assets/n3c/images/n3c_logo.png"
+      width="30"
+      height="30"
+      class="d-inline-block n3c-logo"
+      alt="N3C logo"
+    />N3C Dashboards
+  </a>
+</div>
+<nav class="ms-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboards</a></li>
+    <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">Site Collaboration Profile</li>
+  </ol>
+</nav>
+
+<app-n3c-loader [loading]="dataLoading" [showError]="showError">
+  <div class="container container-large content">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="page-title">Site Collaboration Profile</h1>
+        <div id="question-description" class="section-description heading-text text-max mx-auto">
+          <p>A by-site presentation of Enclave research collaboration.</p>
+          <p>
+            Note that a number of the sources for these data are approximate. Updates are welcome - please send to
+            <a href="mailto:NCATSN3CClinical&#64;mail.nih.gov">NCATSN3CClinical&#64;mail.nih.gov</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 mx-auto">
+        <div class="topic_dropdown">
+          <h4 class="viz_color_header">Select a Perspective:</h4>
+          <select [value]="selectedTab" (change)="onDropdownChange($event)">
+            @for (item of dropdownItems; track item) {
+              <option [value]="item.key">{{ item.label }}</option>
+            }
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        @if (siteName) {
+          <h2 class="site-title">{{ siteName }}</h2>
+        }
+        <div>
+          @switch (selectedTab) {
+            @case ('overview') {
+              <div>
+                <app-site-overview [siteName]="siteName" [siteId]="decodedId ?? ''"></app-site-overview>
+              </div>
+            }
+            @case ('grants') {
+              <div>
+                <div class="center-component">
+                  <app-site-grants [rorId]="decodedId ?? ''"></app-site-grants>
+                </div>
+              </div>
+            }
+            @case ('projects') {
+              <div>
+                <app-site-projects [rorId]="decodedId ?? ''"></app-site-projects>
+              </div>
+            }
+            @case ('publications') {
+              <div>
+                <app-site-publications [rorId]="decodedId ?? ''" [siteName]="siteName"></app-site-publications>
+              </div>
+            }
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</app-n3c-loader>
+
+<app-dashboard-footer class="dashboard-footer"></app-dashboard-footer>

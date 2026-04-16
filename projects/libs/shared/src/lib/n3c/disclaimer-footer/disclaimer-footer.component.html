@@ -1,0 +1,73 @@
+@if (showCC) {
+  <div [ngClass]="noMargin ? 'container-fluid p-3 m-0' : 'container-fluid p-3'" id="license">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <a href="/covid19">NCATS OpenData</a> is licensed under a
+          <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC BY</a> license | 2020
+        </div>
+      </div>
+    </div>
+  </div>
+}
+<div class="container-fluid py-4" id="footer">
+  <div class="container">
+    <div class="row text-white">
+      <div class="col-6 col-md-2">
+        <ul class="internal-nav">
+          <li><a [routerLink]="['/clinical-cohort']">Home</a></li>
+          <li><a [routerLink]="['/covid']">Covid</a></li>
+          <li><a [routerLink]="['/education']">Education</a></li>
+
+          <li><a [routerLink]="['/renal']">Renal</a></li>
+          <li><a [routerLink]="['/cancer']">Cancer</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md-2">
+        <ul class="external-nav pl-4">
+          <li><a href="https://www.nih.gov/">NIH Home</a></li>
+          <li><a href="https://ncats.nih.gov/">NCATS Home</a></li>
+          <li><a href="https://ncats.nih.gov/privacy">Privacy Notice</a></li>
+          <li>
+            <a href="https://www.hhs.gov/vulnerability-disclosure-policy/index.html">HHS Vulnerability Disclosure</a>
+          </li>
+          <li><a href="https://ncats.nih.gov/accessibility">Accessibility</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-md-7">
+        <div class="col-12 p-4" id="accessibility">
+          <p>
+            If you have problems viewing PDF files. download the latest version of
+            <app-external-link
+              class="data-source-link"
+              [url]="'https://get.adobe.com/reader/'"
+              [text]="'Adobe Reader'"
+            ></app-external-link>
+          </p>
+          <p>
+            For language access assistance, contact the
+            <a href="mailto:info@ncats.nih.gov">NCATS Public Information Officer</a>.
+          </p>
+          <p>
+            National Center for Advancing Translational Sciences (NCATS). 9609 Medical Center Drive Rockville, MD
+            20850-9793 |
+            <i class="fas fa-phone"></i> 301-594-8966
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid py-3" id="copyright">
+  <div class="container">
+    <div class="row align-items-center h-100">
+      <div class="col-md-6 px-0">
+        <img width="160" src="./assets/svg/NIH-SVG.svg" alt="home" />
+      </div>
+      <div id="arr" class="col-md-6 px-0 text-right text-white justify-content-center">
+        &#169; 2020-2025, NCATS All Rights Reserved.
+      </div>
+    </div>
+  </div>
+</div>

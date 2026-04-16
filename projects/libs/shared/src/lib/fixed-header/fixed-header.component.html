@@ -1,0 +1,73 @@
+<header>
+  <div id="network-branding" class="container-fluid text-white min-fixed">
+    <div id="network-branding" class="container-fluid text-white">
+      <div class="container max-fixed">
+        <div>
+          <div class="row">
+            <img class="masthead-logo" src="./assets/images/masthead-hhs-logo.png" alt="" />
+            <a class="masthead-link hhs-link" href="https://www.hhs.gov/"
+              ><span class="d-none d-xl-inline-block">U.S. Department of Health and Human Services</span>
+              <span class="d-xl-none d-inline-block">HHS</span></a
+            >
+            <img src="./assets/images/masthead-divider.png" alt="" />
+            <img class="masthead-logo" src="./assets/images/masthead-nih-logo.png" alt="" />
+            <a class="masthead-link nih-link" href="https://www.nih.gov/"
+              ><span class="d-none d-lg-inline-block">National Institutes of Health</span>
+              <span class="d-lg-none d-inline-block">NIH</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="eo-banner container-fluid text-white">
+    <div>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="banner-message" [innerHTML]="message"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="brand-container container-fluid">
+    <div class="container px-4 d-none d-lg-block max-fixed">
+      <div class="row no-gutters align-items-center justify-content-center py-3 main-header">
+        <div class="pl-1 pl-md-0 col-9 col-md-8">
+          <a href="https://ncats.nih.gov/" class="text-decoration-none">
+            <img width="240" src="/assets/svg/ncats.svg" alt="home" />
+            <div class="ml-2 pl-2 webName">
+              <a [routerLink]="['/covid19']">OpenData Portal</a>
+            </div>
+          </a>
+        </div>
+        <div class="col-2 text-center d-md-none">
+          <a
+            class="btn btn-light"
+            data-toggle="collapse"
+            href="#searchform-mobile"
+            role="button"
+            aria-expanded="false"
+            aria-controls="searchform-mobile"
+          >
+            <span class="sr-only">Search</span><i class="fas fa-search"></i>
+          </a>
+        </div>
+        <div id="searchform" class="d-none d-md-block col-md-4 mt-4 mt-md-0 pl-3"></div>
+      </div>
+    </div>
+  </div>
+  <div id="mobile-nav" class="container d-block d-lg-none py-2">
+    <div class="row no-gutters align-items-center justify-content-center">
+      <div class="col-10 text-center">
+        <a class="text-dec-none" href="https://ncats.nih.gov/">
+          <img width="125" src="/assets/svg/ncats.svg" alt="home" />
+          <div class="ml-2 webName">
+            <a [routerLink]="['/covid19']">OpenData Portal</a>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

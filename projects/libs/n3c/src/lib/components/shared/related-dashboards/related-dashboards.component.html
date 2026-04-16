@@ -1,0 +1,13 @@
+<div class="panel-heading filter-section" id="related_dashboards" style="margin-left: 5px">
+  <h4>Related Dashboards</h4>
+  <div class="row">
+    @for (tile of filteredTiles; track tile) {
+      <div class="col-12 mb-2">
+        <div class="card hover-card flex-fill" (click)="navigateTo(tile.link)">
+          <img [src]="tile.image" alt="{{ tile.title }}" class="tile-image" />
+          <h3 class="tile-title">{{ tile.title }}</h3>
+        </div>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,106 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<nav class="primary-nav navbar navbar-expand-lg p-0"></nav>
+<div class="left-spaced">
+  <div class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+    <a class="navbar-brand" [routerLink]="['/dashboard']">
+      <img
+        src="./assets/n3c/images/n3c_logo.png"
+        width="30"
+        height="30"
+        class="d-inline-block n3c-logo"
+        alt="N3C logo"
+      />N3C Dashboards
+    </a>
+  </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboards</a></li>
+      <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">Contributing Sites Dashboard</li>
+    </ol>
+  </nav>
+</div>
+
+<app-n3c-loader [loading]="dataLoading" [showError]="showError">
+  <div class="chart">
+    <div class="header-container">
+      <div class="header">
+        <h3>Institutions Contributing Data</h3>
+        <div>
+          The N3C allows medical sites within the United States to securely transfer anonymized data into the Enclave.
+          The average interval for data transfer from our partners is once a week. To explore the geographic coverage of
+          our current partners, please see the map below.
+        </div>
+      </div>
+    </div>
+    <div class="title-line">
+      <h3 class="pl-30 pb-3 pt-4">
+        N3C Contributing Sites
+
+        <span class="tip">
+          <button class="btn btn-xs btn-tip gly-radius" [appPopover]="tooltipTemplate" popoverTitle="Interaction Tip:">
+            <i class="fas fa-lightbulb" aria-hidden="true"></i>
+            <span class="sr-only"
+              >Large blue icons are projects - mousing over shows the ID and title. The remaining icons are project
+              members (color key at the right) - mouse over to see a name.</span
+            >
+          </button>
+          <ng-template #tooltipTemplate>
+            <div class="popover-content">
+              <div>Search the Table to Update the Map. Click on a Heading to Sort the Table.</div>
+            </div>
+          </ng-template>
+        </span>
+      </h3>
+      <div>
+        <div class="btn-group css-dropdown">
+          <button type="button" class="btn btn-sm btn-light dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-download"></i>
+          </button>
+
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" (click)="saveAs('jpg')">Save as JPG</a>
+            <a class="dropdown-item" (click)="saveAs('png')">Save as PNG</a>
+            <a class="dropdown-item" (click)="saveAs('svg')">Save as SVG</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="legends">
+      <div class="legend pl-30 width-50">
+        <label for=""
+          >Color Counties By
+          <select (change)="onViewChanged($event)" name="color-options" id="color-options">
+            <option value="population">Population</option>
+            <option value="birthrate">Birth Rate</option>
+            <option value="deathrate">Death Rate</option>
+          </select>
+        </label>
+        <div #colorLegend></div>
+      </div>
+      <div class="legend">
+        <label for="">Site Legend</label>
+        <div #siteLegend></div>
+      </div>
+    </div>
+    <div class="pl-30">
+      <button (click)="resetZoom()" class="btn btn-primary"><i class="fas fa-refresh"></i> Reset Zoom</button>
+    </div>
+    <div #chartMap></div>
+  </div>
+  <div class="grid chart">
+    <div class="grid chart">
+      <app-simple-grid
+        [rowData]="gridData"
+        [columnDefs]="columnDefs"
+        [components]="frameworkComponents"
+        [autoHeight]="false"
+        [gridHeight]="'500px'"
+        [csvFileName]="'contributing-sites.csv'"
+        (displayedRowsChange)="onDisplayedRowsChange($event)"
+      >
+      </app-simple-grid>
+    </div>
+  </div>
+</app-n3c-loader>
+
+<app-dashboard-footer></app-dashboard-footer>

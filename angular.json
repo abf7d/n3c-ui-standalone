@@ -6,5 +6,87 @@
   },
   "newProjectRoot": "projects",
   "projects": {
+    "N3C-UI": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/apps/n3c-app",
+      "sourceRoot": "projects/apps/n3c-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "projects/apps/n3c-app/src/main.ts",
+            "tsConfig": "projects/apps/n3c-app/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/apps/n3c-app/public"
+              }
+            ],
+            "styles": [
+              "projects/apps/n3c-app/src/styles.scss"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "N3C-UI:build:production"
+            },
+            "development": {
+              "buildTarget": "N3C-UI:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
+        }
+      }
+    },
+    "shared": {
+      "projectType": "library",
+      "root": "projects/libs/shared",
+      "sourceRoot": "projects/libs/shared/src",
+      "prefix": "app",
+      "architect": {}
+    },
+    "n3c": {
+      "projectType": "library",
+      "root": "projects/libs/n3c",
+      "sourceRoot": "projects/libs/n3c/src",
+      "prefix": "app",
+      "architect": {}
+    }
   }
 }

@@ -1,0 +1,396 @@
+{
+    "id": 2,
+    "title": {
+        "name": "N3C COVID",
+        "href": "/covid",
+        "external": false
+    },
+    "menu": [
+        {
+            "name": "Home",
+            "customClass": "nav-item",
+            "href": "/covid",
+            "external": false
+        },
+        {
+            "name": "About",
+            "customClass": "nav-item",
+            "dropdown": [
+                {
+                    "name": "About",
+                    "href": "/covid/covid-about",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Mission",
+                    "href": "/covid/mission",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Contributors",
+                    "href": "/covid/contributors",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                }
+            ]
+        },
+        {
+            "name": "N3C Data Enclave",
+            "customClass": "nav-item",
+            "dropdown": [
+                {
+                    "name": "COVID DTA/DUA Extensions",
+                    "href": "/covid/covid-extension",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "About the Enclave",
+                    "href": "/covid/enclave-essentials",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Data Dictionary",
+                    "href": "https://ohdsi.github.io/CommonDataModel/cdm53.html",
+                    "subText": "",
+                    "external": true,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Published N3C Concept Sets",
+                    "href": "https://zenodo.org/communities/cd2h-covid/?page=1&size=20",
+                    "subText": "",
+                    "external": true,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Enclave Fact Sheet",
+                    "href": "/covid/fact-sheet",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Domain Teams",
+                    "href": "/covid/domain-teams",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Enclave Projects",
+                    "href": "/covid/projects",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Enclave Tools",
+                    "href": "/covid/tools",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "External Datasets",
+                    "href": "/covid/external-datasets",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "DTA Signatories",
+                    "href": "/covid/agreements",
+                    "subText": "",
+                    "queryParams": {
+                        "tenant": "COVID",
+                        "type": "DTA"
+                    },
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "DUA Signatories",
+                    "href": "/covid/agreements",
+                    "queryParams": {
+                        "tenant": "COVID",
+                        "type": "DUA"
+                    },
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Create an Account",
+                    "href": "/covid/account-creation",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "PPRL Data Linkage",
+                    "href": "/covid/pprl",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "PHASTR",
+                    "href": "/covid/phastr",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                }
+            ]
+        },
+        {
+            "name": "Get Involved",
+            "customClass": "nav-item",
+            "dropdown": [
+                {
+                    "name": "Institution Essentials",
+                    "href": "/covid/institution-essentials/",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Researcher Essentials",
+                    "href": "/covid/researcher-essentials/",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Researcher's Guide to N3C",
+                    "href": "https://national-clinical-cohort-collaborative.github.io/guide-to-n3c-v1/",
+                    "subText": "",
+                    "external": true,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "N3C Onboarding",
+                    "href": "/covid/onboarding/",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "N3C Calendar",
+                    "href": "/covid/calendar",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                }
+            ]
+        },
+        {
+            "name": "Resources",
+            "customClass": "nav-item",
+            "dropdown": [
+                {
+                    "name": "N3C Training",
+                    "href": "/covid/training",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "IRB Documents",
+                    "href": "https://zenodo.org/communities/cd2h-covid/search?page=1&size=20&q=IRB",
+                    "subText": "",
+                    "external": true,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Communication Materials",
+                    "href": "/covid/communications",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Publication Review",
+                    "href": "/covid/publication-review",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Data Use Request (DUR)",
+                    "href": "/covid/dur",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "NCATS Forms & Resources",
+                    "href": "https://ncats.nih.gov/n3c/resources/data-access",
+                    "subText": "",
+                    "external": true,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Acknowledgements",
+                    "href": "/covid/acknowledgements",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Data Download Guide",
+                    "href": "/covid/download",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Policies, Agreements & Forms",
+                    "href": "/covid/policy",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "N3C/CD2H Off-boarding Form",
+                    "href": "https://docs.google.com/forms/d/e/1FAIpQLSeKgUA5nmladqt16IaX1FYRNFOwRT2Nboe77qUcxOAZigQiSw/viewform",
+                    "subText": "",
+                    "external": true,
+                    "newMark": false,
+                    "archived": false
+                }
+            ]
+        },
+        {
+            "name": "Support",
+            "customClass": "nav-item",
+            "dropdown": [
+                {
+                    "name": "Support Desk",
+                    "href": "/covid/support",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "FAQs",
+                    "href": "/covid/faq",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Submit Support Request",
+                    "href": "https://n3c-help.atlassian.net/servicedesk/customer/portal/2",
+                    "subText": "",
+                    "external": true,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Support Desk Office Hours",
+                    "href": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_MjU1ZDcyNjctM2Q2Zi00MWVlLTg0NzEtNzU2YTM1YzhmZmU0%40thread.v2/0?context=%7b%22Tid%22%3a%2214b77578-9773-42d5-8507-251ca2dc2b06%22%2c%22Oid%22%3a%2241433e29-66a6-4bc8-baa1-f6e001a31eb1%22%7d",
+                    "subText": "",
+                    "external": true,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Data Liaisons and Logic Liaisons Services",
+                    "href": "/covid/liaisons",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Report Conduct Concerns",
+                    "href": "https://docs.google.com/forms/d/e/1FAIpQLSfXhu8qReLi44kskOvPVfIjXB9qWadOYP7bKrw_H5_EHD332g/viewform",
+                    "subText": "",
+                    "external": true,
+                    "newMark": false,
+                    "archived": false
+                }
+            ]
+        },
+        {
+            "name": "News & Events",
+            "customClass": "nav-item",
+            "dropdown": [
+                {
+                    "name": "Presentation & Webinars",
+                    "href": "/covid/presentations",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "N3Community Forum",
+                    "href": "/covid/forum",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "Press Coverage",
+                    "href": "/covid/press-coverage",
+                    "subText": "",
+                    "external": false,
+                    "newMark": false,
+                    "archived": false
+                },
+                {
+                    "name": "N3C Newsletter",
+                    "href": "https://myemail-api.constantcontact.com/N3C-Updates.html?soid=1134197625149&aid=OvpD-Mhe3cc",
+                    "subText": "",
+                    "external": true,
+                    "newMark": false,
+                    "archived": false
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,149 @@
+.viz-header-section {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-right: 15px; /* Add some padding to separate from the filter area */
+}
+
+.viz-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #3f50b0;
+    display: inline-block;
+    flex-grow: 1;
+    white-space: normal; /* Prevent title wrapping */
+    overflow: hidden; /* Prevent overflow */
+    text-overflow: ellipsis; /* Ellipsis for overflow text */
+}
+
+.chart-title {
+  white-space: normal; /* Allow text to wrap */
+  word-wrap: break-word; /* Break long words if needed */
+  overflow: visible; /* Prevent clipping */
+  text-overflow: unset; /* Disable ellipses */
+  display: block; /* Ensure it behaves as a block-level element */
+}
+
+
+
+.small-viz-panel {
+    padding: 0; /* Add padding on left and right */
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-top: 20px; /* Add spacing between chart rows and blue header */
+    margin-bottom: 20px; /* Add spacing between chart rows */
+    width:48%; /* Set width for two charts per row */
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+  }
+  
+.chart-container {
+    width: 100%;
+    max-width: 100%; /* Ensure it is not constrained */
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    overflow: hidden;
+  }
+  .chart-container svg {
+    width: 100%;
+    height: auto; /* Let height adjust based on width for responsive scaling */
+  }
+
+app-render-chart {
+    margin-top: 10px !important;
+    margin-bottom: 15px !important;
+}
+
+::ng-deep #chart-container .d3-tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    color: white !important;
+    outline: 1px solid red;
+    padding: 5px;
+    border-radius: 3px;
+    pointer-events: none;
+    font-size: 12px;
+    z-index: 99999;
+    visibility: visible !important; /* Ensure tooltip is visible */
+  }
+  
+  
+  
+
+.css-dropdown {
+  position: relative;
+  > .dropdown-menu {
+    display: none;
+    right: 0;
+    left: auto;
+    top: 100%;
+  }
+  &:hover > .dropdown-menu,
+  &:focus-within > .dropdown-menu {
+    display: block;
+  }
+}
+
+/* -------------- Buttons ---------------------  */
+.btn{
+	cursor: pointer;
+	width: fit-content;
+}
+
+.btn-primary, .btn-primary:visited{
+	color: #3F50B0;
+	background-color: white;
+    border-color: #3F50B0;
+}
+
+.btn-primary:hover {
+    color: white !important;
+    background-color: #3F50B0;
+    border-color: #3F50B0;
+}
+
+.btn-primary:active {
+	color: white !important;
+    background-color: #3F50B0 !important;
+    border-color: #3F50B0 !important;
+    box-shadow:none !important;
+}
+
+.btn-primary:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus, 
+.btn-primary:not(:disabled):not(.disabled).active:focus, 
+.show > .btn-primary.dropdown-toggle:focus {
+    box-shadow: none;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, 
+.btn-primary:not(:disabled):not(.disabled).active, 
+.show > .btn-primary.dropdown-toggle {
+    color: white;
+    background-color: #3F50B0;
+    border-color: #3F50B0;
+}
+
+.btn-light{
+	border-color: #cfcfcf;
+}
+
+.btn-light:hover,
+.btn-light:active{
+	background-color: #f2f2f2;
+}
+
+
+.btn-select {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+
+/* .reset-btn {
+    font-size: 0.8rem;
+  }
+  
+  .filter-header {
+    color: #9f9f9f;
+  }
+   */

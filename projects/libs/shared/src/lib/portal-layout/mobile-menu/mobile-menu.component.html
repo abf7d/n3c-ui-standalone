@@ -1,0 +1,75 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav [(opened)]="isopen" position="end">
+    <mat-nav-list>
+      <div class="container border-bottom">
+        <div class="row">
+          <div class="col-10 py-4 sidenav-title">OpenData Portal</div>
+          <button class="col-2 py-4 close-btn" (click)="sidenav.toggle(); menuPanel.closeAll()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <mat-accordion mat-list-item multi>
+        @for (item of menuitems?.menu; track item) {
+          <span>
+            @if (item.dropdown) {
+              <div>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" hideToggle>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title class="text-white px-4">
+                      <a (click)="menuPanel.closeAll()">{{ item.name }}</a>
+                      @if (!panelOpenState) {
+                        <i class="fas fa-caret-down carrot"></i>
+                      }
+                      @if (panelOpenState) {
+                        <i class="fas fa-caret-up carrot"></i>
+                      }
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="expanded-menu-container">
+                    @for (sub of item.dropdown; track sub) {
+                      <span>
+                        @if (!sub.dropdown) {
+                          <div>
+                            <span class="px-5 sub-title py-2">
+                              <hr />
+                              <h3>
+                                {{ sub.subHeadingText }}
+                              </h3>
+                            </span>
+                          </div>
+                        }
+                        @if (sub.subheadingItems) {
+                          <div>
+                            @for (item of sub.subheadingItems; track item) {
+                              <span>
+                                <span>
+                                  <a
+                                    class="secSub-Item"
+                                    (click)="sidenav.toggle(); menuPanel.closeAll()"
+                                    mat-list-item
+                                    routerLink="{{ item.href }}"
+                                    >{{ item.name }}</a
+                                  >
+                                </span>
+                              </span>
+                            }
+                          </div>
+                        }
+                      </span>
+                    }
+                  </div>
+                </mat-expansion-panel>
+              </div>
+            }
+          </span>
+        }
+      </mat-accordion>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

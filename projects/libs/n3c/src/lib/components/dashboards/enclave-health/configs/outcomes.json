@@ -1,0 +1,110 @@
+{
+  "supplSource": "",
+  "titleMap": {
+    "section1": {
+      "bar": "Counts of Patients in the Enclave w/Maternal Health-Related Conditions by Sex",
+      "percent": "Sex Percentages of Patients in the Enclave w/Maternal Health-Related Conditions",
+      "pie": "Sex Percentages of Patients in the Enclave w/Maternal Health-Related Conditions"
+    },
+    "section2": {
+      "bar": "Counts of Patients in the Enclave w/Maternal Health-Related Conditions by Severity",
+      "percent": "Severity Percentages of Patients in the Enclave w/Maternal Health-Related Conditions",
+      "pie": "Severity Percentages of Patients in the Enclave w/Maternal Health-Related Conditions"
+    },
+    "section3": {
+      "bar": "Counts of Patients in the Enclave w/Maternal Health-Related Conditions by COVID Status",
+      "percent": "COVID Status Percentages of Patients in the Enclave w/Maternal Health-Related Conditions",
+      "pie": "COVID Status Percentages of Patients in the Enclave w/Maternal Health-Related Conditions"
+    },
+    "section4": {
+      "bar": "Counts of Patients in the Enclave w/Maternal Health-Related Conditions by Long COVID Status",
+      "percent": "Long COVID Status Percentages of Patients in the Enclave w/Maternal Health-Related Conditions",
+      "pie": "Long COVID Status Percentages of Patients in the Enclave w/Maternal Health-Related Conditions"
+    },
+    "section5": {
+      "bar": "Counts of Patients in the Enclave w/Maternal Health-Related Conditions by Vaccination Status",
+      "percent": "Vaccination Status Percentages of Patients in the Enclave w/Maternal Health-Related Conditions",
+      "pie": "Vaccination Status Percentages of Patients in the Enclave w/Maternal Health-Related Conditions"
+    },
+    "section6": {
+      "bar": "Counts of Patients in the Enclave w/Maternal Health-Related Conditions by Mortality",
+      "percent": "Mortality Percentages of Patients in the Enclave w/Maternal Health-Related Conditions",
+      "pie": "Mortality Percentages of Patients in the Enclave w/Maternal Health-Related Conditions"
+    },
+    "section7": {
+      "bar": "Counts of Patients in the Enclave w/Maternal Health-Related Conditions by Condition",
+      "percent": "Condition Percentages of Patients in the Enclave w/Maternal Health-Related Conditions",
+      "pie": "Condition Percentages of Patients in the Enclave w/Maternal Health-Related Conditions"
+    }
+  },
+  "filterGroupNames": {
+    "section1": "sex",
+    "section2": "severity",
+    "section3": "covidstatus",
+    "section4": "longcovidstatus",
+    "section5": "vaccinationstatus",
+    "section6": "mortalitystatus",
+    "section7": "condition"
+  },
+  "chartTotals": {
+    "section1": "sexTotals",
+    "section2": "severityTotals",
+    "section3": "covidStatusTotals",
+    "section4": "longCovidStatusTotals",
+    "section5": "vaccinationStatusTotals",
+    "section6": "mortalityTotals",
+    "section7": "conditionTotals"
+  },
+  "colorScheme": {
+    "section1": "sexRange",
+    "section2": "severityRange",
+    "section3": "covidStatusRange",
+    "section4": "longStatusRange",
+    "section5": "vaccinationStatusRange",
+    "section6": "mortalityRange",
+    "section7": "conditionRange"
+  },
+  "numCharts": 10,
+  "kpiPanelConfig": [
+    {
+      "items": [
+        {
+          "title": "Total Patients in Enclave",
+          "value": "numTPIE",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Patients in the N3C Data Enclave",
+          "tooltipContent": "<p>Total Number of Individual Persons within the N3C Data Enclave.</p>",
+          "footer": "Data as of Jul 26, 2024 (v182)",
+          "limitationsLink": "limitations"
+        }
+      ]
+    },
+    {
+      "separator": true,
+      "items": [
+        {
+          "title": "Total Patients w/Maternal Health-Related Conditions in Enclave",
+          "value": "numTPWM",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Patients with a Maternal Health-Related Condition in the Enclave",
+          "tooltipContent": "<p>Total Number of Individuals within the Enclave who have had a maternal health-related condition indicated in their EHR.</p>"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "title": "Total Patients in View*",
+          "value": "numTPIV",
+          "icon": "fas fa-users",
+          "tooltipTitle": "Total Patients with a Maternal Health-Related Condition in View",
+          "tooltipContent": "<p>Total Number of Individuals within the view who have had a maternal health-related condition indicated in their EHR.</p><small class='kpi-small-note'>Even without filters, this total may be less than the total number of patients with a maternal health-related condition within the Enclave due to the suppression of counts less than 20.</small>",
+          "progress": {
+            "value": 100.0,
+            "tooltip": "100% in View"
+          }
+        }
+      ]
+    }
+  ]
+}

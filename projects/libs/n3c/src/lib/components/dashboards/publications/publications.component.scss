@@ -1,0 +1,226 @@
+#about_container {
+  padding-bottom: 60px;
+}
+#about_container .title h4 {
+  padding-top: 40px;
+  color: #359aaf;
+}
+#about_container hr {
+  border-top: 1px solid #359aaf;
+  margin-top: 3px;
+}
+app-external-link {
+  cursor: pointer;
+  color: #005ea2;
+  text-decoration: underline;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+.block1 {
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.h1 {
+  font-size: 2.8rem;
+  line-height: 1.2;
+}
+
+.publication label i {
+  color: #0b4865;
+}
+.fa,
+.fas {
+  font-size: 1.5rem;
+}
+.preprint label i {
+  color: gray;
+}
+.presentation label i {
+  color: #4933b1;
+}
+
+.filters {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.publication-panel-group .Publication:before {
+  content: '\f518  ';
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900;
+}
+
+.publication-panel-group .Presentation:before {
+  content: '\f130  ';
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900;
+}
+
+.publication-panel-group .Preprint:before {
+  content: '\f15b  ';
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight: 900;
+}
+
+.publication-panel-group .Presentation.badge {
+  background-color: #4933b1;
+}
+.publication-panel-group .Publication.badge {
+  background-color: #0b4865;
+}
+.publication-panel-group .Preprint.badge {
+  background-color: gray;
+}
+#pub_table_section .form-check label {
+  font-size: 1.4rem;
+  color: #222;
+}
+.publication-panel-group .badge {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.publication-panel-group .title {
+  font-size: 1.3rem;
+  line-height: 1;
+  font-weight: 400;
+  color: #222;
+}
+
+.publication-panel-group .panel-body {
+  width: 90%;
+  margin: auto;
+}
+
+.toggle-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+.toggle-btn:hover {
+  background-color: #0056b3;
+}
+
+.panel-body {
+  padding-top: 10px;
+  font-size: 14px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 20px;
+  gap: 8px;
+}
+
+.pagination button {
+  background-color: transparent;
+  border: none;
+  padding: 8px 12px;
+  color: #333;
+  cursor: pointer;
+  border-radius: 4px;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.pagination button:hover {
+  background-color: #333;
+  color: #f0f8ff;
+}
+
+.pagination button.active {
+  border: 2px solid #878788;
+  background-color: #e7e8e9;
+  color: #333;
+}
+
+.pagination button:disabled {
+  color: #cccccc;
+  cursor: not-allowed;
+}
+.entries-info {
+  display: flex;
+  align-items: center;
+}
+
+.dataTables_length {
+  font-size: 20px;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.entries-select {
+  padding: 4px;
+  margin-left: 5px;
+}
+
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.search-label {
+  margin-right: 5px;
+}
+
+.search-input {
+  padding: 5px;
+  width: 250px;
+}
+.search-input {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+
+  &:focus {
+    border-color: black;
+  }
+}
+
+.pageDropdown-search {
+  border-bottom: 1px solid rgb(190, 190, 190);
+  padding-bottom: 2.5px;
+}
+
+.primary-nav {
+  height: 40px;
+  background: #006478;
+  color: #fff;
+}
+
+.n3c-logo {
+  margin: 0 7px;
+}
+
+.loader {
+  position: relative;
+}
+.error-msg {
+  color: red;
+}

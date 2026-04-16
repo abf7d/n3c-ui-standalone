@@ -1,0 +1,38 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide">
+      <div class="pt-3 breadcrumb-container">
+        <p><a [routerLink]="['/covid']">Home</a> > {{ pageContent?.header }}</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <h1>{{ pageContent?.header }}</h1>
+
+        <div class="container">
+          @for (rowItem of contentResources; track rowItem) {
+            <div class="row mb-4">
+              <div class="col-12 col-md-3 mb-3 mb-md-0">
+                @if (rowItem.images.thumbnail) {
+                  <img class="img-fluid w-100" [src]="rowItem.images.thumbnail.url" alt="Thumbnail" />
+                } @else {
+                  <img class="img-fluid w-100" [src]="rowItem.images.main.url" alt="Main Image" />
+                }
+              </div>
+              <div class="col-12 col-md-9">
+                <a [href]="rowItem.url" target="_blank" class="text-decoration-none hover-style">
+                  <h2 class="text-primary" [innerHTML]="rowItem.title"></h2>
+                </a>
+                <div [innerHTML]="rowItem.description"></div>
+              </div>
+            </div>
+          }
+        </div>
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

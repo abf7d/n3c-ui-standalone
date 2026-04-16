@@ -1,0 +1,107 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<nav class="primary-nav navbar navbar-expand-lg p-0"></nav>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" [routerLink]="['/dashboard']">
+    <img
+      src="./assets/n3c/images/n3c_logo.png"
+      width="30"
+      height="30"
+      class="d-inline-block n3c-logo"
+      alt="N3C logo"
+    />N3C Dashboards
+  </a>
+</div>
+<nav class="ms-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboards</a></li>
+    <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">N3C Collaboration Networks</li>
+  </ol>
+</nav>
+
+<app-n3c-loader [loading]="dataLoading" [showError]="showError">
+  <div class="container container-large content">
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12">
+            <h1 class="page-title">N3C Collaboration Networks</h1>
+            <div class="question-description section-description heading-text text-max mx-auto">
+              Collaborative team science is central to the N3C's mission. Below you can find the networks of individuals
+              and institutions working together on projects, or DURs, within the N3C Data Enclave.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="left-spaced col col-12 col-lg-12 padding-top">
+            <div>
+              <h4>
+                Collaboration Networks
+                <span class="tip">
+                  <button
+                    class="btn btn-xs btn-tip gly-radius"
+                    title=""
+                    data-toggle="popover"
+                    data-placement="top"
+                    data-content="�Large blue icons are projects - mousing over shows the ID
+                                and title.
+                �The remaining icons are project members (color key at the right) - mouse over to see a name."
+                    aria-describedby="tooltip"
+                    data-original-title="Interaction Tip:"
+                  >
+                    <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                    <span class="sr-only"
+                      >Large blue icons are projects - mousing over shows the ID and title. The remaining icons are
+                      project members (color key at the right) - mouse over to see a name.</span
+                    >
+                  </button>
+                </span>
+              </h4>
+            </div>
+            <div>
+              <div class="row">
+                <div class="col-12 col-lg-6 col-xl-5 zindex2">
+                  <select class="dur-select" [(ngModel)]="selectedTab" (change)="onNetworkChange(selectedTab)">
+                    @for (tab of networkOptions; track tab) {
+                      <option [ngValue]="tab">{{ tab.viewValue }}</option>
+                    }
+                  </select>
+
+                  <div class="btn-group download-image css-dropdown">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-light dropdown-toggle"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i class="fas fa-download"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <a class="dropdown-item" (click)="saveAs('jpg')">Save as JPG</a>
+                      <a class="dropdown-item" (click)="saveAs('png')">Save as PNG</a>
+                      <a class="dropdown-item" (click)="saveAs('svg')">Save as SVG</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-6 col-xl-5"></div>
+            </div>
+            <div class="row zindex1" #graphParent>
+              <div class="col-12">
+                <div>
+                  <div class="legend" #legend></div>
+
+                  <div class="container neg-top-margin container-large">
+                    <div class="collab-chart" #chart></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-n3c-loader>
+
+<app-dashboard-footer></app-dashboard-footer>

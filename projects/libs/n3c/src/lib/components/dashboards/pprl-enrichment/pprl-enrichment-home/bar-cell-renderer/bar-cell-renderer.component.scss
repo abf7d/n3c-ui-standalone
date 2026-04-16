@@ -1,0 +1,51 @@
+:host {
+    display: block;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .d3-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .ag-cell {
+    // Remove other borders
+    border-top: none !important;
+    border-bottom: none !important;
+  
+    // Ensure only forest plot columns get the black border on the left and right
+    &[col-id="forestPlotRatios"], &[col-id="forestPlotDifferences"] {
+      border-left: 2px solid black !important;
+      border-right: 2px solid black !important;
+    }
+  }
+  
+  /* Define the vertical borders for the forest plot columns */
+  .ag-cell.no-border-column {
+    border-left: 2px solid black !important;
+    border-right: 2px solid black !important;
+    border-top: none !important;
+    border-bottom: none !important;
+  }
+  
+  .svg > g {
+    height: 100%;
+  }
+
+  .tool-back {
+    background-color: rgba(238, 238, 238, 0.8);
+    opacity: .6;
+    width: 100%;
+    height: 100%;
+  }

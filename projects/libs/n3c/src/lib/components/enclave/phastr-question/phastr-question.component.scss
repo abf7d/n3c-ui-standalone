@@ -1,0 +1,19 @@
+@use '../../../styles/n3c-styles.scss';
+
+.right-nav-bar {
+  max-width: 100%;
+  background-color: #edf6ff;
+  height: 100%;
+  margin-left: auto;
+}
+
+::ng-deep .row .flex-wrap {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+@media (max-width: 767.98px) {
+  .sticky-top {
+    position: static !important;
+  }
+}

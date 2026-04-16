@@ -1,0 +1,52 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide">
+      <div class="pt-3">
+        <p><a [routerLink]="['/']">Home</a> > {{ pageContent?.header }}</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <div>
+          <h1 [innerHTML]="pageContent?.header"></h1>
+        </div>
+        <div class="row">
+          @if (introImageUrls[0]) {
+            <div class="col-12 col-md-4 text-center">
+              <img class="auto-image mb-4" [src]="introImageUrls[0]" />
+            </div>
+          }
+          <div class="col-12 col-md-8">
+            <h4 [innerHTML]="contentResponseIntro?.header"></h4>
+            <div [innerHTML]="contentResponseIntro?.content"></div>
+          </div>
+        </div>
+        <div class="center shade">
+          <h3 [innerHTML]="pageContent?.before_starting_header"></h3>
+          <div>
+            <p [innerHTML]="pageContent?.before_starting_block"></p>
+          </div>
+        </div>
+
+        <h2 [innerHTML]="pageContent?.header2"></h2>
+        @for (rowItem of contentResources; track rowItem) {
+          <div class="row-item">
+            <div class="row block">
+              <div class="col col-2">
+                <img class="auto-image" [src]="rowItem.images.thumbnail.url" />
+              </div>
+              <div class="col col-10">
+                <h4 [innerHTML]="rowItem.header"></h4>
+                <div [innerHTML]="rowItem.content"></div>
+              </div>
+            </div>
+          </div>
+        }
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

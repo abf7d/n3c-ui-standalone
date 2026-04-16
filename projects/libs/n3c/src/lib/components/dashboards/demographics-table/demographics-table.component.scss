@@ -1,0 +1,16 @@
+@use '../../../styles/shared-styles.scss';
+@use '../../../styles/n3c-styles.scss';
+
+:host ::ng-deep .ag-header-cell-label {
+  justify-content: center;
+}
+
+.primary-nav {
+  height: 40px;
+  background: #006478;
+  color: #fff;
+}
+
+.n3c-logo {
+  margin: 0 7px;
+}

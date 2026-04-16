@@ -1,0 +1,164 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide" id="about_container">
+      <div class="p-0 pt-3">
+        <p><a [routerLink]="['/']">Home</a> > N3C Faq</p>
+      </div>
+
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-12 col-md-2 left-nav-bar sticky-top py-1 mb-3">
+              <div id="navigation">
+                <div class="scrolling-table">
+                  <span><strong>Contents:</strong></span>
+                </div>
+                <div class="scrolling-row">
+                  <span><a class="nav-link" [routerLink]="[]" fragment="related-links">Related Links</a></span>
+                </div>
+                <div class="scrolling-row">
+                  <span><a class="nav-link" [routerLink]="[]" fragment="data-enclave">N3C Data Enclave</a></span>
+                </div>
+                <div class="scrolling-row">
+                  <span><a class="nav-link" [routerLink]="[]" fragment="domain-teams">Domain Teams</a></span>
+                </div>
+                <div class="scrolling-row">
+                  <span
+                    ><a class="nav-link" [routerLink]="[]" fragment="phenotype"
+                      >Phenotype &amp; Data Acquisition (Archived)</a
+                    ></span
+                  >
+                </div>
+                <div class="scrolling-row">
+                  <span
+                    ><a class="nav-link" [routerLink]="[]" fragment="ingestion"
+                      >Data Ingestion &amp; Harmonization</a
+                    ></span
+                  >
+                </div>
+                <div class="scrolling-row">
+                  <span><a class="nav-link" [routerLink]="[]" fragment="analytics">Collaborative Analytics</a></span>
+                </div>
+                <div class="scrolling-row">
+                  <span><a class="nav-link" [routerLink]="[]" fragment="synthetic">Synthetic Data</a></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-10">
+              <h3 class="page-header">{{ pageContent?.header }}</h3>
+              <h3 id="related-links">Related Links</h3>
+              <p [innerHtml]="pageContent?.intro_block"></p>
+
+              <div class="spacer"></div>
+
+              <h3 id="data-enclave">{{ pageContent?.enclave_header }}</h3>
+              <mat-accordion class="accordion">
+                @for (faq of pageContent?.enclave_faqs; track faq) {
+                  <mat-expansion-panel class="accordion-body">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <div [innerHTML]="faq.label"></div>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div [innerHTML]="faq.answer"></div>
+                  </mat-expansion-panel>
+                }
+              </mat-accordion>
+
+              <div class="spacer"></div>
+
+              <h3 id="domain-teams">{{ pageContent?.domain_header }}</h3>
+              <mat-accordion class="accordion">
+                @for (faq of pageContent?.domain_faqs; track faq) {
+                  <mat-expansion-panel class="accordion-body">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <div [innerHTML]="faq.label"></div>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div [innerHTML]="faq.answer"></div>
+                  </mat-expansion-panel>
+                }
+              </mat-accordion>
+
+              <div class="spacer"></div>
+
+              <h3 id="phenotype">{{ pageContent?.phenotype_header }}</h3>
+              <mat-accordion class="accordion">
+                @for (faq of pageContent?.phenotype_faqs; track faq) {
+                  <mat-expansion-panel class="accordion-body">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <div [innerHTML]="faq.label"></div>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div [innerHTML]="faq.answer"></div>
+                  </mat-expansion-panel>
+                }
+              </mat-accordion>
+
+              <div class="spacer"></div>
+
+              <h3 id="ingestion">{{ pageContent?.harmonization_header }}</h3>
+              <mat-accordion class="accordion">
+                @for (faq of pageContent?.harmonization_faqs; track faq) {
+                  <mat-expansion-panel class="accordion-body">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <div [innerHTML]="faq.label"></div>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div [innerHTML]="faq.answer"></div>
+                  </mat-expansion-panel>
+                }
+              </mat-accordion>
+
+              <div class="spacer"></div>
+
+              <h3 id="analytics">{{ pageContent?.analytics_header }}</h3>
+              <mat-accordion class="accordion">
+                @for (faq of pageContent?.analytics_faqs; track faq) {
+                  <mat-expansion-panel class="accordion-body">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <div [innerHTML]="faq.label"></div>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div [innerHTML]="faq.answer"></div>
+                  </mat-expansion-panel>
+                }
+              </mat-accordion>
+
+              <div class="spacer"></div>
+
+              <h3 id="synthetic">{{ pageContent?.synthetic_header }}</h3>
+              <mat-accordion class="accordion">
+                @for (faq of pageContent?.synthetic_faqs; track faq) {
+                  <mat-expansion-panel class="accordion-body">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <div [innerHTML]="faq.label"></div>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div [innerHTML]="faq.answer"></div>
+                  </mat-expansion-panel>
+                }
+              </mat-accordion>
+            </div>
+          </div>
+
+          <div class="spacer"></div>
+          <!-- This creates a spacer between sections -->
+
+          <!-- END CONTAINER -->
+        </div>
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>

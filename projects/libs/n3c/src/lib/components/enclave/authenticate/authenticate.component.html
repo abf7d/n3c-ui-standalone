@@ -1,0 +1,34 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+<div class="container-wide pb-5" id="about_container" style="max-width: 88%">
+  <div class="col-2 p-0 pt-3" style="width: 100%">
+    <p><a [routerLink]="['/covid']">Home</a> > N3c Onboarding</p>
+  </div>
+  <div class="container-fluid shadow-border mt-5">
+    <div class="main-block">
+      <div class="block">
+        <h2 class="center">
+          <img
+            src="https://clinicalcohort.org/registration/images/clinical-cohort-logo_color-icon-solid.png"
+            class="n3c_logo_header"
+            alt="N3C Logo"
+          />
+          N3C Registration
+        </h2>
+        <p>
+          We use your institutional email to guide you through the registration process. This includes which Enclaves
+          you have access to and how you log into the registration app and the Enclaves.
+        </p>
+        <p>Please submit your institutional email:</p>
+        <form id="email" onsubmit="return process();" class="row g-2">
+          <div class="col-12 col-md-auto flex-grow-1">
+            <input name="email" class="form-control" type="email" placeholder="Enter your email" required />
+          </div>
+          <div class="col-12 col-md-auto">
+            <button type="submit" name="Submit" class="btn btn-primary w-100">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="projects-container">
+  <app-n3c-loader [loading]="loading" [showError]="showError">
+    <h3 class="section-title">Projects</h3>
+    @if (rowData.length > 0) {
+      <app-simple-grid
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [csvFileName]="'projects.csv'"
+      >
+      </app-simple-grid>
+    }
+    @if (!loading && !showError && rowData.length === 0) {
+      <div class="no-data-msg">No data</div>
+    }
+  </app-n3c-loader>
+</div>

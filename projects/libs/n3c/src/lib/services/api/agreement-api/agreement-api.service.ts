@@ -1,0 +1,25 @@
+import {HttpClient} from '@angular/common/http';
+import {Inject, Injectable} from '@angular/core';
+import {API_URLS, Endpoints} from '@odp/shared/lib/types';
+import {Observable} from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AgreementApiService {
+  private baseUrl: string = this.config.variantApiUrl + '/n3c';
+  constructor(
+    @Inject(API_URLS) private config: Endpoints,
+    private http: HttpClient
+  ) {}
+
+  public getAgreements(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/registration/agreements`);
+  }
+  public getAgreementTypes(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.baseUrl}/registration/agreement_types`);
+  }
+  public getTenantGroups(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.baseUrl}/registration/tenant_groups`);
+  }
+}

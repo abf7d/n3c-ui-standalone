@@ -1,0 +1,250 @@
+<app-header-view [isN3C]="true"></app-header-view>
+<nav class="primary-nav navbar navbar-expand-lg p-0"></nav>
+
+<div class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <a class="navbar-brand" [routerLink]="['/dashboard']">
+    <img
+      src="./assets/n3c/images/n3c_logo.png"
+      width="30"
+      height="30"
+      class="d-inline-block n3c-logo"
+      alt="N3C logo"
+    />N3C Dashboards
+  </a>
+</div>
+<nav class="ms-2" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboards</a></li>
+    <li class="breadcrumb-item">
+      <a id="dashboard_breadcrumb" [routerLink]="['/dashboard/pprl-enrichment/home']">PPRL Enrichment</a>
+    </li>
+    <li id="topic_breadcrumb" class="breadcrumb-item active" aria-current="page">PPRL Data Enhancement Overview</li>
+  </ol>
+</nav>
+
+<app-n3c-loader [loading]="dataLoading" [showError]="showError">
+  <div class="container-flex container container-large content" data-select2-id="select2-data-6-934m">
+    <div class="row">
+      <div class="col-12 mx-auto">
+        <div class="row">
+          <div class="col-12">
+            <div>
+              <h1 class="page-title">PPRL Enrichment</h1>
+              <div class="section-description heading-text text-max mx-auto">
+                <p>
+                  This dashboard provides a snapshot of the data enrichment provided by PPRL. Explore the data added,
+                  demographics, and COVID factors by supplemental source.
+                </p>
+                <div class="footnote">Note: This dashboard is being continuously updated. Counts may change.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 mx-auto">
+        <div class="topic_dropdown" data-select2-id="select2-data-4-4or4">
+          <h4 class="viz_color_header">Select a Topic to Explore:</h4>
+          <select class="page-dropdown" [value]="selectedDataset" (change)="onDatasetChange($event)">
+            <option value="home">PPRL Data Enhancement Overview</option>
+            <optgroup label="Medicare">
+              <option value="medicare_demo">Medicare Demographics</option>
+              <option value="medicare_covid">Medicare COVID Factors</option>
+            </optgroup>
+            <optgroup label="Medicaid">
+              <option value="medicaid_demo">Medicaid Demographics</option>
+              <option value="medicaid_covid">Medicaid COVID Factors</option>
+            </optgroup>
+            <optgroup label="Mortality">
+              <option value="mortality_demo">Mortality Demographics</option>
+              <option value="mortality_covid">Mortality COVID Factors</option>
+            </optgroup>
+            <optgroup label="Viral Variants">
+              <option value="viral_variants_demo">Viral Variants Demographics</option>
+              <option value="viral_variants_covid">Viral Variants COVID Factors</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="row mt-4 summary-section">
+        <div class="col-12 col-lg-6 text-center summary_description">
+          <h4 class="text-center mt-2 color_header2">What is PPRL?</h4>
+          <p style="text-align: left">
+            Privacy-Preserving Record Linkage (PPRL) enables N3C to ingest and link supplemental datasets against the
+            OMOP-formatted EHR data in the Enclave. PPRL currently supports linking EHR records to CMS (Medicare &amp;
+            Medicaid), mortality information from government agencies, and viral variant information from sequencing
+            centers.
+          </p>
+          <a class="btn btn-dash" [routerLink]="['/covid/pprl']" target="_blank"
+            >Learn More <i class="fas fa-external-link-alt" aria-hidden="true"></i
+          ></a>
+        </div>
+        <div class="col-12 col-lg-6">
+          <h4 class="text-center mb-2 color_header2">How Much Data is Associated with PPRL?</h4>
+          <div class="row feature_viz_section">
+            <div class="col-12 mx-auto" id="pprl">
+              <h5 class="text-center mb-2 feature_sub_heading">
+                Total Number of Patients from Each Supplemental Source
+              </h5>
+              <div #barChart>
+                <div></div>
+              </div>
+              <div class="export-btns">
+                <button type="button" class="btn btn-sm btn-light" (click)="saveAs('jpg', 'summary')">JPG</button>
+                <button type="button" class="btn btn-sm btn-light" (click)="saveAs('png', 'summary')">PNG</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="category">
+      <h4 class="text-center mt-2 color_header2 mx-auto">How Much Data Has Medicare Added?</h4>
+      <h5 class="text-center mb-2 feature_sub_heading">
+        Average Number of Records Added Per Patient Linked to Medicare Through PPRL
+      </h5>
+      <ag-grid-angular
+        id="medicare"
+        class="ag-grid-section"
+        [rowData]="medicareTable"
+        [columnDefs]="medicareColumnDefs"
+        [headerHeight]="60"
+        [tooltipShowDelay]="800"
+        [pagination]="false"
+        [domLayout]="'autoHeight'"
+        [components]="frameworkComponents"
+        (gridReady)="onMedicareGridRdy($event)"
+      >
+      </ag-grid-angular>
+      <div class="export-btns">
+        <button type="button" class="btn btn-sm btn-light" (click)="saveAs('jpg', 'medicare')">JPG</button>
+        <button type="button" class="btn btn-sm btn-light" (click)="saveAs('png', 'medicare')">PNG</button>
+        <button type="button" class="btn btn-sm btn-light" (click)="exportMedicare()">CSV</button>
+      </div>
+      <div class="pprl-tbl-footer">
+        <span class="sample">Sample:</span> Patients in the N3C Data Enclave who have been linked to Medicare data
+        through PPRL. An * indicates that these numbers have the possibility of changing based on new data generated in
+        planned future raw data analysis.
+      </div>
+    </div>
+    <div class="category">
+      <h4 class="text-center mt-2 color_header2 mx-auto">How Much Data Has Medicaid Added?</h4>
+      <h5 class="text-center mb-2 feature_sub_heading">
+        Average Number of Records Added Per Patient Linked to Medicaid Through PPRL
+      </h5>
+      <ag-grid-angular
+        id="medicaid"
+        class="ag-grid-section"
+        [rowData]="medicaidTable"
+        [columnDefs]="medicaidColumnDefs"
+        [headerHeight]="60"
+        [tooltipShowDelay]="800"
+        [pagination]="false"
+        [domLayout]="'autoHeight'"
+        [components]="frameworkComponents"
+        (gridReady)="onMedicaidGridRdy($event)"
+      >
+      </ag-grid-angular>
+      <div class="export-btns">
+        <button type="button" class="btn btn-sm btn-light" (click)="saveAs('jpg', 'medicaid')">JPG</button>
+        <button type="button" class="btn btn-sm btn-light" (click)="saveAs('png', 'medicaid')">PNG</button>
+        <button type="button" class="btn btn-sm btn-light" (click)="exportMedicaid()">CSV</button>
+      </div>
+      <div class="pprl-tbl-footer">
+        <span class="sample">Sample:</span> Patients in the N3C Data Enclave who have been linked to Medicaid data
+        through PPRL. An * indicates that these numbers have the possibility of changing based on new data generated in
+        planned future raw data analysis.
+      </div>
+    </div>
+    <div class="category">
+      <h4 class="text-center mt-2 color_header2 mx-auto">How Much Data Has Mortality Added?</h4>
+      <h5 class="text-center mb-2 feature_sub_heading">Number of Mortality Records Added Through PPRL</h5>
+      <ag-grid-angular
+        id="mortality"
+        class="ag-grid-section"
+        [rowData]="mortalityTable"
+        [columnDefs]="mortalityColumnDefs"
+        [headerHeight]="60"
+        [tooltipShowDelay]="800"
+        [pagination]="false"
+        style="height: 105px"
+        [components]="frameworkComponents"
+        (gridReady)="onMortalityGridRdy($event)"
+      >
+      </ag-grid-angular>
+      <div class="export-btns">
+        <button type="button" class="btn btn-sm btn-light" (click)="saveAs('jpg', 'mortality')">JPG</button>
+        <button type="button" class="btn btn-sm btn-light" (click)="saveAs('png', 'mortality')">PNG</button>
+        <button type="button" class="btn btn-sm btn-light" (click)="exportMortality()">CSV</button>
+      </div>
+      <div class="pprl-tbl-footer">
+        <span class="sample">Sample:</span>
+        Patients in the N3C Data Enclave who have been linked to Mortality data through PPRL.
+      </div>
+    </div>
+    <div class="category">
+      <h4 class="text-center mt-2 color_header2 mx-auto">How Much Data Data Has Viral Variants Added?</h4>
+      <h5 class="text-center mb-2 feature_sub_heading">
+        Number of Enclave Patients Mapped into PPRL Viral Variant Data
+      </h5>
+      <ag-grid-angular
+        id="viral"
+        class="ag-grid-section"
+        [rowData]="viralTable"
+        [columnDefs]="viralColumnDefs"
+        [headerHeight]="60"
+        [tooltipShowDelay]="800"
+        [pagination]="false"
+        [domLayout]="'autoHeight'"
+        [components]="frameworkComponents"
+        (gridReady)="onViralGridRdy($event)"
+      >
+      </ag-grid-angular>
+      <div class="export-btns">
+        <button type="button" class="btn btn-sm btn-light" (click)="saveAs('jpg', 'viral')">JPG</button>
+        <button type="button" class="btn btn-sm btn-light" (click)="saveAs('png', 'viral')">PNG</button>
+        <button type="button" class="btn btn-sm btn-light" (click)="exportViral()">CSV</button>
+      </div>
+      <div class="pprl-tbl-footer">
+        <span class="sample">Sample:</span>
+        Patients in the N3C Data Enclave who have been linked to Viral Variant data through PPRL.
+      </div>
+    </div>
+    <div id="metformin_5limitations_accordion">
+      <div class="card" id="metformin-limitations-section">
+        <div class="card-header" id="metformin_5limitations_heading">
+          <h2 class="mb-0">
+            <button
+              class="filter_drop_button btn btn-link btn-block text-left"
+              type="button"
+              (click)="isLimitationsCollapsed = !isLimitationsCollapsed"
+              [attr.aria-expanded]="isLimitationsCollapsed"
+              [ngClass]="{collapsed: !isLimitationsCollapsed}"
+              aria-controls="metformin_5limitations_body"
+            >
+              <h3 id="limitations-section">Limitations</h3>
+              <span class="float-right">
+                <i class="fas" [ngClass]="isLimitationsCollapsed ? 'fa-minus' : 'fa-plus'"></i>
+              </span>
+            </button>
+          </h2>
+        </div>
+      </div>
+      <div
+        [ngClass]="{collapse: !isLimitationsCollapsed, show: isLimitationsCollapsed}"
+        aria-labelledby="metformin_5limitations_heading"
+        data-parent="#metformin_5limitations_accordion"
+      >
+        <div class="card-body">
+          <app-pprl-limitation></app-pprl-limitation>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-n3c-loader>
+<app-dashboard-footer></app-dashboard-footer>

@@ -1,0 +1,58 @@
+<div class="container-all">
+  <app-header-view [isN3C]="true"></app-header-view>
+  <app-n3c-menu [menuContent]="menu | async" [tenantContent]="tenant | async"></app-n3c-menu>
+
+  <main>
+    <div class="container-wide" id="about_container">
+      <div class="pt-3 breadcrumb-container">
+        <p><a [routerLink]="['/covid/']">Home</a> > {{ pageContent?.header }}</p>
+      </div>
+      <app-n3c-loader [loading]="dataLoading" [showError]="showError">
+        <div class="col-12">
+          <div class="col-12 page-title">
+            <h1>{{ pageContent?.header }}</h1>
+            <p [innerHTML]="pageContent?.intro_block"></p>
+          </div>
+          <div class="row flex-wrap mt-4">
+            <div class="col-12 col-sm-6 center">
+              <a href="https://n3c-help.atlassian.net/servicedesk/customer/portal/2/group/3/create/20" role="button">
+                <button class="btn btn-link text-nowrap">Send Questions</button>
+              </a>
+            </div>
+            <div class="col-12 col-sm-6 center">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfXhu8qReLi44kskOvPVfIjXB9qWadOYP7bKrw_H5_EHD332g/viewform"
+              >
+                <button class="btn btn-link text-nowrap">Report Conduct Concerns</button>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row page-title mt-4">
+          <div class="col-12 col-md-6">
+            <h3>{{ pageContent?.institution_header }}</h3>
+            @for (rowItem of institutionResources; track rowItem) {
+              <div class="row-item">
+                <h2 [innerHTML]="rowItem.header"></h2>
+                <div [innerHTML]="rowItem.description"></div>
+              </div>
+            }
+          </div>
+
+          <div class="col-12 col-md-6">
+            <h3>{{ pageContent?.user_header }}</h3>
+            @for (rowItem of userResources; track rowItem) {
+              <div class="row-item">
+                <h2 [innerHTML]="rowItem.header"></h2>
+                <div [innerHTML]="rowItem.description"></div>
+              </div>
+            }
+          </div>
+        </div>
+      </app-n3c-loader>
+    </div>
+  </main>
+
+  <app-n3c-footer [tenantContent]="tenant | async"></app-n3c-footer>
+</div>
