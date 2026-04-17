@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {HttpClient} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
@@ -13,7 +13,6 @@ import {KpiPanelComponent} from '../../shared/kpi-panel/kpi-panel.component';
 import * as CONST from './const';
 import {PprlEnrichmentManager} from './services/pprl-enrichment.manager';
 import {PprlLimitationComponent} from './pprl-limitation/pprl-limitation.component';
-import {Inject} from '@angular/core';
 import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {DashboardFooterComponent} from '@odp/shared/lib/n3c/dashboard-footer/dashboard-footer.component';
 import {forkJoin} from 'rxjs';
@@ -73,16 +72,18 @@ export class PprlEnrichmentComponent implements OnInit {
 
   public selectedFilters: SelectedFilters = CONST.selectedFilters(); // state for storing selected filters
   private fullPatientData: any;
+
+  private titleService = inject(Title);
+  private http = inject(HttpClient);
+  private manager = inject(PprlEnrichmentManager);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private siteMapApi = inject(SitemapApiService);
+  private config = inject(API_URLS) as unknown as Endpoints;
+
   private baseUrl: string = this.config.n3cUrls.baseUrl + this.config.n3cUrls.dashboard;
-  constructor(
-    private titleService: Title,
-    private http: HttpClient,
-    private manager: PprlEnrichmentManager,
-    private route: ActivatedRoute,
-    private router: Router,
-    private siteMapApi: SitemapApiService,
-    @Inject(API_URLS) private config: Endpoints
-  ) {
+
+  constructor() {
     this.titleService.setTitle('N3C Dashboard - PPRL Enrichment');
     this.selectedDataset = 'home';
   }

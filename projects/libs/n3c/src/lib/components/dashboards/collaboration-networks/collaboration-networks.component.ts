@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, inject, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {ForceDirectedService} from './force-directed/force-directed.service';
 import {DashboardFooterComponent} from '@odp/shared/lib/n3c/dashboard-footer/dashboard-footer.component';
 
@@ -26,6 +26,10 @@ export class CollaborationNetworksComponent implements OnInit {
   public showError = false;
   public dataLoading = true;
   @ViewChild('legend', {static: true}) legend!: ElementRef;
+
+  private projectGraphApi = inject(ProjectGraphApiService);
+  private forceDirected = inject(ForceDirectedService);
+
   public networkOptions = [
     {value: 'Op', viewValue: 'Organizations - Research DURs', api: this.projectGraphApi.getDUROrg()},
     {value: 'Re', viewValue: 'Persons Research DURs', api: this.projectGraphApi.getPersonRsrch()},
@@ -34,10 +38,6 @@ export class CollaborationNetworksComponent implements OnInit {
     {value: 'Co', viewValue: 'Challenge DURs (Organizations)', api: this.projectGraphApi.getChallengeOrg()}
   ];
   public selectedTab = this.networkOptions[0];
-  constructor(
-    private projectGraphApi: ProjectGraphApiService,
-    private forceDirected: ForceDirectedService
-  ) {}
 
   public onNetworkChange(tab: NetworkTab): void {
     this.loadData(tab);

@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 
 import {EVENT_SERVICE} from '../../types';
 import {EventService} from '../../event-service/event.service';
@@ -14,7 +14,9 @@ import {filter} from 'rxjs';
 })
 export class PortalHeaderViewComponent {
   public message: string = '';
-  constructor(@Inject(EVENT_SERVICE) private eventService: EventService) {
+  private eventService = inject<EventService>(EVENT_SERVICE);
+
+  constructor() {
     this.eventService
       .get<string>(BANNER_MSG_KEY)
       .pipe(filter((x) => !!x))

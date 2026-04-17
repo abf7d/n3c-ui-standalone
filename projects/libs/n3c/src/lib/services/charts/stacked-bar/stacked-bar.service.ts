@@ -1,4 +1,4 @@
-import {Injectable, ElementRef} from '@angular/core';
+import {Injectable, ElementRef, inject} from '@angular/core';
 import {select} from 'd3-selection';
 import type {Selection} from 'd3-selection';
 import {scaleLinear} from 'd3-scale';
@@ -16,7 +16,7 @@ export class StackedBarService {
   private g!: Selection<SVGGElement, unknown, null, undefined>;
   private tooltip!: Selection<HTMLDivElement, unknown, null, undefined>;
 
-  constructor(private helper: StackedBarHelperService) {}
+  private helper = inject(StackedBarHelperService);
 
   initTooltip(tooltipRef: ElementRef) {
     this.tooltip = select(tooltipRef.nativeElement);

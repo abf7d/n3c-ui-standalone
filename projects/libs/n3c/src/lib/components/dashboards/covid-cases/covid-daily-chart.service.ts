@@ -18,8 +18,6 @@ export class CovidDailyChartService {
   private height!: number;
   private fontSize = 14;
 
-  constructor() {}
-
   draw(data: CovidEntry[], container: HTMLElement) {
     if (!data?.length) {
       select(container).selectAll('*').remove();

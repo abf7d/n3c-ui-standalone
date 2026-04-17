@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {select, selectAll, pointer} from 'd3-selection';
 import type {Selection} from 'd3-selection';
 import {scaleOrdinal, scaleLinear, scaleThreshold} from 'd3-scale';
@@ -34,7 +34,7 @@ export class SitemapChartService {
   stroke: any;
   private tooltip: any;
 
-  constructor(private albersUsaTerrProjService: AlbersUSATerritoriesProjectionService) {}
+  private albersUsaTerrProjService = inject(AlbersUSATerritoriesProjectionService);
 
   init(symbolSizeMult: number, useSymbols: boolean, mapColors: MapColors, isLargeMap: boolean) {
     this.symbolSizeMult = symbolSizeMult;

@@ -23,8 +23,6 @@ export class ForceDirectedService {
   legendDiv: any;
   orgSites: OrgSite[] = [];
 
-  constructor() {}
-
   public initChart(el: any, legendEl: any) {
     this.legendDiv = select(legendEl).append('div').attr('class', 'row');
     this.svg = select(el).append('svg');

@@ -1,6 +1,5 @@
-import {Component, OnInit, Inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {MatIconModule} from '@angular/material/icon';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
@@ -9,7 +8,6 @@ import {ViewEncapsulation} from '@angular/core';
 import {StrapiResult} from '../../../models/strapi-default';
 import {ContentManagerService} from '../../../services/content-manager/content-manager.service';
 import {N3cBaseComponent} from '@odp/shared/lib/n3c/base/base.component';
-import {StrapiApiService} from '../../../services/api/strapi-api/strapi-api.service';
 import {N3cLoaderComponent} from '../../shared/loader/loader.component';
 import {N3cMenuComponent} from '../../shared/menu/menu.component';
 import {HeaderViewComponent} from '../../shared/header-view/header-view.component';
@@ -41,14 +39,8 @@ export class N3cInstitutionEssentialsComponent extends N3cBaseComponent implemen
   public contentNoteBlock: string = '';
   public contentJoinBlock: string = '';
 
-  constructor(
-    private titleService: Title,
-    protected strapiApi: StrapiApiService,
-    private contentManager: ContentManagerService,
-    @Inject(API_URLS) private configuration: Endpoints
-  ) {
-    super(configuration, strapiApi);
-  }
+  private titleService = inject(Title);
+  private contentManager = inject(ContentManagerService);
 
   ngOnInit() {
     this.initDataByRoute();
@@ -56,7 +48,7 @@ export class N3cInstitutionEssentialsComponent extends N3cBaseComponent implemen
   }
 
   override onBaseDataLoaded(): void {
-    this.strapiApi.get<StrapiResult>('institutional-essential', ['nav_tiles', 'join_block', 'step']).subscribe({
+    this.strapiService.get<StrapiResult>('institutional-essential', ['nav_tiles', 'join_block', 'step']).subscribe({
       next: (response) => {
         this.contentResponse = response.data?.attributes || {};
         const navTiles = this.contentResponse?.nav_tiles?.data || [];

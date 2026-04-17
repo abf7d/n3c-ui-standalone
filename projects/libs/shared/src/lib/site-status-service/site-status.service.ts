@@ -1,18 +1,14 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {firstValueFrom} from 'rxjs';
-import {Inject} from '@angular/core';
 import {API_URLS, Endpoints} from '../types';
 import {SiteStatus} from './site-status.model';
 
 @Injectable({providedIn: 'root'})
 export class SiteStatusService {
+  private http = inject(HttpClient);
+  private config = inject(API_URLS) as unknown as Endpoints;
   private appBase: string = this.config.n3cUrls.baseUrl;
-
-  constructor(
-    private http: HttpClient,
-    @Inject(API_URLS) private config: Endpoints
-  ) {}
 
   getSiteStatus() {
     return firstValueFrom(

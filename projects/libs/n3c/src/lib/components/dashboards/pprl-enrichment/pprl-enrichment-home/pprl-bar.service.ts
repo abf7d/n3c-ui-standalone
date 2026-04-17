@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {select} from 'd3-selection';
 import {scaleLinear} from 'd3-scale';
 import {max} from 'd3-array';
@@ -6,7 +6,8 @@ import {CmsBarFeedTotals, cmsVisProps} from '@odp/n3c/lib/models/pprl-enrichment
 import {Router} from '@angular/router';
 @Injectable()
 export class PprlBarService {
-  constructor(private router: Router) {}
+  private router = inject(Router);
+
   drawChart(summaryData: CmsBarFeedTotals, el: any) {
     // set the dimensions and margins of the graph
     const dataTotals = summaryData;

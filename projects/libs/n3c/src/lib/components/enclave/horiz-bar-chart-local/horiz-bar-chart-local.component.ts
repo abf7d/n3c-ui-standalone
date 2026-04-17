@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnChanges, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, inject, Input, OnChanges, Renderer2, ViewChild} from '@angular/core';
 import {select, selectAll} from 'd3-selection';
 import {scaleBand, scaleLinear} from 'd3-scale';
 import {max, range} from 'd3-array';
@@ -26,7 +26,7 @@ export class HorizontalBarChartComponent implements OnChanges {
   @Input() data: any[] = [];
   @Input() properties: any;
 
-  constructor(private renderer: Renderer2) {}
+  private renderer = inject(Renderer2);
 
   ngOnChanges(): void {
     this.createChart();

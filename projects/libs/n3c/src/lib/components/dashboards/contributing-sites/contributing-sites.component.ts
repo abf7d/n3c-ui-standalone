@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild, ViewEncapsulation, OnInit} from '@angular/core';
+import {Component, ElementRef, inject, ViewChild, ViewEncapsulation, OnInit} from '@angular/core';
 import {PopoverDirective} from '@odp/shared/lib/popover/popover.directive';
 import {MapData, Site, SiteLocations, StateInfo} from '@odp/n3c/lib/models/admin-models';
 import {SitemapApiService} from '@odp/n3c/lib/services/api/site-map-api/site-map-api.service';
@@ -46,10 +46,10 @@ export class ContributingSitesComponent implements OnInit {
   public states!: StateInfo;
   public mapData!: MapData;
   public ochinLocations!: SiteLocations;
-  constructor(
-    private siteMap: SitemapChartService,
-    private siteApi: SitemapApiService
-  ) {
+  private siteMap = inject(SitemapChartService);
+  private siteApi = inject(SitemapApiService);
+
+  constructor() {
     this.frameworkComponents = {
       datasourceRenderer: SiteCellRendererComponent
     };

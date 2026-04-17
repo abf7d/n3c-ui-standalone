@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Comorbidities, DemographicsRows, Outcomes} from '@odp/n3c/lib/models/enclave-health';
 import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {Observable} from 'rxjs';
@@ -8,11 +8,9 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class EnclaveHealthApiService {
+  private config = inject(API_URLS) as unknown as Endpoints;
+  private http = inject(HttpClient);
   private baseUrl: string = this.config.n3cUrls.baseUrl + this.config.n3cUrls.dashboard;
-  constructor(
-    @Inject(API_URLS) private config: Endpoints,
-    private http: HttpClient
-  ) {}
 
   public getComorbidities(): Observable<Comorbidities> {
     return this.http.get<Comorbidities>(`${this.baseUrl}/public-health/all_comorbidities`);

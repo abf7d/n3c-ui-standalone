@@ -1,4 +1,4 @@
-import {Component, Inject, Input} from '@angular/core';
+import {Component, inject, Input} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {EVENT_SERVICE} from '../types';
 import {EventService} from '../event-service/event.service';
@@ -16,7 +16,9 @@ import {ExternalLinkComponent} from '../external-link/external-link.component';
 export class HeaderViewComponent {
   @Input() isN3C = false;
   public message: string = '';
-  constructor(@Inject(EVENT_SERVICE) private eventService: EventService) {
+  private eventService = inject<EventService>(EVENT_SERVICE);
+
+  constructor() {
     this.eventService
       .get<string>(BANNER_MSG_KEY)
       .pipe(filter((x) => !!x))

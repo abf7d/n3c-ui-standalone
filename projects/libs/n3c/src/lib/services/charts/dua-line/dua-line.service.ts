@@ -21,7 +21,6 @@ export class DuaLineChartService {
   zoom!: ZoomBehavior<Element, unknown>;
   svg!: Selection<SVGGElement, unknown, null, undefined>;
 
-  constructor() {}
   draw(duaData: DuaEntry[], el: any) {
     this.width = 470;
     this.height = 160;

@@ -1,6 +1,6 @@
 import '../../../../ag-grid-setup';
 import {CommonModule} from '@angular/common';
-import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, inject, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, Router, RouterModule} from '@angular/router';
 import {PprlLimitationComponent} from '../pprl-limitation/pprl-limitation.component';
@@ -63,13 +63,13 @@ export class PprlEnrichmentHomeComponent implements OnInit {
   medicaidApi: GridApi | null = null;
   mortalityApi: GridApi | null = null;
 
-  constructor(
-    private titleService: Title,
-    private route: ActivatedRoute,
-    private router: Router,
-    private api: PprlEnrichmentApiService,
-    private chart: PprlBarService
-  ) {
+  private titleService = inject(Title);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private api = inject(PprlEnrichmentApiService);
+  private chart = inject(PprlBarService);
+
+  constructor() {
     this.titleService.setTitle('N3C Frequently Asked Questions');
     this.selectedDataset = 'home';
   }

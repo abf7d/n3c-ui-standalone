@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {CollaborationProfile} from '../../../models/collaboration-profile';
@@ -17,13 +17,10 @@ import {
   providedIn: 'root'
 })
 export class CollaboratingSitesApiService {
+  private config = inject(API_URLS) as unknown as Endpoints;
+  private http = inject(HttpClient);
   private baseUrl: string = this.config.n3cUrls.baseUrl + this.config.n3cUrls.dashboard;
   private staticBaseUrl: string = this.config.n3cUrls.baseUrl + '/static/pdf/n3c/collab';
-
-  constructor(
-    @Inject(API_URLS) private config: Endpoints,
-    private http: HttpClient
-  ) {}
 
   public getRegions(): Observable<UsRegionsGeoJson> {
     return this.http.get<UsRegionsGeoJson>('/assets/data/gz_2010_us_040_00_5m.json');

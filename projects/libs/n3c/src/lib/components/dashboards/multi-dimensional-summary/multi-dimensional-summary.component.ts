@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild, ViewEncapsulation, OnInit} from '@angular/core';
+import {Component, ElementRef, inject, ViewChild, ViewEncapsulation, OnInit} from '@angular/core';
 import {RadarPlotService} from '../../../services/charts/radar-plot/radar-plot-service';
 import {HiveApiService} from '../../../services/api/hive-api/hive-api.service';
 
@@ -12,10 +12,8 @@ import {HiveApiService} from '../../../services/api/hive-api/hive-api.service';
 })
 export class MultiDimensionalSummaryComponent implements OnInit {
   @ViewChild('radarPlotEl', {static: true}) radarPlotEl!: ElementRef;
-  constructor(
-    private radarPlot: RadarPlotService,
-    private hiveApi: HiveApiService
-  ) {}
+  private radarPlot = inject(RadarPlotService);
+  private hiveApi = inject(HiveApiService);
   ngOnInit(): void {
     var age_range_all = [
       '#EADEF7',

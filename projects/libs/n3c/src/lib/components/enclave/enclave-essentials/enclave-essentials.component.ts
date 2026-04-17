@@ -1,6 +1,5 @@
-import {Component, OnInit, Inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {MatIconModule} from '@angular/material/icon';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
@@ -9,7 +8,6 @@ import {ViewEncapsulation} from '@angular/core';
 import {StrapiResult} from '../../../models/strapi-default';
 import {ContentManagerService} from '../../../services/content-manager/content-manager.service';
 import {N3cBaseComponent} from '@odp/shared/lib/n3c/base/base.component';
-import {StrapiApiService} from '../../../services/api/strapi-api/strapi-api.service';
 import {N3cLoaderComponent} from '../../shared/loader/loader.component';
 import {N3cMenuComponent} from '../../shared/menu/menu.component';
 import {HeaderViewComponent} from '../../shared/header-view/header-view.component';
@@ -39,13 +37,11 @@ export class N3cEnclaveEssentialsComponent extends N3cBaseComponent implements O
   public pageNavTiles: any[] = [];
   public navTileThumbs: string[] = [];
 
-  constructor(
-    private titleService: Title,
-    private strapiApi: StrapiApiService,
-    private contentManager: ContentManagerService,
-    @Inject(API_URLS) private configuration: Endpoints
-  ) {
-    super(configuration, strapiApi);
+  private titleService = inject(Title);
+  private contentManager = inject(ContentManagerService);
+
+  constructor() {
+    super();
     this.contentBlock = ['description', 'user_tiles', 'nav_tiles'];
   }
 
@@ -55,7 +51,7 @@ export class N3cEnclaveEssentialsComponent extends N3cBaseComponent implements O
   }
 
   override onBaseDataLoaded(): void {
-    this.strapiApi.get<StrapiResult>('enclave-essential', this.contentBlock).subscribe({
+    this.strapiService.get<StrapiResult>('enclave-essential', this.contentBlock).subscribe({
       next: (result) => {
         this.pageContent = result.data?.attributes || {};
         this.pageDescription = this.pageContent?.description?.data?.attributes;

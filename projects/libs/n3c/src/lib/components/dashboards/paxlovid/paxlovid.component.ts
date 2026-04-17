@@ -1,4 +1,13 @@
-import {Component, OnInit, AfterViewInit, ViewChild, ElementRef, Renderer2, ChangeDetectorRef} from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+  Renderer2,
+  ChangeDetectorRef,
+  inject
+} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {HttpClient} from '@angular/common/http';
 import {forkJoin} from 'rxjs';
@@ -72,18 +81,18 @@ export class PaxlovidComponent implements OnInit, AfterViewInit {
   public activeFilters: string[] = [];
   titleMap: Record<string, string> = {};
 
-  constructor(
-    private titleService: Title,
-    private http: HttpClient,
-    private el: ElementRef,
-    private renderer: Renderer2,
-    private sanitizer: DomSanitizer,
-    private KpiStatsApi: KpiStatsApiService,
-    private cdr: ChangeDetectorRef,
-    private paxlovidService: PaxlovidService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {
+  private titleService = inject(Title);
+  private http = inject(HttpClient);
+  private el = inject(ElementRef);
+  private renderer = inject(Renderer2);
+  private sanitizer = inject(DomSanitizer);
+  private KpiStatsApi = inject(KpiStatsApiService);
+  private cdr = inject(ChangeDetectorRef);
+  private paxlovidService = inject(PaxlovidService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+
+  constructor() {
     this.titleService.setTitle('N3C Frequently Asked Questions');
     this.selectedDataset = 'paxlovid_1';
   }

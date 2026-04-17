@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {Component, Input, OnChanges, SimpleChanges, Inject} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges, inject} from '@angular/core';
 import {API_URLS, Endpoints, EVENT_SERVICE, N3CEndpoints} from '@odp/shared/lib/types';
 import {EventService} from '@odp/shared/lib/event-service/event.service';
 import {N3cMobileMenuComponent} from '../mobile-menu/mobile-menu.component';
@@ -17,8 +17,10 @@ export class N3cMenuComponent implements OnChanges {
 
   public menuItems!: any;
   public tenantItems!: any;
-  public n3cUrls!: N3CEndpoints;
+  public n3cUrls: N3CEndpoints = (inject(API_URLS) as unknown as Endpoints).n3cUrls;
   public menuTitle!: string;
+
+  private eventService = inject<EventService>(EVENT_SERVICE);
 
   public mainLogoImage = './assets/n3c/images/clinical_cohort_logo_white_banner_2787a6bb96.png';
   public mainLink = '/clinical-cohort';
@@ -62,14 +64,6 @@ export class N3cMenuComponent implements OnChanges {
       const tenantImageUrl = tenantContent.banner_icon.data.attributes.url;
       this.tenantLogo = this.n3cUrls.strapiUrl + tenantImageUrl;
     }
-  }
-
-  constructor(
-    @Inject(API_URLS) configuration: Endpoints,
-    @Inject(EVENT_SERVICE) private eventService: EventService
-  ) {
-    this.n3cUrls = configuration.n3cUrls;
-    // nothing needed???
   }
 
   menuClick() {

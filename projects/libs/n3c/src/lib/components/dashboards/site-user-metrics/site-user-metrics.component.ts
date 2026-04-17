@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, inject, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {AdminInstCount, AdminUserCount, DuaEntry} from '@odp/n3c/lib/models/admin-models';
 import {SitemapApiService} from '@odp/n3c/lib/services/api/site-map-api/site-map-api.service';
 import {DuaLineChartService} from '@odp/n3c/lib/services/charts/dua-line/dua-line.service';
@@ -28,11 +28,10 @@ export class SiteUserMetricsComponent implements OnInit {
   public showUserMenu = false;
   @ViewChild('lineChart', {static: true}) lineChart!: ElementRef;
   @ViewChild('instLineChart', {static: true}) instLineChart!: ElementRef;
-  constructor(
-    private siteApi: SitemapApiService,
-    private duaLine: DuaLineChartService,
-    private instLine: InstitutionLineChartService
-  ) {}
+  private siteApi = inject(SitemapApiService);
+  private duaLine = inject(DuaLineChartService);
+  private instLine = inject(InstitutionLineChartService);
+
   ngOnInit(): void {
     const duaData$ = this.siteApi.getDuaData();
     const adminInst$ = this.siteApi.adminInstitutions();

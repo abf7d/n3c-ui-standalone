@@ -1,7 +1,6 @@
-import {Component, OnInit, Inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {ViewEncapsulation, AfterViewInit} from '@angular/core';
-import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {MatIconModule} from '@angular/material/icon';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
@@ -10,7 +9,6 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {StrapiResult} from '../../../models/strapi-default';
 import {ContentManagerService} from '../../../services/content-manager/content-manager.service';
 import {N3cBaseComponent} from '@odp/shared/lib/n3c/base/base.component';
-import {StrapiApiService} from '../../../services/api/strapi-api/strapi-api.service';
 import {N3cMenuComponent} from '../../shared/menu/menu.component';
 import {HeaderViewComponent} from '../../shared/header-view/header-view.component';
 import {N3cEnclaveFooterComponent} from '../../shared/enclave-footer/enclave-footer.component';
@@ -33,15 +31,9 @@ import {N3cLoaderComponent} from '../../shared/loader/loader.component';
   ]
 })
 export class N3cTutorialComponent extends N3cBaseComponent implements OnInit, AfterViewInit {
-  constructor(
-    private titleService: Title,
-    private strapiApi: StrapiApiService,
-    public sanitizer: DomSanitizer,
-    @Inject(API_URLS) private configuration: Endpoints,
-    private contentManager: ContentManagerService
-  ) {
-    super(configuration, strapiApi);
-  }
+  private titleService = inject(Title);
+  public sanitizer = inject(DomSanitizer);
+  private contentManager = inject(ContentManagerService);
 
   ngOnInit() {
     this.initDataByRoute();
@@ -56,7 +48,7 @@ export class N3cTutorialComponent extends N3cBaseComponent implements OnInit, Af
   }
 
   loadData(): void {
-    this.strapiApi.get<StrapiResult>('tutorial', this.contentBlock).subscribe({
+    this.strapiService.get<StrapiResult>('tutorial', this.contentBlock).subscribe({
       next: (result) => {
         this.pageContent = result.data?.attributes || {};
 

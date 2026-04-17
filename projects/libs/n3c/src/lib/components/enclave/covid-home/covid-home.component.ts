@@ -1,4 +1,4 @@
-import {Component, OnInit, Inject, AfterViewInit, ViewChild, ElementRef, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, inject, AfterViewInit, ViewChild, ElementRef, ViewEncapsulation} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {forkJoin} from 'rxjs';
 import {CountUp} from 'countup.js';
@@ -8,11 +8,9 @@ import {CommonModule} from '@angular/common';
 import {Router} from '@angular/router';
 import {RouterModule} from '@angular/router';
 import {StrapiResult} from '../../../models/strapi-default';
-import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {N3cBaseComponent} from '@odp/shared/lib/n3c/base/base.component';
 import {FormsModule} from '@angular/forms';
 import {dashboardGrid} from '../../../constants/dashboards';
-import {StrapiApiService} from '../../../services/api/strapi-api/strapi-api.service';
 import {CovidHomeApiService} from '../../../services/api/covid-home-api/covid-home-api.service';
 import {N3cLoaderComponent} from '../../shared/loader/loader.component';
 import {N3cMenuComponent} from '../../shared/menu/menu.component';
@@ -101,18 +99,12 @@ export class N3cCovidHomeComponent extends N3cBaseComponent implements OnInit, A
   @ViewChild('duasTop') duasTop!: ElementRef<HTMLDivElement>;
   @ViewChild('projTop') projTop!: ElementRef<HTMLDivElement>;
   @ViewChild('teamsTop') teamsTop!: ElementRef<HTMLDivElement>;
-  constructor(
-    private titleService: Title,
-    private strapiApi: StrapiApiService,
-    private el: ElementRef,
-    private router: Router,
-    private covidHomeApi: CovidHomeApiService,
-    private siteMapApi: SitemapApiService,
-    private globalUtils: GlobalUtilsService,
-    @Inject(API_URLS) configuration: Endpoints
-  ) {
-    super(configuration, strapiApi);
-  }
+  private titleService = inject(Title);
+  private el = inject(ElementRef);
+  private router = inject(Router);
+  private covidHomeApi = inject(CovidHomeApiService);
+  private siteMapApi = inject(SitemapApiService);
+  private globalUtils = inject(GlobalUtilsService);
 
   // code for search button
   // Extract keywords from the tiles
@@ -181,7 +173,7 @@ export class N3cCovidHomeComponent extends N3cBaseComponent implements OnInit, A
     const peopleMetrics$ = this.covidHomeApi.getEmbeddedPeopleMetrics();
     const currentRelease$ = this.siteMapApi.getFactSheetCurrentRelease();
     const instSummary$ = this.siteMapApi.getInstitutionSummary();
-    const pageContent$ = this.strapiApi.get<StrapiResult>('landing-page');
+    const pageContent$ = this.strapiService.get<StrapiResult>('landing-page');
     forkJoin([encalveMetrics$, peopleMetrics$, pageContent$, currentRelease$, instSummary$]).subscribe({
       next: ([enclaveMetrics, peopleMetrics, pageContent, currentRelease, instSummary]) => {
         this.enclaveMetrics = enclaveMetrics; // Response from first API

@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Chart} from '../../../models/hive-plot';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class HiveApiService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   public getHiveData(): Observable<Chart> {
     return this.http.get<Chart>('https://covid.cd2h.org/dashboard/feeds/hive_data.jsp');

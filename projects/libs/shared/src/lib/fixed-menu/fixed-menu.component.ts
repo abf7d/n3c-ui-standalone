@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-fixed-menu',
@@ -9,7 +9,10 @@ import {Component, OnInit} from '@angular/core';
 })
 export class FixedMenuComponent {
   menuItems: any;
-  constructor(private httpClient: HttpClient) {
+
+  private httpClient = inject(HttpClient);
+
+  constructor() {
     this.httpClient.get('assets/menu.json').subscribe((data) => {
       this.menuItems = data;
     });

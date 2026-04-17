@@ -1,4 +1,4 @@
-import {Component, ViewChild, Inject} from '@angular/core';
+import {Component, ViewChild, inject} from '@angular/core';
 import {filter, skip} from 'rxjs/operators';
 import {MatSidenav} from '@angular/material/sidenav';
 import {MatAccordion} from '@angular/material/expansion';
@@ -22,10 +22,10 @@ export class MobileMenuComponent {
   public panelOpenStates: Record<string, boolean> = {};
   public isopen = false;
 
-  constructor(
-    @Inject(EVENT_SERVICE) private eventService: EventService,
-    private httpClient: HttpClient
-  ) {
+  private eventService = inject<EventService>(EVENT_SERVICE);
+  private httpClient = inject(HttpClient);
+
+  constructor() {
     this.eventService
       .get('menuClick')
       .pipe(

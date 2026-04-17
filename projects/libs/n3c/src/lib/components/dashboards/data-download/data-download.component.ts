@@ -1,5 +1,5 @@
 import '../../../ag-grid-setup';
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {DataDownloadApiService} from '../../../services/api/data-download-api/data-download-api.service';
 import {GridApi} from 'ag-grid-community';
 import {DetailCellRendererComponent} from '../admin-dashboard/detail-cell-renderer.component';
@@ -27,7 +27,7 @@ export class DataDownloadComponent implements OnInit {
   public defaultColDef: any;
   private gridApi!: GridApi;
   public frameworkComponents: any;
-  constructor(private downloadApi: DataDownloadApiService) {}
+  private downloadApi = inject(DataDownloadApiService);
   ngOnInit(): void {
     const downloadData$ = this.downloadApi.getDownloads();
     this.frameworkComponents = {

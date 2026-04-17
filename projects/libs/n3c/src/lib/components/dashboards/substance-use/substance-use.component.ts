@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild, ViewEncapsulation, OnInit} from '@angular/core';
+import {Component, ElementRef, inject, ViewChild, ViewEncapsulation, OnInit} from '@angular/core';
 import {HeatmapService} from '../../../services/charts/heatmap/heatmap.service';
 import {SubstanceUseApiService} from '../../../services/api/substance-use-api/substance-use-api.service';
 import {forkJoin} from 'rxjs';
@@ -16,10 +16,8 @@ export class SubstanceUseComponent implements OnInit {
   @ViewChild('heatmapAllLegend', {static: true}) heatmapAllLegendEl!: ElementRef;
   @ViewChild('heatmapCovidChart', {static: true}) heatmapCovidEl!: ElementRef;
   @ViewChild('heatmapCovidLegend', {static: true}) heatmapCovidLegendEl!: ElementRef;
-  constructor(
-    private heatmpService: HeatmapService,
-    private substanceApi: SubstanceUseApiService
-  ) {}
+  private heatmpService = inject(HeatmapService);
+  private substanceApi = inject(SubstanceUseApiService);
   ngOnInit(): void {
     const covidData$ = this.substanceApi.getAlcoholOpioidDataClusteredCount();
     const allData$ = this.substanceApi.getAlcoholOpioidDataClustered();

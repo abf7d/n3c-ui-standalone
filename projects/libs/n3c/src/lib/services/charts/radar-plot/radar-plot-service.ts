@@ -10,8 +10,6 @@ import {Chart} from '../../../models/hive-plot';
 @Injectable()
 export class RadarPlotService {
   el: any;
-  constructor() {}
-
   createChart(properties: {
     hiveData: Chart;
     scaling: number;

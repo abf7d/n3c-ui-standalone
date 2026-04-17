@@ -4,7 +4,6 @@ import {max} from 'd3-array';
 
 @Injectable()
 export class CollaboratingSitesService {
-  constructor() {}
   draw(svg: any, projection: any, collaborations: any, edges: any) {
     var node_map = new Map<number, any>(collaborations.sites.map((x: any) => [x.id, x]));
     const collaboration_g = svg.append('g').attr('class', 'layer'); // we need to class this for zooming by the vase code

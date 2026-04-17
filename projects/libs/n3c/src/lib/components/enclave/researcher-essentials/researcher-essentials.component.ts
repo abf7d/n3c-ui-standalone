@@ -1,6 +1,5 @@
-import {Component, OnInit, Inject, ViewEncapsulation} from '@angular/core';
+import {Component, inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {MatIconModule} from '@angular/material/icon';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
@@ -8,7 +7,6 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {StrapiResult} from '../../../models/strapi-default';
 import {ContentManagerService} from '../../../services/content-manager/content-manager.service';
 import {N3cBaseComponent} from '@odp/shared/lib/n3c/base/base.component';
-import {StrapiApiService} from 'projects/n3c/src/lib/services/api/strapi-api/strapi-api.service';
 import {N3cLoaderComponent} from '../../shared/loader/loader.component';
 import {N3cMenuComponent} from '../../shared/menu/menu.component';
 import {HeaderViewComponent} from '../../shared/header-view/header-view.component';
@@ -46,13 +44,11 @@ export class N3cResearcherEssentialsComponent extends N3cBaseComponent implement
   pageNavTiles: any[] = [];
   navTileThumbs: string[] = [];
 
-  constructor(
-    private titleService: Title,
-    private contentManager: ContentManagerService,
-    @Inject(API_URLS) configuration: Endpoints,
-    private strapiApi: StrapiApiService
-  ) {
-    super(configuration, strapiApi);
+  private titleService = inject(Title);
+  private contentManager = inject(ContentManagerService);
+
+  constructor() {
+    super();
     this.contentBlock = ['nav_tiles', 'join_block', 'access_block', 'domain_block', 'governance_block'];
   }
 
@@ -62,7 +58,7 @@ export class N3cResearcherEssentialsComponent extends N3cBaseComponent implement
   }
 
   override onBaseDataLoaded(): void {
-    this.strapiApi.get<StrapiResult>('researcher-essential', this.contentBlock).subscribe({
+    this.strapiService.get<StrapiResult>('researcher-essential', this.contentBlock).subscribe({
       next: (result) => {
         this.pageContent = result.data?.attributes || {};
 

@@ -1,13 +1,11 @@
-import {Component, OnInit, Inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {ViewEncapsulation} from '@angular/core';
-import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {StrapiResult} from '../../../models/strapi-default';
 import {ContentManagerService} from '../../../services/content-manager/content-manager.service';
 import {N3cBaseComponent} from '@odp/shared/lib/n3c/base/base.component';
-import {StrapiApiService} from '../../../services/api/strapi-api/strapi-api.service';
 import {N3cLoaderComponent} from '../../shared/loader/loader.component';
 import {N3cMenuComponent} from '../../shared/menu/menu.component';
 import {HeaderViewComponent} from '../../shared/header-view/header-view.component';
@@ -30,13 +28,11 @@ import {N3cEnclaveFooterComponent} from '../../shared/enclave-footer/enclave-foo
 export class N3cDownloadComponent extends N3cBaseComponent implements OnInit {
   imageUrls: string[] = Array(6).fill(''); // Initialize with empty strings for image URLs
 
-  constructor(
-    private titleService: Title,
-    private strapiApi: StrapiApiService,
-    @Inject(API_URLS) configuration: Endpoints,
-    private contentManager: ContentManagerService // Inject ContentManagerService
-  ) {
-    super(configuration, strapiApi);
+  private titleService = inject(Title);
+  private contentManager = inject(ContentManagerService);
+
+  constructor() {
+    super();
     this.contentBlock = [
       'submit_graphic1',
       'submit_graphic2',
@@ -53,7 +49,7 @@ export class N3cDownloadComponent extends N3cBaseComponent implements OnInit {
   }
 
   override onBaseDataLoaded(): void {
-    this.strapiApi.get<StrapiResult>('download', this.contentBlock).subscribe({
+    this.strapiService.get<StrapiResult>('download', this.contentBlock).subscribe({
       next: (results) => {
         this.pageContent = (results as StrapiResult)?.data?.attributes || {};
 

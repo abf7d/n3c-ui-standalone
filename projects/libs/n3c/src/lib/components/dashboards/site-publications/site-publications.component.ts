@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import {N3cLoaderComponent} from '../../shared/loader/loader.component';
 import {SimpleGridComponent} from '../../shared/simple-grid/simple-grid.component';
 import {CollaboratingSitesApiService} from '../../../services/api/collaborating-sites-api/collaborating-sites-api.service';
@@ -22,7 +22,7 @@ export class SitePublicationsComponent implements OnInit {
   loading = true;
   showError = false;
 
-  constructor(private collabApi: CollaboratingSitesApiService) {}
+  private collabApi = inject(CollaboratingSitesApiService);
 
   ngOnInit() {
     this.initColDefs();

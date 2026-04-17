@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {Component, Inject, Input} from '@angular/core';
+import {Component, inject, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {EVENT_SERVICE} from '../../types';
@@ -17,10 +17,11 @@ export class PortalMenuComponent {
   isNavbarCollapsed = true;
   menuItems!: any;
   secondSub!: any;
-  constructor(
-    @Inject(EVENT_SERVICE) private eventService: EventService,
-    private httpClient: HttpClient
-  ) {
+
+  private eventService = inject<EventService>(EVENT_SERVICE);
+  private httpClient = inject(HttpClient);
+
+  constructor() {
     this.httpClient.get('assets/menu.json').subscribe((data) => {
       this.menuItems = data;
     });

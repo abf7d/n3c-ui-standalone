@@ -1,10 +1,11 @@
 import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {scaleOrdinal} from 'd3-scale';
 
 @Injectable()
 export class ContributingSitesService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
+
   draw(svg: any, projection: any, contrib_data: any) {
     if (contrib_data == null || svg == null) return;
 

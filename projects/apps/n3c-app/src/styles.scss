@@ -2,10 +2,9 @@
 /* You can add global styles to this file, and also import other style files */
 /* fallback */
 
-@use "node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
-@use "node_modules/font-awesome/css/font-awesome.css";
 @use 'bootstrap/scss/bootstrap.scss';
-
+@use "@angular/material/prebuilt-themes/indigo-pink.css";
+@use "font-awesome/css/font-awesome.css";
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;

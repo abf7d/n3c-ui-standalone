@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import {N3cLoaderComponent} from '../../shared/loader/loader.component';
 import {CollaboratingSitesApiService} from '../../../services/api/collaborating-sites-api/collaborating-sites-api.service';
 import {ColDef} from 'ag-grid-community';
@@ -24,7 +24,7 @@ export class SiteGrantsComponent implements OnInit {
   loading = true;
   showError = false;
 
-  constructor(private collabApi: CollaboratingSitesApiService) {}
+  private collabApi = inject(CollaboratingSitesApiService);
 
   ngOnInit() {
     if (this.rorId) {

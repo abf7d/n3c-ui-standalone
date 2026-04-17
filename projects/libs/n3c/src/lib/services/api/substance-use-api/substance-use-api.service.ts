@@ -1,12 +1,12 @@
 import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubstanceUseApiService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   public getAlcoholOpioidDataClusteredCount(): Observable<any> {
     return this.http.get(

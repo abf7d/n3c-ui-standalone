@@ -1,14 +1,11 @@
-import {Component, OnInit, Inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {HttpClient} from '@angular/common/http';
 import {forkJoin} from 'rxjs';
-import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {MatIconModule} from '@angular/material/icon';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {StrapiResult} from '../../../models/strapi-default';
 import {N3cBaseComponent} from '@odp/shared/lib/n3c/base/base.component';
-import {StrapiApiService} from '../../../services/api/strapi-api/strapi-api.service';
 import {N3cLoaderComponent} from '../../shared/loader/loader.component';
 import {SitemapApiService} from '../../../services/api/site-map-api/site-map-api.service';
 import {N3cMenuComponent} from '../../shared/menu/menu.component';
@@ -36,15 +33,8 @@ export class N3cFactSheetComponent extends N3cBaseComponent implements OnInit {
   currentRelease!: CurrentRelease;
   currentNotes!: CurrentNotes;
 
-  constructor(
-    private titleService: Title,
-    private http: HttpClient,
-    private strapiApi: StrapiApiService,
-    private siteApi: SitemapApiService,
-    @Inject(API_URLS) private configuration: Endpoints
-  ) {
-    super(configuration, strapiApi);
-  }
+  private titleService = inject(Title);
+  private siteApi = inject(SitemapApiService);
 
   ngOnInit() {
     this.initDataByRoute();
@@ -53,7 +43,7 @@ export class N3cFactSheetComponent extends N3cBaseComponent implements OnInit {
   }
 
   override onBaseDataLoaded(): void {
-    const factSheetRequest$ = this.strapiApi.get('fact-sheet');
+    const factSheetRequest$ = this.strapiService.get('fact-sheet');
     const currentRelease$ = this.siteApi.getFactSheetCurrentRelease();
     const currentNotes$ = this.siteApi.getFactSheetCurrentNotes();
 

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, NO_ERRORS_SCHEMA, ChangeDetectorRef} from '@angular/core';
+import {Component, inject, OnInit, ViewChild, NO_ERRORS_SCHEMA, ChangeDetectorRef} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {MatIconModule} from '@angular/material/icon';
 import {CommonModule} from '@angular/common';
@@ -46,11 +46,11 @@ export class N3cPublicationsComponent implements OnInit {
   preprintCount = signal(0);
   presentationCount = signal(0);
 
-  constructor(
-    private titleService: Title,
-    private cdr: ChangeDetectorRef,
-    private publicationsApi: PublicationeApiService
-  ) {
+  private titleService = inject(Title);
+  private cdr = inject(ChangeDetectorRef);
+  private publicationsApi = inject(PublicationeApiService);
+
+  constructor() {
     this.titleService.setTitle('N3C Publications');
   }
 

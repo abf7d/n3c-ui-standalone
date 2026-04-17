@@ -1,5 +1,5 @@
 // download-links-renderer.component.ts
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {ICellRendererAngularComp} from 'ag-grid-angular';
 import {ICellRendererParams} from 'ag-grid-community';
 import {DataDownloadApiService} from '../../../services/api/data-download-api/data-download-api.service';
@@ -41,7 +41,7 @@ export class DownloadCellRenderComponent implements ICellRendererAngularComp {
   private file!: string;
   private tableSchema!: string;
 
-  constructor(private downloadService: DataDownloadApiService) {}
+  private downloadService = inject(DataDownloadApiService);
 
   // AG Grid lifecycle method
   agInit(params: ICellRendererParams): void {

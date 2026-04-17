@@ -27,8 +27,6 @@ export class RegionalFlatMapService {
   private regionalProjection: any;
   private regionalPath: any;
 
-  constructor() {}
-
   /**
    * Draw the map in the specified element
    * @param el

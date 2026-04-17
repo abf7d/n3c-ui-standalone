@@ -19,8 +19,6 @@ export class PieBarService {
   zoom: any;
   svg: any;
 
-  constructor() {}
-
   private nFormatter(num: number, digits: number): string {
     const lookup = [
       {value: 1, symbol: ''},

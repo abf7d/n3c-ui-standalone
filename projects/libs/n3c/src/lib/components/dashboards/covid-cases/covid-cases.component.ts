@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild, AfterViewInit, OnDestroy} from '@angular/core';
+import {Component, ElementRef, inject, OnInit, ViewChild, AfterViewInit, OnDestroy} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {KpiPanelConfig} from '../../shared/kpi-panel/kpi-panel.interface';
 import {LimitationsConfig} from '../../shared/limitations/limitations.interface';
@@ -63,17 +63,17 @@ export class CovidCasesComponent implements OnInit, AfterViewInit, OnDestroy {
   };
   isTooltipOpen = false;
 
-  constructor(
-    private titleService: Title,
-    private router: Router,
-    private route: ActivatedRoute,
-    private siteMapApi: SitemapApiService,
-    private manager: CovidCasesManager,
-    private api: CovidCasesApiService,
-    private dailyChartService: CovidDailyChartService,
-    private cumulativeChartService: CovidCumulativeChartService,
-    private globalUtils: GlobalUtilsService
-  ) {
+  private titleService = inject(Title);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private siteMapApi = inject(SitemapApiService);
+  private manager = inject(CovidCasesManager);
+  private api = inject(CovidCasesApiService);
+  private dailyChartService = inject(CovidDailyChartService);
+  private cumulativeChartService = inject(CovidCumulativeChartService);
+  private globalUtils = inject(GlobalUtilsService);
+
+  constructor() {
     this.titleService.setTitle('N3C Dashboard - Cumulative and Average COVID+ Cases');
   }
 

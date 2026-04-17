@@ -7,7 +7,8 @@ import {
   ViewChild,
   ElementRef,
   AfterViewInit,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  inject
 } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {CollaboratingSitesApiService} from '../../../services/api/collaborating-sites-api/collaborating-sites-api.service';
@@ -44,11 +45,9 @@ export class SiteOverviewComponent implements OnInit, OnChanges, AfterViewInit {
     UNAFFILIATED: '#ff7155'
   };
 
-  constructor(
-    private collabApi: CollaboratingSitesApiService,
-    private pies: PieBarService,
-    private cdr: ChangeDetectorRef
-  ) {}
+  private collabApi = inject(CollaboratingSitesApiService);
+  private pies = inject(PieBarService);
+  private cdr = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
     this.updateStaticAssets();

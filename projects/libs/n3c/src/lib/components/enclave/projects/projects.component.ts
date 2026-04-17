@@ -1,8 +1,7 @@
 import '../../../ag-grid-setup';
-import {Component, OnInit, Inject, ElementRef, ViewChild} from '@angular/core';
+import {Component, inject, OnInit, ElementRef, ViewChild} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {forkJoin} from 'rxjs';
-import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {MatIconModule} from '@angular/material/icon';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
@@ -11,7 +10,6 @@ import {AgGridAngular} from 'ag-grid-angular';
 import {ColDef, GridApi, GridReadyEvent} from 'ag-grid-community';
 import {StrapiResult} from '../../../models/strapi-default';
 import {N3cBaseComponent} from '@odp/shared/lib/n3c/base/base.component';
-import {StrapiApiService} from '../../../services/api/strapi-api/strapi-api.service';
 import {CellRendererComponent} from './cellrenderer/cell-renderer.component';
 import {Project} from './projects.interface';
 import {N3cLoaderComponent} from '../../shared/loader/loader.component';
@@ -74,13 +72,11 @@ export class N3cProjectsPageComponent extends N3cBaseComponent implements OnInit
     cellRenderer: CellRendererComponent
   };
 
-  constructor(
-    private titleService: Title,
-    private strapiApi: StrapiApiService,
-    private projectApi: ProjectApiService,
-    @Inject(API_URLS) private configuration: Endpoints
-  ) {
-    super(configuration, strapiApi);
+  private titleService = inject(Title);
+  private projectApi = inject(ProjectApiService);
+
+  constructor() {
+    super();
 
     this.defaultColDef = {
       width: 200,
@@ -99,7 +95,7 @@ export class N3cProjectsPageComponent extends N3cBaseComponent implements OnInit
   }
 
   override onBaseDataLoaded(): void {
-    const projectRequest = this.strapiApi.get<StrapiResult>('project');
+    const projectRequest = this.strapiService.get<StrapiResult>('project');
     const embeddedProjectRequest = this.projectApi.getEmbeddedProjectRoster();
 
     forkJoin([projectRequest, embeddedProjectRequest]).subscribe({

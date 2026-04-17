@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, inject, OnInit, OnDestroy} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {MatIconModule} from '@angular/material/icon';
 import {CommonModule} from '@angular/common';
@@ -30,11 +30,11 @@ import {N3cLoaderComponent} from '../../shared/loader/loader.component';
   ]
 })
 export class N3cDashboardsHomeComponent implements OnInit, OnDestroy {
-  constructor(
-    private titleService: Title,
-    private router: Router,
-    private siteApi: SitemapApiService
-  ) {
+  private titleService = inject(Title);
+  private router = inject(Router);
+  private siteApi = inject(SitemapApiService);
+
+  constructor() {
     this.titleService.setTitle('N3C Dashboards');
   }
   dashboardGrid = dashboardGrid;

@@ -9,7 +9,8 @@ import {
   ChangeDetectorRef,
   Output,
   EventEmitter,
-  HostListener
+  HostListener,
+  inject
 } from '@angular/core';
 import {PieBarService} from '../../../services/charts/pie-bar/pie-bar.service';
 import {toPng, toJpeg, toSvg} from 'html-to-image';
@@ -46,10 +47,8 @@ export class RenderChartComponent implements AfterViewInit, OnChanges {
     }, debounceTime);
   }
 
-  constructor(
-    private piebarService: PieBarService,
-    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
-  ) {}
+  private piebarService = inject(PieBarService);
+  private cdr = inject(ChangeDetectorRef);
 
   ngAfterViewInit() {
     if (!this.loading) {

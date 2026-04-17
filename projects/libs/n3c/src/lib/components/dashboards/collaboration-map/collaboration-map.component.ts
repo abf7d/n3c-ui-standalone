@@ -1,6 +1,6 @@
 import '../../../ag-grid-setup';
 
-import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, inject, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {BaseGeoMapService} from '@odp/n3c/lib/services/charts/geo-map/base-geo-map/base-geo-map.service';
 import {AlbersUSATerritoriesProjectionService} from '@odp/n3c/lib/services/charts/geo-map/base-geo-map/albers-usa-territories-projection';
 import {CollaboratingSitesService} from '@odp/n3c/lib/services/charts/geo-map/collaborating-sites/collaborating-sites.service';
@@ -69,12 +69,10 @@ export class CollaborationMapComponent implements OnInit {
         members working within the N3C Data Enclave sized by their number of collaborative members. Links represent
         collaborations between at least one member from each institution. The darker the link, the more collaborators.`;
 
-  constructor(
-    private collab: CollaboratingSitesService,
-    private geoMap: BaseGeoMapService,
-    private collabMapApi: CollaborationMapApiService,
-    private activatedRoute: ActivatedRoute
-  ) {}
+  protected collab = inject(CollaboratingSitesService);
+  protected geoMap = inject(BaseGeoMapService);
+  protected collabMapApi = inject(CollaborationMapApiService);
+  protected activatedRoute = inject(ActivatedRoute);
 
   ngOnInit(): void {
     this.activatedRoute.queryParamMap.subscribe((params) => {

@@ -1,10 +1,10 @@
-import {Component, Inject, inject} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {API_URLS, Endpoints, N3CEndpoints} from '../../types';
 import {BehaviorSubject, forkJoin} from 'rxjs';
 import {N3C_BASE_MENU_TYPES, N3C_BASE_TENANT_TYPES} from '../base-enums.enum';
 import * as marked from 'marked';
-import {StrapiApiService} from 'projects/n3c/src/lib/services/api/strapi-api/strapi-api.service';
-import {StrapiResult} from 'projects/n3c/src/lib/models/strapi-default';
+import {StrapiApiService} from '@odp/n3c/lib/services/api/strapi-api/strapi-api.service';
+import {StrapiResult} from '@odp/n3c/lib/models/strapi-default';
 import {Router} from '@angular/router';
 
 interface InitOpts {
@@ -21,7 +21,7 @@ export class N3cBaseComponent {
   public baseRoute = '';
 
   private parentPath = '../assets/n3c/menu';
-  public n3cUrls!: N3CEndpoints;
+  public n3cUrls: N3CEndpoints = (inject(API_URLS) as unknown as Endpoints).n3cUrls;
 
   public pageContent: any = {};
   public md = marked.setOptions({});
@@ -34,7 +34,7 @@ export class N3cBaseComponent {
   public showError = false;
   public dataLoading = true;
 
-  public strapiService!: StrapiApiService;
+  public strapiService: StrapiApiService = inject(StrapiApiService);
   public contentBlock!: Array<string>;
   public contentResources: any;
 
@@ -77,11 +77,6 @@ export class N3cBaseComponent {
   // Hook method - override this in child component
   protected onBaseDataLoaded(): void {
     this.dataLoading = false; // if not set in child component
-  }
-
-  constructor(@Inject(API_URLS) configuration: Endpoints, strapiService: StrapiApiService) {
-    this.n3cUrls = configuration.n3cUrls;
-    this.strapiService = strapiService;
   }
 
   getRouterLinkParts(url: string): {link: string[]; fragment?: string} {

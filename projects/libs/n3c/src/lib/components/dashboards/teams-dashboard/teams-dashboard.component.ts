@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
@@ -40,11 +40,11 @@ export class TeamsDashboardComponent implements OnInit {
   dataLoading: boolean = true;
   showError: boolean = false;
 
-  constructor(
-    private titleService: Title,
-    private publicationsApi: PublicationeApiService,
-    private siteMapApi: SitemapApiService
-  ) {
+  private titleService = inject(Title);
+  private publicationsApi = inject(PublicationeApiService);
+  private siteMapApi = inject(SitemapApiService);
+
+  constructor() {
     this.titleService.setTitle('N3C Teams');
   }
 

@@ -1,9 +1,8 @@
 import '../../../ag-grid-setup';
-import {Component, OnInit, Inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {forkJoin} from 'rxjs';
 import {ViewEncapsulation} from '@angular/core';
-import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {MatIconModule} from '@angular/material/icon';
 import {CommonModule} from '@angular/common';
 import {ActivatedRoute, Router, RouterModule} from '@angular/router';
@@ -12,7 +11,6 @@ import {AgGridAngular} from 'ag-grid-angular';
 import {GridApi, GridReadyEvent} from 'ag-grid-community';
 import {StrapiResult} from '../../../models/strapi-default';
 import {N3cBaseComponent} from '@odp/shared/lib/n3c/base/base.component';
-import {StrapiApiService} from '../../../services/api/strapi-api/strapi-api.service';
 import {N3cLoaderComponent} from '../../shared/loader/loader.component';
 import {AgreementApiService} from '../../../services/api/agreement-api/agreement-api.service';
 import {FormsModule} from '@angular/forms';
@@ -54,15 +52,13 @@ export class N3cAgreementsComponent extends N3cBaseComponent implements OnInit {
   public selectedTenant = 'all';
   public selectedAgreementType = 'all';
 
-  constructor(
-    private titleService: Title,
-    private strapiApi: StrapiApiService,
-    private agreementApi: AgreementApiService,
-    private route: ActivatedRoute,
-    private router: Router,
-    @Inject(API_URLS) private configuration: Endpoints
-  ) {
-    super(configuration, strapiApi);
+  private titleService = inject(Title);
+  private agreementApi = inject(AgreementApiService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+
+  constructor() {
+    super();
 
     this.defaultColDef = {
       width: 200,
@@ -113,7 +109,7 @@ export class N3cAgreementsComponent extends N3cBaseComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       const agreementType = params['type'];
       const tenant = params['tenant'];
-      const duaListEndpoint = this.strapiApi.get<StrapiResult>('dua-list');
+      const duaListEndpoint = this.strapiService.get<StrapiResult>('dua-list');
       const agreements$ = this.agreementApi.getAgreements();
       const tenantGroups$ = this.agreementApi.getTenantGroups();
       const agreementTypes$ = this.agreementApi.getAgreementTypes();

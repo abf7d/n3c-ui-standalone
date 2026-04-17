@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {Component, EventEmitter, Output, Input, HostListener, ElementRef} from '@angular/core';
+import {Component, EventEmitter, Output, Input, HostListener, ElementRef, inject} from '@angular/core';
 import {OptGroup, Option} from './topic-picker.interface';
 import {FormsModule} from '@angular/forms';
 import {FilterOptionsPipe} from './filter-options.pipe';
@@ -19,7 +19,7 @@ export class TopicPickerComponent {
   searchTerm = '';
   dropdownOpen = false;
 
-  constructor(private eRef: ElementRef) {}
+  private eRef = inject(ElementRef);
 
   @HostListener('document:click', ['$event'])
   clickOutside(event: Event) {

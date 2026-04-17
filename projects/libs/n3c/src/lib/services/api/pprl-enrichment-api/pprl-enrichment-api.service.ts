@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {CmsBarFeedTotals} from '@odp/n3c/lib/models/pprl-enrichment';
 import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {Observable} from 'rxjs';
@@ -8,11 +8,9 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class PprlEnrichmentApiService {
+  private config = inject(API_URLS) as unknown as Endpoints;
+  private http = inject(HttpClient);
   private baseUrl: string = this.config.n3cUrls.baseUrl + this.config.n3cUrls.dashboard;
-  constructor(
-    @Inject(API_URLS) private config: Endpoints,
-    private http: HttpClient
-  ) {}
 
   public getMedicareTableFeed(): Observable<any> {
     return this.http.get(`${this.baseUrl}/pprl/summary/medicare`);

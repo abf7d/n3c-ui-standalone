@@ -1,6 +1,5 @@
-import {Component, OnInit, Inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {MatIconModule} from '@angular/material/icon';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
@@ -9,7 +8,6 @@ import {ViewEncapsulation} from '@angular/core';
 import {StrapiResult} from '../../../models/strapi-default';
 import {ContentManagerService} from '../../../services/content-manager/content-manager.service';
 import {N3cBaseComponent} from '@odp/shared/lib/n3c/base/base.component';
-import {StrapiApiService} from '../../../services/api/strapi-api/strapi-api.service';
 import {N3cMenuComponent} from '../../shared/menu/menu.component';
 import {N3cLoaderComponent} from '../../shared/loader/loader.component';
 import {HeaderViewComponent} from '../../shared/header-view/header-view.component';
@@ -34,13 +32,11 @@ import {N3cEnclaveFooterComponent} from '../../shared/enclave-footer/enclave-foo
 export class N3cPressCoverageComponent extends N3cBaseComponent implements OnInit {
   public itemImages: any;
 
-  constructor(
-    private titleService: Title,
-    protected strapiApi: StrapiApiService,
-    @Inject(API_URLS) configuration: Endpoints,
-    public contentManager: ContentManagerService
-  ) {
-    super(configuration, strapiApi);
+  private titleService = inject(Title);
+  public contentManager = inject(ContentManagerService);
+
+  constructor() {
+    super();
     this.contentBlock = ['press_releases'];
   }
 
@@ -50,7 +46,7 @@ export class N3cPressCoverageComponent extends N3cBaseComponent implements OnIni
   }
 
   override onBaseDataLoaded(): void {
-    this.strapiApi.get<StrapiResult>('news-item', this.contentBlock).subscribe({
+    this.strapiService.get<StrapiResult>('news-item', this.contentBlock).subscribe({
       next: (result) => {
         // Assign the result from Strapi
         this.pageContent = result.data?.attributes || {};

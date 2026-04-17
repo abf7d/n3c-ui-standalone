@@ -1,5 +1,5 @@
 import '../../../ag-grid-setup';
-import {Component, ElementRef, ViewChild, ViewEncapsulation, OnInit} from '@angular/core';
+import {Component, ElementRef, inject, ViewChild, ViewEncapsulation, OnInit} from '@angular/core';
 import {SitemapChartService} from '../../../services/charts/geo-map/site-map/site-map.service';
 import {AlbersUSATerritoriesProjectionService} from '../../../services/charts/geo-map/base-geo-map/albers-usa-territories-projection';
 import {SitemapApiService} from '../../../services/api/site-map-api/site-map-api.service';
@@ -81,12 +81,11 @@ export class AdminDashboardComponent implements OnInit {
   public currentRelease!: CurrentRelease;
   public currentNotes!: CurrentNotes;
 
-  constructor(
-    private siteMap: SitemapChartService,
-    private siteApi: SitemapApiService,
-    private duaLine: DuaLineChartService,
-    private instLine: InstitutionLineChartService
-  ) {}
+  private siteMap = inject(SitemapChartService);
+  private siteApi = inject(SitemapApiService);
+  private duaLine = inject(DuaLineChartService);
+  private instLine = inject(InstitutionLineChartService);
+
   ngOnInit(): void {
     const mapData$ = this.siteApi.getMapData();
     const states$ = this.siteApi.getStates();

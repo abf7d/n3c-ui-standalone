@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import * as marked from 'marked';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -7,14 +7,9 @@ import {DomSanitizer} from '@angular/platform-browser';
   providedIn: 'root'
 })
 export class ContentManagerService {
-  private md: any;
-
-  constructor(
-    @Inject(API_URLS) private configuration: Endpoints,
-    private sanitizer: DomSanitizer
-  ) {
-    this.md = marked.setOptions({});
-  }
+  private configuration = inject(API_URLS) as unknown as Endpoints;
+  private sanitizer = inject(DomSanitizer);
+  private md: any = marked.setOptions({});
 
   public getContentObj(data: any, contentBlock: string) {
     const toolObjList = data[contentBlock].data;

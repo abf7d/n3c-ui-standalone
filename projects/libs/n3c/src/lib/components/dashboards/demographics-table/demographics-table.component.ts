@@ -1,6 +1,6 @@
 import '../../../ag-grid-setup';
 
-import {Component, OnInit, Renderer2} from '@angular/core';
+import {Component, inject, OnInit, Renderer2} from '@angular/core';
 import {AgGridAngular} from 'ag-grid-angular';
 import {ColDef, GridApi, GridOptions, GridReadyEvent} from 'ag-grid-community';
 import {KpiPanelConfig} from '../../shared/kpi-panel/kpi-panel.interface';
@@ -71,16 +71,16 @@ export class N3cDemTableComponent implements OnInit {
   gridOptions: GridOptions = CONST.gridOptions;
   demoGridOptions: GridOptions = CONST.demoGridOptions;
 
-  constructor(
-    private api: DemTableApiService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private titleService: Title,
-    private manager: N3cDemTableManager,
-    private siteMapApi: SitemapApiService,
-    private renderer: Renderer2,
-    private globalUtils: GlobalUtilsService
-  ) {
+  private api = inject(DemTableApiService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private titleService = inject(Title);
+  private manager = inject(N3cDemTableManager);
+  private siteMapApi = inject(SitemapApiService);
+  private renderer = inject(Renderer2);
+  private globalUtils = inject(GlobalUtilsService);
+
+  constructor() {
     this.titleService.setTitle('N3C Dashboard - Demographics Table for IRB Submission');
   }
 

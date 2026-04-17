@@ -1,5 +1,5 @@
 import '../../../ag-grid-setup';
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, inject, ViewEncapsulation} from '@angular/core';
 import {CollaborationMapComponent} from '../collaboration-map/collaboration-map.component';
 import {CollaboratingSitesService} from '@odp/n3c/lib/services/charts/geo-map/collaborating-sites/collaborating-sites.service';
 import {BaseGeoMapService} from '@odp/n3c/lib/services/charts/geo-map/base-geo-map/base-geo-map.service';
@@ -7,7 +7,7 @@ import {AlbersUSATerritoriesProjectionService} from '@odp/n3c/lib/services/chart
 import {CommonModule} from '@angular/common';
 import {DashboardFooterComponent} from '@odp/shared/lib/n3c/dashboard-footer/dashboard-footer.component';
 import {HeaderViewComponent} from '../../shared/header-view/header-view.component';
-import {ActivatedRoute, RouterModule} from '@angular/router';
+import {RouterModule} from '@angular/router';
 import {N3cLoaderComponent} from '../../shared/loader/loader.component';
 import {AgGridAngular} from 'ag-grid-angular';
 import {MapFilterLegendComponent} from '../collaboration-map/map-filter-legend.component';
@@ -38,14 +38,7 @@ export class PublicationsMapComponent extends CollaborationMapComponent {
     involving N3C data. Links represent collaborations between at least one
     author from each institution. The darker the link, the more authors.`;
 
-  constructor(
-    protected collabPub: CollaboratingSitesService,
-    protected geoMapPub: BaseGeoMapService,
-    protected pubMapApi: PublicationsMapApiService,
-    protected activatedRoutePub: ActivatedRoute
-  ) {
-    super(collabPub, geoMapPub, pubMapApi, activatedRoutePub);
-  }
+  protected override collabMapApi = inject(PublicationsMapApiService);
 
   override initColDefs() {
     this.columnDefs = [

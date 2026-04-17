@@ -7,7 +7,8 @@ import {
   ViewContainerRef,
   EmbeddedViewRef,
   Renderer2,
-  NgZone
+  NgZone,
+  inject
 } from '@angular/core';
 
 type Placement = 'top' | 'bottom' | 'left' | 'right';
@@ -49,12 +50,10 @@ export class PopoverDirective implements OnDestroy {
   private isOpen = false;
   private outsideClickUnlisten: (() => void) | null = null;
 
-  constructor(
-    private el: ElementRef<HTMLElement>,
-    private vcr: ViewContainerRef,
-    private renderer: Renderer2,
-    private zone: NgZone
-  ) {}
+  private el = inject<ElementRef<HTMLElement>>(ElementRef);
+  private vcr = inject(ViewContainerRef);
+  private renderer = inject(Renderer2);
+  private zone = inject(NgZone);
 
   /* ------------------------------------------------------------------ */
   /*  Host listeners                                                     */

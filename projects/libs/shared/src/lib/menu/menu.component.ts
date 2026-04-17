@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {RouterModule} from '@angular/router';
 
 @Component({
@@ -13,7 +13,10 @@ import {RouterModule} from '@angular/router';
 export class MenuComponent {
   menuItems!: any;
   secondSub!: any;
-  constructor(private httpClient: HttpClient) {
+
+  private httpClient = inject(HttpClient);
+
+  constructor() {
     this.httpClient.get('assets/menu.json').subscribe((data) => {
       this.menuItems = data;
     });

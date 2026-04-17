@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
@@ -19,7 +19,7 @@ export class SearchDashboardsComponent implements OnInit {
   allKeywords: string[] = [];
   filteredKeywords: string[] = [];
 
-  constructor(private router: Router) {}
+  private router = inject(Router);
 
   ngOnInit() {
     this.extractKeywords();

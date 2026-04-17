@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {select} from 'd3-selection';
 import {geoNaturalEarth1, geoPath} from 'd3-geo';
 import {zoom, zoomIdentity} from 'd3-zoom';
@@ -19,7 +19,7 @@ export class BaseGeoMapService {
   zoom: any;
   svg: any;
 
-  constructor(private albersUsaTerrProjService: AlbersUSATerritoriesProjectionService) {}
+  private albersUsaTerrProjService = inject(AlbersUSATerritoriesProjectionService);
 
   draw(regions: any, el: any): GeoMap {
     this.width = 1500;

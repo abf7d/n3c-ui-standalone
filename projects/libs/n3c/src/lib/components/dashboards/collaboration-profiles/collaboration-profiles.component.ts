@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, inject, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {RouterModule} from '@angular/router';
 import {DashboardFooterComponent} from '@odp/shared/lib/n3c/dashboard-footer/dashboard-footer.component';
@@ -36,14 +36,12 @@ export class CollaborationProfilesComponent implements OnInit {
   public showError = false;
   public dataLoading = true;
 
-  constructor(
-    private collab: CollaboratingSitesService,
-    private contrib: ContributingSitesService,
-    private geoMap: BaseGeoMapService,
-    private collabApi: CollaboratingSitesApiService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  private collab = inject(CollaboratingSitesService);
+  private contrib = inject(ContributingSitesService);
+  private geoMap = inject(BaseGeoMapService);
+  private collabApi = inject(CollaboratingSitesApiService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
   ngOnInit(): void {
     const regions$ = this.collabApi.getRegions();
     const collaborations$ = this.collabApi.getSiteCollaborations();

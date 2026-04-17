@@ -8,7 +8,8 @@ import {
   OnDestroy,
   Output,
   EventEmitter,
-  ViewChild
+  ViewChild,
+  inject
 } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {GroupedBarService} from '@odp/n3c/lib/services/charts/grouped-bar/grouped-bar.service';
@@ -35,10 +36,8 @@ export class GroupedBarChartComponent implements OnChanges, AfterViewInit, OnDes
   showMenu = false;
   private resizeObserver!: ResizeObserver;
 
-  constructor(
-    private groupedBarService: GroupedBarService,
-    private chartService: StackedBarHelperService
-  ) {}
+  private groupedBarService = inject(GroupedBarService);
+  private chartService = inject(StackedBarHelperService);
 
   get legendItems() {
     return this.chartService.getLegendItems(this.data);

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
 import {RouterModule} from '@angular/router';
@@ -42,11 +42,9 @@ export class SiteProfileComponent implements OnInit {
     {key: 'publications', label: 'Publications'}
   ];
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private collabApi: CollaboratingSitesApiService
-  ) {}
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private collabApi = inject(CollaboratingSitesApiService);
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {

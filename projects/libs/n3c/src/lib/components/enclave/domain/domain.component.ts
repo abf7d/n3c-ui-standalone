@@ -1,6 +1,5 @@
-import {Component, OnInit, Inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {MatIconModule} from '@angular/material/icon';
 import {CommonModule} from '@angular/common';
 import {ActivatedRoute, Router, RouterModule} from '@angular/router';
@@ -8,7 +7,6 @@ import {ViewEncapsulation} from '@angular/core';
 import {StrapiResult} from '../../../models/strapi-default';
 import {ContentManagerService} from '../../../services/content-manager/content-manager.service';
 import {N3cBaseComponent} from '@odp/shared/lib/n3c/base/base.component';
-import {StrapiApiService} from '../../../services/api/strapi-api/strapi-api.service';
 import {N3cLoaderComponent} from '../../shared/loader/loader.component';
 import {N3cMenuComponent} from '../../shared/menu/menu.component';
 import {HeaderViewComponent} from '../../shared/header-view/header-view.component';
@@ -42,16 +40,10 @@ export class N3cDomainComponent extends N3cBaseComponent implements OnInit {
     inactive_domain: 'inactive_domain_teams'
   };
 
-  constructor(
-    private titleService: Title,
-    private strapiApi: StrapiApiService,
-    private contentManager: ContentManagerService,
-    private route: ActivatedRoute,
-    private router: Router,
-    @Inject(API_URLS) private configuration: Endpoints
-  ) {
-    super(configuration, strapiApi);
-  }
+  private titleService = inject(Title);
+  private contentManager = inject(ContentManagerService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
   ngOnInit() {
     this.initDataByRoute();
@@ -65,7 +57,7 @@ export class N3cDomainComponent extends N3cBaseComponent implements OnInit {
   }
 
   override onBaseDataLoaded(): void {
-    this.strapiApi.get<StrapiResult>('domain', [`${this.type}.you_tube_videos`, `${this.type}.leads`]).subscribe({
+    this.strapiService.get<StrapiResult>('domain', [`${this.type}.you_tube_videos`, `${this.type}.leads`]).subscribe({
       next: (result) => {
         this.pageContent = result.data?.attributes || {};
         this.contentResources = this.contentManager.getContentObj(this.pageContent, this.type);

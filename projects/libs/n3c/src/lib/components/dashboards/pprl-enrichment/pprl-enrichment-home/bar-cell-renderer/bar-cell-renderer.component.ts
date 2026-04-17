@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef, ViewEncapsulation} from '@angular/core';
+import {Component, inject, OnInit, ElementRef, ViewEncapsulation} from '@angular/core';
 import {select} from 'd3-selection';
 import {scaleLinear, scaleBand, scaleOrdinal} from 'd3-scale';
 import {stack} from 'd3-shape';
@@ -24,7 +24,7 @@ export class BarCellRendererComponent implements OnInit {
   private value: any;
   private additionalData: any;
 
-  constructor(private hostElement: ElementRef) {}
+  private hostElement = inject(ElementRef);
 
   ngOnInit(): void {
     // Initial render, if value and additionalData are set at this time

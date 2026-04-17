@@ -1,6 +1,5 @@
-import {Component, OnInit, Inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {MatIconModule} from '@angular/material/icon';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
@@ -8,7 +7,6 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {StrapiResult} from '../../../models/strapi-default';
 import {ContentManagerService} from '../../../services/content-manager/content-manager.service';
 import {N3cBaseComponent} from '@odp/shared/lib/n3c/base/base.component';
-import {StrapiApiService} from '../../../services/api/strapi-api/strapi-api.service';
 import {N3cLoaderComponent} from '../../shared/loader/loader.component';
 import {N3cMenuComponent} from '../../shared/menu/menu.component';
 import {HeaderViewComponent} from '../../shared/header-view/header-view.component';
@@ -32,14 +30,8 @@ import {N3cEnclaveFooterComponent} from '../../shared/enclave-footer/enclave-foo
 export class N3cPresentationsPageComponent extends N3cBaseComponent implements OnInit {
   contentResourcesChunked: any[] = [];
 
-  constructor(
-    private titleService: Title,
-    protected strapiApi: StrapiApiService,
-    @Inject(API_URLS) configuration: Endpoints,
-    public contentManager: ContentManagerService
-  ) {
-    super(configuration, strapiApi);
-  }
+  private titleService = inject(Title);
+  public contentManager = inject(ContentManagerService);
 
   ngOnInit() {
     this.initDataByRoute();
@@ -48,7 +40,7 @@ export class N3cPresentationsPageComponent extends N3cBaseComponent implements O
   }
 
   override onBaseDataLoaded(): void {
-    this.strapiApi.get<StrapiResult>('presentation', this.contentBlock).subscribe({
+    this.strapiService.get<StrapiResult>('presentation', this.contentBlock).subscribe({
       next: (result) => {
         this.pageContent = result.data?.attributes || {};
 

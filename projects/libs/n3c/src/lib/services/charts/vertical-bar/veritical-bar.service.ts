@@ -24,8 +24,6 @@ export class VerticalBarService {
     tooltip: true
   };
 
-  constructor() {}
-
   draw(data: {category: string; value: number}[], el: HTMLElement, userConfig: BarChartConfig = {}): void {
     // Merge user config with default config
     const config = {...this.defaultConfig, ...userConfig};

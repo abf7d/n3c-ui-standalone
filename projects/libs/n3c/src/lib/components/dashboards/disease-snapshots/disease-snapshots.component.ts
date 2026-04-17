@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, Router, RouterModule} from '@angular/router';
 import {DiseaseSnapshotsApiService} from '@odp/n3c/lib/services/api/disease-snapshots-api/disease-snapshots-api';
@@ -72,15 +72,15 @@ export class DiseaseSnapshotsComponent implements OnInit {
     }
   };
 
-  constructor(
-    private api: DiseaseSnapshotsApiService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private titleService: Title,
-    private manager: DiseaseSnapshotsManager,
-    private siteMapApi: SitemapApiService,
-    private globalUtils: GlobalUtilsService
-  ) {
+  private api = inject(DiseaseSnapshotsApiService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private titleService = inject(Title);
+  private manager = inject(DiseaseSnapshotsManager);
+  private siteMapApi = inject(SitemapApiService);
+  private globalUtils = inject(GlobalUtilsService);
+
+  constructor() {
     this.titleService.setTitle('N3C Dashboard - Disease Snapshots');
   }
 

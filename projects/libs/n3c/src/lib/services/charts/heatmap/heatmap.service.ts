@@ -7,7 +7,6 @@ import {max} from 'd3-array';
 
 @Injectable()
 export class HeatmapService {
-  constructor() {}
   public initChart() {}
   public drawChart(properties: HeatmapProperties, grpahData: HeatmapDataChart) {
     const graph = grpahData;

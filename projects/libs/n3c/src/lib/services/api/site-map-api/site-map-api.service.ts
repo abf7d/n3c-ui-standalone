@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {Observable} from 'rxjs';
 import {
@@ -22,12 +22,10 @@ import {
   providedIn: 'root'
 })
 export class SitemapApiService {
+  private config = inject(API_URLS) as unknown as Endpoints;
+  private http = inject(HttpClient);
   private dashboardUrl: string = this.config.n3cUrls.baseUrl + this.config.n3cUrls.dashboard;
   private appBase: string = this.config.n3cUrls.baseUrl;
-  constructor(
-    @Inject(API_URLS) private config: Endpoints,
-    private http: HttpClient
-  ) {}
 
   public getMapData(): Observable<MapData> {
     return this.http.get<MapData>(`${this.dashboardUrl}/map_data`);

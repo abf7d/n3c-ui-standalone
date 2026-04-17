@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {map, Observable} from 'rxjs';
 import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {
@@ -12,13 +12,9 @@ import {CollaborationMapApiService} from '../collaboration-map-api/collaboration
   providedIn: 'root'
 })
 export class PublicationsMapApiService extends CollaborationMapApiService {
+  private configPub = inject(API_URLS) as unknown as Endpoints;
+  private httpPub = inject(HttpClient);
   protected override baseUrl: string = this.configPub.n3cUrls.baseUrl + '/api/n3c/dashboard';
-  constructor(
-    @Inject(API_URLS) private configPub: Endpoints,
-    private httpPub: HttpClient
-  ) {
-    super(configPub, httpPub);
-  }
 
   public override getRegions(): Observable<any> {
     return this.httpPub.get<{count: string}[]>('/assets/data/gz_2010_us_040_00_5m.json');

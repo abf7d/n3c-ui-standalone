@@ -1,4 +1,14 @@
-import {Component, Input, ElementRef, ViewChild, AfterViewInit, OnDestroy, Output, EventEmitter} from '@angular/core';
+import {
+  Component,
+  Input,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  OnDestroy,
+  Output,
+  EventEmitter,
+  inject
+} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ChartGroup} from '@odp/n3c/lib/services/charts/stacked-bar/stacked-bar.interface';
 import {StackedBarService} from '@odp/n3c/lib/services/charts/stacked-bar/stacked-bar.service';
@@ -24,10 +34,8 @@ export class StackedBarChartsComponent implements AfterViewInit, OnDestroy {
   showMenu = false;
   private resizeObserver!: ResizeObserver;
 
-  constructor(
-    private barService: StackedBarService,
-    private helper: StackedBarHelperService
-  ) {}
+  private barService = inject(StackedBarService);
+  private helper = inject(StackedBarHelperService);
 
   get legendItems() {
     return this.helper.getLegendItems(this.chartData);

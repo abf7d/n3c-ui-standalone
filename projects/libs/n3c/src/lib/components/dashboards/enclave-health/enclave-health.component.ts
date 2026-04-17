@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterModule} from '@angular/router';
 import {GridComponent} from '../../shared/data-grid/data-grid.component';
 import {DataFiltersComponent} from '../../shared/data-filters/data-filters.component';
@@ -71,14 +71,14 @@ export class EnclaveHealthComponent implements OnInit {
   };
   displayMode: 'bar' | 'percent' | 'pie' = 'bar';
 
-  constructor(
-    private api: EnclaveHealthApiService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private titleService: Title,
-    private manager: EnclaveHealthManager,
-    private siteMapApi: SitemapApiService
-  ) {
+  private api = inject(EnclaveHealthApiService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private titleService = inject(Title);
+  private manager = inject(EnclaveHealthManager);
+  private siteMapApi = inject(SitemapApiService);
+
+  constructor() {
     this.titleService.setTitle('N3C Dashboard - Enclave Health');
   }
 

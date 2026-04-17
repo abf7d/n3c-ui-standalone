@@ -1,5 +1,5 @@
 import '../../../ag-grid-setup';
-import {Component, OnInit, Inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {HttpClient} from '@angular/common/http';
 import {forkJoin} from 'rxjs';
@@ -13,7 +13,6 @@ import {GridApi, GridReadyEvent} from 'ag-grid-community';
 import {ViewEncapsulation} from '@angular/core';
 import {StrapiResult} from '../../../models/strapi-default';
 import {N3cBaseComponent} from '@odp/shared/lib/n3c/base/base.component';
-import {StrapiApiService} from '../../../services/api/strapi-api/strapi-api.service';
 import {N3cLoaderComponent} from '../../shared/loader/loader.component';
 import {N3cMenuComponent} from '../../shared/menu/menu.component';
 import {HeaderViewComponent} from '../../shared/header-view/header-view.component';
@@ -46,13 +45,12 @@ export class N3cTenantDuasPageComponent extends N3cBaseComponent implements OnIn
   public paginationPageSize: number;
   public paginationPageSizeSelector: any;
 
-  constructor(
-    private titleService: Title,
-    private http: HttpClient,
-    private strapiApi: StrapiApiService,
-    @Inject(API_URLS) private configuration: Endpoints
-  ) {
-    super(configuration, strapiApi);
+  private titleService = inject(Title);
+  private http = inject(HttpClient);
+  private configuration = inject(API_URLS) as unknown as Endpoints;
+
+  constructor() {
+    super();
 
     this.defaultColDef = {
       width: 200,

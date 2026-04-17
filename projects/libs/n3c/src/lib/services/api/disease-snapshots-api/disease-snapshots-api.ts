@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {Inject, Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {DiseaseSnapshots} from '@odp/n3c/lib/models/disease-snapshots';
 import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {Observable} from 'rxjs';
@@ -8,11 +8,9 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class DiseaseSnapshotsApiService {
+  private config = inject(API_URLS) as unknown as Endpoints;
+  private http = inject(HttpClient);
   private baseUrl: string = this.config.n3cUrls.baseUrl + this.config.n3cUrls.dashboard;
-  constructor(
-    @Inject(API_URLS) private config: Endpoints,
-    private http: HttpClient
-  ) {}
 
   public callApiByTopic(topic: string): Observable<DiseaseSnapshots> {
     return this.http.get<DiseaseSnapshots>(`${this.baseUrl}/public-health/disease/${topic}`);

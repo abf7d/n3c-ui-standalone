@@ -1,13 +1,11 @@
-import {Component, OnInit, Inject, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, inject, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {MatIconModule} from '@angular/material/icon';
 import {CommonModule} from '@angular/common';
 import {ActivatedRoute, RouterModule} from '@angular/router';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {ContentManagerService} from '../../../services/content-manager/content-manager.service';
 import {N3cBaseComponent} from '@odp/shared/lib/n3c/base/base.component';
-import {StrapiApiService} from '../../../services/api/strapi-api/strapi-api.service';
 
 @Component({
   selector: 'app-n3c-phastr-question',
@@ -30,15 +28,9 @@ export class N3cPhastrQuestionComponent extends N3cBaseComponent implements OnIn
 
   @Input() content: any;
 
-  constructor(
-    private titleService: Title,
-    protected strapiApi: StrapiApiService,
-    @Inject(API_URLS) configuration: Endpoints,
-    public contentManager: ContentManagerService,
-    private route: ActivatedRoute
-  ) {
-    super(configuration, strapiApi);
-  }
+  private titleService = inject(Title);
+  public contentManager = inject(ContentManagerService);
+  private route = inject(ActivatedRoute);
 
   ngOnInit() {
     this.initDataByRoute();

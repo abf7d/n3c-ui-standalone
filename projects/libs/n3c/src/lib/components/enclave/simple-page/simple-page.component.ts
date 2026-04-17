@@ -1,10 +1,8 @@
 import {CommonModule} from '@angular/common';
-import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
-import {API_URLS, Endpoints} from '@odp/shared/lib/types';
+import {Component, inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {N3cBaseComponent} from '@odp/shared/lib/n3c/base/base.component';
 import {N3cLoaderComponent} from '../../shared/loader/loader.component';
 import {Title} from '@angular/platform-browser';
-import {StrapiApiService} from '../../../services/api/strapi-api/strapi-api.service';
 import {ActivatedRoute, RouterModule} from '@angular/router';
 import {N3cMenuComponent} from '../../shared/menu/menu.component';
 import {HeaderViewComponent} from '../../shared/header-view/header-view.component';
@@ -46,14 +44,8 @@ export class N3cSimplePageComponent extends N3cBaseComponent implements OnInit {
   public header = '';
   public showHeader = true;
 
-  constructor(
-    private route: ActivatedRoute,
-    private titleService: Title,
-    private strapiApi: StrapiApiService,
-    @Inject(API_URLS) protected configuration: Endpoints
-  ) {
-    super(configuration, strapiApi);
-  }
+  private route = inject(ActivatedRoute);
+  private titleService = inject(Title);
 
   ngOnInit(): void {
     const routeData = this.normalizeRouteData(this.route.snapshot.data as Partial<RouteData>);
@@ -70,7 +62,7 @@ export class N3cSimplePageComponent extends N3cBaseComponent implements OnInit {
   }
 
   override onBaseDataLoaded(): void {
-    this.strapiApi.get<any>(this.strapiEndpoint, this.strapiContentBlocks, this.strapiFilters).subscribe({
+    this.strapiService.get<any>(this.strapiEndpoint, this.strapiContentBlocks, this.strapiFilters).subscribe({
       next: (result) => {
         this.pageContent = Array.isArray(result.data) ? result.data?.[0]?.attributes : result?.data?.attributes || {};
 

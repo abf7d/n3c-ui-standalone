@@ -1,13 +1,11 @@
-import {Component, OnInit, Inject, AfterViewInit} from '@angular/core';
+import {Component, inject, OnInit, AfterViewInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {StrapiResult} from '../../../models/strapi-default';
 import {ContentManagerService} from '../../../services/content-manager/content-manager.service';
 import {N3cBaseComponent} from '@odp/shared/lib/n3c/base/base.component';
-import {StrapiApiService} from '../../../services/api/strapi-api/strapi-api.service';
 import {N3cLoaderComponent} from '../../shared/loader/loader.component';
 import {N3cMenuComponent} from '../../shared/menu/menu.component';
 import {HeaderViewComponent} from '../../shared/header-view/header-view.component';
@@ -32,14 +30,12 @@ export class N3cTrainingPageComponent extends N3cBaseComponent implements OnInit
   public contentResourcesAdditional: Array<any> = [];
   public contentResourcesYoutube: Array<any> = [];
 
-  constructor(
-    private titleService: Title,
-    private strapiApi: StrapiApiService,
-    public sanitizer: DomSanitizer,
-    @Inject(API_URLS) private configuration: Endpoints,
-    private contentManager: ContentManagerService
-  ) {
-    super(configuration, strapiApi);
+  private titleService = inject(Title);
+  public sanitizer = inject(DomSanitizer);
+  private contentManager = inject(ContentManagerService);
+
+  constructor() {
+    super();
     this.contentBlock = ['shared_resources', 'portal_resources', 'additional_resources', 'eug_you_tube_videos'];
   }
 
@@ -54,7 +50,7 @@ export class N3cTrainingPageComponent extends N3cBaseComponent implements OnInit
   }
 
   override onBaseDataLoaded(): void {
-    this.strapiApi.get<StrapiResult>('training', this.contentBlock).subscribe({
+    this.strapiService.get<StrapiResult>('training', this.contentBlock).subscribe({
       next: (result) => {
         this.pageContent = result.data?.attributes || {};
         this.pageContent.block1 = this.md.parse(this.pageContent?.block1);

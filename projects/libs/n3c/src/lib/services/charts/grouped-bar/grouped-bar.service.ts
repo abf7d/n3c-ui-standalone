@@ -10,8 +10,6 @@ import {ChartGroup} from '../stacked-bar/stacked-bar.interface';
 export class GroupedBarService {
   private svg!: Selection<SVGSVGElement, unknown, null, undefined>;
 
-  constructor() {}
-
   renderChart(containerEl: HTMLElement, data: ChartGroup[], onLegendClick: (label: string) => void): void {
     if (!containerEl) return;
 

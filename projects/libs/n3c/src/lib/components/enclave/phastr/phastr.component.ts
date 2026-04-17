@@ -1,6 +1,5 @@
-import {Component, OnInit, Inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {MatIconModule} from '@angular/material/icon';
 import {CommonModule} from '@angular/common';
 import {RouterLink, RouterModule, ActivatedRoute} from '@angular/router';
@@ -10,7 +9,6 @@ import {ContentManagerService} from '../../../services/content-manager/content-m
 import {N3cBaseComponent} from '@odp/shared/lib/n3c/base/base.component';
 import {N3cPhastrQuestionComponent} from '../phastr-question/phastr-question.component';
 import {first, forkJoin} from 'rxjs';
-import {StrapiApiService} from '../../../services/api/strapi-api/strapi-api.service';
 import {N3cLoaderComponent} from '../../shared/loader/loader.component';
 import {N3cMenuComponent} from '../../shared/menu/menu.component';
 import {HeaderViewComponent} from '../../shared/header-view/header-view.component';
@@ -39,14 +37,12 @@ export class N3cPhastrComponent extends N3cBaseComponent implements OnInit {
   public id: string | null = null;
   public childContent: any = null;
 
-  constructor(
-    private titleService: Title,
-    protected strapiApi: StrapiApiService,
-    @Inject(API_URLS) configuration: Endpoints,
-    public contentManager: ContentManagerService,
-    private route: ActivatedRoute
-  ) {
-    super(configuration, strapiApi);
+  private titleService = inject(Title);
+  public contentManager = inject(ContentManagerService);
+  private route = inject(ActivatedRoute);
+
+  constructor() {
+    super();
     this.contentBlock = ['public_health_questions', 'faqs'];
   }
 
@@ -58,7 +54,7 @@ export class N3cPhastrComponent extends N3cBaseComponent implements OnInit {
   override onBaseDataLoaded(): void {
     // Fetch content and initial query param
     forkJoin([
-      this.strapiApi.get<StrapiResult>('phastr', this.contentBlock),
+      this.strapiService.get<StrapiResult>('phastr', this.contentBlock),
       this.route.queryParams.pipe(first())
     ]).subscribe(([pageContent, queryParam]) => {
       this.pageContent = pageContent.data?.attributes || {};

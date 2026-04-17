@@ -1,5 +1,5 @@
 import '../../../ag-grid-setup';
-import {Component, Input, OnInit, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, inject, Input, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import {AgGridAngular} from 'ag-grid-angular';
 
 import {GridApi, GridReadyEvent} from 'ag-grid-community';
@@ -21,7 +21,7 @@ export class GridComponent implements OnInit, OnChanges {
   public searchTerm: string = '';
   public rowCount: number = 0;
 
-  constructor(private snackBar: MatSnackBar) {}
+  private snackBar = inject(MatSnackBar);
 
   /**
    * Example column definitions to pass into the data grid.

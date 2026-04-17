@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {Router} from '@angular/router';
 import {ICellRendererAngularComp} from 'ag-grid-angular';
 
@@ -9,8 +9,7 @@ import {ICellRendererAngularComp} from 'ag-grid-angular';
 })
 export class DetailsLinkComponent implements ICellRendererAngularComp {
   private id!: string;
-
-  constructor(private router: Router) {}
+  private router = inject(Router);
 
   agInit(params: any): void {
     this.id = params.data.id;

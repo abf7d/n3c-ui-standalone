@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {HttpClient} from '@angular/common/http';
 import {forkJoin} from 'rxjs';
@@ -73,12 +73,12 @@ export class MetforminComponent implements OnInit {
   private totals!: TotalsObject;
   private metforminData: any;
 
-  constructor(
-    private titleService: Title,
-    private http: HttpClient,
-    private KpiStatsApi: KpiStatsApiService,
-    private manager: MetforminManager
-  ) {
+  private titleService = inject(Title);
+  private http = inject(HttpClient);
+  private KpiStatsApi = inject(KpiStatsApiService);
+  private manager = inject(MetforminManager);
+
+  constructor() {
     this.titleService.setTitle('N3C Frequently Asked Questions');
     this.selectedDataset = 'metformin_1';
   }

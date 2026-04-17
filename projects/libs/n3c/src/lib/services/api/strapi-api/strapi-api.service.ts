@@ -1,4 +1,4 @@
-import {Injectable, Inject} from '@angular/core';
+import {Injectable, inject} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {Observable} from 'rxjs';
@@ -7,12 +7,9 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class StrapiApiService {
+  private config = inject(API_URLS) as unknown as Endpoints;
+  private http = inject(HttpClient);
   private baseUrl: string = this.config.n3cUrls.restEndpoint;
-
-  constructor(
-    @Inject(API_URLS) private config: Endpoints,
-    private http: HttpClient
-  ) {}
 
   /**
    * Builds a Strapi API URL with optional query parameters.

@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, SimpleChanges, Inject} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges, inject} from '@angular/core';
 import {API_URLS, Endpoints, N3CEndpoints} from '@odp/shared/lib/types';
 import * as marked from 'marked';
 
@@ -11,7 +11,7 @@ export class N3cEnclaveFooterComponent implements OnChanges {
   @Input() public tenantContent!: any;
 
   public md = marked.setOptions({});
-  public n3cUrls!: N3CEndpoints;
+  public n3cUrls: N3CEndpoints = (inject(API_URLS) as unknown as Endpoints).n3cUrls;
 
   public footerIconImage = '';
   public footerCite: any;
@@ -29,9 +29,5 @@ export class N3cEnclaveFooterComponent implements OnChanges {
     this.footerCite = this.md(tenantContent.footer_cite);
     this.footerCredit = this.md(tenantContent.footer_credit);
     this.footerSignUp = this.md(tenantContent.footer_signup);
-  }
-
-  constructor(@Inject(API_URLS) configuration: Endpoints) {
-    this.n3cUrls = configuration.n3cUrls;
   }
 }

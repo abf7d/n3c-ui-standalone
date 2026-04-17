@@ -1,12 +1,12 @@
 import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class KpiStatsApiService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   public getEnclaveMetrics(): Observable<any> {
     return this.http.get('https://covid.cd2h.org/dashboard/feeds/embedded_enclave_metrics.jsp');

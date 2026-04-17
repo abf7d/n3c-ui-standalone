@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {GridComponent} from '../../shared/data-grid/data-grid.component';
 import {ColDef, GridOptions} from 'ag-grid-community';
 import {ConceptSet, ConceptSets} from './concept-sets.interface';
@@ -28,6 +28,9 @@ export class ConceptSetsComponent implements OnInit {
   public frameworkComponents = {
     doiLink: DoiLinkComponent
   };
+
+  private http = inject(HttpClient);
+  private config = inject(API_URLS) as unknown as Endpoints;
   private baseUrl: string = this.config.n3cUrls.baseUrl + this.config.n3cUrls.dashboard;
 
   public columnDefs: ColDef[] = [];
@@ -50,11 +53,6 @@ export class ConceptSetsComponent implements OnInit {
 
   public title = 'N3C Concept Sets';
   public description = 'The officially recommended set of concepts in use in the Enclave.';
-
-  constructor(
-    private http: HttpClient,
-    @Inject(API_URLS) private config: Endpoints
-  ) {}
 
   ngOnInit(): void {
     this.http.get<ConceptSets>(`${this.baseUrl}/zenodo`).subscribe({

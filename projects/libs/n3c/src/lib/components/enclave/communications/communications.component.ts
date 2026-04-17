@@ -1,7 +1,6 @@
-import {Component, OnInit, Inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {ViewEncapsulation} from '@angular/core';
-import {API_URLS, Endpoints} from '@odp/shared/lib/types';
 import {MatIconModule} from '@angular/material/icon';
 import {CommonModule} from '@angular/common';
 import {ActivatedRoute, RouterModule} from '@angular/router';
@@ -9,7 +8,6 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {StrapiResult} from '../../../models/strapi-default';
 import {ContentManagerService} from '../../../services/content-manager/content-manager.service';
 import {N3cBaseComponent} from '@odp/shared/lib/n3c/base/base.component';
-import {StrapiApiService} from '../../../services/api/strapi-api/strapi-api.service';
 import {N3cLoaderComponent} from '../../shared/loader/loader.component';
 import {N3cMenuComponent} from '../../shared/menu/menu.component';
 import {HeaderViewComponent} from '../../shared/header-view/header-view.component';
@@ -34,16 +32,13 @@ import {N3cEnclaveFooterComponent} from '../../shared/enclave-footer/enclave-foo
 export class N3cCommunicationsComponent extends N3cBaseComponent implements OnInit {
   objectTools: any;
 
-  constructor(
-    private titleService: Title,
-    protected strapiApi: StrapiApiService,
-    @Inject(API_URLS) configuration: Endpoints,
-    public contentManager: ContentManagerService,
-    private route: ActivatedRoute
-  ) {
-    super(configuration, strapiApi);
+  private titleService = inject(Title);
+  public contentManager = inject(ContentManagerService);
+  private route = inject(ActivatedRoute);
+
+  constructor() {
+    super();
     this.contentBlock = ['content_image_block_rights'];
-    this.route = route;
   }
 
   ngOnInit() {
@@ -52,7 +47,7 @@ export class N3cCommunicationsComponent extends N3cBaseComponent implements OnIn
   }
 
   override onBaseDataLoaded(): void {
-    this.strapiApi.get<StrapiResult>('communication-material', this.contentBlock).subscribe({
+    this.strapiService.get<StrapiResult>('communication-material', this.contentBlock).subscribe({
       next: (result) => {
         this.pageContent = result.data?.attributes || {};
         this.pageContent.block = this.md.parse(this.pageContent?.block);

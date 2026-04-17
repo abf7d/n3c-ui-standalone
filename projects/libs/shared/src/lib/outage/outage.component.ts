@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {EventService} from '../event-service/event.service';
 import {BANNER_MSG_KEY} from '../api-constants';
 import {filter} from 'rxjs';
@@ -12,7 +12,7 @@ import {EVENT_SERVICE} from '../types';
 })
 export class OutageComponent implements OnInit {
   public message: string = 'The site is currently unavailable';
-  constructor(@Inject(EVENT_SERVICE) private eventService: EventService) {}
+  private eventService = inject<EventService>(EVENT_SERVICE);
 
   ngOnInit(): void {
     this.eventService
