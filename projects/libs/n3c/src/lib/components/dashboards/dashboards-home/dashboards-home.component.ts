@@ -246,9 +246,9 @@ export class N3cDashboardsHomeComponent implements OnInit, OnDestroy {
   // front carousel starts
 
   images: string[] = [
-    '../assets/n3c/images/slide_1.png',
-    '../assets/n3c/images/slide_2.png',
-    './assets/n3c/images/slide_3.png'
+    '../n3c/images/slide_1.png',
+    '../n3c/images/slide_2.png',
+    './n3c/images/slide_3.png'
   ];
 
   currentIndex: number = 0;

@@ -31,10 +31,10 @@ export class SitemapApiService {
     return this.http.get<MapData>(`${this.dashboardUrl}/map_data`);
   }
   public getStates(): Observable<StateInfo> {
-    return this.http.get<StateInfo>(`./assets/data/gz_2010_us_040_00_5m.json`);
+    return this.http.get<StateInfo>(`./data/gz_2010_us_040_00_5m.json`);
   }
   public getMapCounties(): Observable<FeatureCollection> {
-    return this.http.get<FeatureCollection>(`./assets/data/gz_2010_us_050_00_5m.json`);
+    return this.http.get<FeatureCollection>(`./data/gz_2010_us_050_00_5m.json`);
   }
   public getCountyLevelData(): Observable<any> {
     return this.http.get<any>(`${this.appBase}/api/n3c/rest/n3c_alexis/census_county`); //`https://covid.cd2h.org/dashboard/feeds/census_counties.jsp`);

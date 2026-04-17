@@ -35,7 +35,7 @@ export class MultiDimensionalSummaryComponent implements OnInit {
     this.hiveApi.getHiveData().subscribe({
       next: (hiveData) => {
         this.radarPlot.createChart({
-          // feedPath: './assets/data/data.json',
+          // feedPath: './data/data.json',
           hiveData,
           // domName: 'radar-plot-container',
           scaling: 2,

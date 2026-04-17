@@ -23,7 +23,7 @@ export class CollaboratingSitesApiService {
   private staticBaseUrl: string = this.config.n3cUrls.baseUrl + '/static/pdf/n3c/collab';
 
   public getRegions(): Observable<UsRegionsGeoJson> {
-    return this.http.get<UsRegionsGeoJson>('/assets/data/gz_2010_us_040_00_5m.json');
+    return this.http.get<UsRegionsGeoJson>('/data/gz_2010_us_040_00_5m.json');
   }
 
   public getSiteCollaborations(): Observable<SiteCollaborationsResponse> {

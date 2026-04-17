@@ -42,11 +42,11 @@ export class N3cMobileMenuComponent {
       });
 
     const menuMapping: {[key: string]: string} = {
-      '/covid': 'assets/n3c/menu/covid-menu.json',
-      '/cancer': 'assets/n3c/menu/cancer-menu.json',
-      '/clinical-cohort': 'assets/n3c/menu/clinical-menu.json',
-      '/education': 'assets/n3c/menu/education-menu.json',
-      '/renal': 'assets/n3c/menu/renal-menu.json'
+      '/covid': 'n3c/menu/covid-menu.json',
+      '/cancer': 'n3c/menu/cancer-menu.json',
+      '/clinical-cohort': 'n3c/menu/clinical-menu.json',
+      '/education': 'n3c/menu/education-menu.json',
+      '/renal': 'n3c/menu/renal-menu.json'
     };
 
     let menu: string = 'assets/menu.json'; // Global default menu path
@@ -62,7 +62,7 @@ export class N3cMobileMenuComponent {
     });
 
     if (!isMapped) {
-      menu = 'assets/n3c/menu/clinical-menu.json';
+      menu = 'n3c/menu/clinical-menu.json';
     }
 
     // Fetch the menu items

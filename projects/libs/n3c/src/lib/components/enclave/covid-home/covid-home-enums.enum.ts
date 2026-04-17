@@ -3,21 +3,21 @@ export const dashboardGrid = [
     id: 'Collaboration_Networks',
     title: 'Collaboration Networks',
     description: 'Explore the collaborations between individuals and institutions working on projects within the N3C.',
-    image: '../assets/n3c/images/dash_collaboration-network.png',
+    image: '../n3c/images/dash_collaboration-network.png',
     link: '/dashboard/collaboration-graph/'
   },
   {
     id: 'Admin',
     title: 'Admin Panel',
     description: 'Metrics on user registrations, institutions submitting data, and groups.',
-    image: '../assets/n3c/images/dash_admin.png',
+    image: '../n3c/images/dash_admin.png',
     link: '/dashboard/admin/'
   },
   {
     id: 'Data_download',
     title: 'Data Download',
     description: 'Download data used to populate our visualizations in csv or json format.',
-    image: '../assets/n3c/images/dash_data_download.png',
+    image: '../n3c/images/dash_data_download.png',
     link: '/dashboard/downloads/'
   }
 ];

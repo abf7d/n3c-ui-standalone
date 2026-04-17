@@ -16,7 +16,7 @@ export class CollaborationMapApiService {
   protected baseUrl: string = this.config.n3cUrls.baseUrl + this.config.n3cUrls.dashboard;
 
   public getRegions(): Observable<any> {
-    return this.http.get<{count: string}[]>('/assets/data/gz_2010_us_040_00_5m.json');
+    return this.http.get<{count: string}[]>('/data/gz_2010_us_040_00_5m.json');
   }
   public getSiteData(): Observable<SiteCollaborations> {
     return this.http.get<SiteCollaborations>(`${this.baseUrl}/site_collaborations`);

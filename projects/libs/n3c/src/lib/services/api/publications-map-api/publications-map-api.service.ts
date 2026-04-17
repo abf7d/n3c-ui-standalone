@@ -17,7 +17,7 @@ export class PublicationsMapApiService extends CollaborationMapApiService {
   protected override baseUrl: string = this.configPub.n3cUrls.baseUrl + '/api/n3c/dashboard';
 
   public override getRegions(): Observable<any> {
-    return this.httpPub.get<{count: string}[]>('/assets/data/gz_2010_us_040_00_5m.json');
+    return this.httpPub.get<{count: string}[]>('/data/gz_2010_us_040_00_5m.json');
   }
 
   public override getSiteData(): Observable<SiteCollaborations> {

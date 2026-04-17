@@ -22,7 +22,7 @@ export class N3cMenuComponent implements OnChanges {
 
   private eventService = inject<EventService>(EVENT_SERVICE);
 
-  public mainLogoImage = './assets/n3c/images/clinical_cohort_logo_white_banner_2787a6bb96.png';
+  public mainLogoImage = './n3c/images/clinical_cohort_logo_white_banner_2787a6bb96.png';
   public mainLink = '/clinical-cohort';
   public tenantLogo!: string;
 

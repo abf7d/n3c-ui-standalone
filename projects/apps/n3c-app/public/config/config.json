@@ -7,7 +7,7 @@
             "restEndpoint": "https://n3c-strapi-opendata-dev.ncats.nih.gov/api",
             "strapiUrl": "https://n3c-strapi-opendata-dev.ncats.nih.gov",
             "baseUrl": "https://opendata-dev.ncats.nih.gov",
-            "dashboard": "n3c/dashboard"
+            "dashboard": "/api/n3c/dashboard"
         }
     },
     "services": {"auth": {}}

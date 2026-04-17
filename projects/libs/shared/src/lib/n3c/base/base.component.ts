@@ -20,7 +20,7 @@ export class N3cBaseComponent {
   private baseRouter: Router = inject(Router);
   public baseRoute = '';
 
-  private parentPath = '../assets/n3c/menu';
+  private parentPath = '../n3c/menu';
   public n3cUrls: N3CEndpoints = (inject(API_URLS) as unknown as Endpoints).n3cUrls;
 
   public pageContent: any = {};
