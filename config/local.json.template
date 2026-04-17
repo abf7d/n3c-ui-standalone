@@ -1,0 +1,14 @@
+{
+    "odp": {
+        "variantApiUrl": "${ODP_API_SERVER}api",
+        "graphqlEndpoint": "${ODP_API_SERVER}api/graphql",
+        "covid19ApiUrl": "${ODP_API_SERVER}api",
+        "n3cUrls": {
+            "restEndpoint": "${STRAPI_SERVER}api",
+            "strapiUrl": "${STRAPI_SERVER}",
+            "baseUrl": "${ODP_API_SERVER}"
+            "dashboard": "n3c/dashboard"
+        }
+    },
+    "services": {"auth": {}}
+}

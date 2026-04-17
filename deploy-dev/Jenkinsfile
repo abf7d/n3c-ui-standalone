@@ -1,0 +1,227 @@
+pipeline {
+    options {
+        timestamps()
+        skipDefaultCheckout()
+    }
+    parameters {
+        string(
+            name: 'REDEPLOY_VERSION',
+            defaultValue: '',
+            description: 'The build version to re-deploy'
+        )
+        booleanParam(
+            name: 'BUILD_N3C',
+            defaultValue: false,
+            description: 'If True, build the N3C App instead of the ODP App'
+        )
+        booleanParam(
+            name: 'USE_BUILD_CACHE',
+            defaultValue: true,
+            description: 'Unset to force rebuild without the cache.'
+        )
+        string(
+            name: 'ENVIRONMENT', defaultValue: 'ci',
+            description: 'Role Name (mandatory)'
+        )
+    }
+    agent {
+        label 'ncats && dpi && ci && odp-ui'
+    }
+    triggers {
+        pollSCM('H/5 * * * *')
+    }
+    environment {
+        PROJECT_NAME = "odp"
+        CONTAINER_NAME = "odp-ui" // in other pipelines
+        DOCKER_REGISTRY = "registry.ncats.nih.gov:5000"
+        INIT_TOKEN = credentials('Vault-Access') // OIDC provider this token is Auto Generated //
+        SPHINX_TOKEN = credentials('ncatssvcdvops-sphinx') // PatToken Read Only Access for the DevOps Artifacts Repo https://github.com/Sphinx-Automation/devops-pipeline-artifacts.git //
+        ROLE_NAME = "$ENVIRONMENT-$PROJECT_NAME" // Role Name is Mandatory Variable for Vault //
+        APP_TYPE = "ui" // Application Type is required to get Secret from Vault //
+    }
+    stages {
+        stage('Checkout source code') {
+            steps {
+                cleanWs()
+                checkout scm
+            }
+        }
+        stage('Docker getSecrets By Role') {
+            steps {
+                script {
+                sh '''
+                    ### Cloning the repo from DevOps Artifacts Repository Repo ###
+                    git clone https://$SPHINX_TOKEN@github.com/Sphinx-Automation/devops-pipeline-artifacts.git
+                    ###  Running the script with Env specific to Authenticate Vault & Get Application Secrets for Docker Token###
+                    cd devops-pipeline-artifacts/application
+                    /bin/bash getNcatsDockerSecretsByRole.sh
+                    '''
+                }
+            }
+        }
+        stage('Build Version') {
+            steps{
+                script {
+                    if (params.REDEPLOY_VERSION?.trim()) {
+                        env.BUILD_VERSION = params.REDEPLOY_VERSION
+                        echo "Redeploying Build Version: ${env.BUILD_VERSION}"
+                    } else {
+                    BUILD_VERSION_GENERATED = VersionNumber(
+                        versionNumberString: 'v${BUILD_YEAR, XX}.${BUILD_MONTH, XX}${BUILD_DAY, XX}.${BUILDS_TODAY}',
+                        projectStartDate:    '1970-01-01',
+                        skipFailedBuilds:    true)
+                    env.BUILD_VERSION = BUILD_VERSION_GENERATED
+                    currentBuild.displayName = BUILD_VERSION
+                    env.BUILD = 'true'
+                    echo "Building New Version ${env.BUILD_VERSION}"
+                    }
+                }
+            }
+        }
+        stage('Prepare Pipeline') {
+            steps {
+                configFileProvider([
+                    configFile(fileId: 'prepare.sh', targetLocation: 'prepare.sh')
+                ]){
+                    script {
+                        // First set up our necessary environment variables
+                        env.UI_IMAGE = "${DOCKER_REGISTRY}/${CONTAINER_NAME}"
+                        env.NODE_IMAGE = "${DOCKER_REGISTRY}/${CONTAINER_NAME}:node"
+
+                        sh '''#!/bin/bash
+                        source prepare.sh
+                        docker login https://${DOCKER_REGISTRY} -u "${DOCKERLOGIN}" -p "${DOCKERPASSWORD}"
+                        '''
+                    }
+                }
+            }
+        }
+        stage('Build Node Application') {
+            when {
+                expression {
+                    return !params.REDEPLOY_VERSION
+                }
+            }
+            steps {
+                script {
+                    sh '''#!/bin/bash
+                    START_TIME=$(date +%s)
+                    # make sure the node image is in the local docker.
+                    # important because it will get pruned frequently.
+                    IMAGE_EXISTS=$(docker images -q ${NODE_IMAGE})
+                    if [ -z "${IMAGE_EXISTS}" ] && ${USE_BUILD_CACHE}; then
+                        docker pull ${NODE_IMAGE}
+                        if [ $? != 0 ]; then
+                            echo "Failed to pull remote node image ${NODE_IMAGE}"
+                            echo "If the image was deleted or this is a build, run without the build cache"
+                            exit 1
+                        fi
+                    fi
+
+                    set -e
+                    if ${BUILD_N3C}; then
+                        BUILD_CMD="build:n3c"
+                    else
+                        BUILD_CMD="build"
+                    fi
+                    echo "Starting Build of Node Image ${NODE_IMAGE}"
+                    docker build -f deploy-dev/node.Dockerfile \
+                        $( ! ${USE_BUILD_CACHE} && echo "--no-cache" ) \
+                        --cache-from=${NODE_IMAGE} \
+                        --compress \
+                        --build-arg="NPM_BUILD_CMD=${BUILD_CMD}" \
+                        -t ${NODE_IMAGE} \
+                        .
+                    if [[ $? != 0 ]]; then
+                        echo ""
+                        echo "Docker Build failed!"
+                        exit 1
+                    fi
+                    END_TIME=$(date +%s)
+                    echo "Node image built in $(expr ${END_TIME} - ${START_TIME}) s"
+                    '''
+                }
+            }
+        }
+        stage('Build UI Webserver Container') {
+            when {
+                expression {
+                    return !params.REDEPLOY_VERSION
+                }
+            }
+            steps {
+                script {
+                    sh '''#!/bin/bash
+                    START_TIME=$(date +%s)
+                    echo "Starting build of odp-ui nginx webserver"
+                    docker build -f deploy-dev/nginx.Dockerfile \
+                        $( ! ${USE_BUILD_CACHE} && echo "--no-cache" ) \
+                        --build-arg="NODE_REPO_NAME=${NODE_IMAGE}" \
+                        -t ${UI_IMAGE} \
+                        .
+                    if [[ $? != 0 ]]; then
+                        echo ""
+                        echo "Docker Build failed!"
+                        exit 1
+                    fi
+                    END_TIME=$(date +%s)
+                    echo "Build completed in $(expr ${END_TIME} - ${START_TIME}) s"
+                    docker tag ${UI_IMAGE}:latest ${UI_IMAGE}:${BUILD_VERSION}
+                    docker push ${UI_IMAGE}:${BUILD_VERSION}
+                    if [[ $? != 0 ]]; then
+                        echo -e "\nDocker Push failed!"
+                        exit 1
+                    fi
+                    echo "Tag and Push completed for ${UI_IMAGE}:${BUILD_VERSION}"
+                    echo "Time: $(expr $(date +%s) - ${END_TIME}) s"
+                            '''
+                        }
+                    }
+                }
+        stage('Deploy Application') {
+            steps {
+                configFileProvider([
+                    configFile(
+                        fileId: 'docker-compose.dev.yml',
+                        targetLocation: 'docker-compose.yml'
+                    )
+                ]) {
+                    sh  '''#!/bin/bash
+                    docker-compose -p ${CONTAINER_NAME} down | xargs echo
+                    set -e
+                    docker pull "${UI_IMAGE}:${BUILD_VERSION}"
+                    CURRENT_LOCAL_IMAGE=$(docker images -q "${UI_IMAGE}:current")
+                    if [ -n "${CURRENT_LOCAL_IMAGE}" ]; then
+                        docker rmi "${UI_IMAGE}:current"
+                    fi
+                    docker tag "${UI_IMAGE}:${BUILD_VERSION}" ${UI_IMAGE}:current
+                    docker-compose -p ${CONTAINER_NAME} up -d
+                    '''
+                }
+            }
+        }
+        stage('Push Node Image') {
+            when {
+                expression {
+                    return !params.REDEPLOY_VERSION
+                }
+            }
+            steps {
+                script {
+                    sh '''#!/bin/bash
+                    set -e
+                    echo "Push Node Image to Remote Registry"
+                    START_TIME=$(date +%s)
+                    docker image push ${NODE_IMAGE}
+                    END_TIME=$(date +%s)
+                    echo "Push completed for ${NODE_IMAGE}"
+                    docker image prune -af --filter "until=72h"
+                    echo "Pruned local images to last week"
+                    echo "Time: $(expr $(date +%s) - ${END_TIME}) s"
+                    '''
+                }
+            }
+        }
+    }
+}
+

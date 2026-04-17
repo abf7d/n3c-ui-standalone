@@ -1,0 +1,32 @@
+name: odplocal
+
+services:
+  odp-ui:
+    image: odp-ui
+    container_name: odp-ui
+    environment:
+      - ENV_CUR=${ENV_CUR:-LOCAL}
+      - STATICFILE_PROXY_SERVER=${STATICFILE_PROXY_SERVER:-https://opendata-dev.ncats.nih.gov:443/static/}
+      - API_PROXY_SERVER=${API_PROXY_SERVER:-https://opendata-dev.ncats.nih.gov:443/api/}
+      - STRAPI_PROXY_SERVER=${STRAPI_PROXY_SERVER:-https://n3c-strapi-opendata-dev.ncats.nih.gov:443/}
+    ports:
+      - ${PORT:-4200}:4200
+    expose:
+      - 8000 # for fastapi
+      - ${PORT:-4200}
+    restart: always
+    healthcheck:
+      test: [ "CMD", "curl", "--fail", "http://localhost:${PORT:-4200}" ]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - odplocal_odplocalnet
+    volumes:
+      # remember that volume paths are relative to the docker compose file
+      - ../projects/odp-app/src/config/config.json:/var/www/app/config/config.json:ro
+
+networks:
+  odplocal_odplocalnet:
+    external: true

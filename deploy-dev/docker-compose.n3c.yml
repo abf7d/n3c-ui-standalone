@@ -1,0 +1,42 @@
+version: '3.1'
+
+services:
+  odp-ui-n3c:
+    image: registry.ncats.nih.gov:5000/odp-ui-n3c:current
+    networks:
+      - reverse-proxy
+    expose:
+      - 8000
+    container_name: odp-ui-n3c
+    restart: always
+    environment:
+      ENV_CUR: DEV
+      VIRTUAL_HOST: n3c-dev.ncats.nih.gov
+      VIRTUAL_PORT: 8000
+      SERVICE_PATH: /
+      UPSTREAM:
+      SERVICES_AUTH_URL: https://a.labshare.org/_api
+      SERVICES_AUTH_CLIENT_ID:
+      SERVICES_AUTH_TENANT: ncats
+    volumes:
+      - ${WORKSPACE}/config/dev-demo.json:/var/www/app/config/config.json
+    logging:
+      driver: splunk
+      options:
+        splunk-token: "d203cee5-13f9-488c-b3eb-20ff9be2c6c7"
+        splunk-url: "https://splunkhf03.ncats.nih.gov:8088"
+        tag: ""
+        splunk-insecureskipverify: "true"
+        splunk-verify-connection: "false"
+        splunk-format: "json"
+    labels:
+      - "gov.nih.ncats.appname=odp-ui-n3c"
+      - "gov.nih.ncats.appenv=dev"
+      - "gov.nih.ncats.appentry="
+      - "gov.nih.ncats.appentrytype=https"
+      - "gov.nih.ncats.appentryport=443"
+
+networks:
+  reverse-proxy:
+    external:
+      name: reverse-proxy

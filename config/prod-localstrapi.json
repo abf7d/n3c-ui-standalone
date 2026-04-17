@@ -1,0 +1,14 @@
+{
+    "odp": {
+      "variantApiUrl": "https://opendata.ncats.nih.gov/api",
+      "graphqlEndpoint": "https://opendata.ncats.nih.gov/api/graphql",
+      "covid19ApiUrl": "https://opendata.ncats.nih.gov/api",
+      "n3cUrls": {
+        "restEndpoint": "http://localhost:1337/api",
+        "strapiUrl": "http://localhost:1337",
+        "baseUrl": "https://opendata.ncats.nih.gov",
+        "dashboard": "/api/n3c/dashboard"
+      }
+    },
+    "services": {"auth": {}}
+ }

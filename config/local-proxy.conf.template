@@ -1,0 +1,20 @@
+{
+    "/api": {
+        "target": "${ODP_API_SERVER}",
+        "secure": false,
+        "changeOrigin": true
+    },
+    "/strapi": {
+        "target": "${STRAPI_SERVER}",
+        "secure": false,
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/strapi": ""
+        }
+    },
+    "/static": {
+        "target": "${STATICFILE_SERVER}",
+        "secure": false,
+        "changeOrigin": true
+    }
+}
